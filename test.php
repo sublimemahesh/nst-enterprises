@@ -4,8 +4,9 @@ include_once(dirname(__FILE__) . '/class/include.php');
 $VESSELANDFLIGHT = new VesselAndFlight(NULL);
 $USER = new User(NULL);
 $CONSIGNEE = new Consignee(NULL);
+$CONSIGNMENT = new Consignment(NULL);
 
-$RESULT = $CONSIGNEE->create();
+$RESULT = $CONSIGNMENT->all();
 dd($RESULT);
 ?>
 <!DOCTYPE html>
