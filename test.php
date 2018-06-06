@@ -6,8 +6,9 @@ $USER = new User(NULL);
 $CONSIGNEE = new Consignee(NULL);
 $CONSIGNMENT = new Consignment(NULL);
 $JOB = new Job(NULL);
+$JOBC = new JobCostingCard(NULL);
 
-$RESULT = $JOB->create();
+$RESULT = $JOBC->create();
 dd($RESULT);
 ?>
 <!DOCTYPE html>

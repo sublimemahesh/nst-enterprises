@@ -8,6 +8,7 @@ include_once(dirname(__FILE__) . '/User.php');
 include_once(dirname(__FILE__) . '/Consignee.php');
 include_once(dirname(__FILE__) . '/Consignment.php');
 include_once(dirname(__FILE__) . '/Job.php');
+include_once(dirname(__FILE__) . '/JobCostingCard.php');
 
 function dd($data) {
     var_dump($data);
