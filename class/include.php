@@ -5,6 +5,7 @@ include_once(dirname(__FILE__) . '/Upload.php');
 include_once(dirname(__FILE__) . '/Setting.php');
 include_once(dirname(__FILE__) . '/VesselAndFlight.php');
 include_once(dirname(__FILE__) . '/User.php');
+include_once(dirname(__FILE__) . '/Consignee.php');
 
 function dd($data) {
     var_dump($data);

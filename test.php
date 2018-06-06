@@ -3,8 +3,9 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 $VESSELANDFLIGHT = new VesselAndFlight(NULL);
 $USER = new User(NULL);
+$CONSIGNEE = new Consignee(NULL);
 
-$RESULT = $USER->create();
+$RESULT = $CONSIGNEE->create();
 dd($RESULT);
 ?>
 <!DOCTYPE html>
