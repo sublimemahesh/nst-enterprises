@@ -5,8 +5,9 @@ $VESSELANDFLIGHT = new VesselAndFlight(NULL);
 $USER = new User(NULL);
 $CONSIGNEE = new Consignee(NULL);
 $CONSIGNMENT = new Consignment(NULL);
+$JOB = new Job(NULL);
 
-$RESULT = $CONSIGNMENT->all();
+$RESULT = $JOB->create();
 dd($RESULT);
 ?>
 <!DOCTYPE html>
