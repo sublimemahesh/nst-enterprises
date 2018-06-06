@@ -2,9 +2,10 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 
 $VESSELANDFLIGHT = new VesselAndFlight(NULL);
+$USER = new User(NULL);
 
-$RESULT = $VESSELANDFLIGHT->getActiveAll();
-dd($VESSELANDFLIGHT);
+$RESULT = $USER->create();
+dd($RESULT);
 ?>
 <!DOCTYPE html>
 <html>
