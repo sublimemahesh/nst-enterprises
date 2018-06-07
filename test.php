@@ -8,8 +8,9 @@ $CONSIGNMENT = new Consignment(NULL);
 $JOB = new Job(NULL);
 $JOBC = new JobCostingCard(NULL);
 $REIM = new ReimbursementItem(NULL);
+$REIMD = new ReimbursementDetails(NULL);
 
-$RESULT = $REIM->all();
+$RESULT = $REIMD->getReimbursementDetailsByJobCostingCard(1);
 dd($RESULT);
 ?>
 <!DOCTYPE html>
