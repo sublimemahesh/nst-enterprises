@@ -1,0 +1,27 @@
+.login-topic {
+    margin-bottom: 20px;
+}
+.login-page .login-topic a {
+    font-size: 36px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #d9534f;
+}
+.login-page a {
+    text-decoration: none;
+}
+.login-page .login-topic small {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #f09390;
+    margin-top: -5px;
+}
+.login-panel {
+    margin-top: 0;
+}
+.login-page {
+    margin-top: 12%;
+}
+

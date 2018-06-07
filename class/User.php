@@ -197,21 +197,21 @@ class User {
     }
 
     private function setUserSession($user) {
-
+        
         if (!isset($_SESSION)) {
             session_start();
         }
 
-        $_SESSION["id"] = $user['id'];
-        $_SESSION["name"] = $user['name'];
-        $_SESSION["username"] = $user['username'];
-        $_SESSION["email"] = $user['email'];
-        $_SESSION["profile_picture"] = $user['profile_picture'];
-        $_SESSION["isActive"] = $user['isActive'];
-        $_SESSION["authToken"] = $user['authToken'];
-        $_SESSION["lastLogin"] = $user['lastLogin'];
-        $_SESSION["queue"] = $user['queue'];
-        
+        $_SESSION["id"] = $user->id;
+        $_SESSION["name"] = $user->name;
+        $_SESSION["username"] = $user->username;
+        $_SESSION["email"] = $user->email;
+        $_SESSION["profile_picture"] = $user->profile_picture;
+        $_SESSION["isActive"] = $user->isActive;
+        $_SESSION["authToken"] = $user->authToken;
+        $_SESSION["lastLogin"] = $user->lastLogin;
+        $_SESSION["queue"] = $user->queue;
+
     }
 
     private function setAuthToken($id) {
