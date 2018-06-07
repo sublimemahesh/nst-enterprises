@@ -11,6 +11,7 @@ include_once(dirname(__FILE__) . '/Job.php');
 include_once(dirname(__FILE__) . '/JobCostingCard.php');
 include_once(dirname(__FILE__) . '/ReimbursementItem.php');
 include_once(dirname(__FILE__) . '/ReimbursementDetails.php');
+include_once(dirname(__FILE__) . '/Message.php');
 
 function dd($data) {
     var_dump($data);
