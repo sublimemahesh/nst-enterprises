@@ -7,8 +7,9 @@ $CONSIGNEE = new Consignee(NULL);
 $CONSIGNMENT = new Consignment(NULL);
 $JOB = new Job(NULL);
 $JOBC = new JobCostingCard(NULL);
+$REIM = new ReimbursementItem(NULL);
 
-$RESULT = $JOBC->create();
+$RESULT = $REIM->all();
 dd($RESULT);
 ?>
 <!DOCTYPE html>

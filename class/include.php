@@ -9,6 +9,7 @@ include_once(dirname(__FILE__) . '/Consignee.php');
 include_once(dirname(__FILE__) . '/Consignment.php');
 include_once(dirname(__FILE__) . '/Job.php');
 include_once(dirname(__FILE__) . '/JobCostingCard.php');
+include_once(dirname(__FILE__) . '/ReimbursementItem.php');
 
 function dd($data) {
     var_dump($data);
