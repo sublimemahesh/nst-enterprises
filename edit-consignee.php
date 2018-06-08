@@ -1,6 +1,11 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$CONSIGNEE = new Consignee($id);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +19,7 @@ include_once(dirname(__FILE__) . '/auth.php');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Vessel or Flight || Control Panel || NST ENterprises</title>
+        <title>Edit Consignee || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -50,7 +55,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Vessels or Flights</h1>
+                            <h1 class="page-header">Consignees</h1>
                         </div>
                     </div>
 
@@ -58,11 +63,11 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Add New Vessel or Flight
+                                    Edit Consignee
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-vessels-and-flights.php">
+                                        <a href="manage-consignees.php">
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
@@ -70,20 +75,43 @@ include_once(dirname(__FILE__) . '/auth.php');
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form   method="post" action="post-and-get/vessel-and-flight.php">
+                                            <form   method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control" placeholder="Enter name" name="name" value="<?php echo $CONSIGNEE->name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Type</label>
-                                                    <select class="form-control" name="type">
-                                                        <option>-- Please Select --</option>
-                                                        <option value="vessel">Vessel</option>
-                                                        <option value="flight">Flight</option>
-                                                    </select>
+                                                    <label>Address</label>
+                                                    <textarea class="form-control" placeholder="Enter address" name="address"><?php echo $CONSIGNEE->address; ?></textarea>
                                                 </div>
-                                                <button type="submit" name="creat-vessel-or-flight" class="btn btn-primary">Save</button>
+                                                <div class="form-group">
+                                                    <label>VAT Number</label>
+                                                    <input type="text" class="form-control" placeholder="Enter VAT number" name="vatNumber" value="<?php echo $CONSIGNEE->vatNumber; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Contact Number</label>
+                                                    <input type="text" class="form-control" placeholder="Enter contact number" name="contactNumber" value="<?php echo $CONSIGNEE->contactNumber; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" placeholder="Enter email" name="email" value="<?php echo $CONSIGNEE->email; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <textarea class="form-control" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Status</label>
+                                                    <input class="filled-in chk-col-light-blue" type="checkbox" <?php
+                                                    if ($CONSIGNEE->isActive == 1) {
+                                                        echo 'checked';
+                                                    }
+                                                    ?> name="isActive" value="1" id="isActive" style="margin-top: 6px;"/>
+                                                    <label for="isActive">Active / InActive</label>
+                                                </div>
+
+                                                <input type="hidden" name="id" value="<?php echo $CONSIGNEE->id; ?>">
+                                                <button type="submit" name="edit-consignee" class="btn btn-primary">Save Consignee</button>
                                             </form>
                                         </div>
                                     </div>
