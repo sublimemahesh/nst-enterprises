@@ -250,6 +250,18 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Consignee<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-consignee.php">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-consignees.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                     <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                 </li>
             </ul>

@@ -1,8 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-
-$VESSELSANDFLIGHTS = VesselAndFlight::all();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +14,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arrange Vessels and Flights || Control Panel || NST ENterprises</title>
+        <title>Add New Consignee || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -27,8 +25,6 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Fonts -->
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Arrange -->
-        <link href="plugins/nestable/jquery-nestable.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -54,7 +50,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Vessels and Flights</h1>
+                            <h1 class="page-header">Consignees</h1>
                         </div>
                     </div>
 
@@ -62,46 +58,45 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Arrange Vessels and Flights 
+                                    Add New Consignee
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-vessels-and-flights.php">
+                                        <a href="manage-consignees.php">
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <form method="post" action="post-and-get/vessel-and-flight.php" class="form-horizontal" >
-                                                <div class="clearfix m-b-20">
-                                                    <div class="dd nestable-with-handle">
-                                                        <ol class="dd-list">
-                                                            <?php
-                                                            if (count($VESSELSANDFLIGHTS) > 0) {
-                                                                foreach ($VESSELSANDFLIGHTS as $key => $img) {
-                                                                    ?>
-                                                                    <li class="dd-item dd3-item" data-id="13">
-                                                                        <div class="dd-handle dd3-handle"></div>
-                                                                        <div class="dd3-content">(<?php echo $key + 1; ?>) <?php echo $img['name']; ?></div>
-                                                                        <input type="hidden" name="sort[]"  value="<?php echo $img["id"]; ?>" class="sort-input"/>
-
-                                                                    </li>
-                                                                    <?php
-                                                                }
-                                                            } else {
-                                                                ?> 
-                                                                <b>No vessels or flights in the database.</b> 
-                                                            <?php } ?> 
-                                                        </ol>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 text-center" style="margin-top: 19px;">
-                                                            <input type="submit" class="btn btn-info" id="btn-submit" value="Save Changes" name="save-arrange">
-                                                        </div>
-                                                    </div>
+                                        <div class="col-lg-12">
+                                            <form   method="post" action="post-and-get/consignee.php">
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" placeholder="Enter name" name="name">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <textarea class="form-control" placeholder="Enter address" name="address"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>VAT Number</label>
+                                                    <input type="text" class="form-control" placeholder="Enter VAT number" name="vatNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Contact Number</label>
+                                                    <input type="text" class="form-control" placeholder="Enter contact number" name="contactNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="email" class="form-control" placeholder="Enter email" name="email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
+                                                </div>
+                                                
+                                                <button type="submit" name="creat-consignee" class="btn btn-primary">Save Consignee</button>
                                             </form>
                                         </div>
                                     </div>
@@ -122,9 +117,6 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-        <script src="js/sortable-nestable.js" type="text/javascript"></script>
-        <!-- Arrange -->
-        <script src="plugins/nestable/jquery.nestable.js" type="text/javascript"></script>
 
     </body>
 

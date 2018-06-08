@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Description of Consignee
  *
  * @author U s E r ¨
  */
 class Consignee {
-    
+
     public $id;
     public $name;
     public $address;
@@ -15,7 +16,7 @@ class Consignee {
     public $description;
     public $isActive;
     public $queue;
-    
+
     public function __construct($id) {
         if ($id) {
 
@@ -38,7 +39,7 @@ class Consignee {
             return $this;
         }
     }
-    
+
     public function create() {
 
         $query = "INSERT INTO `consignee` ("
@@ -73,7 +74,7 @@ class Consignee {
             return FALSE;
         }
     }
-    
+
     public function all() {
 
         $query = "SELECT * FROM `consignee` ORDER BY `queue` ASC ";
@@ -87,7 +88,7 @@ class Consignee {
 
         return $array_res;
     }
-    
+
     public function update() {
 
         $query = "UPDATE  `consignee` SET "
@@ -111,7 +112,7 @@ class Consignee {
             return FALSE;
         }
     }
-    
+
     public function delete() {
 
         $query = 'DELETE FROM `consignee` WHERE id="' . $this->id . '"';
@@ -120,7 +121,14 @@ class Consignee {
 
         return $db->readQuery($query);
     }
-    
+
+    public function arrange($key, $img) {
+        $query = "UPDATE `consignee` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
+    }
+
     public function getActiveConsignees() {
 
         $query = "SELECT * FROM `consignee` WHERE `isActive` = 1 ORDER BY `queue` ASC ";
@@ -134,7 +142,7 @@ class Consignee {
 
         return $array_res;
     }
-    
+
     public function consigneeActivation() {
 
         $query = "UPDATE  `consignee` SET "
@@ -151,5 +159,5 @@ class Consignee {
             return FALSE;
         }
     }
-    
+
 }
