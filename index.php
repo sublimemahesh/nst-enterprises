@@ -31,6 +31,7 @@
         <?php
         include 'navigation-and-header.php';
         ?>
+        <!-- /Navigation -->
 
         <div id="page-wrapper">
             <div class="row">

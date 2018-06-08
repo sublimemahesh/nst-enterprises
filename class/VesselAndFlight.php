@@ -6,14 +6,14 @@
  * @author U s E r ¨
  */
 class VesselAndFlight {
-    
+
     public $id;
     public $isVessel;
     public $isFlight;
     public $name;
     public $isActive;
     public $queue;
-    
+
     public function __construct($id) {
         if ($id) {
 
@@ -33,8 +33,19 @@ class VesselAndFlight {
             return $this;
         }
     }
-    
+
     public function create() {
+
+        if ($this->isVessel == 'true') {
+            $vessel = 1;
+        } else {
+            $vessel = 0;
+        }
+        if ($this->isFlight == 'true') {
+            $flight = 1;
+        } else {
+            $flight = 0;
+        }
 
         $query = "INSERT INTO `vessel_and_flight` ("
                 . "`isVessel`,"
@@ -43,8 +54,8 @@ class VesselAndFlight {
                 . "`isActive`,"
                 . "`queue`) "
                 . "VALUES  ("
-                . "'" . $this->isVessel . "',"
-                . "'" . $this->isFlight . "',"
+                . "'" . $vessel . "',"
+                . "'" . $flight . "',"
                 . "'" . $this->name . "',"
                 . "'" . $this->isActive . "',"
                 . "'" . $this->queue . "'"
@@ -62,7 +73,7 @@ class VesselAndFlight {
             return FALSE;
         }
     }
-    
+
     public function all() {
 
         $query = "SELECT * FROM `vessel_and_flight` ORDER BY `queue` ASC ";
@@ -76,12 +87,23 @@ class VesselAndFlight {
 
         return $array_res;
     }
-    
+
     public function update() {
 
+        if ($this->isVessel == 'true') {
+            $vessel = 1;
+        } else {
+            $vessel = 0;
+        }
+        if ($this->isFlight == 'true') {
+            $flight = 1;
+        } else {
+            $flight = 0;
+        }
+
         $query = "UPDATE  `vessel_and_flight` SET "
-                . "`isVessel` ='" . $this->isVessel . "', "
-                . "`isFlight` ='" . $this->isFlight . "', "
+                . "`isVessel` ='" . $vessel . "', "
+                . "`isFlight` ='" . $flight . "', "
                 . "`name` ='" . $this->name . "', "
                 . "`isActive` ='" . $this->isActive . "', "
                 . "`queue` ='" . $this->queue . "' "
@@ -97,7 +119,7 @@ class VesselAndFlight {
             return FALSE;
         }
     }
-    
+
     public function delete() {
 
         $query = 'DELETE FROM `vessel_and_flight` WHERE id="' . $this->id . '"';
@@ -106,7 +128,14 @@ class VesselAndFlight {
 
         return $db->readQuery($query);
     }
-    
+
+    public function arrange($key, $img) {
+        $query = "UPDATE `vessel_and_flight` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
+    }
+
     public function getActiveAll() {
 
         $query = "SELECT * FROM `vessel_and_flight` WHERE `isActive` = 1 ORDER BY `queue` ASC ";
@@ -120,7 +149,7 @@ class VesselAndFlight {
 
         return $array_res;
     }
-    
+
     public function vesselAndFlightActivation() {
 
         $query = "UPDATE  `vessel_and_flight` SET "
@@ -137,4 +166,5 @@ class VesselAndFlight {
             return FALSE;
         }
     }
+
 }

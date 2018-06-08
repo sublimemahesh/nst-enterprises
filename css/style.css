@@ -24,4 +24,34 @@
 .login-page {
     margin-top: 12%;
 }
-
+[type="checkbox"]:checked.chk-col-light-blue + label:before {
+    border-right: 2px solid #03A9F4;
+    border-bottom: 2px solid #03A9F4;
+}
+[type="checkbox"].filled-in:checked.chk-col-light-blue + label:after {
+    border: 2px solid #03A9F4;
+    background-color: #03A9F4; 
+}
+.page-header {
+    margin: 20px 0 20px;
+}
+.my-alert {
+    margin-top: 20px;
+}
+.header-dropdown {
+    position: absolute;
+    top: 12px;
+    right: 30px;
+    list-style: none;
+}
+.header-dropdown li {
+    display: inline-block;
+}
+.header-dropdown i {
+    font-size: 12px;
+    color: #999;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
