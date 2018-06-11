@@ -238,7 +238,7 @@
                     <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Vessel or Flight<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-plane fa-fw"></i> Vessel or Flight<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="create-vessel-or-flight.php">Add New</a>
@@ -250,7 +250,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Consignee<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-male fa-fw"></i> Consignee<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="create-consignee.php">Add New</a>
@@ -262,7 +262,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Consignment<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Consignment<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="create-consignment.php">Add New</a>
