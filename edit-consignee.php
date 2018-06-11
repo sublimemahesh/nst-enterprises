@@ -100,14 +100,16 @@ $CONSIGNEE = new Consignee($id);
                                                     <label>Description</label>
                                                     <textarea class="form-control" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Status</label>
-                                                    <input class="filled-in chk-col-light-blue" type="checkbox" <?php
+                                              <div class="form-group">
+                                                <label>Status</label>
+                                                <label for="isActive" class="container1">Active / InActive
+                                                    <input class="" type="checkbox" <?php
                                                     if ($CONSIGNEE->isActive == 1) {
                                                         echo 'checked';
                                                     }
-                                                    ?> name="isActive" value="1" id="isActive" style="margin-top: 6px;"/>
-                                                    <label for="isActive">Active / InActive</label>
+                                                    ?> name="isActive" value="1" id="isActive" />
+                                                    <span class="checkmark"></span>
+                                                </label>
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNEE->id; ?>">
