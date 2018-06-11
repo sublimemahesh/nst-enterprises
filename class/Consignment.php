@@ -133,4 +133,11 @@ class Consignment {
         }
     }
 
+    public function arrange($key, $img) {
+        $query = "UPDATE `consignment` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
+    }
+
 }

@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$VESSELSANDFLIGHTS = VesselAndFlight::all();
+$CONSIGNMENTS = Consignment::all();
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +79,8 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                                                     <div class="dd nestable-with-handle">
                                                         <ol class="dd-list">
                                                             <?php
-                                                            if (count($VESSELSANDFLIGHTS) > 0) {
-                                                                foreach ($VESSELSANDFLIGHTS as $key => $img) {
+                                                            if (count($CONSIGNMENTS) > 0) {
+                                                                foreach ($CONSIGNMENTS as $key => $img) {
                                                                     ?>
                                                                     <li class="dd-item dd3-item" data-id="13">
                                                                         <div class="dd-handle dd3-handle"></div>

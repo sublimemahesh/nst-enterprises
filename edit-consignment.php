@@ -1,6 +1,11 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$CONSIGNMENT = new Consignment($id);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +19,7 @@ include_once(dirname(__FILE__) . '/auth.php');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Consignment || Control Panel || NST ENterprises</title>
+        <title>Edit New Consignment || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -73,25 +78,23 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $CONSIGNMENT->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Description</label>
-                                                    <textarea class="form-control" rows="5" placeholder="Enter your description" name="description">
-                                                        <?php echo '';?>
-                                                    </textarea>
+                                                    <textarea class="form-control" rows="5" placeholder="Enter your description" name="description"><?php echo $CONSIGNMENT->description;?></textarea>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Status</label>
                                                     <input class="filled-in chk-col-light-blue" type="checkbox" <?php
-                                                    if ($VESSELANDFLIGHT->isActive == 1) {
+                                                    if ($CONSIGNMENT->isActive == 1) {
                                                         echo 'checked';
                                                     }
                                                     ?> name="isActive" value="1" id="isActive" style="margin-top: 6px;"/>
                                                     <label for="isActive">Active / InActive</label>
                                                 </div>
-                                                <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
+                                                <input type="hidden" name="id" value="<?php echo $CONSIGNMENT->id; ?>">
 
                                                 <button type="submit" name="edit-consignment" class="btn btn-primary">Save</button>
                                             </form>

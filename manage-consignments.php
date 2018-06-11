@@ -84,22 +84,14 @@ include_once(dirname(__FILE__) . '/auth.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                if ($vesselandflight['isVessel'] == 1) {
-                                                    $type = 'Vessel';
-                                                } elseif ($vesselandflight['isFlight'] == 1) {
-                                                    $type = 'Flight';
-                                                } else {
-                                                    $type = '';
-                                                }
+                                            foreach (Consignment::all() as $consignment) {
                                                 ?>
-                                                <tr id="row_<?php echo $vesselandflight['id']; ?>">
-                                                    <td><?php echo $vesselandflight['id']; ?></td>
-                                                    <td><?php echo $type; ?></td>
-                                                    <td><?php echo $vesselandflight['name']; ?></td>
+                                                <tr id="row_<?php echo $consignment['id']; ?>">
+                                                    <td><?php echo $consignment['id']; ?></td>
+                                                    <td><?php echo $consignment['name']; ?></td>
                                                     <td class="text-center" style="width: 100px;">
                                                         <?php
-                                                        if ($vesselandflight['isActive'] == 1) {
+                                                        if ($consignment['isActive'] == 1) {
                                                             ?>
                                                             <a href="#" title="Active" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-check"></i></a>
                                                             <?php
@@ -111,9 +103,9 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                         ?>
                                                     </td>
                                                     <td class="text-center" style="width: 200px"> 
-                                                        <a href="edit-consignment.php?id=<?php echo $vesselandflight['id']; ?>" class="op-link btn btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                        <a href="edit-consignment.php?id=<?php echo $consignment['id']; ?>" class="op-link btn btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="#" class="delete-consignment btn btn-sm btn-danger" data-id="<?php echo $vesselandflight['id']; ?>">
+                                                        <a href="#" class="delete-consignment btn btn-sm btn-danger" data-id="<?php echo $consignment['id']; ?>">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
 
@@ -151,7 +143,7 @@ include_once(dirname(__FILE__) . '/auth.php');
         <!-- Sweetalerts -->
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
-        <script src="delete/js/vessel-and-flight.js" type="text/javascript"></script>
+        <script src="delete/js/consignment.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
