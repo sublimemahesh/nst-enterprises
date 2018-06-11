@@ -96,7 +96,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                     <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
                                                 </div>
                                                 
-                                                <button type="submit" name="creat-consignee" class="btn btn-primary">Save Consignee</button>
+                                                <button type="submit" name="create-consignee" class="btn btn-primary">Save Consignee</button>
                                             </form>
                                         </div>
                                     </div>

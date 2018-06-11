@@ -85,7 +85,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Confirm Password</label>
-                                                    <input type="password" class="form-control" placeholder="Confirm Password" name="password">
+                                                    <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email</label>
@@ -93,19 +93,11 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Profile Picture</label>
-                                                    <input type="file" name="profile_picture">
+                                                    <input type="file" name="profilePicture">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Status</label>
-                                                    <input class="filled-in chk-col-light-blue" type="checkbox" <?php
-                                                    if ($VESSELANDFLIGHT->isActive == 1) {
-                                                        echo 'checked';
-                                                    }
-                                                    ?> name="isActive" value="1" id="isActive" style="margin-top: 6px;"/>
-                                                    <label for="isActive">Active / InActive</label>
-                                                </div>
-                                                <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
-                                                <button type="submit" name="add-user" class="btn btn-primary">Save</button>
+                                                
+                                                
+                                                <button type="submit" name="create-user" class="btn btn-primary">Save</button>
                                             </form>
                                         </div>
                                     </div>

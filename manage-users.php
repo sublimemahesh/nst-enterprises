@@ -78,28 +78,22 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>User Name</th>
                                                 <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Option</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                if ($vesselandflight['isVessel'] == 1) {
-                                                    $type = 'Vessel';
-                                                } elseif ($vesselandflight['isFlight'] == 1) {
-                                                    $type = 'Flight';
-                                                } else {
-                                                    $type = '';
-                                                }
+                                            foreach (User::all() as $user) {
                                                 ?>
-                                                <tr id="row_<?php echo $vesselandflight['id']; ?>">
-                                                    <td><?php echo $vesselandflight['id']; ?></td>
-                                                    <td><?php echo $type; ?></td>
-                                                    <td><?php echo $vesselandflight['name']; ?></td>
+                                                <tr id="row_<?php echo $user['id']; ?>">
+                                                    <td><?php echo $user['id']; ?></td>
+                                                    <td><?php echo $user['name']; ?></td>
+                                                    <td><?php echo $user['email']; ?></td>
                                                     <td class="text-center" style="width: 100px;">
                                                         <?php
-                                                        if ($vesselandflight['isActive'] == 1) {
+                                                        if ($user['isActive'] == 1) {
                                                             ?>
                                                             <a href="#" title="Active" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-check"></i></a>
                                                             <?php
@@ -111,12 +105,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                         ?>
                                                     </td>
                                                     <td class="text-center" style="width: 200px"> 
-                                                        <a href="edit-user.php?id=<?php echo $vesselandflight['id']; ?>" class="op-link btn btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                        <a href="edit-user.php?id=<?php echo $user['id']; ?>" class="op-link btn btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="#" class="delete-vessel-or-flight btn btn-sm btn-danger" data-id="<?php echo $vesselandflight['id']; ?>">
-                                                            <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
-                                                        </a>
-
                                                         <a href="arrange-users.php" class="btn btn-sm btn-primary">
                                                             <i class="glyphicon glyphicon-random"></i>
                                                         </a>
