@@ -11,6 +11,7 @@ class User {
     public $name;
     public $username;
     public $password;
+    public $cpassword;
     public $email;
     public $profilePicture;
     public $isActive;
@@ -121,6 +122,13 @@ class User {
         return $db->readQuery($query);
     }
 
+    public function arrange($key, $img) {
+        $query = "UPDATE `user` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
+    }
+    
     public function getActiveUsers() {
 
         $query = "SELECT * FROM `user` WHERE `isActive` = 1 ORDER BY `queue` ASC ";

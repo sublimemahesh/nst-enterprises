@@ -8,7 +8,8 @@
 class Validator {
 
     private $_passed = false,
-            $_errors = array();
+            $_errors = array(),
+            $_match = false;
 
     public function check($source, $items = array()) {
 
@@ -72,6 +73,7 @@ class Validator {
         return $this;
     }
 
+
     public function addError($message, $status) {
         $this->_errors[] = ['message' => $message, 'status' => $status];
     }
@@ -83,6 +85,7 @@ class Validator {
     public function passed() {
         return $this->_passed;
     }
+    
 
     public function show_message() {
 
@@ -95,7 +98,7 @@ class Validator {
                 ?>
                 <div class="alert alert-<?php echo $error["status"]; ?>">
                     <strong><?php echo ucfirst($error["status"]); ?> : </strong> 
-                <?php echo ucfirst($error["message"]); ?>!.
+                    <?php echo ucfirst($error["message"]); ?>!.
                 </div>
                 <?php
             }

@@ -1,6 +1,11 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$USER = new User($id);
 ?>
 
 <!DOCTYPE html>
@@ -73,29 +78,31 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $USER->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Email" name="email">
+                                                    <input type="text" class="form-control" placeholder="Enter Email" name="email" value="<?php echo $USER->email; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Profile Picture</label>
-                                                    <input type="file" name="profile_picture">
+                                                    <input type="file" name="profilePicture">
                                                 </div>
-                                                <div class="thumb-img"> 
-                                                    <img src="" class="img-thumbnail" alt="">
+                                                <div class="">
+                                                    <img src="upload/user/<?php echo $USER->profilePicture; ?>" class="img-thumbnail" alt=""/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Status</label>
                                                     <input class="filled-in chk-col-light-blue" type="checkbox" <?php
-                                                    if ($VESSELANDFLIGHT->isActive == 1) {
+                                                    if ($USER->isActive == 1) {
                                                         echo 'checked';
                                                     }
                                                     ?> name="isActive" value="1" id="isActive" style="margin-top: 6px;"/>
                                                     <label for="isActive">Active / InActive</label>
                                                 </div>
-                                                <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
+                                                
+                                                <input type="hidden" name="id" value="<?php echo $USER->id; ?>">
+                                                <input type="hidden" name="oldImageName" value="<?php echo $USER->profilePicture; ?>">
                                                 <button type="submit" name="edit-user" class="btn btn-primary">Save</button>
                                             </form>
                                         </div>

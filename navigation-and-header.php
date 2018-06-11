@@ -274,13 +274,25 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Job<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-briefcase fa-fw"></i> Job<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="create-job.php">Add New</a>
                         </li>
                         <li>
                             <a href="manage-jobs.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-user.php">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-users.php">Manage</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
