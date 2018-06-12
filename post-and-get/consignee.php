@@ -28,8 +28,9 @@ if (isset($_POST['create-consignee'])) {
         }
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
-
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        
+        $url = explode("?",$_SERVER['HTTP_REFERER']);
+        header('Location: ' . $url[0]);
     } else {
 
         if (!isset($_SESSION)) {
@@ -37,7 +38,7 @@ if (isset($_POST['create-consignee'])) {
         }
 
         $_SESSION['ERRORS'] = $VALID->errors();
-
+        
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

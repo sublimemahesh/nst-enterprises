@@ -285,5 +285,39 @@ class User {
             return TRUE;
         }
     }
+        
+    public function allNamesByKeyword($keyword) {
+
+        $query = "SELECT * FROM user WHERE name like '" . $keyword . "%' ORDER BY name LIMIT 0,6";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+    
+    public function getIdByName($name) {
+       
+        $query = "SELECT id FROM user WHERE name like '" . $name . "'";
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+    
+    public function findUserById($id) {
+        
+            $query = "SELECT `id`,`name` FROM `user` WHERE `id` = '". $id ."'";
+            $db = new Database();
+
+            $result = mysql_fetch_array($db->readQuery($query));
+
+
+            return $result;
+        
+    }
 
 }
