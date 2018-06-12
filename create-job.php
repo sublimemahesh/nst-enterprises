@@ -25,6 +25,8 @@ include_once(dirname(__FILE__) . '/auth.php');
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Fonts -->
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Responsive CSS -->
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
