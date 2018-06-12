@@ -1,6 +1,14 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+
+$name = '';
+$previous = '';
+if (isset($_GET['name'])) {
+    $name = $_GET['name'];
+
+    $previous = "http://localhost/nst-enterprises/create-consignee.php";
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +81,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>User Name</label>
@@ -95,8 +103,8 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                     <label>Profile Picture</label>
                                                     <input type="file" name="profilePicture">
                                                 </div>
-                                                
-                                                
+
+                                                <input type="hidden" name="back" value="<?php echo $previous;?>">
                                                 <button type="submit" name="create-user" class="btn btn-primary">Save</button>
                                             </form>
                                         </div>
