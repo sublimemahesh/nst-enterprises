@@ -31,6 +31,8 @@ include_once(dirname(__FILE__) . '/auth.php');
         <link href="plugins/datatables-responsive/dataTables.responsive.css" rel="stylesheet" type="text/css"/>
         <!-- Sweetalerts -->
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <!-- Responsive CSS -->
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
 
     </head>
 

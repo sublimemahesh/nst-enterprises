@@ -29,6 +29,8 @@ $CONSIGNMENTS = Consignment::all();
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Arrange -->
         <link href="plugins/nestable/jquery-nestable.css" rel="stylesheet" type="text/css"/>
+        <!-- Responsive CSS -->
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
 
     </head>
 

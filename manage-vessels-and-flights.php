@@ -32,6 +32,8 @@ include_once(dirname(__FILE__) . '/auth.php');
         <!-- Sweetalerts -->
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <!-- Responsive CSS -->
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>

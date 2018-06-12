@@ -10,7 +10,7 @@
         width: 90%;
     }
 }
-@media (max-width: 20px) {
+@media (max-width: 320px) {
     .search-width{
         width: 80%;
     }
