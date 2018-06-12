@@ -232,3 +232,13 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+.font-header{
+    font-size: 28px;
+}
+div.dataTables_filter input {
+    width: 80%;
+
+}
+.btn-style{
+    width: 15%;
+}

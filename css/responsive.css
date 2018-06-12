@@ -1,0 +1,18 @@
+
+@media (max-width: 768px) {
+    .header-title{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 360px) {
+    .search-width{
+        width: 90%;
+    }
+}
+@media (max-width: 20px) {
+    .search-width{
+        width: 80%;
+    }
+
+}

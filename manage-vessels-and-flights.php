@@ -24,14 +24,14 @@ include_once(dirname(__FILE__) . '/auth.php');
         <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Fonts -->
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        
         <!-- DataTables CSS -->
         <link href="plugins/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
         <!-- DataTables Responsive CSS -->
         <link href="plugins/datatables-responsive/dataTables.responsive.css" rel="stylesheet" type="text/css"/>
         <!-- Sweetalerts -->
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -55,7 +55,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Vessels and Flights</h1>
+                            <h1 class="page-header font-header">Vessels and Flights</h1>
                         </div>
                     </div>
 
