@@ -50,7 +50,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Consignments</h1>
+                            <h1 class="page-header font-header">Consignments</h1>
                         </div>
                     </div>
 

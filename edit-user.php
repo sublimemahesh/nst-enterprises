@@ -55,7 +55,7 @@ $USER = new User($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Users</h1>
+                            <h1 class="page-header font-header">Users</h1>
                         </div>
                     </div>
 
