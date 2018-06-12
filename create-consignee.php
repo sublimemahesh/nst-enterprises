@@ -87,7 +87,7 @@ $user = User::getIdByName($name);
                                                     <input type="hidden" name="name" value="<?php echo $user['id']; ?>" id="name-id"  />
                                                 </div>
                                                 <div class="create-consignee hidden" id="create-user">
-                                                    Add new user using this consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
+                                                     Add new user using this consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
 
                                                 </div>
                                                 <div class="form-group">

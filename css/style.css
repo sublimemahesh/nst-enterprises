@@ -163,6 +163,8 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     padding: 20px 30px;
     border: 1px solid #7db0d1;
     margin-bottom: 10px;
+    font-size: 15px;
+    width: 40%;
 }
 .create-consignee i {
     color: #03A9F4;
