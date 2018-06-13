@@ -16,6 +16,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
         <title>Add New Job || Control Panel || NST ENterprises</title>
 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- MetisMenu CSS -->
@@ -86,25 +87,25 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                     <select class="form-control" name="vesselAndFlight">
                                                         <option>-- Please Select --</option>
                                                         <?php
-                                                                                foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                                                    ?>
-                                                        <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
-                                                        <?php
-                                                                                }
+                                                        foreach (VesselAndFlight::all() as $vesselandflight) {
+                                                            ?>
+                                                            <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
+                                                            <?php
+                                                        }
                                                         ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Vessel and Flight Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="vesselAndFlightDate">
+                                                    <input type="text" id="datepicker1" class="form-control" placeholder="Enter date" name="vesselAndFlightDate">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Copy Received Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="copyReceivedDate">
+                                                    <input type="text" id="datepicker2" class="form-control" placeholder="Enter date" name="copyReceivedDate">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Original Received Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="originalReceivedDate">
+                                                    <input type="text" id="datepicker3" class="form-control" placeholder="Enter date" name="originalReceivedDate">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Debit Note Number</label>
@@ -112,9 +113,9 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cusdec Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter cusdec date" name="cusdecDate">
+                                                    <input type="text" id="datepicker4" class="form-control" placeholder="Enter cusdec date" name="cusdecDate">
                                                 </div>
-                                                
+
                                                 <button type="submit" name="create-job" class="btn btn-primary">Save Job</button>
                                             </form>
                                         </div>
@@ -130,12 +131,22 @@ include_once(dirname(__FILE__) . '/auth.php');
 
         <!-- jQuery -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Metis Menu Plugin JavaScript -->
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+
+        <script>
+            $(function () {
+                $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
+                $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
+                $("#datepicker3").datepicker({ dateFormat: 'yy-mm-dd' });
+                $("#datepicker4").datepicker({ dateFormat: 'yy-mm-dd' });
+            });
+        </script>
 
     </body>
 
