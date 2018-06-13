@@ -2,13 +2,7 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$name = '';
-$previous = '';
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-
-    $previous = "http://localhost/nst-enterprises/create-consignee.php";
-}
+$USER1 = new User($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -84,25 +78,34 @@ if (isset($_GET['name'])) {
                                         <div class="col-lg-12">
                                             <div class="col-lg-9">
                                                 <div class="col-sm-3 col-md-4 visitor-prof-margin">
-                                                    <img class="img-thumbnail pro-picture" src="upload/user/-173183726_191029957180_1528701971_n.jpg" alt=""/>
-                                                    <div class="form-group">
-                                                        <label>Profile Picture</label>
-                                                        <input type="file" name="profilePicture">
-                                                    </div>
-                                                </div>
+                                                    <img class="img-thumbnail pro-picture" src="upload/user/<?php echo $USER1->profilePicture; ?>" title="<?php echo $USER1->name; ?>" alt=""/>
+                                                  </div>
                                                 <div class="col-sm-9 col-md-8">
                                                     <ul class="list-group visitor-list-color list-margin">
                                                         <li class="list-group-item">
-                                                            <b>Name: </b>
+                                                            <b>Name: <?php echo $USER1->name; ?></b>
                                                         </li>
                                                         <li class="list-group-item">
-                                                            <b>Email: </b>
+                                                            <b>Email: <?php echo $USER1->email; ?></b>
                                                         </li>
                                                         <li class="list-group-item">
                                                             <b>Status: </b>
-                                                            <a class="btn btn-info status" href="#" title="active">
-                                                                <i class="glyphicon glyphicon-check"></i>
-                                                            </a>
+                                                            <?php
+                                                            if ($USER1->isActive == 1) {
+                                                                ?>
+                                                                <a class="btn btn-info status" href="#" title="active">
+                                                                    <i class="glyphicon glyphicon-check"></i>
+                                                                </a>
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <a class="btn btn-info status" href="#" title="active">
+                                                                    <i class="glyphicon glyphicon-unchecked"></i>
+                                                                </a>
+                                                                <?php
+                                                            }
+                                                            ?>
+
                                                         </li>
                                                     </ul>
                                                 </div>

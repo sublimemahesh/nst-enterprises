@@ -203,7 +203,7 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <img src="upload/user/<?php echo $USER1->profilePicture; ?>" alt="" width="30" class="img-circle"/> <i class="fa fa-caret-down"></i>
+                <img src="upload/user/<?php echo $USER1->profilePicture; ?>" alt="" width="30" class="img-circle" title="<?php echo $USER1->name; ?>" /> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="user-profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
