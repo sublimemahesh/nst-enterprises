@@ -11,19 +11,13 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 $res = $USER->login($username, $password);
 
 if ($res) {
-    if ($res->isActive) {
-        $res = 1;
-        header('Location: ../?message=5');
-        exit();
-    } else {
-        $USER->logOut();
-        header('Location: ../login.php?message=19');
-        exit();
-    }
+
+    header('Location: ../?message=5');
+    exit();
 } elseif (empty($username) || empty($password)) {
     header('Location: ../login.php?message=6');
     exit();
-}  else {
+} else {
     header('Location: ../login.php?message=7');
     exit();
 }

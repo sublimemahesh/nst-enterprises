@@ -1,6 +1,8 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+
+$USER1 = new User($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
