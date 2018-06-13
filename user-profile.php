@@ -80,7 +80,60 @@ if (isset($_GET['name'])) {
                                     </li>
                                 </ul>
                                 <div class="panel-body">
-                                    adsdfdfg
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="col-lg-9">
+                                                <div class="col-sm-3 col-md-4 visitor-prof-margin">
+                                                    <img class="img-thumbnail pro-picture" src="upload/user/-173183726_191029957180_1528701971_n.jpg" alt=""/>
+                                                    <div class="form-group">
+                                                        <label>Profile Picture</label>
+                                                        <input type="file" name="profilePicture">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-9 col-md-8">
+                                                    <ul class="list-group visitor-list-color list-margin">
+                                                        <li class="list-group-item">
+                                                            <b>Name: </b>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <b>Email: </b>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <b>Status: </b>
+                                                            <a class="btn btn-info status" href="#" title="active">
+                                                                <i class="glyphicon glyphicon-check"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <ul class="list-group visitor-list-color list-style list-hover">
+                                                    <li class="list-group-item"><a href="#">
+                                                            <i class="fa fa-tachometer"></i>
+                                                            My Profile
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item"><a href="#">
+                                                            <i class="fa fa-user"></i>
+                                                            Edit Profile
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item"><a href="#">
+                                                            <i class="fa fa-lock"></i>
+                                                            Change Password
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-group-item"><a href="#">
+                                                            <i class="fa fa-sign-out"></i>
+                                                            Logout
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -102,3 +155,11 @@ if (isset($_GET['name'])) {
     </body>
 
 </html>
+
+
+
+
+
+
+
+

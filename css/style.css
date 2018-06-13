@@ -163,8 +163,6 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     padding: 20px 30px;
     border: 1px solid #7db0d1;
     margin-bottom: 10px;
-    font-size: 15px;
-    width: 40%;
 }
 .create-consignee i {
     color: #03A9F4;
@@ -254,6 +252,44 @@ div.dataTables_filter input {
     margin-bottom: 20px;
     padding-left: 0;
 }
-.list-style{
+.list-group-item:first-child {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.list-margin{
     margin-top: 40px;
+}
+.usernavdash {
+    margin-bottom: 30px;
+}
+.usernavdash li {
+    list-style-type: none;
+}
+.list-style{
+    padding-left: 50px;
+    padding-right: 100px;
+    margin-top: 40px;
+}
+.status{
+    margin-left: 10px;
+}
+.pro-picture{
+    margin-bottom: 10px;
+}
+.list-hover li:hover {
+    background-color: lightskyblue;
+}
+.list-hover li a:hover {
+    text-decoration: none;
+}
+.list-hover li a {
+    font-size: 16px;
 }
