@@ -274,8 +274,8 @@ div.dataTables_filter input {
     list-style-type: none;
 }
 .list-style{
-    padding-left: 50px;
-    padding-right: 100px;
+    padding-left: 15px;
+    padding-right: 0px;
     margin-top: 40px;
 }
 .status{
