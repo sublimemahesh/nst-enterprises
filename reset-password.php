@@ -1,6 +1,6 @@
-﻿<?php
+<?php
 include_once(dirname(__FILE__) . '/class/include.php');
-?> ﻿
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,27 +52,22 @@ include_once(dirname(__FILE__) . '/class/include.php');
                     <div class="col-md-4 col-md-offset-4">
                         <div class="login-panel panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Please Sign In</h3>
+                                <h3 class="panel-title">Reset Password?</h3>
                             </div>
                             <div class="panel-body">
-                                <form id="sign_in" method="POST" action="post-and-get/login.php">
+                                <form id="sign_in" method="POST" action="post-and-get/password-reset.php">
                                     <fieldset>
+                                        <p><b>Please check your email</b></p>
                                         <div class="form-group">
-                                            <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                                            <input type="text" name="code" placeholder="Password Reset code" autocomplete="off" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                            <input class="form-control" placeholder="New Password" name="password" type="password">
                                         </div>
-                                        <div class="checkbox">
-                                            <!--                                                <lable>
-                                                                                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                                                                            </lable>-->
-                                            <div class="">
-                                                <a href="forget-password.php"><h5><b>Forget Password?</b></h5></a>
-                                            </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Confirm Password" name="confirmpassword" type="password">
                                         </div>
-
-                                        <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+                                        <button class="btn btn-theme btn-block" type="submit" name="PasswordReset">Password Reset</button>
                                     </fieldset>
                                 </form>
                             </div>
