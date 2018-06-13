@@ -244,3 +244,16 @@ div.dataTables_filter input {
 .btn-style{
     width: 15%;
 }
+.visitor-prof-margin {
+    margin-top: 40px;
+}
+.visitor-list-color {
+    color: #442525;
+}
+.list-group {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+.list-style{
+    margin-top: 40px;
+}
