@@ -8,6 +8,8 @@ if (isset($_POST['create-job'])) {
     $JOB = new Job(NULL);
     $VALID = new Validator();
 
+    $JOB->consignee = filter_input(INPUT_POST, 'consignee');
+    $JOB->consignment = filter_input(INPUT_POST, 'consignment');
     $JOB->description = filter_input(INPUT_POST, 'description');
     $JOB->chassisNumber = filter_input(INPUT_POST, 'chassisNumber');
     $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
@@ -18,6 +20,8 @@ if (isset($_POST['create-job'])) {
     $JOB->cusdecDate = filter_input(INPUT_POST, 'cusdecDate');
 
     $VALID->check($JOB, [
+        'consignee' => ['required' => TRUE],
+        'consignment' => ['required' => TRUE],
         'description' => ['required' => TRUE],
         'chassisNumber' => ['required' => TRUE],
         'vesselAndFlight' => ['required' => TRUE]
@@ -32,7 +36,8 @@ if (isset($_POST['create-job'])) {
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
 
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        $url = explode("?", $_SERVER['HTTP_REFERER']);
+        header('Location: ' . $url[0]);
     } else {
 
         if (!isset($_SESSION)) {
@@ -46,9 +51,11 @@ if (isset($_POST['create-job'])) {
 }
 
 if (isset($_POST['edit-job'])) {
-    
+
     $JOB = new Job($_POST['id']);
 
+    $JOB->consignee = filter_input(INPUT_POST, 'consignee');
+    $JOB->consignment = filter_input(INPUT_POST, 'consignment');
     $JOB->description = filter_input(INPUT_POST, 'description');
     $JOB->chassisNumber = filter_input(INPUT_POST, 'chassisNumber');
     $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
@@ -57,9 +64,11 @@ if (isset($_POST['edit-job'])) {
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');
     $JOB->debitNoteNumber = filter_input(INPUT_POST, 'debitNoteNumber');
     $JOB->cusdecDate = filter_input(INPUT_POST, 'cusdecDate');
-    
+
     $VALID = new Validator();
     $VALID->check($JOB, [
+        'consignee' => ['required' => TRUE],
+        'consignment' => ['required' => TRUE],
         'description' => ['required' => TRUE],
         'chassisNumber' => ['required' => TRUE],
         'vesselAndFlight' => ['required' => TRUE]

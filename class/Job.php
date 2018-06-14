@@ -8,6 +8,8 @@
 class Job {
     
     public $id;
+    public $consignee;
+    public $consignment;
     public $description;
     public $chassisNumber;
     public $vesselAndFlight;
@@ -20,13 +22,15 @@ class Job {
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate` FROM `job` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`consignee`,`consignment`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate` FROM `job` WHERE `id`=" . $id;
 
             $db = new Database();
 
             $result = mysql_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
+            $this->consignee = $result['consignee'];
+            $this->consignment = $result['consignment'];
             $this->description = $result['description'];
             $this->chassisNumber = $result['chassisNumber'];
             $this->vesselAndFlight = $result['vesselAndFlight'];
@@ -43,6 +47,8 @@ class Job {
     public function create() {
 
         $query = "INSERT INTO `job` ("
+                . "`consignee`,"
+                . "`consignment`,"
                 . "`description`,"
                 . "`chassisNumber`,"
                 . "`vesselAndFlight`,"
@@ -52,6 +58,8 @@ class Job {
                 . "`debitNoteNumber`,"
                 . "`cusdecDate`) "
                 . "VALUES  ("
+                . "'" . $this->consignee . "',"
+                . "'" . $this->consignment . "',"
                 . "'" . $this->description . "',"
                 . "'" . $this->chassisNumber . "',"
                 . "'" . $this->vesselAndFlight . "',"
@@ -92,6 +100,8 @@ class Job {
     public function update() {
 
         $query = "UPDATE  `job` SET "
+                . "`consignee` ='" . $this->consignee . "', "
+                . "`consignment` ='" . $this->consignment . "', "
                 . "`description` ='" . $this->description . "', "
                 . "`chassisNumber` ='" . $this->chassisNumber . "', "
                 . "`vesselAndFlight` ='" . $this->vesselAndFlight . "', "
