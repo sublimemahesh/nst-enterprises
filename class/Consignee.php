@@ -160,5 +160,37 @@ class Consignee {
         }
     }
 
+    public function allNamesByKeyword($keyword) {
+
+        $query = "SELECT * FROM `consignee` WHERE name like '" . $keyword . "%' ORDER BY name LIMIT 0,6";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
+    public function getIdByName($name) {
+
+        $query = "SELECT id FROM `consignee` WHERE name like '" . $name . "'";
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+
+    public function findNameById($id) {
+
+        $query = "SELECT `id`,`name` FROM `consignee` WHERE `id` = '" . $id . "'";
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+
+
+        return $result;
+    }
 
 }

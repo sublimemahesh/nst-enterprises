@@ -3,14 +3,6 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
-
-$name = '';
-$previous = '';
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-
-    $previous = "http://localhost/nst-enterprises/create-consignee.php";
-}
 ?>
 
 <!DOCTYPE html>

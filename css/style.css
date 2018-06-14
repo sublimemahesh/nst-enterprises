@@ -62,7 +62,7 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     width: 150px; 
 }
 
-.name-list{
+.name-list, .consignment-list {
     float:left;
     list-style:none;
     padding:0;
@@ -70,13 +70,13 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     position: absolute;
     z-index: 1;
 }
-.name-list li{
+.name-list li, .consignment-list li{
     padding: 10px; 
     background: #f0f0f0;
     border-bottom: #bbb9b9 1px solid;
     color: #000;
 }
-.name-list li:hover{ 
+.name-list li:hover, .consignment-list li:hover{ 
     cursor: pointer;
     background: #0000ff !important;
     color: white !important; 
@@ -163,6 +163,7 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     padding: 20px 30px;
     border: 1px solid #7db0d1;
     margin-bottom: 10px;
+    width: 37%;
 }
 .create-consignee i {
     color: #03A9F4;

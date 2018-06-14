@@ -75,14 +75,39 @@ $USER1 = new User($_SESSION['id']);
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form   method="post" action="post-and-get/job.php">
+                                            <form method="post" action="post-and-get/job.php">
+                                                <div class="form-group">
+                                                    <label>Consignee</label>
+                                                    <input type="text" class="form-control col-md-9" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="name-list-append" class="name-list"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignee" value="" id="name-id"  />
+                                                    <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
+                                                </div>
+
+                                                
+                                                <!--                                                <div class="create-consignee hidden" id="create-consignee">
+                                                                                                    Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
+                                                
+                                                                                                </div>-->
+                                                <div class="form-group">
+                                                    <label>Consignment</label>
+                                                    <input type="text" class="form-control" id="consignment" placeholder="Enter consignment">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="consignment-list-append" class="consignment-list"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignment" value="" id="consignment-id"  />
+                                                    <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
+                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label>Description</label>
                                                     <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Chassis Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Chassis number" name="chassisNumber">
+                                                    <input type="text" class="form-control" placeholder="Enter chassis number" name="chassisNumber">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Vessel or Flight</label>
@@ -99,15 +124,15 @@ $USER1 = new User($_SESSION['id']);
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Vessel and Flight Date</label>
-                                                    <input type="text" id="datepicker1" class="form-control" placeholder="Enter date" name="vesselAndFlightDate">
+                                                    <input type="text" id="datepicker1" class="form-control" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Copy Received Date</label>
-                                                    <input type="text" id="datepicker2" class="form-control" placeholder="Enter date" name="copyReceivedDate">
+                                                    <input type="text" id="datepicker2" class="form-control" placeholder="Enter date" name="copyReceivedDate" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Original Received Date</label>
-                                                    <input type="text" id="datepicker3" class="form-control" placeholder="Enter date" name="originalReceivedDate">
+                                                    <input type="text" id="datepicker3" class="form-control" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Debit Note Number</label>
@@ -115,11 +140,13 @@ $USER1 = new User($_SESSION['id']);
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Cusdec Date</label>
-                                                    <input type="text" id="datepicker4" class="form-control" placeholder="Enter cusdec date" name="cusdecDate">
+                                                    <input type="text" id="datepicker4" class="form-control" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
                                                 </div>
 
-                                                <button type="submit" name="create-job" class="btn btn-primary">Save Job</button>
+                                                <button type="submit" id="btn-job" name="create-job" class="btn btn-primary" disabled="">Save Job</button>
                                             </form>
+                                            
+                                            <?php include 'modal.php'; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -140,13 +167,32 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-
+        <script src="js/add-consignee.js" type="text/javascript"></script>
+        
+        <script src="js/job-consignee.js" type="text/javascript"></script>
+        <script src="js/add-consignment.js" type="text/javascript"></script>
         <script>
             $(function () {
-                $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
-                $("#datepicker2").datepicker({ dateFormat: 'yy-mm-dd' });
-                $("#datepicker3").datepicker({ dateFormat: 'yy-mm-dd' });
-                $("#datepicker4").datepicker({ dateFormat: 'yy-mm-dd' });
+                $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker2").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker3").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker4").datepicker({dateFormat: 'yy-mm-dd'});
+            });
+        </script>
+        <script>
+            jQuery(document).ready(function () {
+                jQuery('#add-consignee').click(function () {
+                    var name = $("#name").val();
+                    $("#consignee-name").val(name);
+                    jQuery("#modal-consignee").modal('show');
+
+                });
+                jQuery('#add-consignment').click(function () {
+                    var name = $("#consignment").val();
+                    $("#consignment-name").val(name);
+                    jQuery("#modal-consignment").modal('show');
+
+                });
             });
         </script>
 

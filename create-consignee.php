@@ -3,11 +3,6 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
-$name = '';
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-}
-$user = User::getIdByName($name);
 ?>
 
 <!DOCTYPE html>
@@ -82,15 +77,7 @@ $user = User::getIdByName($name);
                                             <form id="form-consignee"  method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter name" id="name" autocomplete="off" value="<?php echo $name; ?>">
-                                                    <div id="suggesstion-box">
-                                                        <ul id="name-list-append" class="name-list"></ul>
-                                                    </div>
-                                                    <input type="hidden" name="name" value="<?php echo $user['id']; ?>" id="name-id"  />
-                                                </div>
-                                                <div class="create-consignee hidden" id="create-user">
-                                                     Add new user using this consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
-
+                                                    <input type="text" class="form-control" placeholder="Enter name" name="name" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Address</label>
@@ -112,7 +99,6 @@ $user = User::getIdByName($name);
                                                     <label>Description</label>
                                                     <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
                                                 </div>
-
                                                 <button type="submit" name="create-consignee" id="btn-consignee" class="btn btn-primary">Save Consignee</button>
                                             </form>
                                         </div>
@@ -134,7 +120,6 @@ $user = User::getIdByName($name);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-        <script src="js/consignee-name.js" type="text/javascript"></script>
 
     </body>
 

@@ -72,19 +72,14 @@ if (isset($_POST['create-user'])) {
         ]);
 
         if ($VALID->passed()) {
-            $result = $USER->create();
+            $USER->create();
 
             if (!isset($_SESSION)) {
                 session_start();
             }
             $VALID->addError("Your data was saved successfully", 'success');
             $_SESSION['ERRORS'] = $VALID->errors();
-
-            if($_POST['back'] == '') {
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-            } else {
-                header('Location: ' . $_POST['back'] . '?name=' . $result->name);
-            }
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
 
             if (!isset($_SESSION)) {
