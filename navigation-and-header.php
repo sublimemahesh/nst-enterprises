@@ -238,17 +238,29 @@
                     <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-plane fa-fw"></i> Vessel or Flight<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="create-vessel-or-flight.php">Add New</a>
+                            <a href="create-user.php">Add New</a>
                         </li>
                         <li>
-                            <a href="manage-vessels-and-flights.php">Manage</a>
+                            <a href="manage-users.php">Manage</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-briefcase fa-fw"></i> Job<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-job.php">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-jobs.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li> 
                 <li>
                     <a href="#"><i class="fa fa-male fa-fw"></i> Consignee<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -274,29 +286,17 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-briefcase fa-fw"></i> Job<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-plane fa-fw"></i> Vessel or Flight<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="create-job.php">Add New</a>
+                            <a href="create-vessel-or-flight.php">Add New</a>
                         </li>
                         <li>
-                            <a href="manage-jobs.php">Manage</a>
+                            <a href="manage-vessels-and-flights.php">Manage</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="create-user.php">Add New</a>
-                        </li>
-                        <li>
-                            <a href="manage-users.php">Manage</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+                </li>      
                 <li>
                     <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                 </li>
