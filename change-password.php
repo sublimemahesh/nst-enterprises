@@ -2,13 +2,7 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
-$name = '';
-$previous = '';
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-
-    $previous = "http://localhost/nst-enterprises/create-consignee.php";
-}
+$USER1 = new User($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +78,7 @@ if (isset($_GET['name'])) {
                                         <div class="col-lg-12">
                                             <div class="col-lg-9">
                                                 <div class="col-sm-12 col-md-10 visitor-prof-margin text-center">
-                                                    <img class="img-thumbnail pro-picture" src="upload/user/-173183726_191029957180_1528701971_n.jpg" alt=""/>
+                                                    <img class="img-thumbnail pro-picture" src="upload/user/<?php echo $USER1->profilePicture; ?>" title="<?php echo $USER1->name; ?>" alt=""/>
 
                                                 </div>
                                                 <div class="col-sm-12 col-md-10">
@@ -110,22 +104,22 @@ if (isset($_GET['name'])) {
                                             </div>
                                             <div class="col-lg-3">
                                                 <ul class="list-group visitor-list-color list-style list-hover">
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="user-profile.php">
                                                             <i class="fa fa-tachometer"></i>
                                                             My Profile
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="edit-user.php?id">
                                                             <i class="fa fa-user"></i>
                                                             Edit Profile
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="change-password.php">
                                                             <i class="fa fa-lock"></i>
                                                             Change Password
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="user-logout.php">
                                                             <i class="fa fa-sign-out"></i>
                                                             Logout
                                                         </a>

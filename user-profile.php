@@ -112,22 +112,22 @@ $USER1 = new User($_SESSION['id']);
                                             </div>
                                             <div class="col-lg-3">
                                                 <ul class="list-group visitor-list-color list-style list-hover">
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="user-profile.php">
                                                             <i class="fa fa-tachometer"></i>
                                                             My Profile
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="edit-user.php?id">
                                                             <i class="fa fa-user"></i>
                                                             Edit Profile
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="change-password.php">
                                                             <i class="fa fa-lock"></i>
                                                             Change Password
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="#">
+                                                    <li class="list-group-item"><a href="user-logout.php">
                                                             <i class="fa fa-sign-out"></i>
                                                             Logout
                                                         </a>
