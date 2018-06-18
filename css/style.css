@@ -300,7 +300,6 @@ div.dataTables_filter input {
 .list-hover li a {
     font-size: 16px;
 }
-<<<<<<< 0d2dc60a1acba96634a5a58611da49c02d25f0dc
 .form-control.col-md-8 {
     width: 66.6667%;
 }
@@ -315,23 +314,13 @@ div.dataTables_filter input {
 }
 .form-control {
     margin-bottom: 10px;
-=======
+}
 list.border{
     border: 0;
 }
 .table-td-width{
     width: 28%;
 }
-.form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
+.form-control-border {
     border: 0px solid #ccc;
->>>>>>> 1e7839a639f39ef385b5af71ab0f850648b0bdc4
 }
