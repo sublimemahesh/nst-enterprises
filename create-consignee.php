@@ -76,30 +76,32 @@ $USER1 = new User($_SESSION['id']);
                                         <div class="col-lg-12">
                                             <form id="form-consignee"  method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter name" name="name" autocomplete="off">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Address</label>
-                                                    <textarea class="form-control" placeholder="Enter address" name="address" id="address"></textarea>
+                                                    <label class="col-md-3">Address</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter address" name="address" id="address"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>VAT Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter VAT number" name="vatNumber">
+                                                    <label class="col-md-3">VAT Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Contact Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter contact number" name="contactNumber">
+                                                    <label class="col-md-3">Contact Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input type="email" class="form-control" placeholder="Enter email" name="email">
+                                                    <label class="col-md-3">Email</label>
+                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description"></textarea>
                                                 </div>
+                                                <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="create-consignee" id="btn-consignee" class="btn btn-primary">Save Consignee</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

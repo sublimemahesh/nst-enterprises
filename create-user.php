@@ -76,32 +76,34 @@ $USER1 = new User($_SESSION['id']);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $name; ?>">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter User Name" name="username">
+                                                    <label class="col-md-3">User Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter User Name" name="username">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" class="form-control" placeholder="Enter Password" name="password">
+                                                    <label class="col-md-3">Password</label>
+                                                    <input type="password" class="form-control col-md-9" placeholder="Enter Password" name="password">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Confirm Password</label>
-                                                    <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword">
+                                                    <label class="col-md-3">Confirm Password</label>
+                                                    <input type="password" class="form-control col-md-9" placeholder="Confirm Password" name="cpassword">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Email" name="email">
+                                                    <label class="col-md-3">Email</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Profile Picture</label>
+                                                    <label class="col-md-3">Profile Picture</label>
                                                     <input type="file" name="profilePicture">
                                                 </div>
 
                                                 <input type="hidden" name="back" value="<?php echo $previous;?>">
+                                                <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="create-user" class="btn btn-primary">Save</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
