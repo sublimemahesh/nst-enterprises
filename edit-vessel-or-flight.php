@@ -84,12 +84,12 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                         <div class="col-lg-6">
                                             <form   method="post" action="post-and-get/vessel-and-flight.php" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $VESSELANDFLIGHT->name; ?>">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $VESSELANDFLIGHT->name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Type</label>
-                                                    <select class="form-control" name="type">
+                                                    <label class="col-md-3">Type</label>
+                                                    <select class="form-control col-md-9" name="type">
                                                         <option>-- Please Select --</option>
                                                         <option value="vessel" <?php
                                                         if ($vessel == 1) {
@@ -104,8 +104,8 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                <label>Status</label>
-                                                <label for="isActive" class="container1">Active / InActive
+                                                <label class="col-md-3">Status</label>
+                                                <label for="isActive" class="container1 col-md-9 form-group-label-align">Active / InActive
                                                     <input class="" type="checkbox" <?php
                                                     if ($VESSELANDFLIGHT->isActive == 1) {
                                                         echo 'checked';
@@ -116,7 +116,9 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                                 </div>
                                                 
                                                 <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
+                                                <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="edit-vessel-or-flight" class="btn btn-primary">Save</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

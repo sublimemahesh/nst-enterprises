@@ -82,28 +82,30 @@ $CONSIGNMENT = new Consignment($id);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $CONSIGNMENT->name; ?>">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $CONSIGNMENT->name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" rows="5" placeholder="Enter your description" name="description"><?php echo $CONSIGNMENT->description;?></textarea>
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" rows="5" placeholder="Enter your description" name="description"><?php echo $CONSIGNMENT->description; ?></textarea>
                                                 </div>
 
                                                 <div class="form-group">
-                                                <label>Status</label>
-                                                <label for="isActive" class="container1">Active / InActive
-                                                    <input class="" type="checkbox" <?php
-                                                    if ($CONSIGNMENT->isActive == 1) {
-                                                        echo 'checked';
-                                                    }
-                                                    ?> name="isActive" value="1" id="isActive" />
-                                                    <span class="checkmark"></span>
-                                                </label>
+                                                    <label class="col-md-3">Status</label>
+                                                    <label for="isActive" class="container1 col-md-9 form-group-label-align">Active / InActive
+                                                        <input class="" type="checkbox" <?php
+                                                        if ($CONSIGNMENT->isActive == 1) {
+                                                            echo 'checked';
+                                                        }
+                                                        ?> name="isActive" value="1" id="isActive" />
+                                                        <span class="checkmark"></span>
+                                                    </label>
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNMENT->id; ?>">
-
-                                                <button type="submit" name="edit-consignment" class="btn btn-primary">Save</button>
+                                                
+                                                <div class="col-md-2 col-md-offset-5">
+                                                    <button type="submit" name="edit-consignment" class="btn btn-primary">Save</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
