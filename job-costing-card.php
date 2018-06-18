@@ -86,21 +86,21 @@ $USER1 = new User($_SESSION['id']);
                                         <tbody>
                                             <tr>
                                                 <th scope="row">D/O</th>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">D/O EXTENSION</th>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">D/O EXTENSION</th>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
+                                                <td><input type="text" class="form-control form-control-border" /></td>
                                             </tr>
                                         
                                         </tbody>
