@@ -30,6 +30,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -74,80 +75,86 @@ $USER1 = new User($_SESSION['id']);
                                 </ul>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <form method="post" action="post-and-get/job.php">
-                                                <div class="form-group">
-                                                    <label>Consignee</label>
-                                                    <input type="text" class="form-control col-md-9" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
-                                                    <div id="suggesstion-box">
-                                                        <ul id="name-list-append" class="name-list"></ul>
-                                                    </div>
-                                                    <input type="hidden" name="consignee" value="" id="name-id"  />
+                                        <!--<div class="col-lg-12">-->
+                                        <form method="post" action="post-and-get/job.php">
+                                            <div class="form-group">
+                                                <label class="col-md-3">Consignee</label>
+                                                <input type="text" class="form-control col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
+                                                <div id="suggesstion-box">
+                                                    <ul id="name-list-append" class="name-list col-md-offset-3"></ul>
+                                                </div>
+                                                <input type="hidden" name="consignee" value="" id="name-id"  />
+                                                <div class="col-md-1">
                                                     <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
                                                 </div>
 
-                                                
-                                                <!--                                                <div class="create-consignee hidden" id="create-consignee">
-                                                                                                    Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
-                                                
-                                                                                                </div>-->
-                                                <div class="form-group">
-                                                    <label>Consignment</label>
-                                                    <input type="text" class="form-control" id="consignment" placeholder="Enter consignment">
-                                                    <div id="suggesstion-box">
-                                                        <ul id="consignment-list-append" class="consignment-list"></ul>
-                                                    </div>
-                                                    <input type="hidden" name="consignment" value="" id="consignment-id"  />
+                                            </div>
+
+
+                                            <!--                                                <div class="create-consignee hidden" id="create-consignee">
+                                                                                                Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
+                                            
+                                                                                            </div>-->
+                                            <div class="form-group">
+                                                <label class="col-md-3">Consignment</label>
+                                                <input type="text" class="form-control col-md-8" id="consignment" placeholder="Enter consignment">
+                                                <div id="suggesstion-box">
+                                                    <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
+                                                </div>
+                                                <input type="hidden" name="consignment" value="" id="consignment-id"  />
+                                                <div class="col-md-1">
                                                     <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
                                                 </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" placeholder="Enter description" name="description"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Chassis Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter chassis number" name="chassisNumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Vessel or Flight</label>
-                                                    <select class="form-control" name="vesselAndFlight">
-                                                        <option>-- Please Select --</option>
-                                                        <?php
-                                                        foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                            ?>
-                                                            <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Vessel and Flight Date</label>
-                                                    <input type="text" id="datepicker1" class="form-control" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Copy Received Date</label>
-                                                    <input type="text" id="datepicker2" class="form-control" placeholder="Enter date" name="copyReceivedDate" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Original Received Date</label>
-                                                    <input type="text" id="datepicker3" class="form-control" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Debit Note Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter debit note number" name="debitNoteNumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Cusdec Date</label>
-                                                    <input type="text" id="datepicker4" class="form-control" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
-                                                </div>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label class="col-md-3">Description</label>
+                                                <textarea class="form-control col-md-9" placeholder="Enter description" name="description" id="description"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Chassis Number</label>
+                                                <input type="text" class="form-control col-md-9" placeholder="Enter chassis number" name="chassisNumber" id="chassisNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Vessel or Flight</label>
+                                                <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
+                                                    <option value="">-- Please Select --</option>
+                                                    <?php
+                                                    foreach (VesselAndFlight::all() as $vesselandflight) {
+                                                        ?>
+                                                        <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Vessel and Flight Date</label>
+                                                <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Copy Received Date</label>
+                                                <input type="text" id="datepicker2" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Original Received Date</label>
+                                                <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Debit Note Number</label>
+                                                <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Cusdec Date</label>
+                                                <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
+                                            </div>
+                                            <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" id="btn-job" name="create-job" class="btn btn-primary" disabled="">Save Job</button>
-                                            </form>
-                                            
-                                            <?php include 'modal.php'; ?>
-                                        </div>
+                                            </div>
+                                        </form>
+
+                                        <?php include 'modal.php'; ?>
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -168,9 +175,12 @@ $USER1 = new User($_SESSION['id']);
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/add-consignee.js" type="text/javascript"></script>
-        
+
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
+        <script src="js/create-job.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});

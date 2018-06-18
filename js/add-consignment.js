@@ -2,7 +2,6 @@ $(document).ready(function () {
     $("#btn-consignment").click(function () {
         var name = $("#consignment-name").val();
         var description = $("#description1").val();
-alert(description);
 
         $.ajax({
             type: 'POST',
