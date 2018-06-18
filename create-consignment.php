@@ -76,14 +76,16 @@ $USER1 = new User($_SESSION['id']);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" rows="5" placeholder="Enter your description" name="description"></textarea>
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" rows="5" placeholder="Enter your description" name="description"></textarea>
                                                 </div>
+                                                <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="create-consignment" class="btn btn-primary">Save</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
