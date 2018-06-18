@@ -298,6 +298,18 @@
                     <!-- /.nav-second-level -->
                 </li>      
                 <li>
+                    <a href="#"><i class="fa fa-plane fa-fw"></i> Job Coasting Card<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-reimbursement-details.php?id=1">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-job-costing-card.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>      
+                <li>
                     <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                 </li>
             </ul>
