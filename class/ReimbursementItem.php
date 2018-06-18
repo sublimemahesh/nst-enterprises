@@ -57,7 +57,7 @@ class ReimbursementItem {
 
     public function all() {
 
-        $query = "SELECT * FROM `reimbursement_item` ORDER BY `queue` ASC ";
+        $query = "SELECT * FROM `reimbursement_item` ORDER BY `id` ASC ";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();

@@ -3,6 +3,17 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
+
+$jobcostingcard = '';
+if (isset($_GET['id'])) {
+    $jobcostingcard = $_GET['id'];
+}
+$message = '';
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+$MESSAGE = new Message($message);
+$REIMBURSEMENTITEMS = ReimbursementItem::all();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +27,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Job Costing Card|| Control Panel || NST ENterprises</title>
+        <title>Reimbursement Details|| Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -47,14 +58,21 @@ $USER1 = new User($_SESSION['id']);
                 <div class="container-fluid">
                     <div class="my-alert">
                         <?php
-                        $vali = new Validator();
-                        $vali->show_message();
+                        if (isset($_GET['message'])) {
+                            ?>
+                            <div class="alert alert-<?php echo $MESSAGE->status; ?>">
+                                <strong><?php echo ucfirst($MESSAGE->status); ?> : </strong> 
+                                <?php echo ucfirst($MESSAGE->description); ?>!.
+                            </div>
+                            <?php
+                        }
                         ?>
+
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Costing Card</h1>
+                            <h1 class="page-header font-header">Reimbursement Details</h1>
                         </div>
                     </div>
 
@@ -63,7 +81,7 @@ $USER1 = new User($_SESSION['id']);
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <i class="fa fa-user">
-                                        Job Costing Card
+                                        Reimbursement Details
                                     </i>
                                 </div>
 
@@ -84,30 +102,28 @@ $USER1 = new User($_SESSION['id']);
 
                                         <!--Table body-->
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">D/O</th>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">D/O EXTENSION</th>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">D/O EXTENSION</th>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                                <td><input type="text" class="form-control form-control-border" /></td>
-                                            </tr>
-                                        
+
+                                            <?php
+                                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                                                ?>
+                                                <tr>
+                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                    <td><input type="text" class="form-control form-control-border vno" /></td>
+                                                    <td><input type="text" class="form-control form-control-border amount" /></td>
+                                                    <td><input type="text" class="form-control form-control-border description" /></td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+
+
                                         </tbody>
                                         <!--Table body-->
 
                                     </table>
                                     <!--Table-->
+                                    <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
+                                    <button type="button" class="btn btn-success savebtn" id="submitbutton">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -125,6 +141,7 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/create-job-costing-card.js" type="text/javascript"></script>
 
     </body>
 

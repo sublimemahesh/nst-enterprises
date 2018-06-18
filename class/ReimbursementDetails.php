@@ -61,9 +61,7 @@ class ReimbursementDetails {
         $result = $db->readQuery($query);
 
         if ($result) {
-            $last_id = mysql_insert_id();
-
-            return $this->__construct($last_id);
+            return TRUE;
         } else {
             return FALSE;
         }
