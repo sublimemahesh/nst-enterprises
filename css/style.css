@@ -70,6 +70,12 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     position: absolute;
     z-index: 1;
 }
+.name-list {
+    margin-top: 35px;
+}
+.consignment-list {
+    margin-top: 78px;
+}
 .name-list li, .consignment-list li{
     padding: 10px; 
     background: #f0f0f0;
@@ -293,4 +299,19 @@ div.dataTables_filter input {
 }
 .list-hover li a {
     font-size: 16px;
+}
+.form-control.col-md-8 {
+    width: 66.6667%;
+}
+.form-control.col-md-9 {
+    width: 73%;
+}
+.form-control.col-md-10 {
+    width: 83.333%;
+}
+.form-group label {
+    text-align: right;
+}
+.form-control {
+    margin-bottom: 10px;
 }
