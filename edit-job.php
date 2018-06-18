@@ -82,16 +82,16 @@ $JOB = new Job($id);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/job.php">
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" placeholder="Enter description" name="description"><?php echo $JOB->description; ?></textarea>
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description"><?php echo $JOB->description; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Chassis Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Chassis number" name="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>">
+                                                    <label class="col-md-3">Chassis Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Chassis number" name="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Vessel or Flight</label>
-                                                    <select class="form-control" name="vesselAndFlight">
+                                                    <label class="col-md-3">Vessel or Flight</label>
+                                                    <select class="form-control col-md-9" name="vesselAndFlight">
                                                         <option>-- Please Select --</option>
                                                         <?php
                                                         foreach (VesselAndFlight::all() as $vesselandflight) {
@@ -109,28 +109,30 @@ $JOB = new Job($id);
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Vessel and Flight Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="vesselAndFlightDate" value="<?php echo $JOB->vesselAndFlightDate; ?>">
+                                                    <label class="col-md-3">Vessel and Flight Date</label>
+                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" value="<?php echo $JOB->vesselAndFlightDate; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Copy Received Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="copyReceivedDate" value="<?php echo $JOB->copyReceivedDate; ?>">
+                                                    <label class="col-md-3">Copy Received Date</label>
+                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" value="<?php echo $JOB->copyReceivedDate; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Original Received Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter date" name="originalReceivedDate" value="<?php echo $JOB->originalReceivedDate; ?>">
+                                                    <label class="col-md-3">Original Received Date</label>
+                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" value="<?php echo $JOB->originalReceivedDate; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Debit Note Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter debit note number" name="debitNoteNumber" value="<?php echo $JOB->debitNoteNumber; ?>">
+                                                    <label class="col-md-3">Debit Note Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber" value="<?php echo $JOB->debitNoteNumber; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Cusdec Date</label>
-                                                    <input type="date" class="form-control" placeholder="Enter cusdec date" name="cusdecDate" value="<?php echo $JOB->cusdecDate; ?>">
+                                                    <label class="col-md-3">Cusdec Date</label>
+                                                    <input type="date" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" value="<?php echo $JOB->cusdecDate; ?>">
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
+                                                 <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="edit-job" class="btn btn-primary">Save Job</button>
+                                                 </div>
                                             </form>
                                         </div>
                                     </div>

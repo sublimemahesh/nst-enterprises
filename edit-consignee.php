@@ -81,33 +81,33 @@ $CONSIGNEE = new Consignee($id);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter name" name="name" value="<?php echo $CONSIGNEE->name; ?>">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" value="<?php echo $CONSIGNEE->name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Address</label>
-                                                    <textarea class="form-control" placeholder="Enter address" name="address"><?php echo $CONSIGNEE->address; ?></textarea>
+                                                    <label class="col-md-3">Address</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter address" name="address"><?php echo $CONSIGNEE->address; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>VAT Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter VAT number" name="vatNumber" value="<?php echo $CONSIGNEE->vatNumber; ?>">
+                                                    <label class="col-md-3">VAT Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber" value="<?php echo $CONSIGNEE->vatNumber; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Contact Number</label>
-                                                    <input type="text" class="form-control" placeholder="Enter contact number" name="contactNumber" value="<?php echo $CONSIGNEE->contactNumber; ?>">
+                                                    <label class="col-md-3">Contact Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber" value="<?php echo $CONSIGNEE->contactNumber; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input type="email" class="form-control" placeholder="Enter email" name="email" value="<?php echo $CONSIGNEE->email; ?>">
+                                                    <label class="col-md-3">Email</label>
+                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email" value="<?php echo $CONSIGNEE->email; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea class="form-control" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
                                                 </div>
                                               <div class="form-group">
-                                                <label>Status</label>
-                                                <label for="isActive" class="container1">Active / InActive
-                                                    <input class="" type="checkbox" <?php
+                                                <label class="col-md-3">Status</label>
+                                                <label for="isActive" class="container1 col-md-9 form-group-label-align">Active / InActive
+                                                    <input class="col-md-3" type="checkbox" <?php
                                                     if ($CONSIGNEE->isActive == 1) {
                                                         echo 'checked';
                                                     }
@@ -117,7 +117,9 @@ $CONSIGNEE = new Consignee($id);
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNEE->id; ?>">
+                                                <div class="col-md-2 col-md-offset-5">
                                                 <button type="submit" name="edit-consignee" class="btn btn-primary">Save Consignee</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

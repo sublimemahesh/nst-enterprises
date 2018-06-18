@@ -82,23 +82,23 @@ $USER = new User($id);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Name" name="name" value="<?php echo $USER->name; ?>">
+                                                    <label class="col-md-3">Name</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $USER->name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Email" name="email" value="<?php echo $USER->email; ?>">
+                                                    <label class="col-md-3">Email</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" value="<?php echo $USER->email; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Profile Picture</label>
+                                                    <label class="col-md-3">Profile Picture</label>
                                                     <input type="file" name="profilePicture">
                                                 </div>
                                                 <div class="">
-                                                    <img src="upload/user/<?php echo $USER->profilePicture; ?>" class="img-thumbnail" alt=""/>
+                                                    <img src="upload/user/<?php echo $USER->profilePicture; ?>" class="img-thumbnail image-align" alt=""/>
                                                 </div>
                                                  <div class="form-group">
-                                                <label>Status</label>
-                                                <label for="isActive" class="container1">Active / InActive
+                                                <label class="col-md-3">Status</label>
+                                                <label for="isActive" class="container1 col-md-3 form-group-label-align">Active / InActive
                                                     <input class="" type="checkbox" <?php
                                                     if ($USER->isActive == 1) {
                                                         echo 'checked';
