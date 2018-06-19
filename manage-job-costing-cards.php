@@ -101,7 +101,7 @@ $USER1 = new User($_SESSION['id']);
                                                         |
                                                         <a href="job-costing-card-report.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-warning" title="Report"><i class="glyphicon glyphicon-duplicate"></i></a>
                                                         |
-                                                        <a href="#" class="delete-job btn btn-sm btn-danger" data-id="<?php echo $jobcostingcard['id']; ?>" title="Delete">
+                                                        <a href="#" class="delete-job-costing-card btn btn-sm btn-danger" data-id="<?php echo $jobcostingcard['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
                                                     </td>
@@ -135,7 +135,7 @@ $USER1 = new User($_SESSION['id']);
         <!-- Sweetalerts -->
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
-        <script src="delete/js/job.js" type="text/javascript"></script>
+        <script src="delete/js/job-costing-card.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
