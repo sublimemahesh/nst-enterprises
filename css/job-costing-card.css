@@ -1,0 +1,56 @@
+
+.wrapper {
+    border: 1px solid #000;
+    width: 740px;
+    margin: 20px;
+    height: 1080px;
+}
+.table-header{
+    text-align: center;
+}
+.table-header2{
+    padding-left: 25px;
+}
+.input-align{
+    margin-left: 86px;
+}
+/*.table-bordered {
+    border: 1px solid #ddd;
+}*/
+.table2 {
+    width: 100%;
+    max-width: 92%;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+.table {
+    margin: 10px 0px 20px 30px;
+}
+.col-1 {
+    width: 183px;
+}
+.col-2 {
+    width: 84px;
+}
+.col-3 {
+    width: 112px;
+}
+.col-4 {
+    width: 159px;
+}
+.col-5 {
+    width: 128px;
+}
+.table2 tr th, .table2 tr td {
+    height: 30px;
+    padding-left: 15px;
+}
+.profit-table {
+    margin: 10px 0px 0px 30px;
+}
+.profit-table tr td {
+    width: 185px;
+}
+input[type='text'] {
+    width: 425px;
+}
