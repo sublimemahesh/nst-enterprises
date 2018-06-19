@@ -14,6 +14,8 @@ if (isset($_GET['message'])) {
 }
 $MESSAGE = new Message($message);
 $REIMBURSEMENTITEMS = ReimbursementItem::all();
+
+$REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostingCard($jobcostingcard);
 ?>
 
 <!DOCTYPE html>
@@ -105,14 +107,16 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
 
                                             <?php
                                             foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                                                ?>
-                                                <tr>
-                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td><input type="text" class="form-control form-control-border vno" /></td>
-                                                    <td><input type="text" class="form-control form-control-border amount" /></td>
-                                                    <td><input type="text" class="form-control form-control-border description" /></td>
-                                                </tr>
-                                                <?php
+                                                foreach ($REIMBURSEMENTDETAILS as $reimbursementdetail) {
+                                                    ?>
+                                                    <tr>
+                                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                        <td><input type="text" class="form-control form-control-border vno" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['voucherNumber'];} ?>" /></td>
+                                                        <td><input type="text" class="form-control form-control-border amount" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['amount'];} ?>" /></td>
+                                                        <td><input type="text" class="form-control form-control-border description" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['description'];} ?>" /></td>
+                                                    </tr>
+                                                    <?php
+                                                }
                                             }
                                             ?>
 
