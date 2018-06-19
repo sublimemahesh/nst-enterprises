@@ -1,4 +1,19 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+include_once(dirname(__FILE__) . '/auth.php');
 
+$jobcostingcard = '';
+if (isset($_GET['id'])) {
+    $jobcostingcard = $_GET['id'];
+}
+
+$REIMBURSEMENTITEMS = ReimbursementItem::all();
+$REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostingCard($jobcostingcard);
+$JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
+$JOB = new Job($JOBCOSTINGCARD->job);
+$CONSIGNEE = new Consignee($JOB->consignee);
+$CONSIGNMENT = new Consignment($JOB->consignment);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,22 +33,22 @@
 
             <table class="table">
 
-                    <tr>
-                        <td>JOB NO:</td>
-                        <td><input type="text" class=""></td>
-                    </tr>
-                    <tr>
-                        <td>INVOICE NUMBER:</td>
-                        <td><input type="text" class=""></td>
-                    </tr>
-                    <tr>
-                        <td>CONSIGNEE</td>
-                        <td><input type="text" class=""></td>
-                    </tr>
-                    <tr>
-                        <td>CONSIGNMENT</td>
-                        <td><input type="text" class=""></td>    
-                    </tr>
+                <tr>
+                    <td>JOB NO:</td>
+                    <td><?php echo $JOBCOSTINGCARD->job; ?></td>
+                </tr>
+                <tr>
+                    <td>INVOICE NUMBER:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>CONSIGNEE</td>
+                    <td><?php echo $CONSIGNEE->name; ?></td>
+                </tr>
+                <tr>
+                    <td>CONSIGNMENT</td>
+                    <td><?php echo $CONSIGNMENT->name; ?></td>    
+                </tr>
 
             </table>
 
@@ -52,157 +67,39 @@
                 <!--Table head-->
 
                 <!--Table body-->
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>D/O EXTENSION</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <?php
+                foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                    foreach ($REIMBURSEMENTDETAILS as $reimbursementdetail) {
+                        ?>
+                        <tr>
+                            <td><?php echo $reimbursementitem['name']; ?></td>
+                            <td><?php
+                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
+                                    echo $reimbursementdetail['voucherNumber'];
+                                }
+                                ?></td>
+                            <td><?php
+                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
+                                    echo $reimbursementdetail['amount'];
+                                }
+                                ?></td>
+                            <td><?php
+                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
+                                    echo $reimbursementdetail['description'];
+                                }
+                                ?></td>
+                            <td></td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+
+
                 <!--Table body-->
 
             </table>
-            
+
             <table class="profit-table">
                 <tr>
                     <td>GROSS PROFIT</td>
@@ -212,29 +109,29 @@
                 </tr>
             </table>
         </div>
-        
-        
 
 
 
 
-<!--        <div id="print_button">
-            <a href="#" class="btn btn-success btn-lg" onClick="myFunction()">
-                <span class="glyphicon glyphicon-print"></span> Print
-            </a>
-        </div>-->
+
+
+        <!--        <div id="print_button">
+                    <a href="#" class="btn btn-success btn-lg" onClick="myFunction()">
+                        <span class="glyphicon glyphicon-print"></span> Print
+                    </a>
+                </div>-->
 
 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script>
 
-                $(document).ready(function () {
-                    myFunction();
-                });
+//                $(document).ready(function () {
+//                    myFunction();
+//                });
 
-                function myFunction() {
-                    window.print();
-                }
+            function myFunction() {
+                window.print();
+            }
         </script>
     </body>
 </html>
