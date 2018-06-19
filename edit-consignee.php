@@ -106,7 +106,7 @@ $CONSIGNEE = new Consignee($id);
                                                 </div>
                                               <div class="form-group">
                                                 <label class="col-md-3">Status</label>
-                                                <label for="isActive" class="container1 col-md-9 form-group-label-align">Active / InActive
+                                                <label for="isActive" class="container1 col-md-9 label-align">Active / InActive
                                                     <input class="col-md-3" type="checkbox" <?php
                                                     if ($CONSIGNEE->isActive == 1) {
                                                         echo 'checked';

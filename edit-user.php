@@ -98,7 +98,7 @@ $USER = new User($id);
                                                 </div>
                                                  <div class="form-group">
                                                 <label class="col-md-3">Status</label>
-                                                <label for="isActive" class="container1 col-md-3 form-group-label-align">Active / InActive
+                                                <label for="isActive" class="container1 col-md-3 label-align">Active / InActive
                                                     <input class="" type="checkbox" <?php
                                                     if ($USER->isActive == 1) {
                                                         echo 'checked';
