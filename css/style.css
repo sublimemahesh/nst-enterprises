@@ -324,10 +324,13 @@ list.border{
 .form-control-border {
     border: 0px solid #ccc;
 }
-.form-group-label-align{
+.label-align{
     text-align: left;
 }
 .image-align{
     margin-left: 385px;
     margin-bottom: 15px;
+}
+.form-group .label-align {
+    text-align: left;
 }

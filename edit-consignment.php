@@ -92,7 +92,7 @@ $CONSIGNMENT = new Consignment($id);
 
                                                 <div class="form-group">
                                                     <label class="col-md-3">Status</label>
-                                                    <label for="isActive" class="container1 col-md-9 form-group-label-align">Active / InActive
+                                                    <label for="isActive" class="container1 col-md-9 label-align">Active / InActive
                                                         <input class="" type="checkbox" <?php
                                                         if ($CONSIGNMENT->isActive == 1) {
                                                             echo 'checked';
