@@ -107,22 +107,14 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
 
                                             <?php
                                             foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                                                foreach ($REIMBURSEMENTDETAILS as $reimbursementdetail) {
-                                                    ?>
-                                                    <tr>
-                                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                        <td><input type="text" class="form-control form-control-border vno" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['voucherNumber'];} ?>" /></td>
-                                                        <td><input type="text" class="form-control form-control-border amount" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['amount'];} ?>" /></td>
-                                                        <td><input type="text" class="form-control form-control-border description" value="<?php if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']){ echo $reimbursementdetail['description'];} ?>" /></td>
-                                                    </tr>
-<!--                                                    <tr>
-                                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                        <td><input type="text" class="form-control form-control-border vno" value="" /></td>
-                                                        <td><input type="text" class="form-control form-control-border amount" value="" /></td>
-                                                        <td><input type="text" class="form-control form-control-border description" value="" /></td>
-                                                    </tr>-->
-                                                    <?php
-                                                }
+                                                ?>
+                                                <tr>
+                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                    <td><input type="text" class="form-control form-control-border vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                </tr>
+                                                <?php
                                             }
                                             ?>
 

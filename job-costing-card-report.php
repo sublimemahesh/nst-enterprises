@@ -2,18 +2,19 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
+
 $jobcostingcard = '';
 if (isset($_GET['id'])) {
     $jobcostingcard = $_GET['id'];
 }
-
 $REIMBURSEMENTITEMS = ReimbursementItem::all();
-$REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostingCard($jobcostingcard);
+
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
 $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +36,7 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
 
                 <tr>
                     <td>JOB NO:</td>
-                    <td><?php echo $JOBCOSTINGCARD->job; ?></td>
+                    <td><?php echo $JOB->id; ?></td>
                 </tr>
                 <tr>
                     <td>INVOICE NUMBER:</td>
@@ -69,33 +70,17 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
                 <!--Table body-->
                 <?php
                 foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                    foreach ($REIMBURSEMENTDETAILS as $reimbursementdetail) {
-                        ?>
-                        <tr>
-                            <td><?php echo $reimbursementitem['name']; ?></td>
-                            <td><?php
-                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
-                                    echo $reimbursementdetail['voucherNumber'];
-                                }
-                                ?></td>
-                            <td><?php
-                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
-                                    echo $reimbursementdetail['amount'];
-                                }
-                                ?></td>
-                            <td><?php
-                                if ($reimbursementitem['id'] === $reimbursementdetail['reimbursementItem']) {
-                                    echo $reimbursementdetail['description'];
-                                }
-                                ?></td>
-                            <td></td>
-                        </tr>
-                        <?php
-                    }
+                    ?>
+                    <tr>
+                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                        <td class="vno-<?php echo $reimbursementitem['id']; ?>"></td>
+                        <td class="amount-<?php echo $reimbursementitem['id']; ?>"></td>
+                        <td class="description-<?php echo $reimbursementitem['id']; ?>"></td>
+                        <td class=""></td>
+                    </tr>
+                    <?php
                 }
                 ?>
-
-
                 <!--Table body-->
 
             </table>
@@ -108,6 +93,8 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
                     <td>44555.00</td>
                 </tr>
             </table>
+            
+            <input type="hidden" jobcostingcard="<?php echo $jobcostingcard;?>" id="job-costing-card" />
         </div>
 
 
@@ -123,11 +110,12 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
 
 
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/job-costing-card-report.js" type="text/javascript"></script>
         <script>
 
-//                $(document).ready(function () {
-//                    myFunction();
-//                });
+//            $(document).ready(function () {
+//                myFunction();
+//            });
 
             function myFunction() {
                 window.print();
