@@ -43,6 +43,14 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
 
+        <style>
+            .form-control {
+                margin-bottom: 0px;
+                height: 26px;
+                padding: 5px 12px;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -85,6 +93,13 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                     <i class="fa fa-user">
                                         Reimbursement Details
                                     </i>
+                                    <ul class="header-dropdown">
+                                        <li class="">
+                                            <a href="manage-job-costing-cards.php">
+                                                <i class="glyphicon glyphicon-list"></i> 
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 <div class="panel-body">
@@ -109,14 +124,15 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                             foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
                                                 ?>
                                                 <tr>
-                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td><input type="text" class="form-control form-control-border vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td><input type="text" class="form-control form-control-border amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td><input type="text" class="form-control form-control-border description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>
+                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>"class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                    <td><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                            <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
 
 
                                         </tbody>
@@ -125,7 +141,8 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                     </table>
                                     <!--Table-->
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
-                                    <button type="button" class="btn btn-success savebtn" id="submitbutton">Submit</button>
+                                    <button type="button" class="btn btn-success savebtn col-md-offset-5 hidden" id="savebutton">Submit</button>
+                                    <button type="button" class="btn btn-success savebtn col-md-offset-5 hidden" id="editbutton">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +160,9 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-        <script src="js/create-job-costing-card.js" type="text/javascript"></script>
+        <script src="js/reimbursement-details.js" type="text/javascript"></script>
+        <script src="js/create-reimbursement-details.js" type="text/javascript"></script>
+        <script src="js/edit-reimbursement-details.js" type="text/javascript"></script>
 
     </body>
 

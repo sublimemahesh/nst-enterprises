@@ -84,8 +84,6 @@ class ReimbursementDetails {
     public function update() {
 
         $query = "UPDATE  `reimbursement_details` SET "
-                . "`jobCostingCard` ='" . $this->jobCostingCard . "', "
-                . "`reimbursementItem` ='" . $this->reimbursementItem . "', "
                 . "`voucherNumber` ='" . $this->voucherNumber . "', "
                 . "`amount` ='" . $this->amount . "', "
                 . "`description` ='" . $this->description . "' "
