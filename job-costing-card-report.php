@@ -87,10 +87,10 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
 
             <table class="profit-table">
                 <tr>
-                    <td>GROSS PROFIT</td>
-                    <td>11456.00</td>
-                    <td>GRAND TOTAL</td>
-                    <td>44555.00</td>
+                    <td>GROSS PROFIT:</td>
+                    <td><input type="text" class="input-style"></td>
+                    <td>GRAND TOTAL:</td>
+                    <td><input type="text" class="input-style"></td>
                 </tr>
             </table>
             
