@@ -121,7 +121,7 @@ $USER1 = new User($_SESSION['id']);
                                                         <a href="#" class="delete-vessel-or-flight btn btn-sm btn-danger" data-id="<?php echo $vesselandflight['id']; ?>">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
-
+                                                        |
                                                         <a href="arrange-vessels-and-flights.php" class="btn btn-sm btn-primary">
                                                             <i class="glyphicon glyphicon-random"></i>
                                                         </a>

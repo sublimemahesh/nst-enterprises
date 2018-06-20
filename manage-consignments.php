@@ -112,7 +112,7 @@ $USER1 = new User($_SESSION['id']);
                                                         <a href="#" class="delete-consignment btn btn-sm btn-danger" data-id="<?php echo $consignment['id']; ?>">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
-
+                                                        |
                                                         <a href="arrange-consignments.php" class="btn btn-sm btn-primary">
                                                             <i class="glyphicon glyphicon-random"></i>
                                                         </a>

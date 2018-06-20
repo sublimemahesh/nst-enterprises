@@ -3,6 +3,10 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
+$job = '';
+if (isset($_GET['id'])) {
+    $job = $_GET['id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +82,7 @@ $USER1 = new User($_SESSION['id']);
                                             <form   method="post" action="post-and-get/job-costing-card.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Job</label>
-                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job">
+                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" value="<?php echo $job; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Date</label>

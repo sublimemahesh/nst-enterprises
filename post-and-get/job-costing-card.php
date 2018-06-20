@@ -24,8 +24,7 @@ if (isset($_POST['create-job-costing-card'])) {
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
 
-        $url = explode("?", $_SERVER['HTTP_REFERER']);
-        header('Location: ' . $url[0]);
+        header('Location: ../manage-job-costing-cards.php');
     } else {
 
         if (!isset($_SESSION)) {
