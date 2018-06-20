@@ -85,13 +85,6 @@ $MESSAGE = new Message($message);
                                 <div class="panel-heading">
                                     Manage Job Costing Cards
                                 </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="create-job-costing-card.php">
-                                            <i class="glyphicon glyphicon-plus"></i> 
-                                        </a>
-                                    </li>
-                                </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
