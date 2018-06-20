@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#submitbutton").click(function () {
+    $("#savebutton").click(function () {
         var data = [];
         var jobcostingcard, rid, vno, amount, description;
 
@@ -30,10 +30,10 @@ $(document).ready(function () {
             type: 'POST',
             data: {data: formData},
             cache: false,
-            url: 'ajax/create-job-costing-card.php',
+            url: 'ajax/create-reimbursement-details.php',
             success: function (result) {
                 if (result == true) {
-                    window.location.replace("create-job-costing-card.php?message=10");
+                    window.location.replace("manage-job-costing-cards.php?message=10");
                 } else {
                     return false;
                 }

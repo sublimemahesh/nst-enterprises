@@ -3,6 +3,11 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
+$message = '';
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+$MESSAGE = new Message($message);
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +60,17 @@ $USER1 = new User($_SESSION['id']);
                         <?php
                         $vali = new Validator();
                         $vali->show_message();
+                        ?>
+                        
+                        <?php
+                        if (isset($_GET['message'])) {
+                            ?>
+                            <div class="alert alert-<?php echo $MESSAGE->status; ?>">
+                                <strong><?php echo ucfirst($MESSAGE->status); ?> : </strong> 
+                                <?php echo ucfirst($MESSAGE->description); ?>!.
+                            </div>
+                            <?php
+                        }
                         ?>
                     </div>
                     <div class="row">
