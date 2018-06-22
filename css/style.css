@@ -337,6 +337,8 @@ list.border{
 .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
     padding: 6px;
 }
-ul{
+.table2.to-hide {
+    display:none;
+}ul{
     list-style-type: none;
 }
