@@ -16,7 +16,6 @@ class ReimbursementDetails {
     public $id;
     public $jobCostingCard;
     public $reimbursementItem;
-    public $type;
     public $voucherNumber;
     public $amount;
     public $description;
@@ -124,58 +123,13 @@ class ReimbursementDetails {
         return $array_res;
     }
     
-    public function getReimbursementDetailsByReimbursementItemAndType($reimbursementitem, $jobcostingcard, $type) {
-        
-        $query = "SELECT * FROM `reimbursement_details` WHERE `reimbursementItem` = '". $reimbursementitem ."' AND `jobCostingCard` = '". $jobcostingcard ."' AND `type` = '". $type ."'";
+    public function getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem, $jobcostingcard) {
+
+        $query = "SELECT * FROM `reimbursement_details` WHERE `reimbursementItem` = '". $reimbursementitem ."' AND `jobCostingCard` = '". $jobcostingcard ."'";
         $db = new Database();
         
         $result = mysql_fetch_array($db->readQuery($query));
         
-        return $result;
-    }
-    
-    public function getCountByJobCostingCardAndType($jobcostingcard, $type) {
-
-        $query = "SELECT count(`id`) AS `count`, type FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."' AND `type` = '". $type ."'";
-        $db = new Database();
-        
-        $result = mysql_fetch_array($db->readQuery($query));
-        
-        return $result;
-    }
-    
-    public function getSubTotalByJobCostingCardAndType($jobcostingcard, $type) {
-
-        $query = "SELECT sum(`amount`) AS `subtotal` FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."' AND `type` = '". $type ."'";
-        $db = new Database();
-        
-        $result = mysql_fetch_array($db->readQuery($query));
-
-        return $result;
-    }
-    
-    public function countByType($jobcostingcard) {
-
-        $query = "SELECT `type`, count(id) AS `count` FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."' GROUP BY `type`";
-        $db = new Database();
-        
-        $result = $db->readQuery($query);
-        $array_res = array();
-
-        while ($row = mysql_fetch_array($result)) {
-            array_push($array_res, $row);
-        }
-
-        return $array_res;
-    }
-    
-    public function getGrandTotalByJobCostingCard($jobcostingcard) {
-
-        $query = "SELECT sum(`amount`) AS `grandtotal` FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."'";
-        $db = new Database();
-        
-        $result = mysql_fetch_array($db->readQuery($query));
-
         return $result;
     }
 
