@@ -23,24 +23,25 @@
     margin-bottom: 20px;
     margin-left: 30px;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 .table {
     margin: 10px 0px 20px 30px;
 }
-.col-1 {
-    width: 183px;
+.col-1{
+    width: 151px;
 }
 .col-2 {
-    width: 84px;
+    width: 70px;
 }
 .col-3 {
-    width: 112px;
+    width: 85px;
 }
 .col-4 {
-    width: 159px;
+    width: 135px;
 }
 .col-5 {
-    width: 128px;
+    width: 85px;
 }
 .table2 tr th, .table2 tr td {
     height: 30px;
@@ -57,8 +58,17 @@ input[type='text'] {
     width: 425px;
 }
 .input-style[type='text']{
-    width: 150px;
+    width: 142px;
+    padding-right: 10px;
+    height: 25px;
 }
+
 .text-right {
     text-align: right;
+}
+.td-style{
+    padding-left: 35px;
+}
+.th-style{
+    width: 95px
 }
