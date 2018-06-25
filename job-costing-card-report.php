@@ -130,9 +130,9 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script src="js/job-costing-card-report.js" type="text/javascript"></script>
         <script>
 
-//            $(document).ready(function () {
-//                myFunction();
-//            });
+            $(document).ready(function () {
+                myFunction();
+            });
 
             function myFunction() {
                 window.print();
