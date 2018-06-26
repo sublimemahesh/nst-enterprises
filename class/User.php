@@ -18,12 +18,13 @@ class User {
     public $authToken;
     public $lastLogin;
     public $resetcode;
+    public $permission;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`name`,`username`,`password`,`email`,`profile_picture`,`isActive`,`authToken`,`lastLogin`,`resetcode`,`queue` FROM `user` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`name`,`username`,`password`,`email`,`profile_picture`,`isActive`,`authToken`,`lastLogin`,`resetcode`,`permissions`,`queue` FROM `user` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -39,6 +40,7 @@ class User {
             $this->authToken = $result['authToken'];
             $this->lastLogin = $result['lastLogin'];
             $this->resetcode = $result['resetcode'];
+            $this->permission = $result['permissions'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -220,6 +222,7 @@ class User {
         $_SESSION["isActive"] = $user->isActive;
         $_SESSION["authToken"] = $user->authToken;
         $_SESSION["lastLogin"] = $user->lastLogin;
+        $_SESSION["permission"] = $user->permission;
         $_SESSION["queue"] = $user->queue;
     }
 
@@ -401,6 +404,23 @@ class User {
 
         if ($result) {
             return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    public function updatePermission() {
+
+        $query = "UPDATE  `user` SET "
+                . "`permissions` ='" . $this->permission . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
         } else {
             return FALSE;
         }

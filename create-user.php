@@ -1,8 +1,10 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-        
+
     </head>
 
     <body>
@@ -37,19 +39,19 @@ $USER1 = new User($_SESSION['id']);
         <div id="wrapper">
 
             <!-- Navigation -->
-            <?php
-            include 'navigation-and-header.php';
-            ?>
+<?php
+include 'navigation-and-header.php';
+?>
             <!-- /Navigation -->
 
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="my-alert">
-                        <?php
-                        $vali = new Validator();
-                        $vali->show_message();
-                        ?>
+<?php
+$vali = new Validator();
+$vali->show_message();
+?>
                     </div>
 
                     <div class="row">
@@ -100,9 +102,9 @@ $USER1 = new User($_SESSION['id']);
                                                     <input type="file" name="profilePicture">
                                                 </div>
 
-                                                <input type="hidden" name="back" value="<?php echo $previous;?>">
+                                                <input type="hidden" name="back" value="<?php echo $previous; ?>">
                                                 <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="create-user" class="btn btn-primary">Save</button>
+                                                    <button type="submit" name="create-user" class="btn btn-primary">Save</button>
                                                 </div>
                                             </form>
                                         </div>
