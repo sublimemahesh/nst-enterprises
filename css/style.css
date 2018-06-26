@@ -342,3 +342,26 @@ list.border{
 }ul{
     list-style-type: none;
 }
+.access-denied {
+    margin-top: 20px;
+    width: 70%;
+    margin-left: 15%;
+}
+.access-denied h1 {
+    font-size: 40px;
+    text-align: center;
+    color: #1867c0;
+    margin: 10px 0px 0px 0px;
+}
+.access-denied p {
+    font-size: 16px;
+    text-align: center;
+    color: #000;
+    margin: 0px 0px 20px 0px;
+}
+.img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
