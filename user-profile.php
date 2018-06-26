@@ -117,7 +117,7 @@ $USER1 = new User($_SESSION['id']);
                                                             My Profile
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="edit-user.php?id">
+                                                    <li class="list-group-item"><a href="edit-user.php?id=<?php echo $USER1->id;?>">
                                                             <i class="fa fa-user"></i>
                                                             Edit Profile
                                                         </a>
@@ -127,7 +127,7 @@ $USER1 = new User($_SESSION['id']);
                                                             Change Password
                                                         </a>
                                                     </li>
-                                                    <li class="list-group-item"><a href="user-logout.php">
+                                                    <li class="list-group-item"><a href="post-and-get/logout.php">
                                                             <i class="fa fa-sign-out"></i>
                                                             Logout
                                                         </a>

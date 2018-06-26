@@ -409,6 +409,25 @@ class User {
         }
     }
     
+    public function changePassword() {
+
+        $enPass = md5($this->password);
+
+        $query = "UPDATE  `user` SET "
+                . "`password` ='" . $enPass . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
     public function updatePermission() {
 
         $query = "UPDATE  `user` SET "
@@ -423,6 +442,23 @@ class User {
             return $this->__construct($this->id);
         } else {
             return FALSE;
+        }
+    }
+    
+    public function getIdByPassword($password) {
+
+        $enPass = md5($password);
+        
+        $query = "SELECT `id` FROM `user` WHERE `password`= '" . $enPass . "'";
+
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        if (!$result) {
+            return FALSE;
+        } else {
+            return $result;
         }
     }
 

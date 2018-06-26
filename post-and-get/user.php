@@ -72,14 +72,14 @@ if (isset($_POST['create-user'])) {
         ]);
 
         if ($VALID->passed()) {
-            $USER->create();
+            $result = $USER->create();
 
             if (!isset($_SESSION)) {
                 session_start();
             }
             $VALID->addError("Your data was saved successfully", 'success');
             $_SESSION['ERRORS'] = $VALID->errors();
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ../manage-user-permission.php?id=' . $result->id);
         } else {
 
             if (!isset($_SESSION)) {
@@ -127,7 +127,7 @@ if (isset($_POST['edit-user'])) {
     $USER->name = filter_input(INPUT_POST, 'name');
     $USER->email = filter_input(INPUT_POST, 'email');
     $USER->isActive = $_POST['isActive'];
-    $USER->profilePicture = $imgName;
+    $USER->profilePicture = $imageName;
 
     $VALID = new Validator();
     $VALID->check($USER, [
@@ -144,13 +144,56 @@ if (isset($_POST['edit-user'])) {
         $VALID->addError("Your changes saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
 
-        header('Location: ../manage-users.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
 
         if (!isset($_SESSION)) {
             session_start();
         }
 
+        $_SESSION['ERRORS'] = $VALID->errors();
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+}
+
+if (isset($_POST['change-password'])) {
+    $USER = new User(NULL);
+
+    $pass = $USER->getIdByPassword($_POST["password"]);
+
+    $VALID = new Validator();
+
+    if ($_SESSION['id'] == $pass['id']) {
+        $npassword = $_POST["newpassword"];
+        $cpassword = $_POST["confirmpassword"];
+
+        if ($npassword === $cpassword && $npassword != NULL && $cpassword != NULL) {
+
+            $USER->password = $npassword;
+            $USER->id = $pass['id'];
+
+            $result = $USER->changePassword();
+
+            if ($result) {
+                $VALID->addError("Your changes saved successfully", 'success');
+                $_SESSION['ERRORS'] = $VALID->errors();
+
+                header('Location: ' . $_SERVER['HTTP_REFERER'] . '?id=' . $pass['id'] );
+            } else {
+                $VALID->addError("Your changes not saved successfully", 'danger');
+                $_SESSION['ERRORS'] = $VALID->errors();
+
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            $VALID->addError("Your new password and confirm password was not matched", 'danger');
+            $_SESSION['ERRORS'] = $VALID->errors();
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+    } else {
+        $VALID->addError("Your current password was not matched", 'danger');
         $_SESSION['ERRORS'] = $VALID->errors();
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
