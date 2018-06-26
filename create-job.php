@@ -100,7 +100,7 @@ $USER1 = new User($_SESSION['id']);
                                                                                             </div>-->
                                             <div class="form-group">
                                                 <label class="col-md-3">Consignment</label>
-                                                <input type="text" class="form-control col-md-8" id="consignment" placeholder="Enter consignment">
+                                                <input type="text" class="form-control col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off">
                                                 <div id="suggesstion-box">
                                                     <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
                                                 </div>

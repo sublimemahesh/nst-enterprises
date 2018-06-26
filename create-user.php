@@ -4,7 +4,6 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-
 ?>
 
 <!DOCTYPE html>
@@ -39,19 +38,19 @@ $USER1 = new User($_SESSION['id']);
         <div id="wrapper">
 
             <!-- Navigation -->
-<?php
-include 'navigation-and-header.php';
-?>
+            <?php
+            include 'navigation-and-header.php';
+            ?>
             <!-- /Navigation -->
 
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="my-alert">
-<?php
-$vali = new Validator();
-$vali->show_message();
-?>
+                        <?php
+                        $vali = new Validator();
+                        $vali->show_message();
+                        ?>
                     </div>
 
                     <div class="row">
@@ -79,7 +78,7 @@ $vali->show_message();
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">User Name</label>

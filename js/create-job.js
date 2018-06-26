@@ -24,7 +24,6 @@ $(document).ready(function () {
             });
             return false
         } else if (!$('#description').val() || $('#description').val().length === 0) {
-            alert($('#description').val());
             swal({
                 title: "Error!",
                 text: "Please enter the description",

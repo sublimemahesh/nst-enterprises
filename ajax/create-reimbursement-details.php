@@ -4,6 +4,7 @@ include_once(dirname(__FILE__) . '/../class/include.php');
 $REIMBURSEMENTDETAILS = new ReimbursementDetails(NULL);
 
 foreach ($_POST['data'] as $data) {
+    $REIMBURSEMENTITEMS = new ReimbursementItem($data['rid']);
 
     if(empty($data['vno']) && empty($data['amount']) && empty($data['description'])) {
         $result = TRUE;
@@ -13,6 +14,7 @@ foreach ($_POST['data'] as $data) {
         $REIMBURSEMENTDETAILS->voucherNumber = $data['vno'];
         $REIMBURSEMENTDETAILS->amount = $data['amount'];
         $REIMBURSEMENTDETAILS->description = $data['description'];
+        $REIMBURSEMENTDETAILS->type = $REIMBURSEMENTITEMS->type;
 
         $result = $REIMBURSEMENTDETAILS->create();
     }

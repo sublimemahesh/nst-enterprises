@@ -91,15 +91,15 @@ $USER1 = new User($_SESSION['id']);
                                                         </div>
                                                         <div class="form-group">
                                                             <label>New Password</label>
-                                                            <input type="password" class="form-control" placeholder="Enter New Password" name="npassword">
+                                                            <input type="password" class="form-control" placeholder="Enter New Password" name="newpassword">
                                                         </div>      
                                                         <div class="form-group">
                                                             <label>Confirm Password</label>
-                                                            <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword">
+                                                            <input type="password" class="form-control" placeholder="Confirm Password" name="confirmpassword">
                                                         </div>
 
                                                         <input type="hidden" name="back" value="<?php echo $previous; ?>">
-                                                        <button type="submit" name="create-user" class="btn btn-primary">Save Password</button>
+                                                        <button type="submit" name="change-password" class="btn btn-primary">Save Password</button>
                                                     </form>
                                                 </div>
                                             </div>

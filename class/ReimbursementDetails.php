@@ -24,7 +24,7 @@ class ReimbursementDetails {
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`jobCostingCard`,`reimbursementItem`,`voucherNumber`,`amount`,`description` FROM `reimbursement_details` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`jobCostingCard`,`reimbursementItem`,`type`,`voucherNumber`,`amount`,`description` FROM `reimbursement_details` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -33,6 +33,7 @@ class ReimbursementDetails {
             $this->id = $result['id'];
             $this->jobCostingCard = $result['jobCostingCard'];
             $this->reimbursementItem = $result['reimbursementItem'];
+            $this->type = $result['type'];
             $this->voucherNumber = $result['voucherNumber'];
             $this->amount = $result['amount'];
             $this->description = $result['description'];
@@ -46,12 +47,14 @@ class ReimbursementDetails {
         $query = "INSERT INTO `reimbursement_details` ("
                 . "`jobCostingCard`,"
                 . "`reimbursementItem`,"
+                . "`type`,"
                 . "`voucherNumber`,"
                 . "`amount`,"
                 . "`description`) "
                 . "VALUES  ("
                 . "'" . $this->jobCostingCard . "',"
                 . "'" . $this->reimbursementItem . "',"
+                . "'" . $this->type . "',"
                 . "'" . $this->voucherNumber . "',"
                 . "'" . $this->amount . "',"
                 . "'" . $this->description . "'"
