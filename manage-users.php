@@ -1,6 +1,7 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
 ?>
@@ -110,6 +111,8 @@ $USER1 = new User($_SESSION['id']);
                                                     </td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-user.php?id=<?php echo $user['id']; ?>" class="op-link btn btn-sm btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                        |
+                                                        <a href="manage-user-permission.php?id=<?php echo $user['id']; ?>" class="op-link btn btn-sm btn-warning"><i class="glyphicon glyphicon-user"></i></a>
                                                         |
                                                         <a href="arrange-users.php" class="btn btn-sm btn-primary">
                                                             <i class="glyphicon glyphicon-random"></i>

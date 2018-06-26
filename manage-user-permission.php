@@ -1,9 +1,16 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
+include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-$VESSELSANDFLIGHTS = VesselAndFlight::all();
+
+$userid = '';
+if (isset($_GET['id'])) {
+    $userid = $_GET['id'];
+}
+$USER = new User($userid);
+$PERMISSIONS = unserialize($USER->permission);
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +76,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-user-permission.php">
+                                        <a href="manage-users.php">
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
@@ -78,49 +85,26 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <form   method="post" action="post-and-get/user-permission.php" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                    <ul>
-                                                        <li>
-                                                            <label class="container1 label-align">Check 1
-                                                                <input class="" type="checkbox" name="checkbox" value="1" id="" />
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group">
-                                                    <ul>
-                                                        <li>
-                                                            <label class="container1 label-align">Check 2
-                                                                <input class="" type="checkbox" name="checkbox" value="1" id="" />
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group">
-                                                    <ul>
-                                                        <li>
-                                                            <label class="container1 label-align">Check 3
-                                                                <input class="" type="checkbox" name="checkbox" value="1" id="" />
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group">
-                                                    <ul>
-                                                        <li>
-                                                            <label class="container1 label-align">Check 4
-                                                                <input class="" type="checkbox" name="checkbox" value="1" id="" />
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                <?php
+                                                foreach (UserPermission::all() as $permissions) {
+                                                    ?>
+                                                    <div class="form-group">
+                                                        <ul>
+                                                            <li>
+                                                                <label class="container1 label-align"><?php echo $permissions['permission']; ?>
+                                                                    <input class="" type="checkbox" name="permission[]" value="<?php echo $permissions['id']; ?>" id="permission-<?php echo $permissions['id']; ?>" />
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
                                                 <div class="row">
                                                     <div class="col-sm-12 text-center" style="margin-top: 19px;">
-                                                        <input type="submit" class="btn btn-info" id="btn-submit" value="Save Changes" name="save-arrange">
+                                                        <input type="hidden" name="id" value="<?php echo $userid; ?>" id="userid">
+                                                        <input type="submit" class="btn btn-info" id="btn-submit" value="Save Changes" name="save-permission">
                                                     </div>
                                                 </div>
 
@@ -147,6 +131,8 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
         <script src="js/sortable-nestable.js" type="text/javascript"></script>
         <!-- Arrange -->
         <script src="plugins/nestable/jquery.nestable.js" type="text/javascript"></script>
+        
+        <script src="js/user-permissions.js" type="text/javascript"></script>
 
     </body>
 
