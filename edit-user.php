@@ -36,6 +36,7 @@ $USER = new User($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -84,11 +85,11 @@ $USER = new User($id);
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $USER->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $USER->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" value="<?php echo $USER->email; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email" value="<?php echo $USER->email; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Profile Picture</label>
@@ -112,7 +113,7 @@ $USER = new User($id);
                                                 <input type="hidden" name="id" value="<?php echo $USER->id; ?>">
                                                 <input type="hidden" name="oldImageName" value="<?php echo $USER->profilePicture; ?>">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" name="edit-user" class="btn btn-info edit-btn">Save Changes</button>
+                                                    <button type="submit" name="edit-user" id="edit-user" class="btn btn-info edit-btn">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -134,7 +135,9 @@ $USER = new User($id);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-
+        <script src="js/user.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        
     </body>
 
 </html>

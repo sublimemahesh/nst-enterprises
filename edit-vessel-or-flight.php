@@ -39,6 +39,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -82,16 +83,16 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                 </ul>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/vessel-and-flight.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $VESSELANDFLIGHT->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $VESSELANDFLIGHT->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Type</label>
-                                                    <select class="form-control col-md-9" name="type">
-                                                        <option>-- Please Select --</option>
+                                                    <select class="form-control col-md-9" name="type" id="type">
+                                                        <option value="">-- Please Select --</option>
                                                         <option value="vessel" <?php
                                                         if ($vessel == 1) {
                                                             echo 'selected';
@@ -118,7 +119,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                                 
                                                 <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="edit-vessel-or-flight" class="btn btn-info">Save Changes</button>
+                                                <button type="submit" name="edit-vessel-or-flight" id="edit-vessel-or-flight" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -140,6 +141,8 @@ $flight = $VESSELANDFLIGHT->isFlight;
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/vessel-and-flight.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

@@ -37,6 +37,7 @@ $JOBCOSTINGCARD = new JobCostingCard($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -85,7 +86,7 @@ $JOBCOSTINGCARD = new JobCostingCard($id);
                                             <form   method="post" action="post-and-get/job-costing-card.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Job</label>
-                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" value="<?php echo $JOBCOSTINGCARD->job; ?>">
+                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" id="job" value="<?php echo $JOBCOSTINGCARD->job; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Date</label>
@@ -93,7 +94,7 @@ $JOBCOSTINGCARD = new JobCostingCard($id);
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $JOBCOSTINGCARD->id; ?>">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" name="edit-job-costing-card" class="btn btn-info">Save Changes</button>
+                                                    <button type="submit" name="edit-job-costing-card" id="edit-job-costing-card" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -116,6 +117,8 @@ $JOBCOSTINGCARD = new JobCostingCard($id);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/job-costing-card.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
