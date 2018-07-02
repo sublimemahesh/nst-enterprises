@@ -94,24 +94,26 @@ $USER = new User($id);
                                                     <label class="col-md-3">Profile Picture</label>
                                                     <input type="file" name="profilePicture">
                                                 </div>
-                                                <div class="">
+                                                <div class="col-md-offset-3">
                                                     <img src="upload/user/<?php echo $USER->profilePicture; ?>" class="img-thumbnail image-align" alt=""/>
                                                 </div>
-                                                 <div class="form-group">
-                                                <label class="col-md-3">Status</label>
-                                                <label for="isActive" class="container1 col-md-3 label-align">Active / InActive
-                                                    <input class="" type="checkbox" <?php
-                                                    if ($USER->isActive == 1) {
-                                                        echo 'checked';
-                                                    }
-                                                    ?> name="isActive" value="1" id="isActive" />
-                                                    <span class="checkmark"></span>
-                                                </label>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Status</label>
+                                                    <label for="isActive" class="container1 col-md-3 label-align">Active / InActive
+                                                        <input class="" type="checkbox" <?php
+                                                        if ($USER->isActive == 1) {
+                                                            echo 'checked';
+                                                        }
+                                                        ?> name="isActive" value="1" id="isActive" />
+                                                        <span class="checkmark"></span>
+                                                        <span class="col-md-9"></span>
+                                                    </label>
                                                 </div>
-                                                
                                                 <input type="hidden" name="id" value="<?php echo $USER->id; ?>">
                                                 <input type="hidden" name="oldImageName" value="<?php echo $USER->profilePicture; ?>">
-                                                <button type="submit" name="edit-user" class="btn btn-primary">Save</button>
+                                                <div class="col-sm-12 text-center">
+                                                    <button type="submit" name="edit-user" class="btn btn-info edit-btn">Save Changes</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

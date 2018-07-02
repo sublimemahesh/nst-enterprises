@@ -104,8 +104,8 @@ $CONSIGNMENT = new Consignment($id);
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNMENT->id; ?>">
                                                 
-                                                <div class="col-md-2 col-md-offset-5">
-                                                    <button type="submit" name="edit-consignment" class="btn btn-primary">Save</button>
+                                                <div class="col-sm-12 text-center">
+                                                    <button type="submit" name="edit-consignment" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>

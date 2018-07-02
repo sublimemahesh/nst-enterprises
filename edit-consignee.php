@@ -118,8 +118,8 @@ $CONSIGNEE = new Consignee($id);
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNEE->id; ?>">
-                                                <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="edit-consignee" class="btn btn-primary">Save Consignee</button>
+                                                <div class="col-sm-12 text-center">
+                                                <button type="submit" name="edit-consignee" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>

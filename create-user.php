@@ -102,8 +102,8 @@ $USER1 = new User($_SESSION['id']);
                                                 </div>
 
                                                 <input type="hidden" name="back" value="<?php echo $previous; ?>">
-                                                <div class="col-md-2 col-md-offset-5">
-                                                    <button type="submit" name="create-user" class="btn btn-primary">Save</button>
+                                                <div class="col-sm-12 text-center">
+                                                    <button type="submit" name="create-user" class="btn btn-info submit-btn">Save User</button>
                                                 </div>
                                             </form>
                                         </div>

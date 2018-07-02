@@ -4,8 +4,6 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +33,13 @@ $USER1 = new User($_SESSION['id']);
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
+        <style>
+            @media (max-width: 768px) {
+                .btn-group-sm > .btn, .btn-sm {
+                    padding: 5px 10px;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -42,19 +47,19 @@ $USER1 = new User($_SESSION['id']);
         <div id="wrapper">
 
             <!-- Navigation -->
-            <?php
-            include 'navigation-and-header.php';
-            ?>
+<?php
+include 'navigation-and-header.php';
+?>
             <!-- /Navigation -->
 
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="my-alert">
-                        <?php
-                        $vali = new Validator();
-                        $vali->show_message();
-                        ?>
+<?php
+$vali = new Validator();
+$vali->show_message();
+?>
                     </div>
 
                     <div class="row">
@@ -78,86 +83,86 @@ $USER1 = new User($_SESSION['id']);
                                 </ul>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <!--<div class="col-lg-12">-->
-                                        <form method="post" action="post-and-get/job.php">
-                                            <div class="form-group">
-                                                <label class="col-md-3">Consignee</label>
-                                                <input type="text" class="form-control col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
-                                                <div id="suggesstion-box">
-                                                    <ul id="name-list-append" class="name-list col-md-offset-3"></ul>
-                                                </div>
-                                                <input type="hidden" name="consignee" value="" id="name-id"  />
-                                                <div class="col-md-1">
-                                                    <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
+                                        <div class="col-lg-12">
+                                            <form method="post" action="post-and-get/job.php">
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Consignee</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignee" value="" id="name-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
+                                                    </div>
+
                                                 </div>
 
-                                            </div>
 
-
-                                            <!--                                                <div class="create-consignee hidden" id="create-consignee">
-                                                                                                Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
-                                            
-                                                                                            </div>-->
-                                            <div class="form-group">
-                                                <label class="col-md-3">Consignment</label>
-                                                <input type="text" class="form-control col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off">
-                                                <div id="suggesstion-box">
-                                                    <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
+                                                <!--                                                <div class="create-consignee hidden" id="create-consignee">
+                                                                                                    Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
+                                                
+                                                                                                </div>-->
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Consignment</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignment" value="" id="consignment-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
+                                                    </div>
                                                 </div>
-                                                <input type="hidden" name="consignment" value="" id="consignment-id"  />
-                                                <div class="col-md-1">
-                                                    <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group">
-                                                <label class="col-md-3">Description</label>
-                                                <textarea class="form-control col-md-9" placeholder="Enter description" name="description" id="description"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Chassis Number</label>
-                                                <input type="text" class="form-control col-md-9" placeholder="Enter chassis number" name="chassisNumber" id="chassisNumber">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Vessel or Flight</label>
-                                                <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
-                                                    <option value="">-- Please Select --</option>
-                                                    <?php
-                                                    foreach (VesselAndFlight::all() as $vesselandflight) {
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Description</label>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description" id="description"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Chassis Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter chassis number" name="chassisNumber" id="chassisNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Vessel or Flight</label>
+                                                    <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
+                                                        <option value="">-- Please Select --</option>
+<?php
+foreach (VesselAndFlight::all() as $vesselandflight) {
+    ?>
+                                                            <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
+                                                            <?php
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Vessel and Flight Date</label>
-                                                <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Copy Received Date</label>
-                                                <input type="text" id="datepicker2" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" autocomplete="off">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Original Received Date</label>
-                                                <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Debit Note Number</label>
-                                                <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3">Cusdec Date</label>
-                                                <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
-                                            </div>
-                                            <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" id="btn-job" name="create-job" class="btn btn-primary" disabled="">Save Job</button>
-                                            </div>
-                                        </form>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Vessel and Flight Date</label>
+                                                    <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Copy Received Date</label>
+                                                    <input type="text" id="datepicker2" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Original Received Date</label>
+                                                    <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Debit Note Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Cusdec Date</label>
+                                                    <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
+                                                </div>
+                                                <div class="col-sm-12 text-center">
+                                                    <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn" disabled="">Save Job</button>
+                                                </div>
+                                            </form>
 
-                                        <?php include 'modal.php'; ?>
-                                        <!--</div>-->
+<?php include 'modal.php'; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +188,7 @@ $USER1 = new User($_SESSION['id']);
         <script src="js/add-consignment.js" type="text/javascript"></script>
         <script src="js/create-job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        
+
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});

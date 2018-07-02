@@ -43,6 +43,7 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="css/responsive-table.css" rel="stylesheet" type="text/css"/>
 
         <style>
             .form-control {
@@ -126,9 +127,9 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                                 ?>
                                                 <tr>
                                                     <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>"class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
                                             <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
                                             </tr>
                                             <?php
@@ -142,8 +143,10 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                     </table>
                                     <!--Table-->
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
-                                    <button type="button" class="btn btn-success savebtn col-md-offset-5 hidden" id="savebutton">Submit</button>
-                                    <button type="button" class="btn btn-success savebtn col-md-offset-5 hidden" id="editbutton">Save</button>
+                                    <div class="col-sm-12 text-center">
+                                        <button type="button" class="btn btn-info savebtn hidden" id="savebutton">Submit</button>
+                                        <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

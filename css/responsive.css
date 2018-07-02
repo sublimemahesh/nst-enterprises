@@ -3,6 +3,33 @@
     .header-title{
         font-size: 28px;
     }
+    .form-control.col-md-9 {
+        width: 100%;
+    }
+    label.col-md-3 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .container1.col-md-3 {
+        padding-left: 35px;
+    }
+    .form-control.col-sm-8 {
+        width: 76%;
+    }
+    #add-consignee, #add-consignment {
+        float: right;
+        margin-top: -45px;
+    }
+    .form-group {
+        margin-bottom: 0px;
+    }
+    .submit-btn {
+        margin-top: 15px;
+    }
+    .btn-group-sm > .btn, .btn-sm {
+        padding: 2px 5px;
+    }
+    
 }
 
 @media (max-width: 360px) {

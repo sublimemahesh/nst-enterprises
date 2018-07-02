@@ -36,6 +36,13 @@ $JOB = new Job($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <style>
+            @media (max-width: 768px) {
+                .btn-group-sm > .btn, .btn-sm {
+                    padding: 5px 10px;
+                }
+            }
+        </style>
 
     </head>
 
@@ -131,8 +138,8 @@ $JOB = new Job($id);
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
-                                                 <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="edit-job" class="btn btn-primary">Save Job</button>
+                                                 <div class="col-sm-12 text-center">
+                                                <button type="submit" name="edit-job" class="btn btn-info">Save Changes</button>
                                                  </div>
                                             </form>
                                         </div>

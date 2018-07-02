@@ -32,7 +32,7 @@
                     <label>Description</label>
                     <textarea class="form-control" placeholder="Enter description" id="description"></textarea>
                 </div>
-                <button type="button" name="create-consignee" id="btn-consignee" class="btn btn-primary">Save Consignee</button>
+                <button type="button" name="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
             </div>
 
         </div>
@@ -57,7 +57,7 @@
                     <label>Description</label>
                     <textarea class="form-control" placeholder="Enter description" id="description1"></textarea>
                 </div>
-                <button type="button" name="create-consignment" id="btn-consignment" class="btn btn-primary">Save</button>
+                <button type="button" name="create-consignment" id="btn-consignment" class="btn btn-info">Save</button>
             </div>
 
         </div>
