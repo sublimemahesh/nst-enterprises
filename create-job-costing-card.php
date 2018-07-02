@@ -89,8 +89,8 @@ if (isset($_GET['id'])) {
                                                     <label class="col-md-3">Date</label>
                                                     <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off">
                                                 </div>
-                                                <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="create-job-costing-card" class="btn btn-primary">Save</button>
+                                                <div class="col-sm-12 text-center">
+                                                <button type="submit" name="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
                                                 </div>
                                             </form>
                                         </div>

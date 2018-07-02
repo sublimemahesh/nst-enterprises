@@ -100,8 +100,8 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"></textarea>
                                                 </div>
-                                                <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="create-consignee" id="btn-consignee" class="btn btn-primary">Save Consignee</button>
+                                                <div class="col-sm-12 text-center">
+                                                <button type="submit" name="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
                                                 </div>
                                             </form>
                                         </div>

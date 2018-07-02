@@ -84,8 +84,8 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" rows="5" placeholder="Enter your description" name="description"></textarea>
                                                 </div>
-                                                <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" name="create-consignment" class="btn btn-primary">Save</button>
+                                                <div class="col-sm-12 text-center">
+                                                <button type="submit" name="create-consignment" class="btn btn-info">Save Consignment</button>
                                                 </div>
                                             </form>
                                         </div>
