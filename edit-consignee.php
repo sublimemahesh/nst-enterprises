@@ -35,7 +35,7 @@ $CONSIGNEE = new Consignee($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -83,7 +83,7 @@ $CONSIGNEE = new Consignee($id);
                                             <form   method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" value="<?php echo $CONSIGNEE->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" value="<?php echo $CONSIGNEE->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Address</label>
@@ -105,21 +105,21 @@ $CONSIGNEE = new Consignee($id);
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
                                                 </div>
-                                              <div class="form-group">
-                                                <label class="col-md-3">Status</label>
-                                                <label for="isActive" class="container1 col-md-9 label-align">Active / InActive
-                                                    <input class="col-md-3" type="checkbox" <?php
-                                                    if ($CONSIGNEE->isActive == 1) {
-                                                        echo 'checked';
-                                                    }
-                                                    ?> name="isActive" value="1" id="isActive" />
-                                                    <span class="checkmark"></span>
-                                                </label>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Status</label>
+                                                    <label for="isActive" class="container1 col-md-9 label-align">Active / InActive
+                                                        <input class="col-md-3" type="checkbox" <?php
+                                                        if ($CONSIGNEE->isActive == 1) {
+                                                            echo 'checked';
+                                                        }
+                                                        ?> name="isActive" value="1" id="isActive" />
+                                                        <span class="checkmark"></span>
+                                                    </label>
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNEE->id; ?>">
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="edit-consignee" class="btn btn-info">Save Changes</button>
+                                                    <button type="submit" name="edit-consignee" id="edit-consignee" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -141,6 +141,8 @@ $CONSIGNEE = new Consignee($id);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/consignee.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

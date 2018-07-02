@@ -30,7 +30,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -78,7 +78,7 @@ $USER1 = new User($_SESSION['id']);
                                             <form id="form-consignee"  method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" autocomplete="off">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Address</label>
@@ -101,7 +101,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"></textarea>
                                                 </div>
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
+                                                    <button type="submit" name="create-consignee" id="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -123,6 +123,8 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/consignee.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

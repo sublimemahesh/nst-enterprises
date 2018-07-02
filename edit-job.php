@@ -10,6 +10,8 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $JOB = new Job($id);
+$CONSIGNEE = new Consignee($JOB->consignee);
+$CONSIGNMENT = new Consignment($JOB->consignment);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +27,7 @@ $JOB = new Job($id);
 
         <title>Edit Job || Control Panel || NST ENterprises</title>
 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- MetisMenu CSS -->
@@ -36,6 +39,7 @@ $JOB = new Job($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
         <style>
             @media (max-width: 768px) {
                 .btn-group-sm > .btn, .btn-sm {
@@ -90,17 +94,39 @@ $JOB = new Job($id);
                                         <div class="col-lg-12">
                                             <form   method="post" action="post-and-get/job.php">
                                                 <div class="form-group">
+                                                    <label class="col-md-3">Consignee</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="<?php echo $CONSIGNEE->name; ?>">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignee" value="<?php echo $JOB->consignee; ?>" id="name-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Consignment</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off" value="<?php echo $CONSIGNMENT->name; ?>">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="consignment" value="<?php echo $JOB->consignment; ?>" id="consignment-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-md-3">Description</label>
-                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description"><?php echo $JOB->description; ?></textarea>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter description" name="description" id="description"><?php echo $JOB->description; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Chassis Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Chassis number" name="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Chassis number" name="chassisNumber" id="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
-                                                    <select class="form-control col-md-9" name="vesselAndFlight">
-                                                        <option>-- Please Select --</option>
+                                                    <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
+                                                        <option value="">-- Please Select --</option>
                                                         <?php
                                                         foreach (VesselAndFlight::all() as $vesselandflight) {
                                                             ?>
@@ -118,15 +144,15 @@ $JOB = new Job($id);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel and Flight Date</label>
-                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" value="<?php echo $JOB->vesselAndFlightDate; ?>">
+                                                    <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="vesselAndFlightDate" autocomplete="off" value="<?php echo $JOB->vesselAndFlightDate; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Copy Received Date</label>
-                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" value="<?php echo $JOB->copyReceivedDate; ?>">
+                                                    <input type="text" id="datepicker2" class="form-control col-md-9" placeholder="Enter date" name="copyReceivedDate" autocomplete="off" value="<?php echo $JOB->copyReceivedDate; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Original Received Date</label>
-                                                    <input type="date" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" value="<?php echo $JOB->originalReceivedDate; ?>">
+                                                    <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off" value="<?php echo $JOB->originalReceivedDate; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Debit Note Number</label>
@@ -134,14 +160,15 @@ $JOB = new Job($id);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Cusdec Date</label>
-                                                    <input type="date" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" value="<?php echo $JOB->cusdecDate; ?>">
+                                                    <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off" value="<?php echo $JOB->cusdecDate; ?>">
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
                                                  <div class="col-sm-12 text-center">
-                                                <button type="submit" name="edit-job" class="btn btn-info">Save Changes</button>
+                                                <button type="submit" name="edit-job" id="edit-job" class="btn btn-info">Save Changes</button>
                                                  </div>
                                             </form>
+                                            <?php include 'modal.php'; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -155,12 +182,43 @@ $JOB = new Job($id);
 
         <!-- jQuery -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Metis Menu Plugin JavaScript -->
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/add-consignee.js" type="text/javascript"></script>
+
+        <script src="js/job-consignee.js" type="text/javascript"></script>
+        <script src="js/add-consignment.js" type="text/javascript"></script>
+        <script src="js/job.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script>
+            $(function () {
+                $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker2").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker3").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#datepicker4").datepicker({dateFormat: 'yy-mm-dd'});
+            });
+        </script>
+        <script>
+            jQuery(document).ready(function () {
+                jQuery('#add-consignee').click(function () {
+                    var name = $("#name").val();
+                    $("#consignee-name").val(name);
+                    jQuery("#modal-consignee").modal('show');
+
+                });
+                jQuery('#add-consignment').click(function () {
+                    var name = $("#consignment").val();
+                    $("#consignment-name").val(name);
+                    jQuery("#modal-consignment").modal('show');
+
+                });
+            });
+        </script>
 
     </body>
 

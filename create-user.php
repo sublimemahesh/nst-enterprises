@@ -30,6 +30,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -78,23 +79,23 @@ $USER1 = new User($_SESSION['id']);
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">User Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter User Name" name="username">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter User Name" name="username" id="username">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Password</label>
-                                                    <input type="password" class="form-control col-md-9" placeholder="Enter Password" name="password">
+                                                    <input type="password" class="form-control col-md-9" placeholder="Enter Password" name="password" id="password">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Confirm Password</label>
-                                                    <input type="password" class="form-control col-md-9" placeholder="Confirm Password" name="cpassword">
+                                                    <input type="password" class="form-control col-md-9" placeholder="Confirm Password" name="cpassword" id="cpassword">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Profile Picture</label>
@@ -103,7 +104,7 @@ $USER1 = new User($_SESSION['id']);
 
                                                 <input type="hidden" name="back" value="<?php echo $previous; ?>">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" name="create-user" class="btn btn-info submit-btn">Save User</button>
+                                                    <button type="submit" name="create-user" id="btn-user" class="btn btn-info submit-btn">Save User</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -125,6 +126,8 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/user.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

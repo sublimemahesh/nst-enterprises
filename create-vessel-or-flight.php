@@ -30,6 +30,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -78,18 +79,18 @@ $USER1 = new User($_SESSION['id']);
                                             <form   method="post" action="post-and-get/vessel-and-flight.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Type</label>
-                                                    <select class="form-control col-md-9" name="type">
-                                                        <option>-- Please Select --</option>
+                                                    <select class="form-control col-md-9" name="type" id="type">
+                                                        <option value="">-- Please Select --</option>
                                                         <option value="vessel">Vessel</option>
                                                         <option value="flight">Flight</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="creat-vessel-or-flight" class="btn btn-info">Save Vessel or Flight</button>
+                                                <button type="submit" name="creat-vessel-or-flight" id="creat-vessel-or-flight" class="btn btn-info">Save Vessel or Flight</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -111,6 +112,8 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/vessel-and-flight.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

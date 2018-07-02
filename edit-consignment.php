@@ -36,7 +36,7 @@ $CONSIGNMENT = new Consignment($id);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-
+<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -84,7 +84,7 @@ $CONSIGNMENT = new Consignment($id);
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" value="<?php echo $CONSIGNMENT->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $CONSIGNMENT->name; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>
@@ -105,7 +105,7 @@ $CONSIGNMENT = new Consignment($id);
                                                 <input type="hidden" name="id" value="<?php echo $CONSIGNMENT->id; ?>">
                                                 
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" name="edit-consignment" class="btn btn-info">Save Changes</button>
+                                                    <button type="submit" name="edit-consignment" id="edit-consignment" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -127,6 +127,8 @@ $CONSIGNMENT = new Consignment($id);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/consignment.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

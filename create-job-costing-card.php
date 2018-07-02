@@ -35,6 +35,7 @@ if (isset($_GET['id'])) {
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -83,14 +84,14 @@ if (isset($_GET['id'])) {
                                             <form   method="post" action="post-and-get/job-costing-card.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Job</label>
-                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" value="<?php echo $job; ?>">
+                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" id="job" value="<?php echo $job; ?>">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Date</label>
                                                     <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off">
                                                 </div>
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
+                                                <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -113,6 +114,8 @@ if (isset($_GET['id'])) {
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/job-costing-card.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});

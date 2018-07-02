@@ -47,19 +47,19 @@ $USER1 = new User($_SESSION['id']);
         <div id="wrapper">
 
             <!-- Navigation -->
-<?php
-include 'navigation-and-header.php';
-?>
+            <?php
+            include 'navigation-and-header.php';
+            ?>
             <!-- /Navigation -->
 
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="my-alert">
-<?php
-$vali = new Validator();
-$vali->show_message();
-?>
+                        <?php
+                        $vali = new Validator();
+                        $vali->show_message();
+                        ?>
                     </div>
 
                     <div class="row">
@@ -95,14 +95,7 @@ $vali->show_message();
                                                     <div class="col-sm-1 col-md-1">
                                                         <i class="fa fa-save btn btn-info btn-sm" id="add-consignee"></i>
                                                     </div>
-
                                                 </div>
-
-
-                                                <!--                                                <div class="create-consignee hidden" id="create-consignee">
-                                                                                                    Add new consignee. <i class="glyphicon glyphicon-plus-sign pull-right"></i>
-                                                
-                                                                                                </div>-->
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignment</label>
                                                     <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off">
@@ -127,9 +120,9 @@ $vali->show_message();
                                                     <label class="col-md-3">Vessel or Flight</label>
                                                     <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
                                                         <option value="">-- Please Select --</option>
-<?php
-foreach (VesselAndFlight::all() as $vesselandflight) {
-    ?>
+                                                        <?php
+                                                        foreach (VesselAndFlight::all() as $vesselandflight) {
+                                                            ?>
                                                             <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
                                                             <?php
                                                         }
@@ -161,7 +154,7 @@ foreach (VesselAndFlight::all() as $vesselandflight) {
                                                 </div>
                                             </form>
 
-<?php include 'modal.php'; ?>
+                                            <?php include 'modal.php'; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +179,7 @@ foreach (VesselAndFlight::all() as $vesselandflight) {
 
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
-        <script src="js/create-job.js" type="text/javascript"></script>
+        <script src="js/job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
         <script>

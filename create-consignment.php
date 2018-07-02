@@ -30,7 +30,7 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
-
+<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -78,14 +78,14 @@ $USER1 = new User($_SESSION['id']);
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" rows="5" placeholder="Enter your description" name="description"></textarea>
                                                 </div>
                                                 <div class="col-sm-12 text-center">
-                                                <button type="submit" name="create-consignment" class="btn btn-info">Save Consignment</button>
+                                                <button type="submit" name="create-consignment" id="create-consignment" class="btn btn-info">Save Consignment</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -107,6 +107,8 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
+        <script src="js/consignment.js" type="text/javascript"></script>
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
     </body>
 

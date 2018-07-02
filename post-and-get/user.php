@@ -11,29 +11,6 @@ if (isset($_POST['create-user'])) {
     $password = md5(filter_var($_POST['password'], FILTER_SANITIZE_STRING));
     $cpassword = md5(filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING));
 
-    if (empty($_POST['password']) && empty($_POST['cpassword'])) {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
-        $message = "Password or Confirm Password is empty";
-        $status = "danger";
-        $VALID->addError($message, $status);
-        $_SESSION['ERRORS'] = $VALID->errors();
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    } elseif ($password != $cpassword) {
-
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-
-        $message = "Password and Confirm Password is not match";
-        $status = "danger";
-        $VALID->addError($message, $status);
-        $_SESSION['ERRORS'] = $VALID->errors();
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    } else {
-
         $USER->name = filter_input(INPUT_POST, 'name');
         $USER->username = filter_input(INPUT_POST, 'username');
         $USER->password = $password;
@@ -67,8 +44,7 @@ if (isset($_POST['create-user'])) {
         $VALID->check($USER, [
             'name' => ['required' => TRUE],
             'username' => ['required' => TRUE],
-            'password' => ['required' => TRUE],
-            'email' => ['required' => TRUE]
+            'password' => ['required' => TRUE]
         ]);
 
         if ($VALID->passed()) {
@@ -90,7 +66,7 @@ if (isset($_POST['create-user'])) {
 
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
-    }
+    
 }
 
 if (isset($_POST['edit-user'])) {
