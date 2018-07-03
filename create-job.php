@@ -4,6 +4,8 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
+date_default_timezone_set('Asia/Colombo');
+$createdAt = date('Y-m-d H:i:s');
 ?>
 
 <!DOCTYPE html>
@@ -149,6 +151,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Cusdec Date</label>
                                                     <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
                                                 </div>
+                                                <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>">
                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
                                                     <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn" disabled="">Save Job</button>
                                                 </div>
