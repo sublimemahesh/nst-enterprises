@@ -29,11 +29,11 @@ $(document).ready(function () {
                 $("#name-id").val(id);
                 $("#modal-consignee").modal('hide');
                 
-                var consignment = $("#consignment").val();
+//                var consignment = $("#consignment").val();
                 
-                if(consignment) {
-                    $("#btn-job").removeAttr('disabled','');
-                }
+//                if(consignment) {
+//                    $("#btn-job").removeAttr('disabled','');
+//                }
                 
             }
         });

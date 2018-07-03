@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $('#btn-job').click(function () {
 
-        if (!$('#name-id').val() || $('#name-id').val().length === 0) {
+        if (!$('#name').val() || $('#name').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignee",
@@ -11,10 +11,28 @@ $(document).ready(function () {
                 showConfirmButton: false
             });
             return false
-        } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
+        }else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new consignee using this name "+$('#name').val(),
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
+        }else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignment",
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
+        } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new consignment using this "+$('#consignment').val(),
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
