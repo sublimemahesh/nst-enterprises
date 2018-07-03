@@ -82,8 +82,10 @@ $USER1 = new User($_SESSION['id']);
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Chassis Number</th>
+                                                <th>Consignee</th>
+                                                <th>Consignment</th>
                                                 <th>Vessel or Flight</th>
+                                                <th>Date</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
@@ -92,11 +94,15 @@ $USER1 = new User($_SESSION['id']);
                                             foreach (Job::all() as $job) {
                                                 $vesselorflight = $job['vesselAndFlight'];
                                                 $VESSELANDFLIGHT = new VesselAndFlight($vesselorflight);
+                                                $CONSIGNEE = new Consignee($job['consignee']);
+                                                $CONSIGNMENT = new Consignment($job['consignment']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
                                                     <td><?php echo $job['id']; ?></td>
-                                                    <td><?php echo $job['chassisNumber']; ?></td>
+                                                    <td><?php echo $CONSIGNEE->name; ?></td>
+                                                    <td><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td><?php echo $VESSELANDFLIGHT->name; ?></td>
+                                                    <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
