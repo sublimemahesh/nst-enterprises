@@ -17,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Consignee || Control Panel || NST ENterprises</title>
+        <title>Create Consignee || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -63,7 +63,7 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Add New Consignee
+                                    Create Consignee
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -100,7 +100,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"></textarea>
                                                 </div>
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-consignee" id="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
                                                 </div>
                                             </form>

@@ -118,7 +118,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                                 </div>
                                                 
                                                 <input type="hidden" name="id" value="<?php echo $VESSELANDFLIGHT->id; ?>">
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                 <button type="submit" name="edit-vessel-or-flight" id="edit-vessel-or-flight" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>

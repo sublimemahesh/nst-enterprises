@@ -93,7 +93,7 @@ $JOBCOSTINGCARD = new JobCostingCard($id);
                                                     <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off" value="<?php echo $JOBCOSTINGCARD->date; ?>">
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $JOBCOSTINGCARD->id; ?>">
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                     <button type="submit" name="edit-job-costing-card" id="edit-job-costing-card" class="btn btn-info">Save Changes</button>
                                                 </div>
                                             </form>

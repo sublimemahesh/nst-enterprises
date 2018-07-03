@@ -144,9 +144,9 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                                     </table>
                                     <!--Table-->
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
-                                    <div class="col-sm-12 text-center">
-                                        <button type="button" class="btn btn-info savebtn hidden" id="savebutton">Submit</button>
-                                        <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save</button>
+                                    <div class="col-sm-12 col-md-offset-2 form-btn">
+                                        <button type="button" class="btn btn-info savebtn hidden" id="savebutton">Save Reimbursement Details</button>
+                                        <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                     </div>
                                 </div>
                             </div>

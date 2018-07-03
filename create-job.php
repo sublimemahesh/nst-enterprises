@@ -17,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Job || Control Panel || NST ENterprises</title>
+        <title>Create Job || Control Panel || NST ENterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -72,7 +72,7 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Add New Job
+                                    Create Job
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -149,7 +149,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Cusdec Date</label>
                                                     <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
                                                 </div>
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                     <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn" disabled="">Save Job</button>
                                                 </div>
                                             </form>

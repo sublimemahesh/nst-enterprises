@@ -17,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Vessel or Flight || Control Panel || NST ENterprises</title>
+        <title>Create Vessel or Flight || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -64,7 +64,7 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Add New Vessel or Flight
+                                    Create Vessel or Flight
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -89,7 +89,7 @@ $USER1 = new User($_SESSION['id']);
                                                         <option value="flight">Flight</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                 <button type="submit" name="creat-vessel-or-flight" id="creat-vessel-or-flight" class="btn btn-info">Save Vessel or Flight</button>
                                                 </div>
                                             </form>

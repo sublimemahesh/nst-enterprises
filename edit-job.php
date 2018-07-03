@@ -164,7 +164,7 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
-                                                 <div class="col-sm-12 text-center">
+                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
                                                 <button type="submit" name="edit-job" id="edit-job" class="btn btn-info">Save Changes</button>
                                                  </div>
                                             </form>
