@@ -16,7 +16,7 @@ if (isset($_POST['create-job-costing-card'])) {
     ]);
 
     if ($VALID->passed()) {
-        $JOBCOSTINGCARD->create();
+        $result = $JOBCOSTINGCARD->create();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -24,7 +24,7 @@ if (isset($_POST['create-job-costing-card'])) {
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
 
-        header('Location: ../manage-job-costing-cards.php');
+        header('Location: ../create-reimbursement-details.php?id='.$result->id);
     } else {
 
         if (!isset($_SESSION)) {

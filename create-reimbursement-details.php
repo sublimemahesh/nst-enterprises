@@ -79,7 +79,10 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                             <?php
                         }
                         ?>
-
+                        <?php
+                        $vali = new Validator();
+                        $vali->show_message();
+                        ?>
                     </div>
 
                     <div class="row">
@@ -92,17 +95,15 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    <i class="fa fa-user">
-                                        Reimbursement Details
-                                    </i>
-                                    <ul class="header-dropdown">
-                                        <li class="">
-                                            <a href="manage-job-costing-cards.php">
-                                                <i class="glyphicon glyphicon-list"></i> 
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    Reimbursement Details
                                 </div>
+                                <ul class="header-dropdown">
+                                    <li class="">
+                                        <a href="manage-job-costing-cards.php">
+                                            <i class="glyphicon glyphicon-list"></i> 
+                                        </a>
+                                    </li>
+                                </ul>
 
                                 <div class="panel-body">
                                     <!--Table-->
