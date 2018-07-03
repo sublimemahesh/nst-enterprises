@@ -18,13 +18,15 @@ if (isset($_POST['create-job'])) {
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');
     $JOB->debitNoteNumber = filter_input(INPUT_POST, 'debitNoteNumber');
     $JOB->cusdecDate = filter_input(INPUT_POST, 'cusdecDate');
+    $JOB->createdAt = filter_input(INPUT_POST, 'createdAt');
 
     $VALID->check($JOB, [
         'consignee' => ['required' => TRUE],
         'consignment' => ['required' => TRUE],
         'description' => ['required' => TRUE],
         'chassisNumber' => ['required' => TRUE],
-        'vesselAndFlight' => ['required' => TRUE]
+        'vesselAndFlight' => ['required' => TRUE],
+        'createdAt' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {

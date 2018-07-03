@@ -18,11 +18,12 @@ class Job {
     public $originalReceivedDate;
     public $debitNoteNumber;
     public $cusdecDate;
+    public $createdAt;
     
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`consignee`,`consignment`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate` FROM `job` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`consignee`,`consignment`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate`,`createdAt` FROM `job` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -39,6 +40,7 @@ class Job {
             $this->originalReceivedDate = $result['originalReceivedDate'];
             $this->debitNoteNumber = $result['debitNoteNumber'];
             $this->cusdecDate = $result['cusdecDate'];
+            $this->createdAt = $result['createdAt'];
 
             return $this;
         }
@@ -56,7 +58,8 @@ class Job {
                 . "`copyReceivedDate`,"
                 . "`originalReceivedDate`,"
                 . "`debitNoteNumber`,"
-                . "`cusdecDate`) "
+                . "`cusdecDate`,"
+                . "`createdAt`) "
                 . "VALUES  ("
                 . "'" . $this->consignee . "',"
                 . "'" . $this->consignment . "',"
@@ -67,7 +70,8 @@ class Job {
                 . "'" . $this->copyReceivedDate . "',"
                 . "'" . $this->originalReceivedDate . "',"
                 . "'" . $this->debitNoteNumber . "',"
-                . "'" . $this->cusdecDate . "'"
+                . "'" . $this->cusdecDate . "',"
+                . "'" . $this->createdAt . "'"
                 . ")";
 
         $db = new Database();
