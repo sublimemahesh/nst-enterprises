@@ -20,11 +20,11 @@ $(document).ready(function () {
                 $("#consignment-id").val(id);
                 $("#modal-consignment").modal('hide');
                 
-                var consignee = $("#name").val();
+//                var consignee = $("#name").val();
                 
-                if(consignee) {
-                    $("#btn-job").removeAttr('disabled','');
-                }
+//                if(consignee) {
+//                    $("#btn-job").removeAttr('disabled','');
+//                }
                 
                 
                 

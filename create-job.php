@@ -153,7 +153,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                 </div>
                                                 <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>">
                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
-                                                    <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn" disabled="">Save Job</button>
+                                                    <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn">Save Job</button>
                                                 </div>
                                             </form>
 
@@ -179,7 +179,6 @@ $createdAt = date('Y-m-d H:i:s');
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/add-consignee.js" type="text/javascript"></script>
-
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
         <script src="js/job.js" type="text/javascript"></script>

@@ -34,12 +34,19 @@ $(document).ready(function () {
         $('#name-id').val(consigneeId.replace("c", ""));
         $('#name').val(consignee);
         $('#name-list-append').empty();
+
+        $('#name').change(function () {
+            $('#name-id').val("");
+        });
     });
     $('#name-list-append').on('mouseover', '.name', function () {
         var consigneeId = this.id;
         var consignee = $(this).text();
         $('#name-id').val(consigneeId.replace("c", ""));
         $('#name').val(consignee);
+        $('#name').change(function () {
+            $('#name-id').val("");
+        });
     });
 
     $('#name').bind('keypress keydown keyup', function (e) {
@@ -82,6 +89,9 @@ $(document).ready(function () {
             $('#name-id').val(consigneeId);
             $('#name').val(consigneename);
             $('#name-list-append').empty();
+            $('#name').change(function () {
+                $('#name-id').val("");
+            });
         }
     });
 
@@ -148,12 +158,18 @@ $(document).ready(function () {
         $('#consignment-id').val(consigneeId.replace("c", ""));
         $('#consignment').val(consignee);
         $('#consignment-list-append').empty();
+        $('#consignment').change(function () {
+            $('#consignment-id').val("");
+        });
     });
     $('#consignment-list-append').on('mouseover', '.consignment', function () {
         var consigneeId = this.id;
         var consignee = $(this).text();
         $('#consignment-id').val(consigneeId.replace("c", ""));
         $('#consignment').val(consignee);
+        $('#consignment').change(function () {
+            $('#consignment-id').val("");
+        });
     });
 
     $('#consignment').bind('keypress keydown keyup', function (e) {
@@ -196,6 +212,9 @@ $(document).ready(function () {
             $('#consignment-id').val(consignmentId);
             $('#consignment').val(consignmentname);
             $('#consignment-list-append').empty();
+            $('#consignment').change(function () {
+                $('#consignment-id').val("");
+            });
         }
     });
 
