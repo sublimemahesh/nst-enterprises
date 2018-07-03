@@ -367,3 +367,6 @@ list.border{
 .edit-btn {
     margin-top: 15px;
 }
+.form-btn {
+    padding-left: 0px;
+}

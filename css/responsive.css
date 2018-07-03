@@ -29,6 +29,10 @@
     .btn-group-sm > .btn, .btn-sm {
         padding: 2px 5px;
     }
+    .form-btn {
+        text-align: center;
+        padding-left: 15px;
+    }
     
 }
 

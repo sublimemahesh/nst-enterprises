@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Add New Job Costing Card || Control Panel || NST ENterprises</title>
+        <title>Create Job Costing Card || Control Panel || NST ENterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Add New Job Costing Card
+                                    Create Job Costing Card
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -90,7 +90,7 @@ if (isset($_GET['id'])) {
                                                     <label class="col-md-3">Date</label>
                                                     <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off">
                                                 </div>
-                                                <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 col-md-offset-3 form-btn">
                                                 <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
                                                 </div>
                                             </form>

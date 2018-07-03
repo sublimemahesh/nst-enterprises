@@ -101,7 +101,7 @@ $CONSIGNEES = Consignee::all();
                                                         </ol>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-12 text-center" style="margin-top: 19px;">
+                                                        <div class="col-sm-12 col-md-offset-3 form-btn" style="margin-top: 19px;">
                                                             <input type="submit" class="btn btn-info" id="btn-submit" value="Save Changes" name="save-arrange">
                                                         </div>
                                                     </div>
