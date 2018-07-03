@@ -88,6 +88,10 @@ $USER = new User($id);
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $USER->name; ?>">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="col-md-3">Username</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Username" name="username" id="username" value="<?php echo $USER->username; ?>">
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-md-3">Email</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email" value="<?php echo $USER->email; ?>">
                                                 </div>

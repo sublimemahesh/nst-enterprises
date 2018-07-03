@@ -100,6 +100,7 @@ if (isset($_POST['edit-user'])) {
     $USER = new User($_POST['id']);
 
     $USER->name = filter_input(INPUT_POST, 'name');
+    $USER->username = filter_input(INPUT_POST, 'username');
     $USER->email = filter_input(INPUT_POST, 'email');
     $USER->isActive = $_POST['isActive'];
     $USER->profilePicture = $imageName;

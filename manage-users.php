@@ -83,6 +83,7 @@ $USER1 = new User($_SESSION['id']);
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <th>Username</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
                                                 <th>Option</th>
@@ -95,6 +96,7 @@ $USER1 = new User($_SESSION['id']);
                                                 <tr id="row_<?php echo $user['id']; ?>">
                                                     <td><?php echo $user['id']; ?></td>
                                                     <td><?php echo $user['name']; ?></td>
+                                                    <td><?php echo $user['username']; ?></td>
                                                     <td><?php echo $user['email']; ?></td>
                                                     <td class="text-center" style="width: 100px;">
                                                         <?php

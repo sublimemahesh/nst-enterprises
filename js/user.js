@@ -90,6 +90,15 @@ $(document).ready(function () {
                 showConfirmButton: false
             });
             return false;
+        } else if (!$('#username').val() || $('#username').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please enter the username",
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false;
         } else if (!$('#email').val() || $('#email').val().length === 0) {
             swal({
                 title: "Error!",
