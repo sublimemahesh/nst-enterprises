@@ -117,6 +117,8 @@ $USER1 = new User($_SESSION['id']);
                                                         <a href="arrange-users.php" class="btn btn-sm btn-primary">
                                                             <i class="glyphicon glyphicon-random"></i>
                                                         </a>
+                                                        |
+                                                        <a href="change-password-user.php?id=<?php echo $user['id']; ?>" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-lock"></i></a>
                                                     </td>
                                                 </tr>
                                                 <?php
