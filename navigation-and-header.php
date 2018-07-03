@@ -238,18 +238,6 @@
                     <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="create-user.php">Add New</a>
-                        </li>
-                        <li>
-                            <a href="manage-users.php">Manage</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
                     <a href="#"><i class="fa fa-briefcase fa-fw"></i> Job<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -296,6 +284,18 @@
                         </li>
                         <li>
                             <a href="manage-vessels-and-flights.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-user.php">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-users.php">Manage</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
