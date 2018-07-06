@@ -14,11 +14,25 @@ if ($_POST['option'] == 'GETNAME') {
         exit();
     }
 }
+
 if ($_POST['option'] == 'GETCONSIGNMENT') {
     if (!empty($_POST["keyword"])) {
         $CONSIGNMENT= new Consignment(NULL);
 
         $result = $CONSIGNMENT->allNamesByKeyword($_POST["keyword"]);
+        
+        header('Content-Type: application/json');
+
+        echo json_encode($result);
+        exit();
+    }
+}
+
+if ($_POST['option'] == 'GETVESSELORFLIGHT') {
+    if (!empty($_POST["keyword"])) {
+        $VESSELANDFLIGHT= new VesselAndFlight(NULL);
+
+        $result = $VESSELANDFLIGHT->allNamesByKeyword($_POST["keyword"]);
         
         header('Content-Type: application/json');
 

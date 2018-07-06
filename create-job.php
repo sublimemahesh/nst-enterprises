@@ -109,7 +109,6 @@ $createdAt = date('Y-m-d H:i:s');
                                                         <i class="fa fa-save btn btn-info btn-sm" id="add-consignment"></i>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description" id="description"></textarea>
@@ -120,16 +119,14 @@ $createdAt = date('Y-m-d H:i:s');
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
-                                                    <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
-                                                        <option value="">-- Please Select --</option>
-                                                        <?php
-                                                        foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                            ?>
-                                                            <option value="<?php echo $vesselandflight['id']; ?>"><?php echo $vesselandflight['name']; ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" autocomplete="off" placeholder="Enter vessel or flight" value="">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="vesselAndFlight-list-append" class="vesselAndFlight-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="vesselAndFlight" value="" id="vesselAndFlight-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-vesselAndFlight"></i>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel and Flight Date</label>
@@ -142,14 +139,6 @@ $createdAt = date('Y-m-d H:i:s');
                                                 <div class="form-group">
                                                     <label class="col-md-3">Original Received Date</label>
                                                     <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Debit Note Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Cusdec Date</label>
-                                                    <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off">
                                                 </div>
                                                 <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>">
                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
@@ -181,6 +170,7 @@ $createdAt = date('Y-m-d H:i:s');
         <script src="js/add-consignee.js" type="text/javascript"></script>
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
+        <script src="js/add-vessel-or-flight.js" type="text/javascript"></script>
         <script src="js/job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
@@ -204,6 +194,12 @@ $createdAt = date('Y-m-d H:i:s');
                     var name = $("#consignment").val();
                     $("#consignment-name").val(name);
                     jQuery("#modal-consignment").modal('show');
+
+                });
+                jQuery('#add-vesselAndFlight').click(function () {
+                    var name = $("#vesselAndFlight").val();
+                    $("#vesselorFlight-name").val(name);
+                    jQuery("#modal-vesselorflight").modal('show');
 
                 });
             });
