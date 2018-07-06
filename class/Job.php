@@ -6,7 +6,7 @@
  * @author U s E r ¨
  */
 class Job {
-    
+
     public $id;
     public $consignee;
     public $consignment;
@@ -19,7 +19,7 @@ class Job {
     public $debitNoteNumber;
     public $cusdecDate;
     public $createdAt;
-    
+
     public function __construct($id) {
         if ($id) {
 
@@ -45,7 +45,7 @@ class Job {
             return $this;
         }
     }
-    
+
     public function create() {
 
         $query = "INSERT INTO `job` ("
@@ -86,7 +86,7 @@ class Job {
             return FALSE;
         }
     }
-    
+
     public function all() {
 
         $query = "SELECT * FROM `job`";
@@ -100,7 +100,7 @@ class Job {
 
         return $array_res;
     }
-    
+
     public function update() {
 
         $query = "UPDATE  `job` SET "
@@ -126,7 +126,7 @@ class Job {
             return FALSE;
         }
     }
-    
+
     public function delete() {
 
         $query = 'DELETE FROM `job` WHERE id="' . $this->id . '"';
@@ -135,4 +135,20 @@ class Job {
 
         return $db->readQuery($query);
     }
+
+    public function getJobsByConsignee($consignee) {
+
+        $query = "SELECT * FROM `job` WHERE `consignee`=" . $consignee;
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
 }

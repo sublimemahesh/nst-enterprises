@@ -4,6 +4,16 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
+$id = '';
+$message = '';
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$jobcostingcards = JobCostingCard::getJobCostingCardsByJob($id);
+$MESSAGE = new Message($message);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +27,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Consignees || Control Panel || NST ENterprises</title>
+        <title>Manage Job Costing Cards || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -57,10 +67,21 @@ $USER1 = new User($_SESSION['id']);
                         $vali = new Validator();
                         $vali->show_message();
                         ?>
+                        
+                        <?php
+                        if (isset($_GET['message'])) {
+                            ?>
+                            <div class="alert alert-<?php echo $MESSAGE->status; ?>">
+                                <strong><?php echo ucfirst($MESSAGE->status); ?> : </strong> 
+                                <?php echo ucfirst($MESSAGE->description); ?>!.
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignees</h1>
+                            <h1 class="page-header font-header">Job Costing Cards</h1>
                         </div>
                     </div>
 
@@ -68,60 +89,35 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage Consignees
+                                    Manage Job Costing Cards
                                 </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="create-Consignee.php">
-                                            <i class="glyphicon glyphicon-plus"></i> 
-                                        </a>
-                                    </li>
-                                </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Vat Number</th>
-                                                <th>Email</th>
-                                                <th>Status</th>
+                                                <th>Date</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (Consignee::all() as $consignee) {
+                                            foreach ($jobcostingcards as $jobcostingcard) {
                                                 ?>
-                                                <tr id="row_<?php echo $consignee['id']; ?>">
-                                                    <td><?php echo $consignee['id']; ?></td>
-                                                    <td><?php echo $consignee['name']; ?></td>
-                                                    <td><?php echo $consignee['vatNumber']; ?></td>
-                                                    <td><?php echo $consignee['email']; ?></td>
-                                                    <td class="text-center" style="width: 100px;">
-                                                        <?php
-                                                        if ($consignee['isActive'] == 1) {
-                                                            ?>
-                                                            <a href="#" title="Active" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-check"></i></a>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                            <a href="#" title="Inactive" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-unchecked"></i></a>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td class="text-center" style="width: 200px"> 
-                                                        <a href="edit-consignee.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                <tr id="row_<?php echo $jobcostingcard['id']; ?>">
+                                                    <td><?php echo $jobcostingcard['id']; ?></td>
+                                                    <td><?php echo $jobcostingcard['date']; ?></td>
+                                                    <td class="text-center" style="width: 250px"> 
+                                                        <a href="edit-job-costing-card.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit Job Costing Card"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="#" class="delete-consignee btn btn-sm btn-danger" data-id="<?php echo $consignee['id']; ?>"  title="Delete">
+                                                        <a href="create-reimbursement-details.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-info" title="Reimbursement Details"><i class="glyphicon glyphicon-list"></i></a>
+                                                        |
+                                                        <a href="job-costing-card-report.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                        |
+                                                        <a href="invoice.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-primary" title="Tax Invoice" target="blank"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                                        |
+                                                        <a href="#" class="delete-job-costing-card btn btn-sm btn-danger" data-id="<?php echo $jobcostingcard['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
-                                                        </a>
-                                                        |
-                                                        <a href="manage-consignee-jobs.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-warning" title="View Jobs"><i class="glyphicon glyphicon-briefcase"></i></a>
-                                                        |
-                                                        <a href="arrange-consignees.php" class="btn btn-sm btn-primary"  title="Arrange">
-                                                            <i class="glyphicon glyphicon-random"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -154,7 +150,7 @@ $USER1 = new User($_SESSION['id']);
         <!-- Sweetalerts -->
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
-        <script src="delete/js/consignee.js" type="text/javascript"></script>
+        <script src="delete/js/job-costing-card.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {

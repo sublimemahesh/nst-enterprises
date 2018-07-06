@@ -92,4 +92,18 @@ class JobCostingCard {
         return $db->readQuery($query);
     }
 
+    public function getJobCostingCardsByJob($job) {
+
+        $query = "SELECT * FROM `job_costing_card` WHERE `job`=" . $job;
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
 }
