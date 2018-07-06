@@ -57,8 +57,6 @@ class Job {
                 . "`vesselAndFlightDate`,"
                 . "`copyReceivedDate`,"
                 . "`originalReceivedDate`,"
-                . "`debitNoteNumber`,"
-                . "`cusdecDate`,"
                 . "`createdAt`) "
                 . "VALUES  ("
                 . "'" . $this->consignee . "',"
@@ -69,8 +67,6 @@ class Job {
                 . "'" . $this->vesselAndFlightDate . "',"
                 . "'" . $this->copyReceivedDate . "',"
                 . "'" . $this->originalReceivedDate . "',"
-                . "'" . $this->debitNoteNumber . "',"
-                . "'" . $this->cusdecDate . "',"
                 . "'" . $this->createdAt . "'"
                 . ")";
 

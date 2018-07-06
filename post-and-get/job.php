@@ -16,8 +16,6 @@ if (isset($_POST['create-job'])) {
     $JOB->vesselAndFlightDate = filter_input(INPUT_POST, 'vesselAndFlightDate');
     $JOB->copyReceivedDate = filter_input(INPUT_POST, 'copyReceivedDate');
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');
-    $JOB->debitNoteNumber = filter_input(INPUT_POST, 'debitNoteNumber');
-    $JOB->cusdecDate = filter_input(INPUT_POST, 'cusdecDate');
     $JOB->createdAt = filter_input(INPUT_POST, 'createdAt');
 
     $VALID->check($JOB, [
