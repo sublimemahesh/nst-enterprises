@@ -10,11 +10,12 @@ class JobCostingCard {
     public $id;
     public $job;
     public $date;
+    public $invoiceNumber;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job`,`date` FROM `job_costing_card` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job`,`date`,`invoiceNumber` FROM `job_costing_card` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -23,6 +24,7 @@ class JobCostingCard {
             $this->id = $result['id'];
             $this->job = $result['job'];
             $this->date = $result['date'];
+            $this->invoiceNumber = $result['invoiceNumber'];
 
             return $this;
         }
@@ -32,10 +34,12 @@ class JobCostingCard {
 
         $query = "INSERT INTO `job_costing_card` ("
                 . "`job`,"
-                . "`date`) "
+                . "`date`,"
+                . "`invoiceNumber`) "
                 . "VALUES  ("
                 . "'" . $this->job . "',"
-                . "'" . $this->date . "'"
+                . "'" . $this->date . "',"
+                . "'" . $this->invoiceNumber . "'"
                 . ")";
 
         $db = new Database();
@@ -69,7 +73,8 @@ class JobCostingCard {
 
         $query = "UPDATE  `job_costing_card` SET "
                 . "`job` ='" . $this->job . "', "
-                . "`date` ='" . $this->date . "' "
+                . "`date` ='" . $this->date . "', "
+                . "`invoiceNumber` ='" . $this->invoiceNumber . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();

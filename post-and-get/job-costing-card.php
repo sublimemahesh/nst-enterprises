@@ -10,6 +10,7 @@ if (isset($_POST['create-job-costing-card'])) {
 
     $JOBCOSTINGCARD->job = filter_input(INPUT_POST, 'job');
     $JOBCOSTINGCARD->date = filter_input(INPUT_POST, 'jobdate');
+    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceNumber'];
 
     $VALID->check($JOBCOSTINGCARD, [
         'job' => ['required' => TRUE]
@@ -43,6 +44,7 @@ if (isset($_POST['edit-job-costing-card'])) {
 
     $JOBCOSTINGCARD->job = filter_input(INPUT_POST, 'job');
     $JOBCOSTINGCARD->date = filter_input(INPUT_POST, 'jobdate');
+    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceNumber'];
    
 
     $VALID = new Validator();
