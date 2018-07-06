@@ -1,13 +1,12 @@
 <?php
+$INVOICE = Helper::invoiceNo();
+class Helper {
+    
+    public function invoiceNo() {
 
-foreach (array('1','2','3') as $a) {
-    echo "$a ";
-    foreach (array('3','2','1') as $b) {
-        echo "$b ";
-        if ($a == $b) { 
-            break 1;  // this will break both foreach loops
-        }
+        $today = date("Y");
+        dd($today);
+        return $randam;
     }
-    echo ". ";  // never reached
+
 }
-echo "!";

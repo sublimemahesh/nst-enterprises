@@ -8,6 +8,12 @@ $job = '';
 if (isset($_GET['id'])) {
     $job = $_GET['id'];
 }
+
+//$year = date("Y");
+//$nextyear = date("y")+1;
+//$invoice = 'NST/'.$year.'/'.$nextyear.'/';
+//
+//dd($invoice);
 ?>
 
 <!DOCTYPE html>
@@ -90,8 +96,12 @@ if (isset($_GET['id'])) {
                                                     <label class="col-md-3">Date</label>
                                                     <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Invoice Number</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoiceNumber" id="invoiceNumber" value="">
+                                                </div>
                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
-                                                <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
+                                                    <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
                                                 </div>
                                             </form>
                                         </div>
