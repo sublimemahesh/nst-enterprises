@@ -14,7 +14,7 @@ $(document).ready(function () {
         } else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please create new consignee using this name "+$('#name').val(),
+                text: "Please create new consignee using this name " + $('#name').val(),
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -32,7 +32,7 @@ $(document).ready(function () {
         } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please create new consignment using this "+$('#consignment').val(),
+                text: "Please create new consignment using this " + $('#consignment').val(),
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -68,7 +68,7 @@ $(document).ready(function () {
         } else if (!$('#vesselAndFlight-id').val() || $('#vesselAndFlight-id').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please create new vessel or flight using this "+$('#vesselAndFlight').val(),
+                text: "Please create new vessel or flight using this " + $('#vesselAndFlight').val(),
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -79,10 +79,10 @@ $(document).ready(function () {
         }
 
     });
-    
+
     $('#edit-job').click(function () {
 
-        if (!$('#name-id').val() || !$('#name').val() || $('#name-id').val().length === 0 || $('#name').val().length === 0) {
+        if (!$('#name').val() || $('#name').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignee",
@@ -91,10 +91,28 @@ $(document).ready(function () {
                 showConfirmButton: false
             });
             return false
-        } else if (!$('#consignment-id').val() || !$('#consignment').val() || $('#consignment-id').val().length === 0 || $('#consignment').val().length === 0) {
+        } else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new consignee using this name " + $('#name').val(),
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
+        } else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignment",
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
+        } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new consignment using this " + $('#consignment').val(),
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
@@ -121,12 +139,21 @@ $(document).ready(function () {
         } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please select the vessel or flight",
+                text: "Please enter the vessel or flight",
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
             });
             return false;
+        } else if (!$('#vesselAndFlight-id').val() || $('#vesselAndFlight-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new vessel or flight using this " + $('#vesselAndFlight').val(),
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
         } else {
             return true;
         }

@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {
 $JOB = new Job($id);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
+$VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
 ?>
 
 <!DOCTYPE html>
@@ -125,22 +126,14 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
-                                                    <select class="form-control col-md-9" name="vesselAndFlight" id="vesselAndFlight">
-                                                        <option value="">-- Please Select --</option>
-                                                        <?php
-                                                        foreach (VesselAndFlight::all() as $vesselandflight) {
-                                                            ?>
-                                                            <option value="<?php echo $vesselandflight['id']; ?>" <?php
-                                                            if ($vesselandflight['id'] == $JOB->vesselAndFlight) {
-                                                                echo 'selected';
-                                                            }
-                                                            ?>>
-                                                                        <?php echo $vesselandflight['name']; ?>
-                                                            </option>
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" autocomplete="off" placeholder="Enter vessel or flight" value="<?php echo $VESSELANDFLIGHT->name; ?>">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="vesselAndFlight-list-append" class="vesselAndFlight-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="vesselAndFlight" value="<?php echo $JOB->vesselAndFlight; ?>" id="vesselAndFlight-id"  />
+                                                    <div class="col-sm-1 col-md-1">
+                                                        <i class="fa fa-save btn btn-info btn-sm" id="add-vesselAndFlight"></i>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel and Flight Date</label>
@@ -194,6 +187,7 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
         <script src="js/job.js" type="text/javascript"></script>
+        <script src="js/edit-job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script>
             $(function () {
