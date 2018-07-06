@@ -39,6 +39,7 @@
 
     </div>
 </div>
+
 <div class="modal fade" id="modal-consignment" role="dialog">
     <div class="modal-dialog">
 
@@ -58,6 +59,36 @@
                     <textarea class="form-control" placeholder="Enter description" id="description1"></textarea>
                 </div>
                 <button type="button" name="create-consignment" id="btn-consignment" class="btn btn-info">Save</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="modal-vesselorflight" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Vessel or Flight</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Name" name="name" id="vesselorFlight-name">
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select class="form-control" name="type" id="vesselorFlight-type">
+                        <option value="">-- Please Select --</option>
+                        <option value="vessel">Vessel</option>
+                        <option value="flight">Flight</option>
+                    </select>
+                </div>
+                <button type="submit" name="creat-vessel-or-flight" id="btn-vessel-or-flight" class="btn btn-info">Save Vessel or Flight</button>
             </div>
 
         </div>

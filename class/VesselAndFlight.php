@@ -166,5 +166,19 @@ class VesselAndFlight {
             return FALSE;
         }
     }
+    
+    public function allNamesByKeyword($keyword) {
+
+        $query = "SELECT * FROM `vessel_and_flight` WHERE name like '" . $keyword . "%' ORDER BY name LIMIT 0,6";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
 
 }

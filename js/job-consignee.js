@@ -48,7 +48,6 @@ $(document).ready(function () {
             $('#name-id').val("");
         });
     });
-
     $('#name').bind('keypress keydown keyup', function (e) {
 
         if (e.keyCode == 13) {
@@ -171,7 +170,6 @@ $(document).ready(function () {
             $('#consignment-id').val("");
         });
     });
-
     $('#consignment').bind('keypress keydown keyup', function (e) {
 
         if (e.keyCode == 13) {
@@ -214,6 +212,102 @@ $(document).ready(function () {
             $('#consignment-list-append').empty();
             $('#consignment').change(function () {
                 $('#consignment-id').val("");
+            });
+        }
+    });
+
+
+    $('#vesselAndFlight').keyup(function (e) {
+        var vesselAndFlightId = $('#vesselAndFlight-id').val();
+        if (e.which != 38) {
+            if (e.which != 40) {
+                if (e.which != 13) {
+                    var keyword = $('#vesselAndFlight').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: 'ajax/job-consignee.php',
+                        dataType: "json",
+                        data: {keyword: keyword, option: 'GETVESSELORFLIGHT'},
+                        success: function (result) {
+
+                            var html = '';
+                            $.each(result, function (key) {
+                                if (key === 0) {
+                                    html += '<li id="c' + this.id + '" class="vesselAndFlight selected">' + this.name + '</li>';
+                                } else {
+                                    html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
+                                }
+                            });
+                            $('#vesselAndFlight-list-append').empty();
+                            $('#vesselAndFlight-list-append').append(html);
+                        }
+                    });
+                }
+            }
+        }
+    });
+    $('#vesselAndFlight-list-append').on('click', '.vesselAndFlight', function () {
+        var vesselAndFlightId = this.id;
+        var vesselAndFlight = $(this).text();
+        $('#vesselAndFlight-id').val(vesselAndFlightId.replace("c", ""));
+        $('#vesselAndFlight').val(vesselAndFlight);
+        $('#vesselAndFlight-list-append').empty();
+
+        $('#vesselAndFlight').change(function () {
+            $('#vesselAndFlight-id').val("");
+        });
+    });
+    $('#vesselAndFlight-list-append').on('mouseover', '.vesselAndFlight', function () {
+        var vesselAndFlightId = this.id;
+        var vesselAndFlight = $(this).text();
+        $('#vesselAndFlight-id').val(vesselAndFlightId.replace("c", ""));
+        $('#vesselAndFlight').val(vesselAndFlight);
+        $('#vesselAndFlight').change(function () {
+            $('#vesselAndFlight-id').val("");
+        });
+    });
+    $('#vesselAndFlight').bind('keypress keydown keyup', function (e) {
+
+        if (e.keyCode == 13) {
+            e.preventDefault();
+        }
+
+        var li = $('#vesselAndFlight .vesselAndFlight');
+        var liSelected;
+        var next = '';
+        if (e.which === 40) {
+            if (liSelected) {
+                liSelected.removeClass('selected');
+                next = liSelected.next();
+                if (next.length > 0) {
+                    liSelected = next.addClass('selected');
+                } else {
+                    liSelected = li.eq(0).addClass('selected');
+                }
+            } else {
+                liSelected = li.eq(0).addClass('selected');
+            }
+        } else if (e.which === 38) {
+            if (liSelected) {
+                liSelected.removeClass('selected');
+                next = liSelected.prev();
+                if (next.length > 0) {
+                    liSelected = next.addClass('selected');
+                } else {
+                    liSelected = li.last().addClass('selected');
+                }
+            } else {
+                liSelected = li.last().addClass('selected');
+            }
+        } else if (e.which === 13) {
+            var selected = $('.selected').attr("id");
+            var vesselAndFlightname = $('.selected').text();
+            var vesselAndFlightId = selected.replace("c", "");
+            $('#vesselAndFlight-id').val(vesselAndFlightId);
+            $('#vesselAndFlight').val(vesselAndFlightname);
+            $('#vesselAndFlight-list-append').empty();
+            $('#vesselAndFlight').change(function () {
+                $('#vesselAndFlight-id').val("");
             });
         }
     });

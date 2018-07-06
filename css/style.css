@@ -62,7 +62,7 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
     width: 150px; 
 }
 
-.name-list, .consignment-list {
+.name-list, .consignment-list, .vesselAndFlight-list {
     float:left;
     list-style:none;
     padding:0;
@@ -76,13 +76,16 @@ input[type="checkbox"] .filled-in:checked .chk-col-light-blue:after {
 .consignment-list {
     margin-top: 78px;
 }
-.name-list li, .consignment-list li{
+.vesselAndFlight-list {
+    margin-top: 267px;
+}
+.name-list li, .consignment-list li, .vesselAndFlight-list li {
     padding: 10px; 
     background: #f0f0f0;
     border-bottom: #bbb9b9 1px solid;
     color: #000;
 }
-.name-list li:hover, .consignment-list li:hover{ 
+.name-list li:hover, .consignment-list li:hover, .vesselAndFlight-list li:hover{ 
     cursor: pointer;
     background: #0000ff !important;
     color: white !important; 

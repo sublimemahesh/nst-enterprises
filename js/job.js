@@ -11,7 +11,7 @@ $(document).ready(function () {
                 showConfirmButton: false
             });
             return false
-        }else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
+        } else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please create new consignee using this name "+$('#name').val(),
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 showConfirmButton: false
             });
             return false
-        }else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
+        } else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignment",
@@ -59,12 +59,21 @@ $(document).ready(function () {
         } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
-                text: "Please select the vessel or flight",
+                text: "Please enter the vessel or flight",
                 type: 'error',
                 timer: 2000,
                 showConfirmButton: false
             });
             return false;
+        } else if (!$('#vesselAndFlight-id').val() || $('#vesselAndFlight-id').val().length === 0) {
+            swal({
+                title: "Error!",
+                text: "Please create new vessel or flight using this "+$('#vesselAndFlight').val(),
+                type: 'error',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false
         } else {
             return true;
         }
