@@ -314,9 +314,6 @@ $(document).ready(function () {
 
 });
 
-$(window).load(function () {
-    $('#name-id').val("");
-});
 
 
 
