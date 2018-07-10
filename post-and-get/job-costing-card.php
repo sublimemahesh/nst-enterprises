@@ -7,10 +7,11 @@ include_once(dirname(__FILE__) . '/../auth.php');
 if (isset($_POST['create-job-costing-card'])) {
     $JOBCOSTINGCARD = new JobCostingCard(NULL);
     $VALID = new Validator();
-
+    
     $JOBCOSTINGCARD->job = filter_input(INPUT_POST, 'job');
     $JOBCOSTINGCARD->date = filter_input(INPUT_POST, 'jobdate');
-    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceNumber'];
+    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoicenumber'];
+    
 
     $VALID->check($JOBCOSTINGCARD, [
         'job' => ['required' => TRUE]
@@ -18,6 +19,12 @@ if (isset($_POST['create-job-costing-card'])) {
 
     if ($VALID->passed()) {
         $result = $JOBCOSTINGCARD->create();
+        
+        if($result) {
+            $id = $result->id;
+            $today = date("Y-m-d");
+            $res = Account::updateCurrentInvoiceId($today,$id);
+        }
 
         if (!isset($_SESSION)) {
             session_start();
