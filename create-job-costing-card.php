@@ -9,11 +9,8 @@ if (isset($_GET['id'])) {
     $job = $_GET['id'];
 }
 
-//$year = date("Y");
-//$nextyear = date("y")+1;
-//$invoice = 'NST/'.$year.'/'.$nextyear.'/';
-//
-//dd($invoice);
+$invoicenumber = Helper::invoiceNo();
+//dd($invoicenumber);
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +95,7 @@ if (isset($_GET['id'])) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Invoice Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoiceNumber" id="invoiceNumber" value="">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php echo $invoicenumber; ?>">
                                                 </div>
                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>

@@ -111,4 +111,14 @@ class JobCostingCard {
         return $array_res;
     }
 
+    public function getMaxID() {
+
+        $query = "SELECT MAX(id) AS `maxid` FROM `job_costing_card`";
+
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+
 }
