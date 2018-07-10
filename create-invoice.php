@@ -8,6 +8,9 @@ $jobcostingcard = '';
 if (isset($_GET['id'])) {
     $jobcostingcard = $_GET['id'];
 }
+
+//$INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
+
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
 $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
@@ -322,11 +325,13 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                             </div>
                                             <input type="hidden" name="job_costing_card" id="job_costing_card"  value="<?php echo $jobcostingcard; ?>"/>
                                             <div class="col-sm-12 col-md-offset-4 form-btn tax-invoice-btn">
+                                                <input type="hidden" name="id" id="id" value="" />
                                                 <div class="col-sm-2">
-                                                    <button type="submit" id="btn-invoice" name="create-invoice" class="btn btn-info submit-btn">Save Invoice</button>
+                                                    <button type="button" class="btn btn-info savebtn hidden" id="savebutton">Save Tax Invoice</button>
+                                                    <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <a href="invoice.php?id=<?php echo $jobcostingcard; ?>"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a> 
+                                                    <a href="invoice.php?id=<?php echo $jobcostingcard; ?>" target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a> 
                                                 </div>
                                             </div>
                                             <!--</form>-->
@@ -352,8 +357,10 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/consignee.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        <script src="js/invoice.js" type="text/javascript"></script>
+        <script src="js/invoice-details.js" type="text/javascript"></script>
         <script src="js/create-invoice.js" type="text/javascript"></script>
+        <script src="js/invoice.js" type="text/javascript"></script>
+        
 
         <script>
             $(function () {

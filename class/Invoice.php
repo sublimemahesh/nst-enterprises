@@ -6,7 +6,7 @@
  * @author U s E r ¨
  */
 class Invoice {
-    
+
     public $id;
     public $job_costing_card;
     public $createdAt;
@@ -18,6 +18,9 @@ class Invoice {
     public $agency_fees;
     public $documentation;
     public $vat;
+    public $tax_total;
+    public $statutory_sub_total;
+    public $delivery_sub_total;
     public $payable_amount;
     public $advance;
     public $due;
@@ -25,7 +28,7 @@ class Invoice {
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`payable_amount`,`advance`,`due` FROM `invoice` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due` FROM `invoice` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -42,6 +45,9 @@ class Invoice {
             $this->agency_fees = $result['agency_fees'];
             $this->documentation = $result['documentation'];
             $this->vat = $result['vat'];
+            $this->tax_total = $result['tax_total'];
+            $this->statutory_sub_total = $result['statutory_sub_total'];
+            $this->delivery_sub_total = $result['delivery_sub_total'];
             $this->payable_amount = $result['payable_amount'];
             $this->advance = $result['advance'];
             $this->due = $result['due'];
@@ -51,7 +57,7 @@ class Invoice {
     }
 
     public function create() {
-        
+
 
         $query = "INSERT INTO `invoice` ("
                 . "`job_costing_card`,"
@@ -64,6 +70,9 @@ class Invoice {
                 . "`agency_fees`,"
                 . "`documentation`,"
                 . "`vat`,"
+                . "`tax_total`,"
+                . "`statutory_sub_total`,"
+                . "`delivery_sub_total`,"
                 . "`payable_amount`,"
                 . "`advance`,"
                 . "`due`) "
@@ -78,6 +87,9 @@ class Invoice {
                 . "'" . $this->agency_fees . "',"
                 . "'" . $this->documentation . "',"
                 . "'" . $this->vat . "',"
+                . "'" . $this->tax_total . "',"
+                . "'" . $this->statutory_sub_total . "',"
+                . "'" . $this->delivery_sub_total . "',"
                 . "'" . $this->payable_amount . "',"
                 . "'" . $this->advance . "',"
                 . "'" . $this->due . "'"
@@ -112,7 +124,6 @@ class Invoice {
     public function update() {
 
         $query = "UPDATE  `invoice` SET "
-                . "`job_costing_card` ='" . $this->job_costing_card . "', "
                 . "`vat_reg_no` ='" . $this->vat_reg_no . "', "
                 . "`cleared_date` ='" . $this->cleared_date . "', "
                 . "`gross_weight` ='" . $this->gross_weight . "', "
@@ -121,6 +132,9 @@ class Invoice {
                 . "`agency_fees` ='" . $this->agency_fees . "', "
                 . "`documentation` ='" . $this->documentation . "', "
                 . "`vat` ='" . $this->vat . "', "
+                . "`tax_total` ='" . $this->tax_total . "', "
+                . "`statutory_sub_total` ='" . $this->statutory_sub_total . "', "
+                . "`delivery_sub_total` ='" . $this->delivery_sub_total . "', "
                 . "`payable_amount` ='" . $this->payable_amount . "', "
                 . "`advance` ='" . $this->advance . "', "
                 . "`due` ='" . $this->due . "' "
@@ -151,13 +165,10 @@ class Invoice {
         $query = "SELECT * FROM `invoice` WHERE `job_costing_card`=" . $job_costing_card;
 
         $db = new Database();
-        $result = $db->readQuery($query);
-        $array_res = array();
 
-        while ($row = mysql_fetch_array($result)) {
-            array_push($array_res, $row);
-        }
+        $result = mysql_fetch_array($db->readQuery($query));
 
-        return $array_res;
+        return $result;
     }
+
 }

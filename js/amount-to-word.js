@@ -39,6 +39,7 @@ $(document).ready(function () {
         var number = atemp[0].split(",").join("");
         var n_length = number.length;
         var words_string = "";
+        var words_string_final = "";
         if (n_length <= 9) {
             var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
             var received_n_array = new Array();
@@ -76,13 +77,15 @@ $(document).ready(function () {
                     words_string += "Thousand ";
                 }
                 if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
-                    words_string += "Hundred and ";
+                    words_string += "Hundred & ";
                 } else if (i == 6 && value != 0) {
                     words_string += "Hundred ";
                 }
             }
             words_string = words_string.split("  ").join(" ");
+            words_string_final = words_string.toUpperCase() +" ONLY.";
+            
         }
-        return words_string;
+        return words_string_final;
     }
 });
