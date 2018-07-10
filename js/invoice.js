@@ -46,7 +46,6 @@ $(document).ready(function () {
     var statutoryTotal = $('#statutory-sub-total').attr('total');
     var deliveryTotal = $('#delivery-sub-total').attr('total');
     var advance = $('#advance').val();
-
     if (taxTotal == "") {
         taxTotal = 0;
     }

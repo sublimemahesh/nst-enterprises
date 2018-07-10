@@ -8,6 +8,9 @@ $jobcostingcard = '';
 if (isset($_GET['id'])) {
     $jobcostingcard = $_GET['id'];
 }
+$INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
+
+
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
 $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
@@ -45,7 +48,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     <td rowspan="4" class="col-2 text-to row-padding-left" >To. </td>
                     <td rowspan="4" class="col-3 td-border text-to"><?php echo $CONSIGNEE->name . '<br />' . $CONSIGNEE->address; ?></td>
                     <td class="col-4 row-padding-left">Vat Reg No</td>
-                    <td class="col-5"></td>
+                    <td class="col-5"><?php echo $INVOICE['vat_reg_no']; ?></td>
 
                 </tr>
                 <tr>
@@ -54,11 +57,11 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </tr>
                 <tr>
                     <td class="row-padding-left">Invoice No</td>
-                    <td></td>
+                    <td><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                 </tr>
                 <tr>
                     <td class="row-padding-left">Date</td>
-                    <td><?php echo date("d-M-Y"); ?></td>
+                    <td><?php echo $INVOICE['createdAt']; ?></td>
                 </tr>
 
                 <tr>
@@ -77,7 +80,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     <td rowspan="3" class="text-to row-padding-left"> Consignment</td>
                     <td rowspan="3" class="td-border text-to"><?php echo $CONSIGNMENT->name; ?></td>
                     <td class="row-padding-left">Cleared Date</td>
-                    <td></td>
+                    <td><?php echo $INVOICE['cleared_date']; ?></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -86,14 +89,20 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </tr>
                 <tr>
                     <td class="row-padding-left">Gross Weight</td>
-                    <td></td>
+                    <td><?php echo $INVOICE['gross_weight']; ?></td>
 
                 </tr>
+                <tr class="">
+                    <td class="row-padding-left">Vessel/Flight</td>
+                    <td class="td-border td-padding"><?php echo $VESSELANDFLIGHT->name; ?></td>
+                    <td class="row-padding-left">Volume</td>
+                    <td class=""><?php echo $INVOICE['volume']; ?></td>
+                </tr>
                 <tr class="tr-border">
-                    <td class="row-padding-bottom row-padding-left">Vessel/Flight</td>
-                    <td class="td-border td-padding row-padding-bottom"><?php echo $VESSELANDFLIGHT->name; ?></td>
-                    <td class="row-padding-bottom row-padding-left">Volume</td>
-                    <td class="row-padding-bottom"></td>
+                    <td class="row-padding-bottom row-padding-left v-align-middle"></td>
+                    <td class="td-border td-padding row-padding-bottom v-align-middle"></td>
+                    <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
+                    <td class="row-padding-bottom"><?php echo $INVOICE['cusdec_no']; ?></td>
                 </tr>
 
                 <tr>
@@ -104,12 +113,17 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 <tr>
                     <td></td>
                     <td colspan="2" class="td-border row-padding-left">AGENCY FEES</td>
-                    <td class="text-right row-padding-right">15,000</td>        
+                    <td class="text-right row-padding-right"><?php echo number_format($INVOICE['agency_fees'],2); ?></td>        
                 </tr>
                 <tr>
                     <td></td>
                     <td colspan="2" class="td-border row-padding-left">DOCUMENTATION</td>
-                    <td class="text-right row-padding-right">16,625</td>        
+                    <td class="text-right row-padding-right"><?php echo number_format($INVOICE['documentation'],2); ?></td>        
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" class="td-border row-padding-left">VAT 15%</td>
+                    <td class="text-right row-padding-right"><?php echo number_format($INVOICE['vat'],2); ?></td>       
                 </tr>
                 <tr>
                     <td></td>
@@ -118,7 +132,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </tr>
                 <tr>
                     <td colspan="3" class="td-tax-invoice-total row-padding-right">Tax Invoice Total</td>
-                    <td class="td-border-top1 text-right row-padding-right" id="tax-invoice-total" total="31625">31,625</td>
+                    <td class="td-border-top1 text-right row-padding-right" id="tax-invoice-total" total=""><?php echo number_format($INVOICE['tax_total'],2); ?></td>
 
                 </tr>
             </table>
@@ -140,11 +154,16 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
 
                     if ($reimbursementdetails) {
+                        if ($reimbursementdetails['invoice_amount']) {
+                            $amount = $reimbursementdetails['invoice_amount'];
+                        } else {
+                            $amount = $reimbursementdetails['amount'];
+                        }
                         ?>
                         <tr>
                             <td></td>        
                             <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
-                            <td class="text-right row-padding-right"><?php echo number_format($reimbursementdetails['amount']); ?></td>        
+                            <td class="text-right row-padding-right"><?php echo number_format($amount,2); ?></td>        
                         </tr>
                         <?php
                     }
@@ -159,7 +178,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                 <tr>
                     <td colspan="2" class="td-tax-invoice-total row-padding-right">Sub Total</td>
-                    <td class="td-border-top1 text-right row-padding-right" id="statutory-sub-total" total="<?php echo $grandtotal['grandtotal']; ?>"><?php echo number_format($grandtotal['grandtotal']); ?></td>
+                    <td class="td-border-top1 text-right row-padding-right" id="statutory-sub-total" total=""><?php echo number_format($INVOICE['statutory_sub_total'],2); ?></td>
 
                 </tr>
 
@@ -177,11 +196,16 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
 
                     if ($reimbursementdetails) {
+                        if ($reimbursementdetails['invoice_amount']) {
+                            $amount = $reimbursementdetails['invoice_amount'];
+                        } else {
+                            $amount = $reimbursementdetails['amount'];
+                        }
                         ?>
                         <tr>
                             <td></td>        
                             <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
-                            <td class="text-right row-padding-right"><?php echo number_format($reimbursementdetails['amount']); ?></td>        
+                            <td class="text-right row-padding-right"><?php echo number_format($amount,2); ?></td>        
                         </tr>
                         <?php
                     }
@@ -196,7 +220,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                 <tr>
                     <td colspan="2" class="td-tax-invoice-total row-padding-right">Sub Total</td>
-                    <td class="td-border-top1 text-right row-padding-right" id="delivery-sub-total" total="<?php echo $grandtotal['grandtotal']; ?>"><?php echo number_format($grandtotal['grandtotal']); ?></td>
+                    <td class="td-border-top1 text-right row-padding-right" id="delivery-sub-total" total=""><?php echo number_format($INVOICE['delivery_sub_total'],2); ?></td>
 
                 </tr>
 
@@ -207,16 +231,16 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 <tr>
                     <td rowspan="3" colspan="2" class="col-2"></td>
                     <td class="col-7 td-border td-border-top  td-border-left">Payable Amount</td>
-                    <td class="col-8 td-border td-border-top text-right row-padding-right" id="payable-amount" amount=""></td>
+                    <td class="col-8 td-border td-border-top text-right row-padding-right" id="payable-amount" amount=""><?php echo number_format($INVOICE['payable_amount'],2); ?></td>
                 </tr>
 
                 <tr>
                     <td class="td-border td-border-left">Advance</td>
-                    <td class="td-border text-right row-padding-right" id="advance" advance="1000">1,000</td>
+                    <td class="td-border text-right row-padding-right" id="advance" advance="1000"><?php echo number_format($INVOICE['advance'],2); ?></td>
                 </tr>
                 <tr>
                     <td class="td-border td-border1 td-border-left">Due(Refund)</td>
-                    <td class="td-border td-border1 text-right row-padding-right" id="due" due=""></td>
+                    <td class="td-border td-border1 text-right row-padding-right" id="due" due="<?php echo $INVOICE['due']; ?>"><?php echo number_format($INVOICE['due'],2); ?></td>
                 </tr>
             </table>
 
@@ -245,7 +269,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
 
         <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/invoice.js" type="text/javascript"></script>
+        <!--<script src="js/invoice.js" type="text/javascript"></script>-->
         <script src="js/amount-to-word.js" type="text/javascript"></script>
         <script>
 
