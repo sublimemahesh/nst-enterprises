@@ -131,3 +131,12 @@ p{
 .row-padding-right {
     padding-right: 10px;
 }
+.v-align-middle{
+    vertical-align: middle;
+}
+.p-l-17 {
+    padding-left: 17px;
+}
+.p-r-26 {
+    padding-right: 26px;
+}

@@ -20,11 +20,12 @@ class ReimbursementDetails {
     public $voucherNumber;
     public $amount;
     public $description;
+    public $invoiceamount;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`jobCostingCard`,`reimbursementItem`,`type`,`voucherNumber`,`amount`,`description` FROM `reimbursement_details` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`jobCostingCard`,`reimbursementItem`,`type`,`voucherNumber`,`amount`,`description`,`invoice_amount` FROM `reimbursement_details` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -37,6 +38,7 @@ class ReimbursementDetails {
             $this->voucherNumber = $result['voucherNumber'];
             $this->amount = $result['amount'];
             $this->description = $result['description'];
+            $this->invoiceamount = $result['invoice_amount'];
 
             return $this;
         }
@@ -190,6 +192,23 @@ class ReimbursementDetails {
         $result = mysql_fetch_array($db->readQuery($query));
 
         return $result;
+    }
+    
+    public function updateInvoiceAmount() {
+
+        $query = "UPDATE  `reimbursement_details` SET "
+                . "`invoice_amount` ='" . $this->invoiceamount . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
     }
 
 }
