@@ -304,9 +304,13 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     <td class="td-border td-border-left v-align-middle">Advance</td>
                                                     <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="" name="advance" value="" /></td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="td-border td-border1 td-border-left">Due(Refund)</td>
+                                                <tr id="tr-due" class="hidden">
+                                                    <td class="td-border td-border1 td-border-left">Due</td>
                                                     <td class="td-border td-border1 text-right row-padding-right p-r-26" id="due" name="due" due=""></td>
+                                                </tr>
+                                                <tr  id="tr-refund" class="hidden">
+                                                    <td class="td-border td-border1 td-border-left">Refund</td>
+                                                    <td class="td-border td-border1 text-right row-padding-right p-r-26" id="refund" name="refund" refund=""></td>
                                                 </tr>
                                             </table>
 

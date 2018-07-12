@@ -24,11 +24,14 @@ class Invoice {
     public $payable_amount;
     public $advance;
     public $due;
+    public $refund;
+    public $settle;
+    public $balance;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due` FROM `invoice` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due`,`refund`,`settle`,`balance` FROM `invoice` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -51,6 +54,9 @@ class Invoice {
             $this->payable_amount = $result['payable_amount'];
             $this->advance = $result['advance'];
             $this->due = $result['due'];
+            $this->refund = $result['refund'];
+            $this->settle = $result['settle'];
+            $this->balance = $result['balance'];
 
             return $this;
         }
@@ -75,7 +81,8 @@ class Invoice {
                 . "`delivery_sub_total`,"
                 . "`payable_amount`,"
                 . "`advance`,"
-                . "`due`) "
+                . "`due`,"
+                . "`refund`) "
                 . "VALUES  ("
                 . "'" . $this->job_costing_card . "',"
                 . "'" . $this->createdAt . "',"
@@ -92,7 +99,8 @@ class Invoice {
                 . "'" . $this->delivery_sub_total . "',"
                 . "'" . $this->payable_amount . "',"
                 . "'" . $this->advance . "',"
-                . "'" . $this->due . "'"
+                . "'" . $this->due . "',"
+                . "'" . $this->refund . "'"
                 . ")";
 
         $db = new Database();
@@ -137,7 +145,8 @@ class Invoice {
                 . "`delivery_sub_total` ='" . $this->delivery_sub_total . "', "
                 . "`payable_amount` ='" . $this->payable_amount . "', "
                 . "`advance` ='" . $this->advance . "', "
-                . "`due` ='" . $this->due . "' "
+                . "`due` ='" . $this->due . "', "
+                . "`refund` ='" . $this->refund . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -162,13 +171,31 @@ class Invoice {
 
     public function getInvoiceByJobCostingCard($job_costing_card) {
 
-        $query = "SELECT * FROM `invoice` WHERE `job_costing_card`=" . $job_costing_card;
+        $query = "SELECT * FROM `invoice` WHERE `job_costing_card`='". $job_costing_card ."'";
 
         $db = new Database();
 
         $result = mysql_fetch_array($db->readQuery($query));
 
         return $result;
+    }
+    
+    public function updateSettleAndBalance() {
+
+        $query = "UPDATE  `invoice` SET "
+                . "`settle` ='" . $this->settle . "', "
+                . "`balance` ='" . $this->balance . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
     }
 
 }

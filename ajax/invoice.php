@@ -21,6 +21,7 @@ if ($_POST['option'] == 'ADDINVOICE') {
     $INVOICE->payable_amount = $_POST['payable_amount'];
     $INVOICE->advance = $_POST['advance'];
     $INVOICE->due = $_POST['due'];
+    $INVOICE->refund = $_POST['refund'];
 
     $result = $INVOICE->create();
     header('Content-Type: application/json');
@@ -48,6 +49,7 @@ if ($_POST['option'] == 'UPDATEINVOICE') {
     $INVOICE->payable_amount = $_POST['payable_amount'];
     $INVOICE->advance = $_POST['advance'];
     $INVOICE->due = $_POST['due'];
+    $INVOICE->refund = $_POST['refund'];
 
     $result = $INVOICE->update();
     header('Content-Type: application/json');

@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     /* ------//Calculate delivery sub total------ */
 
-    /* ------Calculate payable amount & due------ */
+    /* ------Calculate payable amount & due / refund------ */
 
     var taxTotal = $('#tax-invoice-total').attr('total');
     var statutoryTotal = $('#statutory-sub-total').attr('total');
@@ -56,24 +56,41 @@ $(document).ready(function () {
     var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
     var total1 = new Intl.NumberFormat().format(total);
 
-    var due = total - parseFloat(advance);
-    var due1 = new Intl.NumberFormat().format(due);
-
-
     $('#payable-amount').attr("amount", total);
     $('#payable-amount').html(total1);
 
-    $('#due').attr("due", due);
-    $('#due').html(due1);
+    if (total > parseFloat(advance)) {
+        var due = total - parseFloat(advance);
+        var due1 = new Intl.NumberFormat().format(due);
 
-    /* ------//Calculate payable amount & due------ */
+        $('#tr-due').removeClass("hidden");
+        $('#due').attr("due", due);
+        $('#due').html(due1);
+        /* ------Due amount to word------ */
+        var amount = convertNumberToWords(due);
+        $('#amount-in-word').html(amount);
+        /* ------//Due amount to word------ */
 
-    /* ------Due amount to word------ */
+    } else {
+        var refund = parseFloat(advance) - total;
+        var refund1 = new Intl.NumberFormat().format(refund);
 
-    var amount = convertNumberToWords(due);
-    $('#amount-in-word').html(amount);
+        $('#tr-refund').removeClass("hidden");
+        $('#refund').attr("refund", refund);
+        $('#refund').html(refund1);
+        /* ------Refund amount to word------ */
+        var amount = convertNumberToWords(refund);
+        $('#amount-in-word').html(amount);
+        /* ------//Refund amount to word------ */
+    }
 
-    /* ------//Due amount to word------ */
+    /* ------//Calculate payable amount & due / refund------ */
+
+
+
+
+
+
 
 
 //    $("#agency_fees").change(function () {
@@ -155,22 +172,33 @@ $(document).ready(function () {
         var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
         var total1 = new Intl.NumberFormat().format(total);
 
-        var due = total - parseFloat(advance);
-        var due1 = new Intl.NumberFormat().format(due);
-
-
         $('#payable-amount').attr("amount", total);
         $('#payable-amount').html(total1);
 
-        $('#due').attr("due", due);
-        $('#due').html(due1);
+        if (total > parseFloat(advance)) {
+            var due = total - parseFloat(advance);
+            var due1 = new Intl.NumberFormat().format(due);
 
-        /* ------Due amount to word------ */
+            $('#tr-due').removeClass("hidden");
+            $('#due').attr("due", due);
+            $('#due').html(due1);
+            /* ------Due amount to word------ */
+            var amount = convertNumberToWords(due);
+            $('#amount-in-word').html(amount);
+            /* ------//Due amount to word------ */
 
-        var amount = convertNumberToWords(due);
-        $('#amount-in-word').html(amount);
+        } else {
+            var refund = parseFloat(advance) - total;
+            var refund1 = new Intl.NumberFormat().format(refund);
 
-        /* ------//Due amount to word------ */
+            $('#tr-refund').removeClass("hidden");
+            $('#refund').attr("refund", refund);
+            $('#refund').html(refund1);
+            /* ------Refund amount to word------ */
+            var amount = convertNumberToWords(refund);
+            $('#amount-in-word').html(amount);
+            /* ------//Refund amount to word------ */
+        }
     });
 
     /* ------//Calculate vat, tax invoice total, payable amount & due when agency fees changed------ */
@@ -215,22 +243,33 @@ $(document).ready(function () {
         var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
         var total1 = new Intl.NumberFormat().format(total);
 
-        var due = total - parseFloat(advance);
-        var due1 = new Intl.NumberFormat().format(due);
-
-
         $('#payable-amount').attr("amount", total);
         $('#payable-amount').html(total1);
 
-        $('#due').attr("due", due);
-        $('#due').html(due1);
+        if (total > parseFloat(advance)) {
+            var due = total - parseFloat(advance);
+            var due1 = new Intl.NumberFormat().format(due);
 
-        /* ------Due amount to word------ */
+            $('#tr-due').removeClass("hidden");
+            $('#due').attr("due", due);
+            $('#due').html(due1);
+            /* ------Due amount to word------ */
+            var amount = convertNumberToWords(due);
+            $('#amount-in-word').html(amount);
+            /* ------//Due amount to word------ */
 
-        var amount = convertNumberToWords(due);
-        $('#amount-in-word').html(amount);
+        } else {
+            var refund = parseFloat(advance) - total;
+            var refund1 = new Intl.NumberFormat().format(refund);
 
-        /* ------//Due amount to word------ */
+            $('#tr-refund').removeClass("hidden");
+            $('#refund').attr("refund", refund);
+            $('#refund').html(refund1);
+            /* ------Refund amount to word------ */
+            var amount = convertNumberToWords(refund);
+            $('#amount-in-word').html(amount);
+            /* ------//Refund amount to word------ */
+        }
     });
     /* ------//Calculate vat, tax invoice total, payable amount & due when documentation changed------ */
 
@@ -290,22 +329,33 @@ $(document).ready(function () {
                 var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
                 var total1 = new Intl.NumberFormat().format(total);
 
-                var due = total - parseFloat(advance);
-                var due1 = new Intl.NumberFormat().format(due);
-
-
                 $('#payable-amount').attr("amount", total);
                 $('#payable-amount').html(total1);
 
-                $('#due').attr("due", due);
-                $('#due').html(due1);
+                if (total > parseFloat(advance)) {
+                    var due = total - parseFloat(advance);
+                    var due1 = new Intl.NumberFormat().format(due);
 
-                /* ------Due amount to word------ */
+                    $('#tr-due').removeClass("hidden");
+                    $('#due').attr("due", due);
+                    $('#due').html(due1);
+                    /* ------Due amount to word------ */
+                    var amount = convertNumberToWords(due);
+                    $('#amount-in-word').html(amount);
+                    /* ------//Due amount to word------ */
 
-                var amount = convertNumberToWords(due);
-                $('#amount-in-word').html(amount);
+                } else {
+                    var refund = parseFloat(advance) - total;
+                    var refund1 = new Intl.NumberFormat().format(refund);
 
-                /* ------//Due amount to word------ */
+                    $('#tr-refund').removeClass("hidden");
+                    $('#refund').attr("refund", refund);
+                    $('#refund').html(refund1);
+                    /* ------Refund amount to word------ */
+                    var amount = convertNumberToWords(refund);
+                    $('#amount-in-word').html(amount);
+                    /* ------//Refund amount to word------ */
+                }
 
             }
         });
@@ -375,22 +425,33 @@ $(document).ready(function () {
                 var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
                 var total1 = new Intl.NumberFormat().format(total);
 
-                var due = total - parseFloat(advance);
-                var due1 = new Intl.NumberFormat().format(due);
-
-
                 $('#payable-amount').attr("amount", total);
                 $('#payable-amount').html(total1);
 
-                $('#due').attr("due", due);
-                $('#due').html(due1);
+                if (total > parseFloat(advance)) {
+                    var due = total - parseFloat(advance);
+                    var due1 = new Intl.NumberFormat().format(due);
 
-                /* ------Due amount to word------ */
+                    $('#tr-due').removeClass("hidden");
+                    $('#due').attr("due", due);
+                    $('#due').html(due1);
+                    /* ------Due amount to word------ */
+                    var amount = convertNumberToWords(due);
+                    $('#amount-in-word').html(amount);
+                    /* ------//Due amount to word------ */
 
-                var amount = convertNumberToWords(due);
-                $('#amount-in-word').html(amount);
+                } else {
+                    var refund = parseFloat(advance) - total;
+                    var refund1 = new Intl.NumberFormat().format(refund);
 
-                /* ------//Due amount to word------ */
+                    $('#tr-refund').removeClass("hidden");
+                    $('#refund').attr("refund", refund);
+                    $('#refund').html(refund1);
+                    /* ------Refund amount to word------ */
+                    var amount = convertNumberToWords(refund);
+                    $('#amount-in-word').html(amount);
+                    /* ------//Refund amount to word------ */
+                }
             }
         });
         /* ------//Update values------ */
@@ -409,20 +470,39 @@ $(document).ready(function () {
             advance = 0;
         }
 
-        var due = parseFloat(payableAmount) - parseFloat(advance);
-        var due1 = new Intl.NumberFormat().format(due);
+        if (parseFloat(payableAmount) > parseFloat(advance)) {
+            var due = parseFloat(payableAmount) - parseFloat(advance);
+            var due1 = new Intl.NumberFormat().format(due);
 
+            $('#tr-refund').addClass("hidden");
+            $('#refund').attr("refund", 0);
+            $('#refund').html(0);
+            $('#tr-due').removeClass("hidden");
 
+            $('#due').attr("due", due);
+            $('#due').html(due1);
+            /* ------Due amount to word------ */
+            var amount = convertNumberToWords(due);
+            $('#amount-in-word').html(amount);
+            /* ------//Due amount to word------ */
 
-        $('#due').attr("due", due);
-        $('#due').html(due1);
+        } else {
+            var refund = parseFloat(advance) - parseFloat(payableAmount);
+            var refund1 = new Intl.NumberFormat().format(refund);
 
-        /* ------Due amount to word------ */
+            $('#tr-due').addClass("hidden");
+            $('#due').attr("due", 0);
+            $('#due').html(0);
+            $('#tr-refund').removeClass("hidden");
 
-        var amount = convertNumberToWords(due);
-        $('#amount-in-word').html(amount);
+            $('#refund').attr("refund", refund);
+            $('#refund').html(refund1);
+            /* ------Refund amount to word------ */
+            var amount = convertNumberToWords(refund);
+            $('#amount-in-word').html(amount);
+            /* ------//Refund amount to word------ */
+        }
 
-        /* ------//Due amount to word------ */
 
         $('#advance').attr("advance", advance);
     });

@@ -17,7 +17,7 @@ $(document).ready(function () {
         var payable_amount = $("#payable-amount").attr('amount');
         var advance = $("#advance").attr('advance');
         var due = $("#due").attr('due');
-
+        var refund = $("#refund").attr('refund');
 
         $.ajax({
             type: 'POST',
@@ -40,6 +40,7 @@ $(document).ready(function () {
                 payable_amount: payable_amount,
                 advance: advance,
                 due: due,
+                refund: refund,
                 option: 'ADDINVOICE'
             },
             success: function (result) {
@@ -76,6 +77,7 @@ $(document).ready(function () {
         var payable_amount = $("#payable-amount").attr('amount');
         var advance = $("#advance").attr('advance');
         var due = $("#due").attr('due');
+        var refund = $("#refund").attr('refund');
 
 
         $.ajax({
@@ -99,6 +101,7 @@ $(document).ready(function () {
                 payable_amount: payable_amount,
                 advance: advance,
                 due: due,
+                refund: refund,
                 option: 'UPDATEINVOICE'
             },
             success: function (result) {

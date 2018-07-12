@@ -20,7 +20,7 @@ $(document).ready(function () {
                 $('#agency_fees').val(result.agency_fees);
                 $('#documentation').val(result.documentation);
                 $('#vat').val(result.vat);
-                $('#vat').attr("vat",result.vat);
+                $('#vat').attr("vat", result.vat);
                 $('#tax-invoice-total').html(result.tax_total);
                 $('#tax-invoice-total').attr("total", result.tax_total);
 //                    $('#statutory-sub-total').val(this.statutory_sub_total);
@@ -30,10 +30,28 @@ $(document).ready(function () {
                 $('#advance').val(result.advance);
                 $('#advance').attr("advance", result.advance);
 
-                $('#due').html(result.due);
-                $('#due').attr("due", result.due);
 
 
+                if (result.due != 0) {
+
+                    $('#tr-refund').addClass("hidden");
+                    $('#refund').attr("refund", 0);
+                    $('#refund').html(0);
+                    $('#tr-due').removeClass("hidden");
+
+                    $('#due').html(result.due);
+                    $('#due').attr("due", result.due);
+
+                } else {
+
+                    $('#tr-due').addClass("hidden");
+                    $('#due').attr("due", 0);
+                    $('#due').html(0);
+                    $('#tr-refund').removeClass("hidden");
+
+                    $('#refund').attr("refund", result.refund);
+                    $('#refund').html(result.refund);
+                }
 
                 $('#editbutton').removeClass('hidden');
 
