@@ -94,11 +94,11 @@ $USER1 = new User($_SESSION['id']);
                                             foreach (Consignee::all() as $consignee) {
                                                 ?>
                                                 <tr id="row_<?php echo $consignee['id']; ?>">
-                                                    <td><?php echo $consignee['id']; ?></td>
+                                                    <td style="width: 50px;"><?php echo $consignee['id']; ?></td>
                                                     <td><?php echo $consignee['name']; ?></td>
                                                     <td><?php echo $consignee['vatNumber']; ?></td>
-                                                    <td><?php echo $consignee['email']; ?></td>
-                                                    <td class="text-center" style="width: 100px;">
+                                                    <td style="width: 150px;"><?php echo $consignee['email']; ?></td>
+                                                    <td class="text-center" style="width: 78px;">
                                                         <?php
                                                         if ($consignee['isActive'] == 1) {
                                                             ?>
@@ -111,14 +111,16 @@ $USER1 = new User($_SESSION['id']);
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td class="text-center" style="width: 200px"> 
+                                                    <td class="text-center" style="width: 230px"> 
                                                         <a href="edit-consignee.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
                                                         <a href="#" class="delete-consignee btn btn-sm btn-danger" data-id="<?php echo $consignee['id']; ?>"  title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
                                                         |
-                                                        <a href="manage-consignee-jobs.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-warning" title="View Jobs"><i class="glyphicon glyphicon-briefcase"></i></a>
+                                                        <a href="manage-consignee-jobs.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-warning" title="View Consignee's Jobs"><i class="glyphicon glyphicon-briefcase"></i></a>
+                                                        |
+                                                        <a href="create-job-report-by-consignee.php?id=<?php echo $consignee['id']; ?>" class="op-link btn btn-sm btn-info" title="Create Job Report"><i class="glyphicon glyphicon-list-alt"></i></a>
                                                         |
                                                         <a href="arrange-consignees.php" class="btn btn-sm btn-primary"  title="Arrange">
                                                             <i class="glyphicon glyphicon-random"></i>

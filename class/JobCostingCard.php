@@ -110,6 +110,15 @@ class JobCostingCard {
 
         return $array_res;
     }
+    
+    public function getJobCostingCardIdByJob($job) {
+
+        $query = "SELECT * FROM `job_costing_card` WHERE `job`='". $job ."'";
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        
+        return $result;
+    }
 
     public function getMaxID() {
 
