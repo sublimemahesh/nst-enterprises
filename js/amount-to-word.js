@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    var due = $('#due').attr('due');
+    var final = $('#final').attr('final');
     
-    var amount = convertNumberToWords(due);
+    var amount = convertNumberToWords(final);
     $('#amount-in-word').html(amount);
     
     function convertNumberToWords(amount) {

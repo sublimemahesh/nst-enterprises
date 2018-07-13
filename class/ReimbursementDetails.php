@@ -100,7 +100,7 @@ class ReimbursementDetails {
         $result = $db->readQuery($query);
 
         if ($result) {
-            return $this->__construct($this->id);
+            return TRUE;
         } else {
             return FALSE;
         }

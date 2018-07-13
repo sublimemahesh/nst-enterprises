@@ -14,7 +14,7 @@ foreach ($_POST['data'] as $data) {
         $REIMBURSEMENTDETAILS->voucherNumber = $data['vno'];
         $REIMBURSEMENTDETAILS->amount = $data['amount'];
         $REIMBURSEMENTDETAILS->description = $data['description'];
-        $REIMBURSEMENTDETAILS->type = $REIMBURSEMENTITEMS->type;
+        $REIMBURSEMENTDETAILS->type = $data['type'];
 
         $result = $REIMBURSEMENTDETAILS->create();
     }

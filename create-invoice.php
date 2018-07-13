@@ -314,7 +314,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 </tr>
                                             </table>
 
-                                            <table class="table-amount-word">
+<!--                                            <table class="table-amount-word">
                                                 <tr>
                                                     <td class="col-2">Amount In Word Rs.</td>
                                                 </tr>
@@ -326,7 +326,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 <p><strong>
                                                         ALL CHEQUES SHOULD BE DRAWN IN FAVOUR OF 'N.S.T. ENTERPRISES' AND CROSSED A/C PAYEE N.S.T. ENTERPRISES
                                                     </strong></p>
-                                            </div>
+                                            </div>-->
                                             <input type="hidden" name="job_costing_card" id="job_costing_card"  value="<?php echo $jobcostingcard; ?>"/>
                                             <div class="col-sm-12 col-md-offset-4 form-btn tax-invoice-btn">
                                                 <input type="hidden" name="id" id="id" value="" />
