@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#savebutton").click(function () {
         var data = [];
-        var jobcostingcard, rid, vno, amount, description;
+        var jobcostingcard, rid, vno, amount, description, type;
 
         jobcostingcard = $(".jobcostingcard").val();
 
@@ -10,6 +10,7 @@ $(document).ready(function () {
             vno = $(this).find('.vno').val();
             amount = $(this).find('.amount').val();
             description = $(this).find('.description').val();
+            type = $(this).find('.rid').attr("type");
 
 
             data.push({
@@ -17,7 +18,8 @@ $(document).ready(function () {
                 rid: rid,
                 vno: vno,
                 amount: amount,
-                description: description
+                description: description,
+                type: type
             });
         });
 
