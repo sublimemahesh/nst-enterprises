@@ -146,5 +146,20 @@ class Job {
 
         return $array_res;
     }
+    
+    public function getJobsByDateRange($from, $to) {
+
+        $query = "SELECT * FROM `job` WHERE `createdAt` BETWEEN '". $from ."' AND '". $to ."' ORDER BY `id` ASC";
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
 
 }
