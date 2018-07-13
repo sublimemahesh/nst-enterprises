@@ -6,6 +6,7 @@ if ($_POST['option'] == 'UPDATEINVOICE') {
     $INVOICE->id = $_POST['invoice'];
     $INVOICE->settle = $_POST['settle'];
     $INVOICE->balance = $_POST['balance'];
+    $INVOICE->status = $_POST['status'];
 
     $result = $INVOICE->updateSettleAndBalance();
     header('Content-Type: application/json');

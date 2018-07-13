@@ -27,11 +27,12 @@ class Invoice {
     public $refund;
     public $settle;
     public $balance;
+    public $status;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due`,`refund`,`settle`,`balance` FROM `invoice` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due`,`refund`,`settle`,`balance`,`status` FROM `invoice` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -57,6 +58,7 @@ class Invoice {
             $this->refund = $result['refund'];
             $this->settle = $result['settle'];
             $this->balance = $result['balance'];
+            $this->status = $result['status'];
 
             return $this;
         }
@@ -184,7 +186,8 @@ class Invoice {
 
         $query = "UPDATE  `invoice` SET "
                 . "`settle` ='" . $this->settle . "', "
-                . "`balance` ='" . $this->balance . "' "
+                . "`balance` ='" . $this->balance . "', "
+                . "`status` ='" . $this->status . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
