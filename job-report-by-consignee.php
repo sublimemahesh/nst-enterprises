@@ -21,12 +21,10 @@ $CONSIGNEE = new Consignee($consigneeid);
     </head>
 
     <body>
-        <div id="wrapper">        
-            <div class="row">
-                <div class="col-lg-12">
+        <div id="wrapper">
+                <div class="col-lg-12 topic">
                     <h1><?php echo strtoupper($CONSIGNEE->name); ?></h1>
                 </div>
-            </div>
 
             <table width="100%" id="balance" border="1">
                 <thead>

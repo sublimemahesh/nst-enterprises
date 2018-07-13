@@ -111,6 +111,15 @@ class Account {
         return $result;
     }
     
+    public function getCurrentAccount($today) {
+
+        $query = "SELECT * FROM `account` WHERE `isCleared` = 0 AND '".$today."' between `start_date` AND `end_date` LIMIT 1";
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        return $result;
+    }
+    
     public function updateCurrentInvoiceId($today, $current_invoice_id) {
 
         $query = "UPDATE  `account` SET "

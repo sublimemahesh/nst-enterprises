@@ -106,8 +106,20 @@ $USER1 = new User($_SESSION['id']);
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="create-job-costing-card.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
-                                                        |
+                                                        <?php
+                                                        $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
+                                                        if ($JOBCOSTINGCARD['id']) {
+                                                            ?>
+                                                            <a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                            |
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <a href="create-job-costing-card.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                            |
+                                                            <?php
+                                                        }
+                                                        ?>
                                                         <a href="#" class="delete-job btn btn-sm btn-danger" data-id="<?php echo $job['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
