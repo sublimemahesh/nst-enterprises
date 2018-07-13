@@ -145,7 +145,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                                             <button type="button" class="btn btn-info savebtn" id="savebutton">Save Changes</button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <a href="#" target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a> 
+                                            <a href="job-report-by-consignee.php?id=<?php echo $consigneeid; ?>" target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a> 
                                         </div>
                                     </div>
                                 </div>

@@ -21,37 +21,37 @@ $(document).ready(function () {
                 $("#balance_" + i).attr("balance", balance);
                 $("#balance_" + i).html('(' + balance1 + ')');
                 $("#balance_" + i).attr("status", "refund");
-                
+
                 calculateBalance(new_rowid);
             } else {
-                
+
                 if (parseFloat(due) > parseFloat(settle)) {
-                    
+
                     balance = parseFloat(due) - parseFloat(settle);
                     balance1 = new Intl.NumberFormat().format(balance);
-                    
+
                     $("#balance_" + i).attr("balance", balance);
                     $("#balance_" + i).html(balance1);
                     $("#balance_" + i).attr("status", "due");
-                    
+
                     calculateBalance(new_rowid);
-                    
+
                 } else if (parseFloat(due) < parseFloat(settle)) {
                     balance = parseFloat(settle) - parseFloat(due);
                     balance1 = new Intl.NumberFormat().format(balance);
                     $("#balance_" + i).attr("balance", balance);
                     $("#balance_" + i).html('(' + balance1 + ')');
                     $("#balance_" + i).attr("status", "refund");
-                    
+
                     calculateBalance(new_rowid);
-                    
+
                 } else if (parseFloat(due) == parseFloat(settle)) {
                     balance = parseFloat(settle) - parseFloat(due);
                     balance1 = new Intl.NumberFormat().format(balance);
                     $("#balance_" + i).attr("balance", balance);
                     $("#balance_" + i).html(balance1);
                     $("#balance_" + i).attr("status", "settle");
-                    
+
                     calculateBalance(new_rowid);
                 }
             }
@@ -66,9 +66,9 @@ $(document).ready(function () {
                     $("#balance_" + i).attr("balance", balance);
                     $("#balance_" + i).html('(' + balance1 + ')');
                     $("#balance_" + i).attr("status", "refund");
-                    
+
                     calculateBalance(new_rowid);
-                    
+
                 } else if (status === 'due') {
                     if (parseFloat(prev_balance) > parseFloat(refund)) {
 
@@ -80,27 +80,27 @@ $(document).ready(function () {
                             $('#balance_' + i).attr('balance', balance);
                             $('#balance_' + i).html(balance1);
                             $("#balance_" + i).attr("status", "due");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         } else if (total < parseFloat(settle)) {
                             balance = parseFloat(settle) - total;
                             balance1 = new Intl.NumberFormat().format(balance);
                             $('#balance_' + i).attr('balance', balance);
                             $('#balance_' + i).html('(' + balance1 + ')');
                             $("#balance_" + i).attr("status", "refund");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         } else if (total == parseFloat(settle)) {
                             balance = parseFloat(settle) - total;
                             balance1 = new Intl.NumberFormat().format(balance);
                             $('#balance_' + i).attr('balance', balance);
                             $('#balance_' + i).html(balance1);
                             $("#balance_" + i).attr("status", "settle");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         }
 
                     } else if (parseFloat(prev_balance) < parseFloat(refund)) {
@@ -109,9 +109,9 @@ $(document).ready(function () {
                         $("#balance_" + i).attr("balance", balance);
                         $("#balance_" + i).html('(' + balance1 + ')');
                         $("#balance_" + i).attr("status", "refund");
-                        
+
                         calculateBalance(new_rowid);
-                        
+
                     } else if (parseFloat(prev_balance) == parseFloat(refund)) {
                         if (parseFloat(settle)) {
                             balance = parseFloat(settle);
@@ -119,22 +119,23 @@ $(document).ready(function () {
                             $("#balance_" + i).attr("balance", balance);
                             $("#balance_" + i).html('(' + balance1 + ')');
                             $("#balance_" + i).attr("status", "refund");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         } else {
                             balance = 0;
                             balance1 = new Intl.NumberFormat().format(balance);
                             $("#balance_" + i).attr("balance", balance);
                             $("#balance_" + i).html(balance1);
                             $("#balance_" + i).attr("status", "settle");
-                            
+
                             calculateBalance(new_rowid);
                         }
                     }
                 }
 
             } else {
+
                 if (status === 'refund') {
                     if (parseFloat(prev_balance) > parseFloat(due)) {
                         balance = parseFloat(prev_balance) - parseFloat(due) + parseFloat(settle);
@@ -142,9 +143,9 @@ $(document).ready(function () {
                         $("#balance_" + i).attr("balance", balance);
                         $("#balance_" + i).html('(' + balance1 + ')');
                         $("#balance_" + i).attr("status", "refund");
-                        
+
                         calculateBalance(new_rowid);
-                        
+
                     } else if (parseFloat(prev_balance) < parseFloat(due)) {
 
                         total = parseFloat(due) - parseFloat(prev_balance);
@@ -155,37 +156,59 @@ $(document).ready(function () {
                             $("#balance_" + i).attr("balance", balance);
                             $("#balance_" + i).html(balance1);
                             $("#balance_" + i).attr("status", "due");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         } else if (total < parseFloat(settle)) {
                             balance = parseFloat(settle) - total;
                             balance1 = new Intl.NumberFormat().format(balance);
                             $("#balance_" + i).attr("balance", balance);
                             $("#balance_" + i).html('(' + balance1 + ')');
                             $("#balance_" + i).attr("status", "refund");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         } else if (total == parseFloat(settle)) {
                             balance = parseFloat(settle) - total;
                             balance1 = new Intl.NumberFormat().format(balance);
                             $("#balance_" + i).attr("balance", balance);
                             $("#balance_" + i).html(balance1);
                             $("#balance_" + i).attr("status", "settle");
-                            
+
                             calculateBalance(new_rowid);
-                            
+
                         }
                     }
                 } else if (status === 'due') {
-                    balance = parseFloat(prev_balance) + parseFloat(due) - parseFloat(settle);
-                    balance1 = new Intl.NumberFormat().format(balance);
-                    $("#balance_" + i).attr("balance", balance);
-                    $("#balance_" + i).html(balance1);
-                    $("#balance_" + i).attr("status", "due");
-                    
-                    calculateBalance(new_rowid);
+
+                    total = parseFloat(prev_balance) + parseFloat(due);
+
+                    if (total > parseFloat(settle)) {
+                        balance = total - parseFloat(settle);
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html(balance1);
+                        $("#balance_" + i).attr("status", "due");
+
+                        calculateBalance(new_rowid);
+                    } else if (total < parseFloat(settle)) {
+                        balance = parseFloat(settle) - total;
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html('('+balance1+')');
+                        $("#balance_" + i).attr("status", "refund");
+
+                        calculateBalance(new_rowid);
+                    }  else if (total == parseFloat(settle)) {
+                        balance = parseFloat(settle) - total;
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html(balance1);
+                        $("#balance_" + i).attr("status", "settle");
+
+                        calculateBalance(new_rowid);
+                    }
+
 
                 }
             }
@@ -262,6 +285,7 @@ $(document).ready(function () {
                             calculateBalance(new_rowid);
 
                         } else if (total == parseFloat(settle)) {
+
                             new_balance = parseFloat(settle) - total;
                             new_balance1 = new Intl.NumberFormat().format(new_balance);
                             $('#balance_' + rowid).attr('balance', new_balance);
@@ -799,7 +823,7 @@ $(document).ready(function () {
                     }
 
                 } else if (status === 'settle') {
-                    balance = parseFloat(refund);
+                    balance = parseFloat(refund) + parseFloat(settle);
                     balance1 = new Intl.NumberFormat().format(balance);
                     $("#balance_" + i).attr("balance", balance);
                     $("#balance_" + i).html('(' + balance1 + ')');
@@ -848,11 +872,30 @@ $(document).ready(function () {
                     $("#balance_" + i).attr("status", "due");
 
                 } else if (status === 'settle') {
-                    balance = parseFloat(due);
-                    balance1 = new Intl.NumberFormat().format(balance);
-                    $("#balance_" + i).attr("balance", balance);
-                    $("#balance_" + i).html(balance1);
-                    $("#balance_" + i).attr("status", "due");
+
+                    if (parseFloat(due) > parseFloat(settle)) {
+                        balance = parseFloat(due) - parseFloat(settle);
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html(balance1);
+                        $("#balance_" + i).attr("status", "due");
+                    } else if (parseFloat(due) < parseFloat(settle)) {
+                        balance = parseFloat(settle) - parseFloat(due);
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html('(' + balance1 + ')');
+                        $("#balance_" + i).attr("status", "refund");
+                    } else if (parseFloat(due) == parseFloat(settle)) {
+                        balance = parseFloat(settle) - parseFloat(due);
+                        balance1 = new Intl.NumberFormat().format(balance);
+                        $("#balance_" + i).attr("balance", balance);
+                        $("#balance_" + i).html(balance1);
+                        $("#balance_" + i).attr("status", "settle");
+                    }
+
+
+
+
                 }
             }
 
@@ -865,6 +908,7 @@ $(document).ready(function () {
                 var invoiceid = $(this).attr('invoiceid');
                 var settle = $('.settle_' + invoiceid).val();
                 var balance = $('.balance_' + invoiceid).attr('balance');
+                var status = $('.balance_' + invoiceid).attr('status');
 
 
                 $.ajax({
@@ -875,6 +919,7 @@ $(document).ready(function () {
                         invoice: invoiceid,
                         settle: settle,
                         balance: balance,
+                        status: status,
                         option: 'UPDATEINVOICE'
                     },
                     success: function (result) {
