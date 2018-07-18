@@ -145,7 +145,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     <td></td>
                                                     <td class="td-border"></td>
                                                     <td class="row-padding-left v-align-middle">Job No</td>
-                                                    <td class="v-align-middle p-l-17"><?php echo $JOB->id; ?></td>
+                                                    <td class="v-align-middle p-l-17"><?php echo $JOB->reference_no; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td rowspan="3" class="text-to row-padding-left"> Consignment</td>

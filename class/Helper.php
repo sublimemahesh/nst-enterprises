@@ -43,6 +43,34 @@ class Helper {
   
         return $invoice;
     }
+    
+    public function jobNo() {
+
+        $month = date("m");
+        $today = date("Y-m-d");
+
+        $res = Account::getCurrentAccount($today);
+
+        $getStartYear = explode('-', $res['start_date']);
+        $startyear = $getStartYear[0];
+        
+        $getEndYear = explode('-', $res['end_date']);
+        $year = $getEndYear[0];
+        $endyear = substr( $year, -2);
+        
+
+        $maxid = $res['current_job_id'] + 1;
+
+
+        if ($maxid < 10) {
+            $last_number = '0' . $maxid;
+        } else {
+            $last_number = $maxid;
+        }
+        $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $last_number;
+  
+        return $job;
+    }
 
     public function calImgResize($newHeight, $width, $height) {
 

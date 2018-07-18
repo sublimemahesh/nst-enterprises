@@ -87,6 +87,7 @@ $jobs = Job::getJobsByConsignee($id);
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Job No</th>
                                                 <th>Consignment</th>
                                                 <th>Vessel or Flight</th>
                                                 <th>Date</th>
@@ -102,14 +103,29 @@ $jobs = Job::getJobsByConsignee($id);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
                                                     <td><?php echo $job['id']; ?></td>
+                                                    <td><?php echo $job['reference_no']; ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td><?php echo $VESSELANDFLIGHT->name; ?></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="manage-job-costing-cards-of-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
-                                                        |
+                                                        <?php
+                                                        $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
+                                                        if ($JOBCOSTINGCARD['id']) {
+                                                            ?>
+                                                            <a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                            |
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <a href="create-job-costing-card.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                            |
+                                                            <?php
+                                                        }
+                                                        ?>
+<!--                                                        <a href="manage-job-costing-cards-of-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                        |-->
                                                         <a href="#" class="delete-job btn btn-sm btn-danger" data-id="<?php echo $job['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>

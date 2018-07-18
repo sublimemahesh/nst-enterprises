@@ -19,11 +19,12 @@ class Job {
     public $debitNoteNumber;
     public $cusdecDate;
     public $createdAt;
+    public $reference_no;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`consignee`,`consignment`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate`,`createdAt` FROM `job` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`consignee`,`consignment`,`description`,`chassisNumber`,`vesselAndFlight`,`vesselAndFlightDate`,`copyReceivedDate`,`originalReceivedDate`,`debitNoteNumber`,`cusdecDate`,`createdAt`,`reference_no` FROM `job` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -41,12 +42,14 @@ class Job {
             $this->debitNoteNumber = $result['debitNoteNumber'];
             $this->cusdecDate = $result['cusdecDate'];
             $this->createdAt = $result['createdAt'];
+            $this->reference_no = $result['reference_no'];
 
             return $this;
         }
     }
 
     public function create() {
+        $jobnumber = Helper::jobNo();
 
         $query = "INSERT INTO `job` ("
                 . "`consignee`,"
@@ -57,7 +60,8 @@ class Job {
                 . "`vesselAndFlightDate`,"
                 . "`copyReceivedDate`,"
                 . "`originalReceivedDate`,"
-                . "`createdAt`) "
+                . "`createdAt`,"
+                . "`reference_no`) "
                 . "VALUES  ("
                 . "'" . $this->consignee . "',"
                 . "'" . $this->consignment . "',"
@@ -67,7 +71,8 @@ class Job {
                 . "'" . $this->vesselAndFlightDate . "',"
                 . "'" . $this->copyReceivedDate . "',"
                 . "'" . $this->originalReceivedDate . "',"
-                . "'" . $this->createdAt . "'"
+                . "'" . $this->createdAt . "',"
+                . "'" . $jobnumber . "'"
                 . ")";
 
         $db = new Database();

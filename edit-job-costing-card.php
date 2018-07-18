@@ -177,7 +177,7 @@ $MESSAGE = new Message($message);
                                         
                                         <a href="create-invoice.php?id=<?php echo $id; ?>" class="op-link btn btn-lg  btn-primary" title="Tax Invoice"><i class="glyphicon glyphicon-list-alt"></i></a>
                                         
-                                        <a href="#" class="delete-job-costing-card btn btn-lg btn-danger" data-id="<?php echo $id; ?>" place="edit" title="Delete">
+                                        <a href="#" class="delete-job-costing-card btn btn-lg btn-danger" data-id="<?php echo $id; ?>" title="Delete">
                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                         </a>
                                     </div>
