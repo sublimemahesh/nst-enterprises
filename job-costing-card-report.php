@@ -43,7 +43,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </tr>
                 <tr>
                     <td>INVOICE NUMBER:</td>
-                    <td class="td-style"></td>
+                    <td class="td-style"><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                 </tr>
                 <tr>
                     <td>CONSIGNEE</td>

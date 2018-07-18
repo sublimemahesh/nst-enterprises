@@ -10,7 +10,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#name-id').val() || $('#name-id').val().length === 0) {
             swal({
                 title: "Error!",
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
             swal({
                 title: "Error!",
@@ -37,16 +37,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
-        } else if (!$('#description').val() || $('#description').val().length === 0) {
-            swal({
-                title: "Error!",
-                text: "Please enter the description",
-                type: 'error',
-                timer: 2000,
-                showConfirmButton: false
-            });
-            return false
+            return false;
         } else if (!$('#chassisNumber').val() || $('#chassisNumber').val().length === 0) {
             swal({
                 title: "Error!",
@@ -55,7 +46,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
@@ -73,7 +64,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else {
             return true;
         }
@@ -108,7 +99,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
             swal({
                 title: "Error!",
@@ -117,16 +108,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
-        } else if (!$('#description').val() || $('#description').val().length === 0) {
-            swal({
-                title: "Error!",
-                text: "Please enter the description",
-                type: 'error',
-                timer: 2000,
-                showConfirmButton: false
-            });
-            return false
+            return false;
         } else if (!$('#chassisNumber').val() || $('#chassisNumber').val().length === 0) {
             swal({
                 title: "Error!",
@@ -135,7 +117,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
@@ -153,7 +135,7 @@ $(document).ready(function () {
                 timer: 2000,
                 showConfirmButton: false
             });
-            return false
+            return false;
         } else {
             return true;
         }

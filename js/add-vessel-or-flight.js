@@ -34,9 +34,9 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     swal({
-                        title: "Error!",
+                        title: "Success!",
                         text: "Your data was saved successfully.",
-                        type: 'error',
+                        type: 'success',
                         timer: 2000,
                         showConfirmButton: false
                     });

@@ -21,7 +21,6 @@ if (isset($_POST['create-job'])) {
     $VALID->check($JOB, [
         'consignee' => ['required' => TRUE],
         'consignment' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
         'chassisNumber' => ['required' => TRUE],
         'vesselAndFlight' => ['required' => TRUE],
         'createdAt' => ['required' => TRUE]
@@ -69,7 +68,6 @@ if (isset($_POST['edit-job'])) {
     $VALID->check($JOB, [
         'consignee' => ['required' => TRUE],
         'consignment' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
         'chassisNumber' => ['required' => TRUE],
         'vesselAndFlight' => ['required' => TRUE]
     ]);
