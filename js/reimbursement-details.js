@@ -9,7 +9,7 @@ $(document).ready(function () {
         data: {jobcostingcard: jobcostingcard, option: 'GETVALUE'},
         success: function (result) {
             if (result.length === 0) {
-                $('#savebutton').removeClass('hidden');
+                
             } else {
                 $.each(result, function (key) {
                     $('.vno-' + this.reimbursementItem).val(this.voucherNumber);
@@ -18,7 +18,6 @@ $(document).ready(function () {
                     $('.id-' + this.reimbursementItem).val(this.id);
                 });
 
-                $('#editbutton').removeClass('hidden');
 
             }
         }

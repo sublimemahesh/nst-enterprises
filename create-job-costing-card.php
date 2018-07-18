@@ -8,9 +8,10 @@ $job = '';
 if (isset($_GET['id'])) {
     $job = $_GET['id'];
 }
-
+$date = date('Y-m-d');
 $invoicenumber = Helper::invoiceNo();
 //dd($invoicenumber);
+$REIMBURSEMENTITEMS = ReimbursementItem::all();
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +39,16 @@ $invoicenumber = Helper::invoiceNo();
         <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <link href="css/responsive-table.css" rel="stylesheet" type="text/css"/>
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+
+        <style>
+            .table tbody tr td .form-control {
+                margin-bottom: 0px;
+                height: 26px;
+                padding: 5px 12px;
+            }
+        </style>
 
     </head>
 
@@ -64,15 +74,40 @@ $invoicenumber = Helper::invoiceNo();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Costing Cards</h1>
+                            <h1 class="page-header font-header">Job Costing Card</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
+                                
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="col-md-3">Date</label>
+                                                <input type="text" id="date" class="form-control col-md-9" placeholder="Enter date" name="date" autocomplete="off" value="<?php echo $date; ?>" disabled="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Invoice Number</label>
+                                                <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php echo $invoicenumber; ?>" disabled="" style="margin-bottom: 0px;">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Create Job Costing Card
+                                    Reimbursement Details
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -81,27 +116,50 @@ $invoicenumber = Helper::invoiceNo();
                                         </a>
                                     </li>
                                 </ul>
+
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <form   method="post" action="post-and-get/job-costing-card.php">
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Job</label>
-                                                    <input type="number" class="form-control col-md-9" placeholder="Enter job number" name="job" id="job" value="<?php echo $job; ?>">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Date</label>
-                                                    <input type="text" id="datepicker1" class="form-control col-md-9" placeholder="Enter date" name="jobdate" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Invoice Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php echo $invoicenumber; ?>">
-                                                </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
-                                                    <button type="submit" name="create-job-costing-card" id="create-job-costing-card" class="btn btn-info">Save Job Costing Card</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    <!--Table-->
+                                    <table class="table table-bordered">
+
+                                        <!--Table head-->
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th class="text-center table-td-width">V/NO</th>
+                                                <th class="text-center table-td-width">AMOUNT</th>
+                                                <th class="text-center table-td-width">DESCRIPTION</th>
+                                            </tr>
+                                        </thead>
+                                        <!--Table head-->
+
+                                        <!--Table body-->
+                                        <tbody>
+
+                                            <?php
+                                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                                                ?>
+                                                <tr>
+                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                            <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+
+
+                                        </tbody>
+                                        <!--Table body-->
+
+                                    </table>
+                                    <!--Table-->
+                                    <input type="hidden" id="job" value="<?php echo $job; ?>">
+                                    <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
+                                    <div class="col-sm-12 col-md-offset-2 form-btn">
+                                        <button type="button" class="btn btn-info savebtn" id="savebutton">Save Reimbursement Details</button>
+                                        <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,11 +181,8 @@ $invoicenumber = Helper::invoiceNo();
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/job-costing-card.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        <script>
-            $(function () {
-                $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
-            });
-        </script>
+        
+        <script src="js/create-reimbursement-details.js" type="text/javascript"></script>
 
     </body>
 

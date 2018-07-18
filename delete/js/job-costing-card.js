@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('.delete-job-costing-card').click(function () {
 
         var id = $(this).attr("data-id");
+        var place = $(this).attr("place");
 
         swal({
             title: "Are you sure?",
@@ -30,6 +31,10 @@ $(document).ready(function () {
                         });
 
                         $('#row_' + id).remove();
+                        
+                        if(place === 'edit') {
+                            window.location.replace("manage-job-costing-cards.php");
+                        }
 
                     }
                 }
