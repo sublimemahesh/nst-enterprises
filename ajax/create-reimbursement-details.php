@@ -17,11 +17,15 @@ foreach ($_POST['data'] as $data) {
         $REIMBURSEMENTDETAILS->type = $data['type'];
 
         $result = $REIMBURSEMENTDETAILS->create();
+        
+        if($result) {
+            $jcc = $result->jobCostingCard;
+        }
     }
 }
 
 
 header('Content-Type: application/json');
 
-echo json_encode($result);
+echo json_encode($jcc);
 exit();

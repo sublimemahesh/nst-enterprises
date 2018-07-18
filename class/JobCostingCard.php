@@ -49,7 +49,7 @@ class JobCostingCard {
         if ($result) {
             $last_id = mysql_insert_id();
 
-            return $this->__construct($last_id);
+            return $last_id;
         } else {
             return FALSE;
         }

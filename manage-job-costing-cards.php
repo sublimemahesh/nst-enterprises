@@ -107,8 +107,6 @@ $MESSAGE = new Message($message);
                                                     <td class="text-center" style="width: 250px"> 
                                                         <a href="edit-job-costing-card.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit Job Costing Card"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="create-reimbursement-details.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-info" title="Reimbursement Details"><i class="glyphicon glyphicon-list"></i></a>
-                                                        |
                                                         <a href="job-costing-card-report.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-duplicate"></i></a>
                                                         |
                                                         <a href="create-invoice.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-primary" title="Tax Invoice"><i class="glyphicon glyphicon-list-alt"></i></a>
