@@ -27,7 +27,12 @@ if (isset($_POST['create-job'])) {
     ]);
 
     if ($VALID->passed()) {
-        $JOB->create();
+        $result = $JOB->create();
+        if($result) {
+            $id = $result->id;
+            $today = date("Y-m-d");
+            $res = Account::updateCurrentJobId($today,$id);
+        }
 
         if (!isset($_SESSION)) {
             session_start();

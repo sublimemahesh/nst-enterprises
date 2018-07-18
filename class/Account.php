@@ -134,5 +134,20 @@ class Account {
             return $result;
         
     }
+    
+    public function updateCurrentJobId($today, $current_job_id) {
+
+        $query = "UPDATE  `account` SET "
+                . "`current_job_id` ='" . $current_job_id . "' "
+                . "WHERE `isCleared` = 0 AND '".$today."' between `start_date` AND `end_date`";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        
+            return $result;
+        
+    }
 
 }

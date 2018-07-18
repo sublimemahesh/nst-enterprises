@@ -3,6 +3,9 @@ $(document).ready(function () {
 
         var id = $(this).attr("data-id");
         var place = $(this).attr("place");
+        if (place === 'consignee') {
+            var consignee = $(this).attr("consignee");
+        }
 
         swal({
             title: "Are you sure?",
@@ -31,9 +34,12 @@ $(document).ready(function () {
                         });
 
                         $('#row_' + id).remove();
-                        
-                        if(place === 'edit') {
+
+                        if (place === 'edit') {
                             window.location.replace("manage-job-costing-cards.php");
+                        } else if (place === 'consignee') {
+
+                            window.location.replace("manage-consignee-jobs.php?id="+consignee);
                         }
 
                     }

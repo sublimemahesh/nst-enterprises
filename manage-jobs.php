@@ -82,6 +82,7 @@ $USER1 = new User($_SESSION['id']);
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Job No</th>
                                                 <th>Consignee</th>
                                                 <th>Consignment</th>
                                                 <th>Vessel or Flight</th>
@@ -99,6 +100,7 @@ $USER1 = new User($_SESSION['id']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
                                                     <td><?php echo $job['id']; ?></td>
+                                                    <td><?php echo $job['reference_no']; ?></td>
                                                     <td><?php echo $CONSIGNEE->name; ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td><?php echo $VESSELANDFLIGHT->name; ?></td>
