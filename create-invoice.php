@@ -220,18 +220,20 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
 
                                                     if ($reimbursementdetails) {
-                                                        if ($reimbursementdetails['invoice_amount']) {
-                                                            $amount = $reimbursementdetails['invoice_amount'];
-                                                        } else {
-                                                            $amount = $reimbursementdetails['amount'];
+                                                        if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
+                                                            if ($reimbursementdetails['invoice_amount']) {
+                                                                $amount = $reimbursementdetails['invoice_amount'];
+                                                            } else {
+                                                                $amount = $reimbursementdetails['amount'];
+                                                            }
+                                                            ?>
+                                                            <tr class="reimbursement-details">
+                                                                <td></td>        
+                                                                <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>        
+                                                            </tr>
+                                                            <?php
                                                         }
-                                                        ?>
-                                                        <tr class="reimbursement-details">
-                                                            <td></td>        
-                                                            <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>        
-                                                        </tr>
-                                                        <?php
                                                     }
                                                 }
                                                 ?>
@@ -262,18 +264,20 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
 
                                                     if ($reimbursementdetails) {
-                                                        if ($reimbursementdetails['invoice_amount']) {
-                                                            $amount = $reimbursementdetails['invoice_amount'];
-                                                        } else {
-                                                            $amount = $reimbursementdetails['amount'];
+                                                        if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
+                                                            if ($reimbursementdetails['invoice_amount']) {
+                                                                $amount = $reimbursementdetails['invoice_amount'];
+                                                            } else {
+                                                                $amount = $reimbursementdetails['amount'];
+                                                            }
+                                                            ?>
+                                                            <tr class="delivery-details">
+                                                                <td></td>        
+                                                                <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right" id="did-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>
+                                                            </tr>
+                                                            <?php
                                                         }
-                                                        ?>
-                                                        <tr class="delivery-details">
-                                                            <td></td>        
-                                                            <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right" id="did-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>
-                                                        </tr>
-                                                        <?php
                                                     }
                                                 }
                                                 ?>
@@ -364,7 +368,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script src="js/invoice-details.js" type="text/javascript"></script>
         <script src="js/create-invoice.js" type="text/javascript"></script>
         <script src="js/invoice.js" type="text/javascript"></script>
-        
+
 
         <script>
             $(function () {
