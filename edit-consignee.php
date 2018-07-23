@@ -83,7 +83,7 @@ $CONSIGNEE = new Consignee($id);
                                             <form   method="post" action="post-and-get/consignee.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" value="<?php echo $CONSIGNEE->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" value="<?php echo $CONSIGNEE->name; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Address</label>
@@ -91,15 +91,15 @@ $CONSIGNEE = new Consignee($id);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">VAT Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber" value="<?php echo $CONSIGNEE->vatNumber; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber" value="<?php echo $CONSIGNEE->vatNumber; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Contact Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber" value="<?php echo $CONSIGNEE->contactNumber; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber" value="<?php echo $CONSIGNEE->contactNumber; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email" value="<?php echo $CONSIGNEE->email; ?>">
+                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email" value="<?php echo $CONSIGNEE->email; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>

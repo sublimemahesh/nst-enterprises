@@ -119,7 +119,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     <td rowspan="4" class="col-2 text-to row-padding-left" >To. </td>
                                                     <td rowspan="4" class="col-3 td-border text-to"><?php echo $CONSIGNEE->name . '<br />' . $CONSIGNEE->address; ?></td>
                                                     <td class="col-4 row-padding-left v-align-middle">Vat Reg No</td>
-                                                    <td class="col-5"><input type="text" class="form-control form-control-border" name="vat_reg_no" id="vat_reg_no" value="" /></td>
+                                                    <td class="col-5"><input type="text" class="form-control form-control-border" name="vat_reg_no" id="vat_reg_no" value=""  autocomplete="off" /></td>
 
                                                 </tr>
                                                 <tr>
@@ -151,7 +151,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     <td rowspan="3" class="text-to row-padding-left"> Consignment</td>
                                                     <td rowspan="3" class="td-border text-to"><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td class="row-padding-left v-align-middle">Cleared Date</td>
-                                                    <td><input type="text" class="form-control form-control-border" id="datepicker1" name="cleared_date" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border" id="datepicker1" name="cleared_date" value="" autocomplete="off" /></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
@@ -160,20 +160,20 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 </tr>
                                                 <tr>
                                                     <td class="row-padding-left v-align-middle">Gross Weight</td>
-                                                    <td><input type="text" class="form-control form-control-border" name="gross_weight" id="gross_weight" value="" /></td>
+                                                    <td><input type="text" class="form-control form-control-border" name="gross_weight" id="gross_weight" value="" autocomplete="off" /></td>
 
                                                 </tr>
                                                 <tr class="">
                                                     <td class="row-padding-left v-align-middle">Vessel/Flight</td>
                                                     <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name; ?></td>
                                                     <td class="row-padding-left v-align-middle">Volume</td>
-                                                    <td class=""><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" /></td>
+                                                    <td class=""><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" autocomplete="off" /></td>
                                                 </tr>
                                                 <tr class="tr-border">
                                                     <td class="row-padding-bottom row-padding-left v-align-middle"></td>
                                                     <td class="td-border td-padding row-padding-bottom v-align-middle"></td>
                                                     <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
-                                                    <td class="row-padding-bottom"><input type="text" class="form-control form-control-border" name="cusdec_no" id="cusdec_no" value="" /></td>
+                                                    <td class="row-padding-bottom"><input type="text" class="form-control form-control-border" name="cusdec_no" id="cusdec_no" value="" autocomplete="off" /></td>
                                                 </tr>
 
                                                 <tr>
@@ -184,17 +184,17 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 <tr>
                                                     <td></td>
                                                     <td colspan="2" class="td-border row-padding-left v-align-middle">AGENCY FEES</td>
-                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="agency_fees" id="agency_fees" value="" /></td>        
+                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="agency_fees" id="agency_fees" value="" autocomplete="off" /></td>        
                                                 </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td colspan="2" class="td-border row-padding-left v-align-middle">DOCUMENTATION</td>
-                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="documentation" id="documentation" value="" /></td>        
+                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="documentation" id="documentation" value="" autocomplete="off" /></td>        
                                                 </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td colspan="2" class="td-border row-padding-left v-align-middle">VAT 15%</td>
-                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="vat" id="vat" vat="" value="" disabled="" /></td>       
+                                                    <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="vat" id="vat" vat="" value="" disabled="" autocomplete="off" /></td>       
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3" class="td-tax-invoice-total row-padding-right">Tax Invoice Total</td>
@@ -230,7 +230,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                             <tr class="reimbursement-details">
                                                                 <td></td>        
                                                                 <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>        
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" autocomplete="off" /></td>        
                                                             </tr>
                                                             <?php
                                                         }
@@ -274,7 +274,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                             <tr class="delivery-details">
                                                                 <td></td>        
                                                                 <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right" id="did-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" /></td>
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right" id="did-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" autocomplete="off" /></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -306,7 +306,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                                                 <tr>
                                                     <td class="td-border td-border-left v-align-middle">Advance</td>
-                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="" name="advance" value="" /></td>
+                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="" name="advance" value="" autocomplete="off" /></td>
                                                 </tr>
                                                 <tr id="tr-due" class="hidden">
                                                     <td class="td-border td-border1 td-border-left">Due</td>

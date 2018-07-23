@@ -130,7 +130,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                                                         echo $INVOICE['refund'];
                                                     }
                                                     ?>"><?php echo $INVOICE['refund']; ?></td>
-                                                    <td class="text-right"><input type="text" name="settle" id="settle_<?php echo $i; ?>" settle="<?php echo $INVOICE['settle']; ?>" class="settle text-right settle_<?php echo $INVOICE['id']; ?>" invoice="<?php echo $INVOICE['id']; ?>" rowid="<?php echo $i; ?>" value="<?php echo $INVOICE['settle']; ?>"/></td>
+                                                    <td class="text-right"><input type="text" name="settle" id="settle_<?php echo $i; ?>" settle="<?php echo $INVOICE['settle']; ?>" class="settle text-right settle_<?php echo $INVOICE['id']; ?>" invoice="<?php echo $INVOICE['id']; ?>" rowid="<?php echo $i; ?>" value="<?php echo $INVOICE['settle']; ?>" autocomplete="off" /></td>
                                                     <td class="text-right balance_<?php echo $INVOICE['id']; ?>" id="balance_<?php echo $i; ?>" status="" invoice="<?php echo $INVOICE['id']; ?>" balance=""></td>
                                                 </tr>
                                                 <?php

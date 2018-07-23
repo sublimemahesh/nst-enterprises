@@ -79,23 +79,23 @@ $USER1 = new User($_SESSION['id']);
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">User Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter User Name" name="username" id="username">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter User Name" name="username" id="username" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Password</label>
-                                                    <input type="password" class="form-control col-md-9" placeholder="Enter Password" name="password" id="password">
+                                                    <input type="password" class="form-control col-md-9" placeholder="Enter Password" name="password" id="password" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Confirm Password</label>
-                                                    <input type="password" class="form-control col-md-9" placeholder="Confirm Password" name="cpassword" id="cpassword">
+                                                    <input type="password" class="form-control col-md-9" placeholder="Confirm Password" name="cpassword" id="cpassword" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Profile Picture</label>

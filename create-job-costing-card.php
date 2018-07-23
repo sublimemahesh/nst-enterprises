@@ -140,9 +140,9 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
                                                 ?>
                                                 <tr>
                                                     <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
-                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" /></td>
+                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
                                             <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
                                             </tr>
                                             <?php

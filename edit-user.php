@@ -85,15 +85,15 @@ $USER = new User($id);
                                             <form   method="post" action="post-and-get/user.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $USER->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $USER->name; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Username</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Username" name="username" id="username" value="<?php echo $USER->username; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Username" name="username" id="username" value="<?php echo $USER->username; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email" value="<?php echo $USER->email; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Email" name="email" id="email" value="<?php echo $USER->email; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Profile Picture</label>
