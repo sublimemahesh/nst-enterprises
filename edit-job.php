@@ -122,7 +122,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Chassis Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Chassis number" name="chassisNumber" id="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Chassis number" name="chassisNumber" id="chassisNumber" value="<?php echo $JOB->chassisNumber; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
@@ -149,7 +149,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Debit Note Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber" value="<?php echo $JOB->debitNoteNumber; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber" value="<?php echo $JOB->debitNoteNumber; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Cusdec Date</label>

@@ -84,7 +84,7 @@ $CONSIGNMENT = new Consignment($id);
                                             <form   method="post" action="post-and-get/consignment.php" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $CONSIGNMENT->name; ?>">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Name" name="name" id="name" value="<?php echo $CONSIGNMENT->name; ?>" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>

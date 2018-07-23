@@ -82,19 +82,19 @@ $USER1 = new User($_SESSION['id']);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Address</label>
-                                                    <textarea class="form-control col-md-9" placeholder="Enter address" name="address" id="address"></textarea>
+                                                    <textarea class="form-control col-md-9" placeholder="Enter address" name="address" id="address" autocomplete="off"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">VAT Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter VAT number" name="vatNumber" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Contact Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter contact number" name="contactNumber" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Email</label>
-                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email">
+                                                    <input type="email" class="form-control col-md-9" placeholder="Enter email" name="email" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Description</label>

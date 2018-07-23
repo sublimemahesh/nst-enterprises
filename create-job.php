@@ -115,7 +115,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Chassis Number</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter chassis number" name="chassisNumber" id="chassisNumber">
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter chassis number" name="chassisNumber" id="chassisNumber" autocomplete="off">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
