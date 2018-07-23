@@ -237,6 +237,7 @@
                 <li>
                     <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
+                <!--Job-->
                 <li>
                     <a href="#"><i class="fa fa-briefcase fa-fw"></i> Job<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -249,9 +250,25 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li> 
+                <!--//Job-->
+                <!--Job Costing Card-->
                 <li>
                     <a href="manage-job-costing-cards.php"><i class="fa fa-file fa-fw"></i> Job Coasting Card</a>
                 </li>
+                <!--//Job Costing Card-->
+                <!--Reports-->
+                <li>
+                    <a href="#"><i class="fa fa-file fa-fw"></i> Reports<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-report-of-job-register.php">Job Register</a>
+                        </li>
+                        
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!--//Reports-->
+                <!--Consignee-->
                 <li>
                     <a href="#"><i class="fa fa-male fa-fw"></i> Consignee<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -264,6 +281,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <!--//Consignee-->
+                <!--Consignment-->
                 <li>
                     <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Consignment<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -276,6 +295,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <!--//Consignment-->
+                <!--//Vessel or Flight-->
                 <li>
                     <a href="#"><i class="fa fa-plane fa-fw"></i> Vessel or Flight<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -288,6 +309,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <!--//Vessel or Flight-->
+                <!--User-->
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -300,16 +323,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-file fa-fw"></i> Reports<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="create-report-of-job-register.php">Job Register</a>
-                        </li>
-                        
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+                <!--//User-->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
