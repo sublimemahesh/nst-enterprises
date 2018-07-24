@@ -206,6 +206,7 @@ $MESSAGE = new Message($message);
         <!--<script src="js/create-reimbursement-details.js" type="text/javascript"></script>-->
         <script src="js/edit-reimbursement-details.js" type="text/javascript"></script>
         <script src="delete/js/job-costing-card.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
     </body>
 

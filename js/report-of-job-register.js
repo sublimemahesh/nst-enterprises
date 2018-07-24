@@ -19,6 +19,7 @@ $(document).ready(function () {
                     option: 'GETJOBSBYSTARTANDENDDATE'
                 },
                 success: function (jobs) {
+                    callLoader();
                     var html;
                     if (jobs) {
                         $.each(jobs, function (key, job) {
@@ -90,7 +91,7 @@ $(document).ready(function () {
     $("#from").change(function () {
         var from = $("#from").val();
         var to = $("#to").val();
-        
+        callLoader();
         $.ajax({
             type: 'POST',
             url: 'ajax/report-of-job-register.php',
@@ -101,7 +102,7 @@ $(document).ready(function () {
                 option: 'GETJOBSBYSTARTANDENDDATE'
             },
             success: function (jobs) {
-                
+
                 var html;
                 if (jobs.length != 0) {
                     $.each(jobs, function (key, job) {
@@ -168,11 +169,11 @@ $(document).ready(function () {
 
         });
     });
-    
+
     $("#to").change(function () {
         var from = $("#from").val();
         var to = $("#to").val();
-        
+        callLoader();
         $.ajax({
             type: 'POST',
             url: 'ajax/report-of-job-register.php',
@@ -183,7 +184,7 @@ $(document).ready(function () {
                 option: 'GETJOBSBYSTARTANDENDDATE'
             },
             success: function (jobs) {
-                
+
                 var html;
                 if (jobs.length != 0) {
                     $.each(jobs, function (key, job) {
@@ -250,12 +251,29 @@ $(document).ready(function () {
 
         });
     });
-    
+
     $("#print-btn").click(function () {
         var from = $("#from").val();
         var to = $("#to").val();
-        window.location.replace("report-of-job-register.php?from="+from+"&to="+to);
-    })
+        window.location.replace("report-of-job-register.php?from=" + from + "&to=" + to);
+    });
+
+    function callLoader() {
+        $.loadingBlockShow({
+            imgPath: 'plugins/loader/img/default.svg',
+            style: {
+                position: 'fixed',
+                width: '100%',
+                height: '100%',
+                background: 'rgba(0, 0, 0, .6)',
+                left: 0,
+                top: 0,
+                zIndex: 10000
+            }
+        });
+
+        setTimeout($.loadingBlockHide, 5000);
+    };
 
 });
 

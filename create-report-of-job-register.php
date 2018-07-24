@@ -38,6 +38,7 @@ $USER1 = new User($_SESSION['id']);
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
 
+
     </head>
 
     <body>
@@ -97,7 +98,7 @@ $USER1 = new User($_SESSION['id']);
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                         </tbody>
                                     </table>
 
@@ -131,8 +132,9 @@ $USER1 = new User($_SESSION['id']);
         <!-- Sweetalerts -->
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script src="delete/js/consignee.js" type="text/javascript"></script>
-        <script src="js/job-report-by-consignee.js" type="text/javascript"></script>
+        <!--<script src="js/job-report-by-consignee.js" type="text/javascript"></script>-->
         <script src="js/report-of-job-register.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
@@ -147,6 +149,8 @@ $USER1 = new User($_SESSION['id']);
                 $("#to").datepicker({dateFormat: 'yy-mm-dd'});
             });
         </script>
+
+       
     </body>
 
 </html>

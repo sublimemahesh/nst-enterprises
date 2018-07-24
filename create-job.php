@@ -145,7 +145,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                     <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn">Save Job</button>
                                                 </div>
                                             </form>
-
+                                            
                                             <?php include 'modal.php'; ?>
                                         </div>
                                     </div>
@@ -173,6 +173,7 @@ $createdAt = date('Y-m-d H:i:s');
         <script src="js/add-vessel-or-flight.js" type="text/javascript"></script>
         <script src="js/job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
         <script>
             $(function () {
