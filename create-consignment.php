@@ -109,6 +109,7 @@ $USER1 = new User($_SESSION['id']);
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/consignment.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
     </body>
 

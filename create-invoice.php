@@ -368,7 +368,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script src="js/invoice-details.js" type="text/javascript"></script>
         <script src="js/create-invoice.js" type="text/javascript"></script>
         <script src="js/invoice.js" type="text/javascript"></script>
-
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
         <script>
             $(function () {

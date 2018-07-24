@@ -141,6 +141,7 @@ $USER = new User($id);
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/user.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
         
     </body>
 

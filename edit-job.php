@@ -189,6 +189,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
         <script src="js/job.js" type="text/javascript"></script>
         <script src="js/edit-job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});

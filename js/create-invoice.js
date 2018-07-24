@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#savebutton").click(function () {
-
+        callLoader();
         var jobcostingcard = $("#job_costing_card").val();
         var createdAt = $("#createdAt").text();
         var vat_reg_no = $("#vat_reg_no").val();
@@ -60,7 +60,7 @@ $(document).ready(function () {
     });
 
     $("#editbutton").click(function () {
-
+        callLoader();
         var id = $("#id").val();
         var createdAt = $("#createdAt").text();
         var vat_reg_no = $("#vat_reg_no").val();
@@ -78,7 +78,7 @@ $(document).ready(function () {
         var advance = $("#advance").attr('advance');
         var due = $("#due").attr('due');
         var refund = $("#refund").attr('refund');
-
+        
 
         $.ajax({
             type: 'POST',
@@ -119,6 +119,23 @@ $(document).ready(function () {
         });
 
     });
+    function callLoader() {
+        $.loadingBlockShow({
+            imgPath: 'plugins/loader/img/default.svg',
+            style: {
+                position: 'fixed',
+                width: '100%',
+                height: '100%',
+                background: 'rgba(0, 0, 0, .6)',
+                left: 0,
+                top: 0,
+                zIndex: 10000
+            }
+        });
+
+        setTimeout($.loadingBlockHide, 2000);
+    }
+    ;
 });
 
 

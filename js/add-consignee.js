@@ -19,6 +19,7 @@ $(document).ready(function () {
             var description = $("#description").val();
 
 
+
             $.ajax({
                 type: 'POST',
                 url: 'ajax/create-consignee.php',
@@ -33,7 +34,7 @@ $(document).ready(function () {
                     option: 'ADDCONSIGNEE'
                 },
                 success: function (result) {
-
+                    
                     swal({
                         title: "Success!",
                         text: "Your data was saved successfully.",
@@ -54,6 +55,9 @@ $(document).ready(function () {
         }
 
     });
+
+    
+
 
 });
 

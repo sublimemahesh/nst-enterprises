@@ -133,6 +133,7 @@ $PERMISSIONS = unserialize($USER->permission);
         <script src="plugins/nestable/jquery.nestable.js" type="text/javascript"></script>
         
         <script src="js/user-permissions.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
 
     </body>
 
