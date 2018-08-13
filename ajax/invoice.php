@@ -24,6 +24,7 @@ if ($_POST['option'] == 'ADDINVOICE') {
     $INVOICE->refund = $_POST['refund'];
 
     $result = $INVOICE->create();
+    
     header('Content-Type: application/json');
 
     echo json_encode($result);
@@ -76,14 +77,14 @@ if ($_POST['option'] == 'GETVALUE') {
 
     $result = $INVOICE->getInvoiceByJobCostingCard($_POST["jobcostingcard"]);
     
-    if(!$result) {
-        $res = 0;
-    } else {
-        $res = $result;
-    }
+//    if(!$result) {
+//        $res = 0;
+//    } else {
+//        $res = $result;
+//    }
+    
     header('Content-Type: application/json');
-
-    echo json_encode($res);
+    
+    echo json_encode($result);
     exit();
 }
-

@@ -5,10 +5,10 @@ $(document).ready(function () {
     $.ajax({
         type: 'POST',
         url: 'ajax/invoice.php',
-        dataType: "json",
+        dataType: 'json',
         data: {jobcostingcard: jobcostingcard, option: 'GETVALUE'},
         success: function (result) {
-            if (result === 0) {
+            if (result === false) {
                 $('#savebutton').removeClass('hidden');
             } else {
                 $('#id').val(result.id);

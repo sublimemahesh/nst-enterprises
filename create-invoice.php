@@ -218,7 +218,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 <?php
                                                 foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
                                                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
-
+                                                    
                                                     if ($reimbursementdetails) {
                                                         if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
                                                             if ($reimbursementdetails['invoice_amount']) {
@@ -226,6 +226,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                             } else {
                                                                 $amount = $reimbursementdetails['amount'];
                                                             }
+//                                                            dd($amount);
                                                             ?>
                                                             <tr class="reimbursement-details">
                                                                 <td></td>        

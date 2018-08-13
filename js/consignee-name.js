@@ -115,7 +115,7 @@ $(document).ready(function () {
 
 
     $('#btn-consignee').click(function (e) {
-        e.preventDpreventDefault();
+        e.preventDefault();
         var name = $('#name-id').val();
 
         $.ajax({
