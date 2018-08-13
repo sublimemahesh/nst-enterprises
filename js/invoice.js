@@ -53,8 +53,11 @@ $(document).ready(function () {
         advance = 0;
     }
 
+    
+
     var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
     var total1 = new Intl.NumberFormat().format(total);
+    
 
     $('#payable-amount').attr("amount", total);
     $('#payable-amount').html(total1);

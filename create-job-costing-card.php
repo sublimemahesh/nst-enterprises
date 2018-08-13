@@ -183,6 +183,8 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         
         <script src="js/create-reimbursement-details.js" type="text/javascript"></script>
+        <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
+        
 
     </body>
 
