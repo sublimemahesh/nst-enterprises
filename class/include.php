@@ -17,6 +17,7 @@ include_once(dirname(__FILE__) . '/Helper.php');
 include_once(dirname(__FILE__) . '/UserPermission.php');
 include_once(dirname(__FILE__) . '/Invoice.php');
 include_once(dirname(__FILE__) . '/Account.php');
+include_once(dirname(__FILE__) . '/CostingType.php');
 
 
 function dd($data) {

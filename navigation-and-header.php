@@ -324,6 +324,20 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <!--//User-->
+                <!--Costing Items-->
+                <li>
+                    <a href="#"><i class="fa fa-list fa-fw"></i> Costing Items<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="manage-costing-types.php">Costing Types</a>
+                        </li>
+                        <li>
+                            <a href="manage-all-costing-items.php">Costing Items</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!--//User-->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
