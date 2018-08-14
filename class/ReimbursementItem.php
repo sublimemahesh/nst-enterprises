@@ -111,6 +111,20 @@ class ReimbursementItem {
         return $array_res;
     }
     
+    public function getReimbursementItemsForInvoice() {
+
+        $query = "SELECT * FROM `reimbursement_item` WHERE `type` in(1,3,5) ORDER BY `type` ASC ";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+    
     public function getCostingItemsByType($type) {
 
         $query = "SELECT * FROM `reimbursement_item` WHERE `type`='" . $type . "' ORDER BY `queue` ASC ";

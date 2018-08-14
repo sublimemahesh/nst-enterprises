@@ -16,8 +16,11 @@ $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
 $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
-$REIMBURSEMENTITEMS = ReimbursementItem::all();
-
+$REIMBURSEMENTITEMS = ReimbursementItem::getReimbursementItemsForInvoice();
+$INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
+if ($INVOICE) {
+    $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
+}
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 ?>
 
@@ -218,7 +221,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 <?php
                                                 foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
                                                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
-                                                    
+
                                                     if ($reimbursementdetails) {
                                                         if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
                                                             if ($reimbursementdetails['invoice_amount']) {
@@ -261,27 +264,33 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                 </tr>
 
                                                 <?php
-                                                foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                                                    $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
-
-                                                    if ($reimbursementdetails) {
-                                                        if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
-                                                            if ($reimbursementdetails['invoice_amount']) {
-                                                                $amount = $reimbursementdetails['invoice_amount'];
-                                                            } else {
-                                                                $amount = $reimbursementdetails['amount'];
-                                                            }
-                                                            ?>
-                                                            <tr class="delivery-details">
-                                                                <td></td>        
-                                                                <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right" id="did-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" autocomplete="off" /></td>
-                                                            </tr>
-                                                            <?php
-                                                        }
+                                                if ($INVOICE) {
+                                                    foreach ($DELIVERYDETAILS as $data) {
+                                                        $did = $data['id'];
+                                                        ?>
+                                                        <tr class="delivery-details">
+                                                            <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="<?php echo $data['name']; ?>" autocomplete="off" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="<?php echo $data['amount']; ?>" value="<?php echo number_format($data['amount']); ?>" autocomplete="off" /></td>
+                                                        </tr>
+                                                        <?php
                                                     }
                                                 }
                                                 ?>
+
+                                                <?php
+                                                for ($i = 0; $i < 10; $i++) {
+                                                    ?>
+                                                    <tr class="delivery-details">
+                                                        <td><input type="hidden" class="" id="id" value="" /></td>        
+                                                        <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="" autocomplete="off" /></td>        
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
+
+
                                                 <tr>
                                                     <td></td>        
                                                     <td class="td-border"></td>        
