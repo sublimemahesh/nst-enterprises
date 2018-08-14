@@ -88,3 +88,33 @@ if ($_POST['option'] == 'GETVALUE') {
     echo json_encode($result);
     exit();
 }
+
+if ($_POST['option'] == 'SAVEDELIVERYDATA') {
+    
+    foreach ($_POST['data'] as $data) {
+        $DELIVERYDATA = new InvoiceDeliveryDetails(NULL);
+        
+        if(empty($data['name']) && empty($data['amount'])) {
+            $result = 'success';
+        } else {
+            
+            $DELIVERYDATA->invoice = $data['invoice'];
+            $DELIVERYDATA->name = $data['name'];
+            $DELIVERYDATA->amount = $data['amount'];
+            
+            if(empty($data['id'])) {
+                $result = $DELIVERYDATA->create();
+            } else {
+                
+                $DELIVERYDATA->id = $data['id'];
+                $result = $DELIVERYDATA->update();
+                
+            }
+        }
+    }
+    
+    header('Content-Type: application/json');
+    
+    echo json_encode($result);
+    exit();
+}

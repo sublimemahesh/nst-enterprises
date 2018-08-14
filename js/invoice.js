@@ -1,5 +1,14 @@
 $(document).ready(function () {
+    $('.delivery-amount').change(function () {
+        var amount = $(this).val();
+        $(this).attr('amount', amount);
+    });
 
+    $('.delivery-name').change(function () {
+
+        var name = $(this).val();
+        $(this).val(name);
+    });
     /* ------Calculate statutory sub total------ */
     var tot = 0;
     var ramount;
@@ -26,9 +35,11 @@ $(document).ready(function () {
 
     $('.table1').each(function () {
         $(this).find('.delivery-details').each(function () {
-            ramount = parseFloat($(this).find('.delivery').attr('amount'));
+            if ($(this).find('.delivery-amount').attr('amount')) {
+                ramount = parseFloat($(this).find('.delivery-amount').attr('amount'));
 
-            tot += ramount;
+                tot += ramount;
+            }
 
         });
     });
@@ -53,11 +64,11 @@ $(document).ready(function () {
         advance = 0;
     }
 
-    
+
 
     var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
     var total1 = new Intl.NumberFormat().format(total);
-    
+
 
     $('#payable-amount').attr("amount", total);
     $('#payable-amount').html(total1);
@@ -369,7 +380,7 @@ $(document).ready(function () {
 
     /* ------Calculate delivery sub total, payable amount & due when delivery amount changed & update values in reimbursement-details table------ */
 
-    $(".delivery").change(function () {
+    $(".delivery-amount").change(function () {
         var id = $(this).attr('rid');
         var amount = $(this).val();
 
@@ -382,9 +393,12 @@ $(document).ready(function () {
 
         $('.table1').each(function () {
             $(this).find('.delivery-details').each(function () {
-                ramount = parseFloat($(this).find('.delivery').attr('amount'));
+                if ($(this).find('.delivery-amount').attr('amount')) {
+                    ramount = parseFloat($(this).find('.delivery-amount').attr('amount'));
 
-                tot += ramount;
+                    tot += ramount;
+                }
+
 
             });
         });
@@ -594,6 +608,8 @@ $(document).ready(function () {
         }
         return words_string;
     }
+
+
 
 });
 

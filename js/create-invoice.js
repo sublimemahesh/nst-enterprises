@@ -45,12 +45,48 @@ $(document).ready(function () {
             },
             success: function (result) {
 
-                swal({
-                    title: "Success!",
-                    text: "Your data was saved successfully.",
-                    type: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
+                var invoice_id = result.id;
+                var data = [];
+                var delivery_id, name, amount;
+
+
+
+                $('.table1').each(function () {
+                    $(this).find('.delivery-details').each(function () {
+                        delivery_id = $(this).find('#id').val();
+                        name = $(this).find('.delivery-name').val();
+                        amount = $(this).find('.delivery-amount').attr('amount');
+
+                        data.push({
+                            invoice: invoice_id,
+                            id: delivery_id,
+                            name: name,
+                            amount: amount
+                        });
+
+                    });
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajax/invoice.php',
+                    dataType: "json",
+                    data: {
+                        data: data,
+                        option: 'SAVEDELIVERYDATA'
+                    },
+                    success: function (res) {
+
+                        swal({
+                            title: "Success!",
+                            text: "Your data was saved successfully.",
+                            type: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+
+
+                    }
                 });
 
 
@@ -78,7 +114,7 @@ $(document).ready(function () {
         var advance = $("#advance").attr('advance');
         var due = $("#due").attr('due');
         var refund = $("#refund").attr('refund');
-        
+
 
         $.ajax({
             type: 'POST',
@@ -106,19 +142,65 @@ $(document).ready(function () {
             },
             success: function (result) {
 
-                swal({
-                    title: "Success!",
-                    text: "Your data was saved successfully.",
-                    type: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
+                var invoice_id = result.id;
+                var data = [];
+                var delivery_id, name, amount;
+
+
+
+                $('.table1').each(function () {
+                    $(this).find('.delivery-details').each(function () {
+                        delivery_id = $(this).find('#id').attr('did');
+                        name = $(this).find('.delivery-name').val();
+                        amount = $(this).find('.delivery-amount').attr('amount');
+
+
+                        data.push({
+                            invoice: invoice_id,
+                            id: delivery_id,
+                            name: name,
+                            amount: amount
+                        });
+
+
+                    });
                 });
+                submitFormData(data);
+
+
 
 
             }
         });
 
     });
+
+    function submitFormData(formData) {
+
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/invoice.php',
+            dataType: "json",
+            data: {
+                data: formData,
+                option: 'SAVEDELIVERYDATA'
+            },
+            success: function (res) {
+
+                    
+                    swal({
+                        title: "Success!",
+                        text: "Your data was saved successfully.",
+                        type: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                
+
+
+            }
+        });
+    }
     function callLoader() {
         $.loadingBlockShow({
             imgPath: 'plugins/loader/img/default.svg',
