@@ -247,6 +247,9 @@
                         <li>
                             <a href="manage-jobs.php">Manage</a>
                         </li>
+                        <li>
+                            <a href="manage-all-job-payments.php">All Payments</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li> 

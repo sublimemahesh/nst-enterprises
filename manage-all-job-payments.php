@@ -4,11 +4,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-$id = '';
-if(isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
-$JOB = new Job($id);
+
 date_default_timezone_set('Asia/Colombo');
 $createdAt = date('Y-m-d H:i:s');
 ?>
@@ -67,47 +63,11 @@ $createdAt = date('Y-m-d H:i:s');
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Payments - #<?php echo $JOB->reference_no; ?></h1>
+                            <h1 class="page-header font-header">Job Payments</h1>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    Create Job Payment
-                                </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-<!--                                        <a href="manage-consignees.php">
-                                            <i class="glyphicon glyphicon-list"></i> 
-                                        </a>-->
-                                    </li>
-                                </ul>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <form id="form-consignee"  method="post" action="post-and-get/job-payment.php">
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Customer Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Payment</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off">
-                                                </div>
-                                                
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
-                                                    <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>" />
-                                                    <input type="hidden" id="job" name="job" value="<?php echo $id; ?>" />
-                                                    <button type="submit" name="create-payment" id="create-payment" class="btn btn-info">Save Payment</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
@@ -121,6 +81,7 @@ $createdAt = date('Y-m-d H:i:s');
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Job No</th>
                                                 <th>Created At</th>
                                                 <th>Customer Name</th>
                                                 <th>Payment</th>
@@ -129,10 +90,12 @@ $createdAt = date('Y-m-d H:i:s');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (JobPayment::getPaymentsByJob($id) as $payment) {
+                                            foreach (JobPayment::all() as $payment) {
+                                                $JOB = new Job($payment['job']);
                                                 ?>
                                                 <tr id="row_<?php echo $payment['id']; ?>">
                                                     <td><?php echo $payment['id']; ?></td>
+                                                    <td><?php echo $JOB->reference_no; ?></td>
                                                     <td><?php echo $payment['createdAt']; ?></td>
                                                     <td><?php echo $payment['customer_name']; ?></td>
                                                     <td class="text-right"><?php echo number_format($payment['payment'],2); ?></td>

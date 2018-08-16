@@ -67,7 +67,7 @@ if (isset($_POST['edit-payment'])) {
         $VALID->addError("Your changes saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
 
-        header('Location: ../manage-job-payments.php?id='.$result->job);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
 
         if (!isset($_SESSION)) {
