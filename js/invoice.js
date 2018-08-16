@@ -644,6 +644,7 @@ $(document).ready(function () {
 
 
         if (total > parseFloat(advance)) {
+            
             var due = total - parseFloat(advance);
             var due1 = new Intl.NumberFormat().format(due);
 
@@ -656,6 +657,7 @@ $(document).ready(function () {
             /* ------//Due amount to word------ */
 
         } else {
+            
             var refund = parseFloat(advance) - total;
             var refund1 = new Intl.NumberFormat().format(refund);
 
@@ -668,7 +670,7 @@ $(document).ready(function () {
             /* ------//Refund amount to word------ */
         }
     },
-            100);
+            1000);
 
 
 
