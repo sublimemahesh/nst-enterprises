@@ -25,33 +25,33 @@ $(document).ready(function () {
                 $('#tax-invoice-total').attr("total", result.tax_total);
 //                    $('#statutory-sub-total').val(this.statutory_sub_total);
 //                    $('#delivery-sub-total').val(this.delivery_sub_total);
-                $('#payable-amount').html(result.payable_amount);
-                $('#payable-amount').attr("amount", result.payable_amount);
-                $('#advance').val(result.advance);
-                $('#advance').attr("advance", result.advance);
+//                $('#payable-amount').html(result.payable_amount);
+//                $('#payable-amount').attr("amount", result.payable_amount);
+//                $('#advance').val(result.advance);
+//                $('#advance').attr("advance", result.advance);
 
 
 
-                if (result.due != 0) {
-
-                    $('#tr-refund').addClass("hidden");
-                    $('#refund').attr("refund", 0);
-                    $('#refund').html(0);
-                    $('#tr-due').removeClass("hidden");
-
-                    $('#due').html(result.due);
-                    $('#due').attr("due", result.due);
-
-                } else {
-
-                    $('#tr-due').addClass("hidden");
-                    $('#due').attr("due", 0);
-                    $('#due').html(0);
-                    $('#tr-refund').removeClass("hidden");
-
-                    $('#refund').attr("refund", result.refund);
-                    $('#refund').html(result.refund);
-                }
+//                if (result.due != 0) {
+//
+//                    $('#tr-refund').addClass("hidden");
+//                    $('#refund').attr("refund", 0);
+//                    $('#refund').html(0);
+//                    $('#tr-due').removeClass("hidden");
+//
+//                    $('#due').html(result.due);
+//                    $('#due').attr("due", result.due);
+//
+//                } else {
+//
+//                    $('#tr-due').addClass("hidden");
+//                    $('#due').attr("due", 0);
+//                    $('#due').html(0);
+//                    $('#tr-refund').removeClass("hidden");
+//
+//                    $('#refund').attr("refund", result.refund);
+//                    $('#refund').html(result.refund);
+//                }
 
                 $('#editbutton').removeClass('hidden');
 

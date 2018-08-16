@@ -21,6 +21,7 @@ $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
 }
+$JOBPAYMENT = JobPayment::getSumOfPaymentsByJob($JOBCOSTINGCARD->job);
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 ?>
 
@@ -316,7 +317,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                                                 <tr>
                                                     <td class="td-border td-border-left v-align-middle">Advance</td>
-                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="" name="advance" value="" autocomplete="off" /></td>
+                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="<?php echo $JOBPAYMENT['sum']; ?>" name="advance" value="<?php echo number_format($JOBPAYMENT['sum']); ?>" autocomplete="off" readonly/></td>
                                                 </tr>
                                                 <tr id="tr-due" class="hidden">
                                                     <td class="td-border td-border1 td-border-left">Due</td>
@@ -383,6 +384,9 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
+            });
+            $(function () {
+                $("#advance").focusout();
             });
         </script>
 
