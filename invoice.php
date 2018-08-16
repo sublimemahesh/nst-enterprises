@@ -16,7 +16,7 @@ $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
 $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
-$REIMBURSEMENTITEMS = ReimbursementItem::all();
+$REIMBURSEMENTITEMS = ReimbursementItem::getReimbursementItemsForInvoice();
 $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
@@ -157,18 +157,20 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndJobCostingCard($reimbursementitem['id'], $jobcostingcard);
 
                     if ($reimbursementdetails) {
-                        if ($reimbursementdetails['invoice_amount']) {
-                            $amount = $reimbursementdetails['invoice_amount'];
-                        } else {
-                            $amount = $reimbursementdetails['amount'];
+                        if ($reimbursementdetails['invoice_amount'] || $reimbursementdetails['invoice_amount'] == '') {
+                            if ($reimbursementdetails['invoice_amount']) {
+                                $amount = $reimbursementdetails['invoice_amount'];
+                            } else {
+                                $amount = $reimbursementdetails['amount'];
+                            }
+                            ?>
+                            <tr>
+                                <td></td>        
+                                <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
+                                <td class="text-right row-padding-right"><?php echo number_format($amount, 2); ?></td>        
+                            </tr>
+                            <?php
                         }
-                        ?>
-                        <tr>
-                            <td></td>        
-                            <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
-                            <td class="text-right row-padding-right"><?php echo number_format($amount, 2); ?></td>        
-                        </tr>
-                        <?php
                     }
                 }
                 ?>
@@ -201,8 +203,8 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                         ?>
                         <tr class="delivery-details">
                             <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
-                            <td class="td-border"><?php echo $data['name']; ?></td>        
-                            <td class="text-right row-padding-right"><?php echo number_format($data['amount'],2); ?></td>
+                            <td class="td-border"><?php echo strtoupper($data['name']); ?></td>        
+                            <td class="text-right row-padding-right"><?php echo number_format($data['amount'], 2); ?></td>
                         </tr>
                         <?php
                     }

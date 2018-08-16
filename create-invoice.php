@@ -22,6 +22,12 @@ if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
 }
 $JOBPAYMENT = JobPayment::getSumOfPaymentsByJob($JOBCOSTINGCARD->job);
+if(empty($JOBPAYMENT['sum'])) {
+    $advance = 0;
+} else {
+    $advance = $JOBPAYMENT['sum'];
+}
+
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 ?>
 
@@ -317,7 +323,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                                                 <tr>
                                                     <td class="td-border td-border-left v-align-middle">Advance</td>
-                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="<?php echo $JOBPAYMENT['sum']; ?>" name="advance" value="<?php echo number_format($JOBPAYMENT['sum']); ?>" autocomplete="off" readonly/></td>
+                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="<?php echo $advance; ?>" name="advance" value="<?php echo number_format($advance); ?>" autocomplete="off" readonly/></td>
                                                 </tr>
                                                 <tr id="tr-due" class="hidden">
                                                     <td class="td-border td-border1 td-border-left">Due</td>
