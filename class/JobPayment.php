@@ -12,6 +12,7 @@
  * @author U s E r ¨
  */
 class JobPayment {
+
     public $id;
     public $job;
     public $createdAt;
@@ -111,7 +112,7 @@ class JobPayment {
         $result = $db->readQuery($query);
         return $result;
     }
-    
+
     public function getPaymentsByJob($job) {
 
         $query = "SELECT * FROM `job_payment` WHERE `job` = " . $job;
@@ -125,5 +126,14 @@ class JobPayment {
 
         return $array_res;
     }
-    
+
+    public function getSumOfPaymentsByJob($job) {
+
+        $query = "SELECT sum(`payment`) AS `sum` FROM `job_payment` WHERE `job` = " . $job;
+        $db = new Database();
+
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+
 }

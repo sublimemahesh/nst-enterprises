@@ -56,7 +56,7 @@ $(document).ready(function () {
     var taxTotal = $('#tax-invoice-total').attr('total');
     var statutoryTotal = $('#statutory-sub-total').attr('total');
     var deliveryTotal = $('#delivery-sub-total').attr('total');
-    var advance = $('#advance').val();
+    var advance = $('#advance').attr('advance');
     if (taxTotal == "") {
         taxTotal = 0;
     }
@@ -177,7 +177,7 @@ $(document).ready(function () {
         var taxTotal = $('#tax-invoice-total').attr('total');
         var statutoryTotal = $('#statutory-sub-total').attr('total');
         var deliveryTotal = $('#delivery-sub-total').attr('total');
-        var advance = $('#advance').val();
+        var advance = $('#advance').attr('advance');
 
         if (advance == "") {
             advance = 0;
@@ -248,7 +248,7 @@ $(document).ready(function () {
         var taxTotal = $('#tax-invoice-total').attr('total');
         var statutoryTotal = $('#statutory-sub-total').attr('total');
         var deliveryTotal = $('#delivery-sub-total').attr('total');
-        var advance = $('#advance').val();
+        var advance = $('#advance').attr('advance');
 
         if (advance == "") {
             advance = 0;
@@ -330,7 +330,7 @@ $(document).ready(function () {
                 var statutoryTotal = $('#statutory-sub-total').attr('total');
                 var deliveryTotal = $('#delivery-sub-total').attr('total');
                 var taxTotal = $('#tax-invoice-total').attr('total');
-                var advance = $('#advance').val();
+                var advance = $('#advance').attr('advance');
 
                 if (advance == "") {
                     advance = 0;
@@ -424,7 +424,7 @@ $(document).ready(function () {
                 var statutoryTotal = $('#statutory-sub-total').attr('total');
                 var deliveryTotal = $('#delivery-sub-total').attr('total');
                 var taxTotal = $('#tax-invoice-total').attr('total');
-                var advance = $('#advance').val();
+                var advance = $('#advance').attr('advance');
 
                 if (advance == "") {
                     advance = 0;
@@ -481,7 +481,7 @@ $(document).ready(function () {
     $("#advance").change(function () {
 
         var payableAmount = $('#payable-amount').attr("amount");
-        var advance = $('#advance').val();
+        var advance = $('#advance').attr('advance');
 
         if (advance == "") {
             advance = 0;
@@ -608,6 +608,70 @@ $(document).ready(function () {
         }
         return words_string;
     }
+    setTimeout(function ()
+    {
+        var agencyfees = $('#agency_fees').val();
+        var documentation = $('#documentation').val();
+
+        if (agencyfees == "") {
+            agencyfees = 0;
+        }
+        if (documentation == "") {
+            documentation = 0;
+        }
+
+        //Calculate vat
+        var amount = parseFloat(agencyfees) + parseFloat(documentation);
+        var vat = amount * 15 / 100;
+        var vat1 = new Intl.NumberFormat().format(vat);
+        $("#vat").attr('vat', vat);
+        $("#vat").val(vat1);
+
+        //Calculate tax invoice total
+        var taxTotal = amount + vat;
+        var taxTotal1 = new Intl.NumberFormat().format(taxTotal);
+
+        $("#tax-invoice-total").attr('total', taxTotal);
+        $("#tax-invoice-total").html(taxTotal1);
+
+        var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
+        var total1 = new Intl.NumberFormat().format(total);
+
+        $('#payable-amount').attr("amount", total);
+        $('#payable-amount').html(total1);
+
+        var advance = $('#advance').attr('advance');
+
+
+        if (total > parseFloat(advance)) {
+            var due = total - parseFloat(advance);
+            var due1 = new Intl.NumberFormat().format(due);
+
+            $('#tr-due').removeClass("hidden");
+            $('#due').attr("due", due);
+            $('#due').html(due1);
+            /* ------Due amount to word------ */
+            var amount = convertNumberToWords(due);
+            $('#amount-in-word').html(amount);
+            /* ------//Due amount to word------ */
+
+        } else {
+            var refund = parseFloat(advance) - total;
+            var refund1 = new Intl.NumberFormat().format(refund);
+
+            $('#tr-refund').removeClass("hidden");
+            $('#refund').attr("refund", refund);
+            $('#refund').html(refund1);
+            /* ------Refund amount to word------ */
+            var amount = convertNumberToWords(refund);
+            $('#amount-in-word').html(amount);
+            /* ------//Refund amount to word------ */
+        }
+    },
+            100);
+
+
+
 
 
 
