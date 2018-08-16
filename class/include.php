@@ -19,6 +19,7 @@ include_once(dirname(__FILE__) . '/Invoice.php');
 include_once(dirname(__FILE__) . '/Account.php');
 include_once(dirname(__FILE__) . '/CostingType.php');
 include_once(dirname(__FILE__) . '/InvoiceDeliveryDetails.php');
+include_once(dirname(__FILE__) . '/JobPayment.php');
 
 
 function dd($data) {
