@@ -340,7 +340,21 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <!--//User-->
+                <!--//Costing Items-->
+                <!--Account-->
+                <li>
+                    <a href="#"><i class="fa fa-key fa-fw"></i> Accounts<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="create-account.php">Add New</a>
+                        </li>
+                        <li>
+                            <a href="manage-accounts.php">Manage</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <!--//Account-->
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

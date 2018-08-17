@@ -4,7 +4,6 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Costing Items || Control Panel || NST ENterprises</title>
+        <title>Manage Accounts || Control Panel || NST ENterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -60,7 +59,7 @@ $USER1 = new User($_SESSION['id']);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Costing Items</h1>
+                            <h1 class="page-header font-header">Accounts</h1>
                         </div>
                     </div>
 
@@ -69,41 +68,87 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage Costing Items
+                                    Manage Accounts
                                 </div>
                                 <ul class="header-dropdown">
-                                    <!--                                    <li class="">
-                                                                            <a href="create-Consignee.php">
-                                                                                <i class="glyphicon glyphicon-plus"></i> 
-                                                                            </a>
-                                                                        </li>-->
+                                    <li class="">
+                                        <a href="create-account.php">
+                                            <i class="glyphicon glyphicon-plus"></i> 
+                                        </a>
+                                    </li>
                                 </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Type</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Is Cleared</th>
+                                                <th>Last Invoice Id</th>
+                                                <th>Last Job Id</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (ReimbursementItem::all() as $item) {
-                                                $COSTINGTYPE = new CostingType($item['type']);
+                                            foreach (Account::all() as $account) {
+
+                                                $month = date("m");
+                                                $today = date("Y-m-d");
+
+                                                $getStartYear = explode('-', $account['start_date']);
+                                                $startyear = $getStartYear[0];
+
+                                                $getEndYear = explode('-', $account['end_date']);
+                                                $year = $getEndYear[0];
+                                                $endyear = substr($year, -2);
+
+
+
+                                                if ($account['current_invoice_id'] < 10) {
+                                                    $invoiceid = '0' . $account['current_invoice_id'];
+                                                } else {
+                                                    $invoiceid = $account['current_invoice_id'];
+                                                }
+                                                if ($account['current_job_id'] < 10) {
+                                                    $jobid = '0' . $account['current_job_id'];
+                                                } else {
+                                                    $jobid = $account['current_job_id'];
+                                                }
+                                                $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $invoiceid;
+                                                $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $jobid;
                                                 ?>
-                                                <tr id="row_<?php echo $item['id']; ?>">
-                                                    <td style="width: 50px;"><?php echo $item['id']; ?></td>
-                                                    <td><?php echo $item['name']; ?></td>
-                                                    <td><?php echo $COSTINGTYPE->title; ?></td>
+                                                <tr id="row_<?php echo $account['id']; ?>">
+                                                    <td style="width: 50px;"><?php echo $account['id']; ?></td>
+                                                    <td><?php echo $account['start_date']; ?></td>
+                                                    <td><?php echo $account['end_date']; ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        if ($account['isCleared'] == 0) {
+                                                            ?>
+                                                            <a href="#" title="Current Account" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-check"></i></a>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <a href="#" title="Cleared Account" class="op-link btn btn-sm btn-info"><i class="glyphicon glyphicon-unchecked"></i></a>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php echo $invoice; ?></td>
+                                                    <td><?php echo $job; ?></td>
                                                     <td class="text-center" style="width: 230px"> 
-                                                        <a href="edit-costing-item.php?id=<?php echo $item['id']; ?>" class="op-link btn btn-sm btn-success" name="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                        <a href="edit-account.php?id=<?php echo $account['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="#" class="delete-costing-item btn btn-sm btn-danger" data-id="<?php echo $item['id']; ?>"  name="Delete">
+                                                        <a href="#" class="clear-account btn btn-sm btn-warning" data-id="<?php echo $account['id']; ?>"  title="Clear Account">
+                                                            <i class="glyphicon glyphicon-remove" data-type="cancel"></i>
+                                                        </a>
+                                                        |
+                                                        <a href="#" class="delete-account btn btn-sm btn-danger" data-id="<?php echo $account['id']; ?>"  title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
-                                                        
+
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -135,7 +180,7 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="plugins/datatables-plugins/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="plugins/datatables-responsive/dataTables.responsive.js" type="text/javascript"></script>
-        <script src="delete/js/costing-items.js" type="text/javascript"></script>
+        <script src="delete/js/account.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
