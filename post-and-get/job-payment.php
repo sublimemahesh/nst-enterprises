@@ -32,7 +32,7 @@ if (isset($_POST['create-payment'])) {
         if ($_POST['back'] == '') {
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
-            header('Location: ' . $_POST['back'] . '?job=' . $result->job);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     } else {
 

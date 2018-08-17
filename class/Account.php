@@ -12,11 +12,12 @@ class Account {
     public $end_date;
     public $isCleared;
     public $current_invoice_id;
+    public $current_job_id;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`start_date`,`end_date`,`isCleared`,`current_invoice_id` FROM `account` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`start_date`,`end_date`,`isCleared`,`current_invoice_id`,`current_job_id` FROM `account` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -27,6 +28,7 @@ class Account {
             $this->end_date = $result['end_date'];
             $this->isCleared = $result['isCleared'];
             $this->current_invoice_id = $result['current_invoice_id'];
+            $this->current_job_id = $result['current_job_id'];
 
             return $this;
         }
@@ -38,12 +40,14 @@ class Account {
                 . "`start_date`,"
                 . "`end_date`,"
                 . "`isCleared`,"
-                . "`current_invoice_id`) "
+                . "`current_invoice_id`,"
+                . "`current_job_id`) "
                 . "VALUES  ("
                 . "'" . $this->start_date . "',"
                 . "'" . $this->end_date . "',"
                 . "'" . $this->isCleared . "',"
-                . "'" . $this->current_invoice_id . "'"
+                . "'" . $this->current_invoice_id . "',"
+                . "'" . $this->current_job_id . "'"
                 . ")";
 
         $db = new Database();
@@ -77,9 +81,24 @@ class Account {
 
         $query = "UPDATE  `account` SET "
                 . "`start_date` ='" . $this->start_date . "', "
-                . "`end_date` ='" . $this->end_date . "', "
-                . "`isCleared` ='" . $this->isCleared . "', "
-                . "`current_invoice_id` ='" . $this->current_invoice_id . "' "
+                . "`end_date` ='" . $this->end_date . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
+    }
+    
+    public function clearAccount() {
+
+        $query = "UPDATE  `account` SET "
+                . "`isCleared` ='" . $this->isCleared . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -148,6 +167,15 @@ class Account {
         
             return $result;
         
+    }
+    
+    public function getLastUnClearedAccount() {
+
+        $query = "SELECT * FROM `account` WHERE `isCleared` = 0 ORDER BY `id` DESC LIMIT 1";
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        
+        return $result;
     }
 
 }
