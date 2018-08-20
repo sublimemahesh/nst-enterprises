@@ -9,7 +9,7 @@ $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
-$CONSIGNEE = new Consignee($id);
+$CONSIGNMENT = new Consignment($id);
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ $CONSIGNEE = new Consignee($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>View Consignee || Control Panel || NST ENterprises</title>
+        <title>View Consignment || Control Panel || NST ENterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -76,7 +76,7 @@ $CONSIGNEE = new Consignee($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignee</h1>
+                            <h1 class="page-header font-header">Consignment</h1>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@ $CONSIGNEE = new Consignee($id);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    View Consignee - <?php echo $CONSIGNEE->name; ?>
+                                    View Consignment - <?php echo $CONSIGNMENT->name; ?>
                                 </div>
                                 <ul class="header-dropdown">
 <!--                                    <li class="">
@@ -99,53 +99,13 @@ $CONSIGNEE = new Consignee($id);
                                             <table>
                                                 <tr>
                                                     <td class="view-details-topic">Name</td>
-                                                    <td><?php echo $CONSIGNEE->name; ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="view-details-topic">Address</td>
-                                                    <td><?php
-                                                        if ($CONSIGNEE->address) {
-                                                            echo $CONSIGNEE->address;
-                                                        } else {
-                                                            echo '-';
-                                                        };
-                                                        ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="view-details-topic">VAT Number</td>
-                                                    <td><?php
-                                                        if ($CONSIGNEE->vatNumber) {
-                                                            echo $CONSIGNEE->vatNumber;
-                                                        } else {
-                                                            echo '-';
-                                                        };
-                                                        ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="view-details-topic">Contact Number</td>
-                                                    <td><?php
-                                                        if ($CONSIGNEE->contactNumber) {
-                                                            echo $CONSIGNEE->contactNumber;
-                                                        } else {
-                                                            echo '-';
-                                                        };
-                                                        ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="view-details-topic">Email</td>
-                                                    <td><?php
-                                                        if ($CONSIGNEE->email) {
-                                                            echo $CONSIGNEE->email;
-                                                        } else {
-                                                            echo '-';
-                                                        };
-                                                        ?></td>
+                                                    <td><?php echo $CONSIGNMENT->name; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Description</td>
                                                     <td><?php
-                                                        if ($CONSIGNEE->description) {
-                                                            echo $CONSIGNEE->description;
+                                                        if ($CONSIGNMENT->description) {
+                                                            echo $CONSIGNMENT->description;
                                                         } else {
                                                             echo '-';
                                                         };
@@ -154,7 +114,7 @@ $CONSIGNEE = new Consignee($id);
                                                 <tr>
                                                     <td class="view-details-topic">Status</td>
                                                     <td><?php
-                                                        if ($CONSIGNEE->isActive == 1) {
+                                                        if ($CONSIGNMENT->isActive == 1) {
                                                             ?>
                                                                <i class="glyphicon glyphicon-check op-link btn btn-sm btn-info"</i>
                                                                <?php
