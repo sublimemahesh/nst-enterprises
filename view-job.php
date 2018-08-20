@@ -103,11 +103,11 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                             <table>
                                                 <tr>
                                                     <td class="view-details-topic">Consignee</td>
-                                                    <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="blank" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
+                                                    <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="new" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Consignment</td>
-                                                    <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="blank" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
+                                                    <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="new" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Description</td>
@@ -127,7 +127,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Vessel or Flight</td>
-                                                    <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="blank" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
+                                                    <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="new" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Vessel and Flight Date</td>

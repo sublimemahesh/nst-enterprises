@@ -106,9 +106,9 @@ $USER1 = new User($_SESSION['id']);
                                                 <tr id="row_<?php echo $job['id']; ?>">
                                                     <td><?php echo $job['id']; ?></td>
                                                     <td><?php echo $job['reference_no']; ?></td>
-                                                    <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="blank" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
-                                                    <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="blank" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
-                                                    <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="blank" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
+                                                    <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="new" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
+                                                    <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="new" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
+                                                    <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="new" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="view-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="View" target="blank"><i class="glyphicon glyphicon-eye-open"></i></a>
