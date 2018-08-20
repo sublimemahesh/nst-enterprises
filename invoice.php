@@ -10,6 +10,12 @@ if (isset($_GET['id'])) {
 }
 $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 
+if(empty($INVOICE)) {
+    if(isset($_GET['back'])) {
+        header('location: view-job.php?id='.$_GET['back']);
+    }
+    
+}
 
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
 $JOB = new Job($JOBCOSTINGCARD->job);

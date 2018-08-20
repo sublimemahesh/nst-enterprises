@@ -111,19 +111,23 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Description</td>
-                                                    <td><?php if ($JOB->description) {
-                            echo $JOB->description;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->description) {
+                                                            echo $JOB->description;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Chassis Number</td>
-                                                    <td><?php if ($JOB->chassisNumber) {
-                            echo $JOB->chassisNumber;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->chassisNumber) {
+                                                            echo $JOB->chassisNumber;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Vessel or Flight</td>
@@ -131,43 +135,53 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Vessel and Flight Date</td>
-                                                    <td><?php if ($JOB->vesselAndFlightDate) {
-                            echo $JOB->vesselAndFlightDate;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->vesselAndFlightDate) {
+                                                            echo $JOB->vesselAndFlightDate;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Copy Received Date</td>
-                                                    <td><?php if ($JOB->copyReceivedDate) {
-                            echo $JOB->copyReceivedDate;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->copyReceivedDate) {
+                                                            echo $JOB->copyReceivedDate;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Original Received Date</td>
-                                                    <td><?php if ($JOB->originalReceivedDate) {
-                            echo $JOB->originalReceivedDate;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->originalReceivedDate) {
+                                                            echo $JOB->originalReceivedDate;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Debit Note Number</td>
-                                                    <td><?php if ($JOB->debitNoteNumber) {
-                            echo $JOB->debitNoteNumber;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->debitNoteNumber) {
+                                                            echo $JOB->debitNoteNumber;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="view-details-topic">Cusdec Date</td>
-                                                    <td><?php if ($JOB->cusdecDate) {
-                            echo $JOB->cusdecDate;
-                        } else {
-                            echo '-';
-                        }; ?></td>
+                                                    <td><?php
+                                                        if ($JOB->cusdecDate) {
+                                                            echo $JOB->cusdecDate;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
                                                 </tr>
                                             </table>
 
@@ -219,23 +233,23 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-blue">
                                                         <i class="glyphicon glyphicon-duplicate"></i>
                                                     </div>
-<?php
-if ($JOBCOSTINGCARD['id']) {
-    ?>
+                                                    <?php
+                                                    if ($JOBCOSTINGCARD['id']) {
+                                                        ?>
                                                         <h3><a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>">Job Costing Card</a></h3>
 
-    <?php
-} else {
-    ?>
+                                                        <?php
+                                                    } else {
+                                                        ?>
                                                         <h3><a href="create-job-costing-card.php?id=<?php echo $id; ?>">Job Costing Card</a></h3>
 
-    <?php
-}
-?>
+                                                        <?php
+                                                    }
+                                                    ?>
 
                                                 </div>
                                             </div>
-                                            <div class="col-xs-4 text-center">
+                                            <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
                                                 <div class="manage-box box-purple">
                                                     <div class="manage-circle box-purple">
                                                         <i class="glyphicon glyphicon-print"></i>
@@ -243,7 +257,7 @@ if ($JOBCOSTINGCARD['id']) {
                                                     <h3><a href="job-costing-card-report.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" target="blank">Print Job Costing Card</a></h3>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-4 text-center">
+                                            <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
                                                 <div class="manage-box box-orange">
                                                     <div class="manage-circle box-orange">
                                                         <i class="glyphicon glyphicon-list-alt"></i>
@@ -251,12 +265,12 @@ if ($JOBCOSTINGCARD['id']) {
                                                     <h3><a href="create-invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>">Invoice</a></h3>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-4 text-center">
+                                            <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
                                                 <div class="manage-box box-light-blue">
                                                     <div class="manage-circle box-light-blue">
                                                         <i class="glyphicon glyphicon-print"></i>
                                                     </div>
-                                                    <h3><a href="invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" target="blank">Print Invoice</a></h3>
+                                                    <h3><a href="invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>&back=<?php echo $id; ?>" target="blank">Print Invoice</a></h3>
                                                 </div>
                                             </div>
                                         </div>
