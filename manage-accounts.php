@@ -85,6 +85,7 @@ $USER1 = new User($_SESSION['id']);
                                                 <th>Start Date</th>
                                                 <th>End Date</th>
                                                 <th>Is Cleared</th>
+                                                <th>Cleared Date</th>
                                                 <th>Last Invoice Id</th>
                                                 <th>Last Job Id</th>
                                                 <th>Options</th>
@@ -136,9 +137,10 @@ $USER1 = new User($_SESSION['id']);
                                                         }
                                                         ?>
                                                     </td>
+                                                    <td><?php if($account['cleared_date']) {echo $account['cleared_date'];} else { echo '-'; }; ?></td>
                                                     <td><?php echo $invoice; ?></td>
                                                     <td><?php echo $job; ?></td>
-                                                    <td class="text-center" style="width: 230px"> 
+                                                    <td class="text-center"> 
                                                         <a href="edit-account.php?id=<?php echo $account['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
                                                         <a href="#" class="clear-account btn btn-sm btn-warning" data-id="<?php echo $account['id']; ?>"  title="Clear Account">
