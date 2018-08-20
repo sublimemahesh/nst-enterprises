@@ -36,6 +36,11 @@ $USER1 = new User($_SESSION['id']);
         <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
         <!-- Responsive CSS -->
         <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <style>
+            td a:hover {
+                text-decoration: none;
+            }
+        </style>
 
     </head>
 
@@ -101,32 +106,13 @@ $USER1 = new User($_SESSION['id']);
                                                 <tr id="row_<?php echo $job['id']; ?>">
                                                     <td><?php echo $job['id']; ?></td>
                                                     <td><?php echo $job['reference_no']; ?></td>
-                                                    <td><?php echo $CONSIGNEE->name; ?></td>
-                                                    <td><?php echo $CONSIGNMENT->name; ?></td>
-                                                    <td><?php echo $VESSELANDFLIGHT->name; ?></td>
+                                                    <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="blank" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
+                                                    <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="blank" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
+                                                    <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="blank" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
-                                                        <a href="edit-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                                                        |
-                                                        <?php
-                                                        $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
-                                                        if ($JOBCOSTINGCARD['id']) {
-                                                            ?>
-                                                            <a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
-                                                            |
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                            <a href="create-job-costing-card.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
-                                                            |
-                                                            <?php
-                                                        }
-                                                        ?>
-                                                        <a href="manage-job-payments.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-info" title="Edit"><i class="glyphicon glyphicon-usd"></i></a>
-                                                        |
-                                                        <a href="#" class="delete-job btn btn-sm btn-danger" data-id="<?php echo $job['id']; ?>" title="Delete">
-                                                            <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
-                                                        </a>
+                                                        <a href="view-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="View" target="blank"><i class="glyphicon glyphicon-eye-open"></i></a>
+
                                                     </td>
                                                 </tr>
                                                 <?php

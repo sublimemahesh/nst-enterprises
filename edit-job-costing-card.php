@@ -173,7 +173,7 @@ $MESSAGE = new Message($message);
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $id; ?>"/>
                                     <div class="col-sm-12 col-md-offset-2 form-btn">
                                         <button type="button" class="btn btn-info  savebtn" id="editbutton">Save Changes</button>
-                                        <a href="job-costing-card-report.php?id=<?php echo $id; ?>" class="op-link btn btn-lg btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                        <a href="job-costing-card-report.php?id=<?php echo $id; ?>" class="op-link btn btn-lg btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-print"></i></a>
                                         
                                         <a href="create-invoice.php?id=<?php echo $id; ?>" class="op-link btn btn-lg  btn-primary" title="Tax Invoice"><i class="glyphicon glyphicon-list-alt"></i></a>
                                         
