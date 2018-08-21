@@ -39,7 +39,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                 <tr>
                     <td>JOB NO:</td>
-                    <td class="td-style"><?php echo $JOB->id; ?></td>
+                    <td class="td-style"><?php echo $JOB->reference_no; ?></td>
                 </tr>
                 <tr>
                     <td>INVOICE NUMBER:</td>
@@ -60,6 +60,8 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
             <?php
             $types = ReimbursementItem::getDistinctType();
             foreach ($types as $type) {
+                $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['type']);
+                if($counttype['count'] > 0) {
                 ?>
                 <table class="table2 table-bordered to-hide" id="table-<?php echo $type['type']; ?>" border="1">
 
@@ -100,6 +102,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </table>
 
                 <?php
+                }
             }
             ?>
 

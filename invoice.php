@@ -12,7 +12,7 @@ $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 
 if(empty($INVOICE)) {
     if(isset($_GET['back'])) {
-        header('location: view-job.php?id='.$_GET['back']);
+        header('location: view-job.php?id='.$_GET['back'].'&message=20');
     }
     
 }

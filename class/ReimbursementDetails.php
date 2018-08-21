@@ -153,7 +153,7 @@ class ReimbursementDetails {
     
     public function getCountByJobCostingCardAndType($jobcostingcard, $type) {
 
-        $query = "SELECT count(`id`) AS `count`, type FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."' AND `type` = '". $type ."'";
+        $query = "SELECT count(`id`) AS `count` FROM `reimbursement_details` WHERE `jobCostingCard` = '". $jobcostingcard ."' AND `type` = '". $type ."'";
         $db = new Database();
         
         $result = mysql_fetch_array($db->readQuery($query));
