@@ -9,6 +9,11 @@ $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
+$message = '';
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+$MESSAGE = new Message($message);
 $JOB = new Job($id);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
@@ -72,6 +77,16 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="my-alert">
+                        <?php
+                        if (isset($_GET['message'])) {
+                            ?>
+                            <div class="alert alert-<?php echo $MESSAGE->status; ?>">
+                                <strong>Error : </strong> 
+                                <?php echo ucfirst($MESSAGE->description); ?>!.
+                            </div>
+                            <?php
+                        }
+                        ?>
                         <?php
                         $vali = new Validator();
                         $vali->show_message();
@@ -209,7 +224,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-green">
                                                         <i class="glyphicon glyphicon-edit"></i>
                                                     </div>
-                                                    <h3><a href="edit-job.php?id=<?php echo $id; ?>">Edit Job</a></h3>
+                                                    <h3><a href="edit-job.php?id=<?php echo $id; ?>" target="new">Edit Job</a></h3>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center">
@@ -217,7 +232,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-yellow">
                                                         <i class="glyphicon glyphicon-usd"></i>
                                                     </div>
-                                                    <h3><a href="manage-job-payments.php?id=<?php echo $id; ?>">Payments</a></h3>
+                                                    <h3><a href="manage-job-payments.php?id=<?php echo $id; ?>" target="new">Payments</a></h3>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center">
@@ -236,12 +251,12 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <?php
                                                     if ($JOBCOSTINGCARD['id']) {
                                                         ?>
-                                                        <h3><a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>">Job Costing Card</a></h3>
+                                                        <h3><a href="edit-job-costing-card.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" target="new">Job Costing Card</a></h3>
 
                                                         <?php
                                                     } else {
                                                         ?>
-                                                        <h3><a href="create-job-costing-card.php?id=<?php echo $id; ?>">Job Costing Card</a></h3>
+                                                        <h3><a href="create-job-costing-card.php?id=<?php echo $id; ?>" target="new">Job Costing Card</a></h3>
 
                                                         <?php
                                                     }
@@ -254,7 +269,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-purple">
                                                         <i class="glyphicon glyphicon-print"></i>
                                                     </div>
-                                                    <h3><a href="job-costing-card-report.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" target="blank">Print Job Costing Card</a></h3>
+                                                    <h3><a href="job-costing-card-report.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>"  target="new">Print Job Costing Card</a></h3>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
@@ -262,7 +277,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-orange">
                                                         <i class="glyphicon glyphicon-list-alt"></i>
                                                     </div>
-                                                    <h3><a href="create-invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>">Invoice</a></h3>
+                                                    <h3><a href="create-invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>" target="new">Invoice</a></h3>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
@@ -270,7 +285,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <div class="manage-circle box-light-blue">
                                                         <i class="glyphicon glyphicon-print"></i>
                                                     </div>
-                                                    <h3><a href="invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>&back=<?php echo $id; ?>" target="blank">Print Invoice</a></h3>
+                                                    <h3><a href="invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>&back=<?php echo $id; ?>" target="new">Print Invoice</a></h3>
                                                 </div>
                                             </div>
                                         </div>
