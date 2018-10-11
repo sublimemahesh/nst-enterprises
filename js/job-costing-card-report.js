@@ -10,9 +10,11 @@ $(document).ready(function () {
         cache: false,
         url: 'ajax/report.php',
         success: function (types) {
+            var count = types.length;
             types.forEach(myFunction)
 
             function myFunction(item, index) {
+
                 $.ajax({
                     type: 'POST',
                     data: {
@@ -38,18 +40,24 @@ $(document).ready(function () {
                                     var html = '';
                                     html += '<td  rowspan="' + result.count + '" type="' + result.type + '" id="subtotal" class="text-right">' + num + '</td>';
                                     $("#table-" + item + " tbody tr:first-child").append(html);
+                                    if (index == count - 1) {
+                                        
+                                        setTimeout(function () {
+                                            window.print();
+                                        }, 1000);
+                                    }
                                 }
                             });
                         }
                     }
                 });
-
             }
 
 
         }
 
     });
+//    
 
 });
 
