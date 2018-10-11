@@ -78,8 +78,10 @@ $(document).ready(function () {
         var due1 = new Intl.NumberFormat().format(due);
 
         $('#tr-due').removeClass("hidden");
+        $('#tr-refund').addClass("hidden");
         $('#due').attr("due", due);
         $('#due').html(due1);
+        $('#refund').attr("refund", 0);
         /* ------Due amount to word------ */
         var amount = convertNumberToWords(due);
         $('#amount-in-word').html(amount);
@@ -90,8 +92,10 @@ $(document).ready(function () {
         var refund1 = new Intl.NumberFormat().format(refund);
 
         $('#tr-refund').removeClass("hidden");
+        $('#tr-due').addClass("hidden");
         $('#refund').attr("refund", refund);
         $('#refund').html(refund1);
+        $('#due').attr("due", 0);
         /* ------Refund amount to word------ */
         var amount = convertNumberToWords(refund);
         $('#amount-in-word').html(amount);
@@ -194,8 +198,10 @@ $(document).ready(function () {
             var due1 = new Intl.NumberFormat().format(due);
 
             $('#tr-due').removeClass("hidden");
+            $('#tr-refund').addClass("hidden");
             $('#due').attr("due", due);
             $('#due').html(due1);
+            $('#refund').attr("refund", 0);
             /* ------Due amount to word------ */
             var amount = convertNumberToWords(due);
             $('#amount-in-word').html(amount);
@@ -206,8 +212,10 @@ $(document).ready(function () {
             var refund1 = new Intl.NumberFormat().format(refund);
 
             $('#tr-refund').removeClass("hidden");
+            $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
             $('#refund').html(refund1);
+            $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
             $('#amount-in-word').html(amount);
@@ -265,8 +273,10 @@ $(document).ready(function () {
             var due1 = new Intl.NumberFormat().format(due);
 
             $('#tr-due').removeClass("hidden");
+            $('#tr-refund').addClass("hidden");
             $('#due').attr("due", due);
             $('#due').html(due1);
+            $('#refund').attr("refund", 0);
             /* ------Due amount to word------ */
             var amount = convertNumberToWords(due);
             $('#amount-in-word').html(amount);
@@ -277,8 +287,10 @@ $(document).ready(function () {
             var refund1 = new Intl.NumberFormat().format(refund);
 
             $('#tr-refund').removeClass("hidden");
+            $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
             $('#refund').html(refund1);
+            $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
             $('#amount-in-word').html(amount);
@@ -292,6 +304,7 @@ $(document).ready(function () {
     $(".reimbursement").change(function () {
         var id = $(this).attr('rid');
         var amount = $(this).val();
+
 
         $('#id-' + id).attr('amount', amount);
 
@@ -332,6 +345,7 @@ $(document).ready(function () {
                 var taxTotal = $('#tax-invoice-total').attr('total');
                 var advance = $('#advance').attr('advance');
 
+
                 if (advance == "") {
                     advance = 0;
                 }
@@ -343,6 +357,7 @@ $(document).ready(function () {
                 var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
                 var total1 = new Intl.NumberFormat().format(total);
 
+
                 $('#payable-amount').attr("amount", total);
                 $('#payable-amount').html(total1);
 
@@ -351,8 +366,10 @@ $(document).ready(function () {
                     var due1 = new Intl.NumberFormat().format(due);
 
                     $('#tr-due').removeClass("hidden");
+                    $('#tr-refund').addClass("hidden");
                     $('#due').attr("due", due);
                     $('#due').html(due1);
+                    $('#refund').attr("refund", 0);
                     /* ------Due amount to word------ */
                     var amount = convertNumberToWords(due);
                     $('#amount-in-word').html(amount);
@@ -363,8 +380,10 @@ $(document).ready(function () {
                     var refund1 = new Intl.NumberFormat().format(refund);
 
                     $('#tr-refund').removeClass("hidden");
+                    $('#tr-due').addClass("hidden");
                     $('#refund').attr("refund", refund);
                     $('#refund').html(refund1);
+                    $('#due').attr("due", 0);
                     /* ------Refund amount to word------ */
                     var amount = convertNumberToWords(refund);
                     $('#amount-in-word').html(amount);
@@ -434,11 +453,6 @@ $(document).ready(function () {
                     taxTotal = 0;
                 }
 
-//                alert(statutoryTotal);
-//                alert(deliveryTotal);
-//                alert(taxTotal);
-////    alert(parseFloat(statutoryTotal) + parseFloat(deliveryTotal));
-//                return false;
                 var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
                 var total1 = new Intl.NumberFormat().format(total);
 
@@ -450,8 +464,10 @@ $(document).ready(function () {
                     var due1 = new Intl.NumberFormat().format(due);
 
                     $('#tr-due').removeClass("hidden");
+                    $('#tr-refund').addClass("hidden");
                     $('#due').attr("due", due);
                     $('#due').html(due1);
+                    $('#refund').attr("refund", 0);
                     /* ------Due amount to word------ */
                     var amount = convertNumberToWords(due);
                     $('#amount-in-word').html(amount);
@@ -462,8 +478,10 @@ $(document).ready(function () {
                     var refund1 = new Intl.NumberFormat().format(refund);
 
                     $('#tr-refund').removeClass("hidden");
+                    $('#tr-due').addClass("hidden");
                     $('#refund').attr("refund", refund);
                     $('#refund').html(refund1);
+                    $('#due').attr("due", 0);
                     /* ------Refund amount to word------ */
                     var amount = convertNumberToWords(refund);
                     $('#amount-in-word').html(amount);
@@ -644,26 +662,30 @@ $(document).ready(function () {
 
 
         if (total > parseFloat(advance)) {
-            
+
             var due = total - parseFloat(advance);
             var due1 = new Intl.NumberFormat().format(due);
 
             $('#tr-due').removeClass("hidden");
+            $('#tr-refund').addClass("hidden");
             $('#due').attr("due", due);
             $('#due').html(due1);
+            $('#refund').attr("refund", 0);
             /* ------Due amount to word------ */
             var amount = convertNumberToWords(due);
             $('#amount-in-word').html(amount);
             /* ------//Due amount to word------ */
 
         } else {
-            
+
             var refund = parseFloat(advance) - total;
             var refund1 = new Intl.NumberFormat().format(refund);
 
             $('#tr-refund').removeClass("hidden");
+            $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
             $('#refund').html(refund1);
+            $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
             $('#amount-in-word').html(amount);
@@ -671,11 +693,6 @@ $(document).ready(function () {
         }
     },
             1000);
-
-
-
-
-
 
 });
 

@@ -61,47 +61,47 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
             $types = ReimbursementItem::getDistinctType();
             foreach ($types as $type) {
                 $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['type']);
-                if($counttype['count'] > 0) {
-                ?>
-                <table class="table2 table-bordered to-hide" id="table-<?php echo $type['type']; ?>" border="1">
+                if ($counttype['count'] > 0) {
+                    ?>
+                    <table class="table2 table-bordered to-hide" id="table-<?php echo $type['type']; ?>" border="1">
 
-                    <!--Table head-->
-                    <thead>
-                        <tr>
-                            <th class="col-1"></th>
-                            <th class="text-center table-td-width col-2">V/NO</th>
-                            <th class="text-center table-td-width col-3">AMOUNT</th>
-                            <th class="text-center table-td-width col-4">DESCRIPTION</th>
-                            <th class="text-center table-td-width col-5">SUB TOTAL</th>
-                        </tr>
-                    </thead>
-                    <!--Table head-->
+                        <!--Table head-->
+                        <thead>
+                            <tr>
+                                <th class="col-1"></th>
+                                <th class="text-center table-td-width col-2">V/NO</th>
+                                <th class="text-center table-td-width col-3">AMOUNT</th>
+                                <th class="text-center table-td-width col-4">DESCRIPTION</th>
+                                <th class="text-center table-td-width col-5">SUB TOTAL</th>
+                            </tr>
+                        </thead>
+                        <!--Table head-->
 
-                    <!--Table body-->
-                    <tbody>
-                        <?php
-                        $i = 0;
-                        foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                            $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['type']);
-
-                            if ($reimbursementdetails) {
-                                ?>
-                                <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
-                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                    <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
-                                    <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
-                                    <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
-
-                                </tr>
-                                <?php
-                            }
-                        }
-                        ?>
                         <!--Table body-->
-                    </tbody>
-                </table>
+                        <tbody>
+                            <?php
+                            $i = 0;
+                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                                $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['type']);
 
-                <?php
+                                if ($reimbursementdetails) {
+                                    ?>
+                                    <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
+                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                        <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
+                                        <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
+                                        <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
+
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
+                            <!--Table body-->
+                        </tbody>
+                    </table>
+
+                    <?php
                 }
             }
             ?>
@@ -134,13 +134,16 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <script src="js/job-costing-card-report.js" type="text/javascript"></script>
         <script>
 
-            $(document).ready(function () {
-                myFunction();
-            });
-
-            function myFunction() {
-                window.print();
-            }
+//            $(document).ready(function () {
+//                setTimeout(function () {
+//                    myFunction();
+//                }, 1000);
+//                
+//            });
+//
+//            function myFunction() {
+//                window.print();
+//            }
         </script>
     </body>
 </html>

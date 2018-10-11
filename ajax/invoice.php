@@ -20,11 +20,17 @@ if ($_POST['option'] == 'ADDINVOICE') {
     $INVOICE->delivery_sub_total = $_POST['delivery_total'];
     $INVOICE->payable_amount = $_POST['payable_amount'];
     $INVOICE->advance = $_POST['advance'];
-    $INVOICE->due = $_POST['due'];
-    $INVOICE->refund = $_POST['refund'];
+
+    if (empty($_POST['due'])) {
+        $INVOICE->refund = $_POST['refund'];
+        $INVOICE->due = 0;
+    } elseif (empty($_POST['refund'])) {
+        $INVOICE->due = $_POST['due'];;
+        $INVOICE->refund = 0;
+    }
 
     $result = $INVOICE->create();
-    
+
     header('Content-Type: application/json');
 
     echo json_encode($result);
@@ -76,45 +82,44 @@ if ($_POST['option'] == 'GETVALUE') {
     $INVOICE = new Invoice(NULL);
 
     $result = $INVOICE->getInvoiceByJobCostingCard($_POST["jobcostingcard"]);
-    
+
 //    if(!$result) {
 //        $res = 0;
 //    } else {
 //        $res = $result;
 //    }
-    
+
     header('Content-Type: application/json');
-    
+
     echo json_encode($result);
     exit();
 }
 
 if ($_POST['option'] == 'SAVEDELIVERYDATA') {
-    
+
     foreach ($_POST['data'] as $data) {
         $DELIVERYDATA = new InvoiceDeliveryDetails(NULL);
-        
-        if(empty($data['name']) && empty($data['amount'])) {
+
+        if (empty($data['name']) && empty($data['amount'])) {
             $result = 'success';
         } else {
-            
+
             $DELIVERYDATA->invoice = $data['invoice'];
             $DELIVERYDATA->name = $data['name'];
             $DELIVERYDATA->amount = $data['amount'];
-            
-            if(empty($data['id'])) {
+
+            if (empty($data['id'])) {
                 $result = $DELIVERYDATA->create();
             } else {
-                
+
                 $DELIVERYDATA->id = $data['id'];
                 $result = $DELIVERYDATA->update();
-                
             }
         }
     }
-    
+
     header('Content-Type: application/json');
-    
+
     echo json_encode($result);
     exit();
 }
