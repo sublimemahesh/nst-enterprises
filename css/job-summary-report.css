@@ -1,0 +1,28 @@
+
+/* 
+    Created on : Oct 12, 2018, 1:00:28 PM
+    Author     : U s E r ¨
+*/
+#wrapper {
+    width: 1080px;
+    margin: 20px;
+}
+td, th {
+    padding: 5px 10px;
+}
+.topic {
+    width: 100%;
+    background: #ccc;
+    margin: 20px 0px 20px 0px;
+    border: 1px solid #000;
+}
+h1 {
+    margin: 20px 0px;
+    font-size: 20px;
+    font-weight: 600
+}
+h2 {
+    font-size: 30px;
+    margin: 22px 0px 20px 0px;
+}
+

@@ -266,6 +266,9 @@
                         <li>
                             <a href="create-report-of-job-register.php">Job Register</a>
                         </li>
+                        <li>
+                            <a href="create-report-of-job-summary.php">Job Summary Report</a>
+                        </li>
                         
                     </ul>
                     <!-- /.nav-second-level -->
