@@ -66,7 +66,7 @@ $createdAt = date('Y-m-d H:i:s');
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Jobs</h1>
+                            <h1 class="page-header font-header">Job Registry</h1>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@ $createdAt = date('Y-m-d H:i:s');
                                             <form method="post" action="post-and-get/job.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignee</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="" attempt="">
                                                     <div id="suggesstion-box">
                                                         <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
                                                     </div>

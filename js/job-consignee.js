@@ -1,4 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+    }
     $('#name').keyup(function (e) {
         var nameId = $('#name-id').val();
         if (e.which != 38) {
@@ -15,7 +18,8 @@ $(document).ready(function () {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
+//                                    html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
                                 }
@@ -27,8 +31,10 @@ $(document).ready(function () {
                 }
             }
         }
+
     });
     $('#name-list-append').on('click', '.name', function () {
+
         var consigneeId = this.id;
         var consignee = $(this).text();
         $('#name-id').val(consigneeId.replace("c", ""));
@@ -48,79 +54,55 @@ $(document).ready(function () {
             $('#name-id').val("");
         });
     });
-    $('#name').bind('keypress keydown keyup', function (e) {
 
-        if (e.keyCode == 13) {
-            e.preventDefault();
-        }
+    $('#name').keypress(function (e) {
+        var $selected = $('li.selected'), $li = $('li.name');
+        if (e.keyCode == 40) {
+            var res = $selected.removeClass('selected').next().addClass('selected');
+            if ($selected.next().length == 0) {
+                $li.eq(0).addClass('selected');
+            }
+            if (res) {
+//                var consigneeId = $('li.selected').attr('id');
+                var consignee = $('li.selected').text();
+//                $('#name-id').val(consigneeId.replace("c", ""));
+                $('#name').val(consignee);
+            }
 
-        var li = $('#name .name');
-        var liSelected;
-        var next = '';
-        if (e.which === 40) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.next();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.eq(0).addClass('selected');
-                }
-            } else {
-                liSelected = li.eq(0).addClass('selected');
+        } else if (e.keyCode === 38) {
+            var res = $selected.removeClass('selected').prev().addClass('selected');
+            if ($selected.prev().length == 0) {
+                $li.eq(-1).addClass('selected');
             }
-        } else if (e.which === 38) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.prev();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.last().addClass('selected');
-                }
-            } else {
-                liSelected = li.last().addClass('selected');
+            if (res) {
+//                var consigneeId = $('li.selected').attr('id');
+                var consignee = $('li.selected').text();
+//                $('#name-id').val(consigneeId.replace("c", ""));
+                $('#name').val(consignee);
             }
+
         } else if (e.which === 13) {
+            e.preventDefault();
             var selected = $('.selected').attr("id");
-            var consigneename = $('.selected').text();
+//            var consigneename = $('.selected').text();
             var consigneeId = selected.replace("c", "");
             $('#name-id').val(consigneeId);
-            $('#name').val(consigneename);
+            $('#name').attr('attempt', 1);
+//            $('#name').val(consigneename);
             $('#name-list-append').empty();
-            $('#name').change(function () {
-                $('#name-id').val("");
+
+            $('#name').change(function (e) {
+                $('#name').attr('attempt', 0);
+
             });
         }
     });
+    $('#name').change(function () {
+        if ($('#name').attr('attempt') != 1) {
+            $('#name-id').val("");
+        }
 
-//    $('#consignment').click(function () {
-//
-//        var name = $('#name-id').val();
-//        alert(name);
-//        $.ajax({
-//            type: 'POST',
-//            url: 'ajax/job-consignee.php',
-//            dataType: "json",
-//            data: {id: name, option: 'FINDNAME'},
-//            success: function (result) {
-//                if (result.id) {
-//                    $(".create-consignee").addClass("hidden");
-//                } else {
-//                    $(".create-consignee").removeClass("hidden");
-//                }
-//
-//            }
-//        });
-//        $('#name').keyup(function (e) {
-//            $('#name-id').val('');
-//        });
-//    });
-
-//    $('#create-consignee').click(function () {
-//        var name = $('#name').val();
-//        window.location.replace('create-consignee.php?name=' + name);
-//    });
+    });
 
     $('#consignment').keyup(function (e) {
         var nameId = $('#consignment-id').val();
@@ -138,7 +120,7 @@ $(document).ready(function () {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="consignment selected">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
                                 }
@@ -161,6 +143,7 @@ $(document).ready(function () {
             $('#consignment-id').val("");
         });
     });
+
     $('#consignment-list-append').on('mouseover', '.consignment', function () {
         var consigneeId = this.id;
         var consignee = $(this).text();
@@ -170,52 +153,50 @@ $(document).ready(function () {
             $('#consignment-id').val("");
         });
     });
-    $('#consignment').bind('keypress keydown keyup', function (e) {
+    $('#consignment').keypress(function (e) {
 
-        if (e.keyCode == 13) {
-            e.preventDefault();
-        }
-
-        var li = $('#consignment .consignment');
-        var liSelected;
-        var next = '';
-        if (e.which === 40) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.next();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.eq(0).addClass('selected');
-                }
-            } else {
-                liSelected = li.eq(0).addClass('selected');
+        var $selected = $('li.selected'), $li = $('li.consignment');
+        if (e.keyCode == 40) {
+            var res = $selected.removeClass('selected').next().addClass('selected');
+            if ($selected.next().length == 0) {
+                $li.eq(0).addClass('selected');
             }
-        } else if (e.which === 38) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.prev();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.last().addClass('selected');
-                }
-            } else {
-                liSelected = li.last().addClass('selected');
+            if (res) {
+                var consignment = $('li.selected').text();
+                $('#consignment').val(consignment);
+                
+            }
+        } else if (e.keyCode === 38) {
+            var res = $selected.removeClass('selected').prev().addClass('selected');
+            if ($selected.prev().length == 0) {
+                $li.eq(-1).addClass('selected');
+            }
+            if (res) {
+                var consignment = $('li.selected').text();
+                $('#consignment').val(consignment);
+                
             }
         } else if (e.which === 13) {
+            e.preventDefault();
             var selected = $('.selected').attr("id");
-            var consignmentname = $('.selected').text();
+            $('#consignment').attr('attempt', 1);
             var consignmentId = selected.replace("c", "");
             $('#consignment-id').val(consignmentId);
-            $('#consignment').val(consignmentname);
             $('#consignment-list-append').empty();
-            $('#consignment').change(function () {
-                $('#consignment-id').val("");
+
+            $('#consignment').change(function (e) {
+                $('#consignment').attr('attempt', 0);
+
             });
+
         }
     });
+    $('#consignment').change(function () {
+        if ($('#consignment').attr('attempt') != 1) {
+            $('#consignment-id').val("");
+        }
 
+    });
 
     $('#vesselAndFlight').keyup(function (e) {
         var vesselAndFlightId = $('#vesselAndFlight-id').val();
@@ -233,7 +214,7 @@ $(document).ready(function () {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="vesselAndFlight selected">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
                                 }
@@ -266,52 +247,51 @@ $(document).ready(function () {
             $('#vesselAndFlight-id').val("");
         });
     });
-    $('#vesselAndFlight').bind('keypress keydown keyup', function (e) {
 
-        if (e.keyCode == 13) {
-            e.preventDefault();
-        }
+    $('#vesselAndFlight').keypress(function (e) {
 
-        var li = $('#vesselAndFlight .vesselAndFlight');
-        var liSelected;
-        var next = '';
-        if (e.which === 40) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.next();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.eq(0).addClass('selected');
-                }
-            } else {
-                liSelected = li.eq(0).addClass('selected');
+        var $selected = $('li.selected'), $li = $('li.vesselAndFlight');
+        if (e.keyCode == 40) {
+            var res = $selected.removeClass('selected').next().addClass('selected');
+            if ($selected.next().length == 0) {
+                $li.eq(0).addClass('selected');
             }
-        } else if (e.which === 38) {
-            if (liSelected) {
-                liSelected.removeClass('selected');
-                next = liSelected.prev();
-                if (next.length > 0) {
-                    liSelected = next.addClass('selected');
-                } else {
-                    liSelected = li.last().addClass('selected');
-                }
-            } else {
-                liSelected = li.last().addClass('selected');
+            if (res) {
+                var vesselAndFlight = $('li.selected').text();
+                $('#vesselAndFlight').val(vesselAndFlight);
+                
+            }
+        } else if (e.keyCode === 38) {
+            var res = $selected.removeClass('selected').prev().addClass('selected');
+            if ($selected.prev().length == 0) {
+                $li.eq(-1).addClass('selected');
+            }
+            if (res) {
+                var vesselAndFlight = $('li.selected').text();
+                $('#vesselAndFlight').val(vesselAndFlight);
+                
             }
         } else if (e.which === 13) {
+            e.preventDefault();
             var selected = $('.selected').attr("id");
-            var vesselAndFlightname = $('.selected').text();
+            $('#vesselAndFlight').attr('attempt', 1);
             var vesselAndFlightId = selected.replace("c", "");
             $('#vesselAndFlight-id').val(vesselAndFlightId);
-            $('#vesselAndFlight').val(vesselAndFlightname);
             $('#vesselAndFlight-list-append').empty();
-            $('#vesselAndFlight').change(function () {
-                $('#vesselAndFlight-id').val("");
+
+            $('#vesselAndFlight').change(function (e) {
+                $('#vesselAndFlight').attr('attempt', 0);
+
             });
+
         }
     });
+    $('#vesselAndFlight').change(function () {
+        if ($('#vesselAndFlight').attr('attempt') != 1) {
+            $('#vesselAndFlight-id').val("");
+        }
 
+    });
 });
 
 
