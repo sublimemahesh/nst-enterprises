@@ -1,6 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function (e) {
 
-    $('#btn-job').click(function () {
+    $('#btn-job').click(function (event) {
+        
 
         if (!$('#name').val() || $('#name').val().length === 0) {
             swal({
@@ -138,7 +139,7 @@ $(document).ready(function () {
             });
             return false;
         } else {
-             callLoader();
+            callLoader();
             return true;
         }
 
