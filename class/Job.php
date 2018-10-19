@@ -90,7 +90,7 @@ class Job {
 
     public function all() {
 
-        $query = "SELECT * FROM `job`";
+        $query = "SELECT * FROM `job` ORDER BY `createdAt` DESC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -151,10 +151,19 @@ class Job {
 
         return $array_res;
     }
-    
+
+    public function countOfTodayRegisteredJobs($today) {
+
+        $query = "SELECT count(`id`) AS `count` FROM `job` WHERE `createdAt`=" . $today;
+
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+
     public function getJobsByDateRange($from, $to) {
 
-        $query = "SELECT * FROM `job` WHERE `createdAt` BETWEEN '". $from ."' AND '". $to ."' ORDER BY `id` ASC";
+        $query = "SELECT * FROM `job` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `id` ASC";
 
         $db = new Database();
         $result = $db->readQuery($query);

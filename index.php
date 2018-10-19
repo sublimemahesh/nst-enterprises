@@ -3,6 +3,14 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
 $USER1 = new User($_SESSION['id']);
+
+date_default_timezone_set('Asia/Colombo');
+$today = date('Y-m-d');
+$job = Job::countOfTodayRegisteredJobs($today);
+$invoice = Invoice::countOfTodayCreatedInvoice($today);
+$jobcostingcard = JobCostingCard::countOfTodayCreatedJobCostingCard($today);
+$payment = JobPayment::countOfTodayPayment($today);
+
 ?>
 
 <!DOCTYPE html>
@@ -54,15 +62,15 @@ $USER1 = new User($_SESSION['id']);
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-comments fa-5x"></i>
+                                        <i class="fa fa-briefcase fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>New Comments!</div>
+                                        <div class="huge"><?php echo $job['count']; ?></div>
+                                        <div>Today New Jobs</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="manage-jobs.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -79,12 +87,12 @@ $USER1 = new User($_SESSION['id']);
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>New Tasks!</div>
+                                        <div class="huge"><?php echo $invoice['count']; ?></div>
+                                        <div>Today New Invoices</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="manage-jobs.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -98,15 +106,15 @@ $USER1 = new User($_SESSION['id']);
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                        <i class="fa fa-file fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>New Orders!</div>
+                                        <div class="huge"><?php echo $jobcostingcard['count']; ?></div>
+                                        <div>Today Job Costing Cards</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="manage-job-costing-cards.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -120,15 +128,15 @@ $USER1 = new User($_SESSION['id']);
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
+                                        <i class="fa fa-usd fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                        <div class="huge"><?php echo $payment['count']; ?></div>
+                                        <div>Today New Payments</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="manage-all-job-payments.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -140,10 +148,10 @@ $USER1 = new User($_SESSION['id']);
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                                <i class="fa fa-bar-chart-o fa-fw"></i> Invoice Amount vs Gross Profit
                                 <div class="pull-right">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -166,31 +174,13 @@ $USER1 = new User($_SESSION['id']);
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div id="morris-area-chart"></div>
+                                <canvas id="myChart"></canvas>
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
-                        
+
                     </div>
-                    <!-- /.col-lg-8 -->
-                    <div class="col-lg-4">
-                        <!-- /.panel -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                                <a href="#" class="btn btn-default btn-block">View Details</a>
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        
-                        <!-- /.panel .chat-panel -->
-                    </div>
-                    <!-- /.col-lg-4 -->
                 </div>
                 <!-- /.row -->
             </div>
@@ -211,7 +201,9 @@ $USER1 = new User($_SESSION['id']);
         <script src="plugins/morrisjs/morris-data.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" type="text/javascript"></script>
+        <script src="js/invoiceamaount-and-grossprofit-chart.js" type="text/javascript"></script>
     </body>
 
 </html>

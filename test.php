@@ -1,156 +1,91 @@
+<?php
+include_once(dirname(__FILE__) . '/class/include.php');
+//date_default_timezone_set('Asia/Colombo');
+//$year = date('Y');
+//$lastmonth = $year - 1;
+//dd($lastmonth);
+//$invoice = Invoice::getInvoiceByToday($today);
+?>
+
 <html>
     <head>
         <style>
-            /*            .display_box_hover{
-                            background-color:#901C51;
-                            font-weight:bold;
-                            cursor:pointer;
-                            color:#FFF;     
-                            display: block;
-                        }
-            
-                        #cityresultscontainer
-                        {
-                            position:relative;}
-            
-            
-                        #cityresults
-                        {
-                            display:none;
-                            position:absolute;
-                            z-index:1;
-                            width:200px;
-                            background-color:#FFF;
-                            -webkit-border-bottom-left-radius:3px;-moz-border-radius-bottomleft:3px;border-bottom-left-radius:3px;
-                            -webkit-border-bottom-right-radius:3px;-moz-border-radius-bottomright:3px;border-bottom-right-radius:3px;
-                            border:1px solid #DDD;
-                        }
-            
-                        #cityresults span{
-                            width:192px;
-                            float:left;
-                            padding:4px;
-                            font-weight:bold;
-                        }
-            
-                        #cityresults ul
-                        {
-                            list-style-type:none;
-                            padding: 0;
-                        }
-            
-                        #cityresults li a{
-                            width:192px;
-                            float:left;
-                            padding:4px;
-                        }
-                        #cityresults li a:hover{
-                            text-decoration:none;
-                            background-color:#901C51;
-                            font-weight:bold;
-                            cursor:pointer;
-                            color:#FFF; 
-                        }
-            
-                        #cityresults li:hover{
-                            background-color:#901C51;
-                            font-weight:bold;
-                            cursor:pointer;
-                            color:#FFF; 
-                        }
-            
-            
-            
-                        #cityresults span:hover{
-                            background-color:#901C51;
-                            font-weight:bold;
-                            cursor:pointer;
-                            color:#FFF; 
-                        }*/
 
-            li{
-                display:block;
-                width:100px;
-                height:20px;
-                border:1px solid #ccc;
-                margin-bottom:5px;
-            }
-
-            .hlight{
-                background:yellow;
-            }
         </style>
 
     </head>
     <body>
-        <input type="text" name="name" id="name">
-        <li class="hlight">111</li>
-        <li>222</li>
-        <li>333</liv>
-        <li>444</li>
-        <li>555</li>
-        <li>666</li>
+        <canvas id="myChart" width="10" height="10"></canvas>
+        <!--<input type="hidden" id="lastmonth" value="<?php echo $lastmonth; ?>" >-->
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" type="text/javascript"></script>
         <script>
-//            $(document).ready(function () {
-//                window.displayBoxIndex = -1;
-//                $('#cityresults').on('click', 'li', function () {
-//                    $('#city').val($(this).text());
-//                    $('#cityresults').hide('');
-//                    $('#citygeonameid').val($(this).parent().attr('data-id'));
-//                    return false;
-//                });
-//                var Navigate = function (diff) {
-//
-//                    displayBoxIndex += diff;
-//
-//                    var oBoxCollection = $("#cityresults ul li");
-//
-//                    if (displayBoxIndex >= oBoxCollection.length) {
-//                        displayBoxIndex = 0;
-//                    }
-//                    if (displayBoxIndex < 0) {
-//                        displayBoxIndex = oBoxCollection.length - 1;
-//                    }
-//
-//                    var cssClass = "display_box_hover";
-//                    oBoxCollection.removeClass(cssClass).eq(displayBoxIndex).addClass(cssClass);
-//
-//                }
-//                $(document).on('keypress keyup', function (e) {
-//                    if (e.keyCode == 13 || e.keyCode == 32) {
-//                        $('.display_box_hover').trigger('click');
-//                        return false;
-//                    }
-//                    if (e.keyCode == 40) {
-//                        //down arrow
-//                        Navigate(1);
-//                    }
-//                    if (e.keyCode == 38) {
-//                        //up arrow
-//                        Navigate(-1);
-//                    }
-//                });
-//            });
-
-
             $(document).ready(function () {
-                
-                $('#name').keyup(function (e) {
-                    var $hlight = $('li.hlight'), $li = $('li');
-                    if (e.keyCode == 40) {
-                        $hlight.removeClass('hlight').next().addClass('hlight');
-                        if ($hlight.next().length == 0) {
-                            $li.eq(0).addClass('hlight')
-                        }
-                    } else if (e.keyCode === 38) {
-                        $hlight.removeClass('hlight').prev().addClass('hlight');
-                        if ($hlight.prev().length == 0) {
-                            $li.eq(-1).addClass('hlight')
-                        }
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajax/invoice.php',
+                    dataType: "json",
+                    data: {option: 'GETCHARTDATA'},
+                    success: function (results) {
+                        var date = [];
+                        var payableamount = [];
+                        var grossprofit = [];
+                        $.each(results, function (key, result) {
+                            date.push(result.date);
+                            payableamount.push(result.sum);
+                            grossprofit.push(result.grossprofit);
+
+                        });
+                        var ctx = document.getElementById("myChart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: date,
+                                datasets: [{
+                                        label: 'Sum of Invoice Amount',
+                                        data: payableamount,
+                                        fill: false,
+                                        borderColor: 'rgba(0,255,0,0.8)',
+                                        borderWidth: 3
+                                    },
+                                    {
+                                        label: 'Sum of Gross Profit',
+                                        data: grossprofit,
+                                        fill: false,
+                                        borderColor: 'rgba(255, 0, 0, 0.8)',
+                                        borderWidth: 3
+                                    }]
+                            },
+                            options: {
+                                tooltips: {
+                                    mode: 'index',
+                                    intersect: false,
+                                },
+                                hover: {
+                                    mode: 'nearest',
+                                    intersect: true
+                                },
+                                scales: {
+                                    yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                },
+                            }
+                        });
                     }
                 });
             });
+
+        </script>
+
+
+
+
+        <script>
+
         </script>
 
     </body>
