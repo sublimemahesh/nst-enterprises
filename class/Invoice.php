@@ -173,15 +173,26 @@ class Invoice {
 
     public function getInvoiceByJobCostingCard($job_costing_card) {
 
-        $query = "SELECT * FROM `invoice` WHERE `job_costing_card`='". $job_costing_card ."'";
+        $query = "SELECT * FROM `invoice` WHERE `job_costing_card`='" . $job_costing_card . "'";
 
         $db = new Database();
 
         $result = mysql_fetch_array($db->readQuery($query));
-        
+
         return $result;
     }
-    
+
+    public function getInvoiceAmountByDate($date) {
+        
+
+        $query = "SELECT sum(`payable_amount`) AS `sum` FROM `invoice` WHERE `createdAt`='" . $date . "'";
+
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+
+        return $result;
+    }
+
     public function updateSettleAndBalance() {
 
         $query = "UPDATE  `invoice` SET "
@@ -199,6 +210,15 @@ class Invoice {
         } else {
             return FALSE;
         }
+    }
+
+    public function countOfTodayCreatedInvoice($today) {
+
+        $query = "SELECT count(`id`) AS `count` FROM `invoice` WHERE `createdAt`=" . $today;
+
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
     }
 
 }

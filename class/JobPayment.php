@@ -135,5 +135,14 @@ class JobPayment {
         $result = mysql_fetch_array($db->readQuery($query));
         return $result;
     }
+    
+    public function countOfTodayPayment($today) {
+
+        $query = "SELECT count(`id`) AS `count` FROM `job_payment` WHERE `createdAt`='" . $today ."'";
+
+        $db = new Database();
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
 
 }

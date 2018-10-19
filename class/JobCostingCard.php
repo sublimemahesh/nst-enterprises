@@ -111,6 +111,21 @@ class JobCostingCard {
         return $array_res;
     }
     
+    public function getJobCostingCardByDate($date) {
+
+        $query = "SELECT * FROM `job_costing_card` WHERE `date`='" . $date ."'";
+        
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+    
     public function getJobCostingCardIdByJob($job) {
 
         $query = "SELECT * FROM `job_costing_card` WHERE `job`='". $job ."'";
@@ -126,6 +141,15 @@ class JobCostingCard {
 
         $db = new Database();
 
+        $result = mysql_fetch_array($db->readQuery($query));
+        return $result;
+    }
+    
+    public function countOfTodayCreatedJobCostingCard($today) {
+
+        $query = "SELECT count(`id`) AS `count` FROM `job_costing_card` WHERE `date`='" . $today ."'";
+
+        $db = new Database();
         $result = mysql_fetch_array($db->readQuery($query));
         return $result;
     }

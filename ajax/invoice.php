@@ -25,7 +25,8 @@ if ($_POST['option'] == 'ADDINVOICE') {
         $INVOICE->refund = $_POST['refund'];
         $INVOICE->due = 0;
     } elseif (empty($_POST['refund'])) {
-        $INVOICE->due = $_POST['due'];;
+        $INVOICE->due = $_POST['due'];
+        ;
         $INVOICE->refund = 0;
     }
 
@@ -121,5 +122,67 @@ if ($_POST['option'] == 'SAVEDELIVERYDATA') {
     header('Content-Type: application/json');
 
     echo json_encode($result);
+    exit();
+}
+
+if ($_POST['option'] == 'GETCHARTDATA') {
+
+    $INVOICE = new Invoice(NULL);
+    $JOBCOSTINGCARD = new JobCostingCard(NULL);
+    date_default_timezone_set('Asia/Colombo');
+    $month = date('m');
+    $year = date('Y');
+    $lastmonth = $month - 1;
+    if ($month == 1) {
+        $lastmonth = 12;
+        $year = $year - 1;
+    }
+    if ($lastmonth == 2) {
+        $maxdate = 28;
+    } elseif ($lastmonth == 1 || $lastmonth == 3 || $lastmonth == 5 || $lastmonth == 7 || $lastmonth == 8 || $lastmonth == 10 || $lastmonth == 12) {
+        $maxdate = 31;
+    } else {
+        $maxdate = 30;
+    }
+
+    $arr = array();
+    $amountbydate = array();
+    $totcostingamount = 0;
+    $grossprofit = 0;
+    $costingamount = '';
+    for ($i = 1; $i <= $maxdate; $i++) {
+        $date = $year . '-' . $lastmonth . '-' . $i;
+        $result = $INVOICE->getInvoiceAmountByDate($date);
+        $jobcostingcards = $JOBCOSTINGCARD->getJobCostingCardByDate($date);
+
+        if ($jobcostingcards) {
+            foreach ($jobcostingcards as $jobcostingcard) {
+                $costingamount = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard['id']);
+                $totcostingamount += $costingamount['grandtotal'];
+            }
+        } else {
+            $totcostingamount = 0;
+        }
+
+        $grossprofit = $result['sum'] - $totcostingamount;
+
+
+        $arr['date'] = $date;
+        $arr['grossprofit'] = $grossprofit;
+
+        if ($result['sum']) {
+            $arr['sum'] = $result['sum'];
+        } else {
+            $arr['sum'] = 0;
+        }
+
+
+        array_push($amountbydate, $arr);
+    }
+
+
+    header('Content-Type: application/json');
+
+    echo json_encode($amountbydate);
     exit();
 }
