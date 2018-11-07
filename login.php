@@ -29,9 +29,11 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
         <div class="container">
             <div class="login-page">
+                <div class="logo">
+                    <img src="images/logo/logo.png" alt=""/>
+                </div>
                 <div class="login-topic">
-                    <a href="javascript:void(0);"><b>Member Login</b></a>
-                    <small>NST Enterprises</small>
+                    <a href="javascript:void(0);"><b>Account Management System</b></a>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
@@ -50,7 +52,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
-                        <div class="login-panel panel panel-default">
+                        <div class="login-panel panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Please Sign In</h3>
                             </div>
@@ -64,15 +66,11 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                             <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                         </div>
                                         <div class="checkbox">
-                                            <!--                                                <lable>
-                                                                                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                                                                            </lable>-->
                                             <div class="">
                                                 <a href="forget-password.php"><h5><b>Forget Password?</b></h5></a>
                                             </div>
                                         </div>
-
-                                        <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+                                        <button class="btn btn-lg btn-dark-blue btn-block" type="submit">Login</button>
                                     </fieldset>
                                 </form>
                             </div>
@@ -92,5 +90,4 @@ include_once(dirname(__FILE__) . '/class/include.php');
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
 
     </body>
-
 </html>

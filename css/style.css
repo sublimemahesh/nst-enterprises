@@ -2,11 +2,11 @@
     margin-bottom: 20px;
 }
 .login-page .login-topic a {
-    font-size: 36px;
+    font-size: 25px;
     display: block;
     width: 100%;
     text-align: center;
-    color: #d9534f;
+    color: #ed1b24;
 }
 .login-page a {
     text-decoration: none;
@@ -494,4 +494,18 @@ list.border{
 .box-light-blue h3 a:hover{
     color: #39cccc;
     text-decoration: none;
+}
+.btn-dark-blue {
+    color: #fff;
+    background-color: #17469e;
+    border-color: #0c2a62b3;
+}
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.btn-dark-blue:hover {
+    color: #fff;
+    background-color: #6a6a6e;
+    border-color: #c3c4c8b3;
 }
