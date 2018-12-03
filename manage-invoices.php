@@ -13,16 +13,14 @@ $MESSAGE = new Message($message);
 
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Job Costing Cards || Dashboard || NST Enterprises</title>
+        <title>Manage Invoices || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -62,7 +60,7 @@ $MESSAGE = new Message($message);
                         $vali = new Validator();
                         $vali->show_message();
                         ?>
-                        
+
                         <?php
                         if (isset($_GET['message'])) {
                             ?>
@@ -76,7 +74,7 @@ $MESSAGE = new Message($message);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Costing Cards</h1>
+                            <h1 class="page-header font-header">Job Invoices</h1>
                         </div>
                     </div>
 
@@ -84,37 +82,47 @@ $MESSAGE = new Message($message);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage Job Costing Cards
+                                    Manage Invoices
                                 </div>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Job</th>
-                                                <th>Invoice</th>
-                                                <th>Date</th>
+                                                <th>Invoice No.</th>
+                                                <th>Job No.</th>
+                                                <th>Created Date</th>
+                                                <th>Consignee</th>
+                                                <th>Consignment</th>
+                                                <th>Invoice Amount</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (JobCostingCard::all() as $jobcostingcard) {
-                                                $JOB = new Job($jobcostingcard['job'])
+                                            foreach (Invoice::all() as $invoice) {
+                                                $JOBCOSTINGCARD = new JobCostingCard($invoice['job_costing_card']);
+                                                $JOB = new Job($JOBCOSTINGCARD->job);
+                                                $CONSIGNEE = new Consignee($JOB->consignee);
+                                                $CONSIGNMENT = new Consignment($JOB->consignment);
+                                                
                                                 ?>
-                                                <tr id="row_<?php echo $jobcostingcard['id']; ?>">
-                                                    <td><?php echo $jobcostingcard['id']; ?></td>
+                                                <tr id="row_<?php echo $invoice['id']; ?>">
+                                                    <td><?php echo $invoice['id']; ?></td>
+                                                    <td><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                                                     <td><?php echo $JOB->reference_no; ?></td>
-                                                    <td><?php echo $jobcostingcard['invoiceNumber']; ?></td>
-                                                    <td><?php echo $jobcostingcard['date']; ?></td>
+                                                    <td><?php echo $invoice['createdAt']; ?></td>
+                                                    <td><?php echo $CONSIGNEE->name; ?></td>
+                                                    <td><?php echo $CONSIGNMENT->name; ?></td>
+                                                    <td class="text-right"><?php echo $invoice['payable_amount']; ?></td>
                                                     <td class="text-center" style="width: 250px"> 
-                                                        <a href="edit-job-costing-card.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit Job Costing Card"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                        <a href="view-invoice.php?id=<?php echo $JOBCOSTINGCARD->id; ?>" class="op-link btn btn-sm btn-info" title="View Invoice"><i class="glyphicon glyphicon-eye-open"></i></a>
                                                         |
-                                                        <a href="job-costing-card-report.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                        <a href="create-invoice.php?id=<?php echo $JOBCOSTINGCARD->id; ?>" class="op-link btn btn-sm btn-success" title="Edit Invoice"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |
-                                                        <a href="create-invoice.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-primary" title="Tax Invoice"><i class="glyphicon glyphicon-list-alt"></i></a>
+                                                        <a href="invoice.php?id=<?php echo $JOBCOSTINGCARD->id; ?>" class="op-link btn btn-sm btn-warning" title="Print Invoice" target="blank"><i class="glyphicon glyphicon-print"></i></a>
                                                         |
-                                                        <a href="#" class="delete-job-costing-card btn btn-sm btn-danger" data-id="<?php echo $jobcostingcard['id']; ?>" title="Delete">
+                                                        <a href="#" class="delete-invoice btn btn-sm btn-danger" data-id="<?php echo $invoice['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
                                                     </td>
@@ -132,7 +140,6 @@ $MESSAGE = new Message($message);
             </div>
             <!-- /Page Content -->
         </div>
-
         <!-- jQuery -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap Core JavaScript -->
@@ -147,9 +154,7 @@ $MESSAGE = new Message($message);
         <script src="plugins/datatables-responsive/dataTables.responsive.js" type="text/javascript"></script>
         <!-- Sweetalerts -->
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
-        <script src="delete/js/job-costing-card.js" type="text/javascript"></script>
-
+        <script src="delete/js/invoice.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
@@ -158,5 +163,5 @@ $MESSAGE = new Message($message);
             });
         </script>
     </body>
-
 </html>
+
