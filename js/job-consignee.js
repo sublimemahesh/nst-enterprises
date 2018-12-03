@@ -18,8 +18,8 @@ $(document).ready(function (e) {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
-//                                    html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
+//                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
                                 }
@@ -88,7 +88,10 @@ $(document).ready(function (e) {
             var consigneeId = selected.replace("c", "");
             $('#name-id').val(consigneeId);
             $('#name').attr('attempt', 1);
-//            $('#name').val(consigneename);
+
+            var consigneename = $('li.selected').text();
+            $('#name').val(consigneename);
+
             $('#name-list-append').empty();
 
             $('#name').change(function (e) {
@@ -120,7 +123,7 @@ $(document).ready(function (e) {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="consignment selected">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
                                 }
@@ -164,7 +167,7 @@ $(document).ready(function (e) {
             if (res) {
                 var consignment = $('li.selected').text();
                 $('#consignment').val(consignment);
-                
+
             }
         } else if (e.keyCode === 38) {
             var res = $selected.removeClass('selected').prev().addClass('selected');
@@ -174,7 +177,7 @@ $(document).ready(function (e) {
             if (res) {
                 var consignment = $('li.selected').text();
                 $('#consignment').val(consignment);
-                
+
             }
         } else if (e.which === 13) {
             e.preventDefault();
@@ -182,6 +185,8 @@ $(document).ready(function (e) {
             $('#consignment').attr('attempt', 1);
             var consignmentId = selected.replace("c", "");
             $('#consignment-id').val(consignmentId);
+            var consignment = $('li.selected').text();
+            $('#consignment').val(consignment);
             $('#consignment-list-append').empty();
 
             $('#consignment').change(function (e) {
@@ -214,7 +219,7 @@ $(document).ready(function (e) {
                             var html = '';
                             $.each(result, function (key) {
                                 if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
+                                    html += '<li id="c' + this.id + '" class="vesselAndFlight selected">' + this.name + '</li>';
                                 } else {
                                     html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
                                 }
@@ -259,7 +264,7 @@ $(document).ready(function (e) {
             if (res) {
                 var vesselAndFlight = $('li.selected').text();
                 $('#vesselAndFlight').val(vesselAndFlight);
-                
+
             }
         } else if (e.keyCode === 38) {
             var res = $selected.removeClass('selected').prev().addClass('selected');
@@ -269,7 +274,7 @@ $(document).ready(function (e) {
             if (res) {
                 var vesselAndFlight = $('li.selected').text();
                 $('#vesselAndFlight').val(vesselAndFlight);
-                
+
             }
         } else if (e.which === 13) {
             e.preventDefault();
@@ -277,6 +282,10 @@ $(document).ready(function (e) {
             $('#vesselAndFlight').attr('attempt', 1);
             var vesselAndFlightId = selected.replace("c", "");
             $('#vesselAndFlight-id').val(vesselAndFlightId);
+
+            var vesselAndFlight = $('li.selected').text();
+            $('#vesselAndFlight').val(vesselAndFlight);
+
             $('#vesselAndFlight-list-append').empty();
 
             $('#vesselAndFlight').change(function (e) {

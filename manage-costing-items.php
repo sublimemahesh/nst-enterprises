@@ -23,7 +23,7 @@ $COSTINGTYPE = new CostingType($type);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Costing Items || Control Panel || NST ENterprises</title>
+        <title>Manage Costing Items || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

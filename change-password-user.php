@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Change User Password || Control Panel || NST ENterprises</title>
+        <title>Change User Password || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

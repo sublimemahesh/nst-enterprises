@@ -33,7 +33,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Vie Invoice || Dashboard || NST Enterprises</title>
 
         <link href="css/invoice.css" rel="stylesheet" type="text/css"/>
     </head>

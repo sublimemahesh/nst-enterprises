@@ -3,8 +3,13 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
+$id = '';
+if(isset($_GET['type'])) {
+    $id = $_GET['type'];
+}
+
 $USER1 = new User($_SESSION['id']);
-$VESSELSANDFLIGHTS = VesselAndFlight::all();
+$ITEMS = ReimbursementItem::getCostingItemsByType($id);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +23,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arrange Vessels and Flights || Dashboard || NST Enterprises</title>
+        <title>Arrange Costing Items || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +63,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Vessels and Flights</h1>
+                            <h1 class="page-header font-header">Costing Items</h1>
                         </div>
                     </div>
 
@@ -66,11 +71,11 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Arrange Vessels and Flights 
+                                    Arrange Costing Items 
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-vessels-and-flights.php">
+                                        <a href="manage-costing-types.php.php">
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
@@ -78,13 +83,13 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <form method="post" action="post-and-get/vessel-and-flight.php" class="form-horizontal" >
+                                            <form method="post" action="post-and-get/costing-items.php" class="form-horizontal" >
                                                 <div class="clearfix m-b-20">
                                                     <div class="dd nestable-with-handle">
                                                         <ol class="dd-list">
                                                             <?php
-                                                            if (count($VESSELSANDFLIGHTS) > 0) {
-                                                                foreach ($VESSELSANDFLIGHTS as $key => $img) {
+                                                            if (count($ITEMS) > 0) {
+                                                                foreach ($ITEMS as $key => $img) {
                                                                     ?>
                                                                     <li class="dd-item dd3-item" data-id="13">
                                                                         <div class="dd-handle dd3-handle"></div>
@@ -96,7 +101,7 @@ $VESSELSANDFLIGHTS = VesselAndFlight::all();
                                                                 }
                                                             } else {
                                                                 ?> 
-                                                                <b>No vessels or flights in the database.</b> 
+                                                                <b>No costing items in the database.</b> 
                                                             <?php } ?> 
                                                         </ol>
                                                     </div>

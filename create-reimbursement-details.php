@@ -30,7 +30,7 @@ $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostin
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Reimbursement Details|| Control Panel || NST ENterprises</title>
+        <title>Reimbursement Details|| Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

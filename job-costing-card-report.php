@@ -22,7 +22,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Job Costing Card Report || Dashboard || NST Enterprises</title>
 
         <link href="css/job-costing-card.css" rel="stylesheet" type="text/css"/>
     </head>

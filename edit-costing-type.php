@@ -24,7 +24,7 @@ $COSTINGTYPE = new CostingType($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Create Costing Types || Control Panel || NST ENterprises</title>
+        <title>Create Costing Types || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

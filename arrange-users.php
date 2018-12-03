@@ -18,7 +18,7 @@ $USERS = User::all();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arrange Users || Control Panel || NST ENterprises</title>
+        <title>Arrange Users || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

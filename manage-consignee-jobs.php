@@ -22,7 +22,7 @@ $jobs = Job::getJobsByConsignee($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Jobs || Control Panel || NST ENterprises</title>
+        <title>Manage Jobs By Consignee || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -73,7 +73,7 @@ $jobs = Job::getJobsByConsignee($id);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage Jobs
+                                    Manage Jobs By Consignee
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">

@@ -23,7 +23,7 @@ $CONSIGNMENT = new Consignment($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>View Consignment || Control Panel || NST ENterprises</title>
+        <title>View Consignment || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->

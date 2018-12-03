@@ -22,7 +22,7 @@ $CONSIGNEE = new Consignee($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Consignee || Control Panel || NST ENterprises</title>
+        <title>Edit Consignee || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

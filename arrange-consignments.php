@@ -18,7 +18,7 @@ $CONSIGNMENTS = Consignment::all();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arrange Consignments || Control Panel || NST ENterprises</title>
+        <title>Arrange Consignment || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

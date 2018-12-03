@@ -24,7 +24,7 @@ $PERMISSIONS = unserialize($USER->permission);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage User Permission || Control Panel || NST ENterprises</title>
+        <title>Manage User Permissions || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -72,7 +72,7 @@ $PERMISSIONS = unserialize($USER->permission);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage User Permission
+                                    Manage User Permissions
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">

@@ -27,7 +27,7 @@ $MESSAGE = new Message($message);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Job Costing Cards || Control Panel || NST ENterprises</title>
+        <title>Manage Job Costing Cards || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
