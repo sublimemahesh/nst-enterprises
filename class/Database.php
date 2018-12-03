@@ -7,10 +7,10 @@
  */
 class Database {
 
-//    private $host = 'kelum818.ipagemysql.com';
-//    private $name = 'nst_enterprises';
-//    private $user = 'nst_enterprises';
-//    private $password = 'NsT@)880';
+//    private $host = 'localhost';
+//    private $name = 'islapiiu_nst';
+//    private $user = 'islapiiu_main';
+//    private $password = 'Ue.t;FNgC?BG,Paf8V';
 
    private $host = 'localhost';
    private $name = 'nst-enterprises';
