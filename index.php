@@ -24,7 +24,7 @@ $payment = JobPayment::countOfTodayPayment($today);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>NST Enterprises - Control Panel</title>
+        <title>NST Enterprises - Dashboard</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -51,7 +51,7 @@ $payment = JobPayment::countOfTodayPayment($today);
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Control Panel</h1>
+                        <h1 class="page-header">Dashboard</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -66,7 +66,7 @@ $payment = JobPayment::countOfTodayPayment($today);
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $job['count']; ?></div>
-                                        <div>Today New Jobs</div>
+                                        <div>New Jobs</div>
                                     </div>
                                 </div>
                             </div>
@@ -88,11 +88,11 @@ $payment = JobPayment::countOfTodayPayment($today);
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $invoice['count']; ?></div>
-                                        <div>Today New Invoices</div>
+                                        <div>New Invoices</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="manage-jobs.php">
+                            <a href="manage-invoices.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -110,7 +110,7 @@ $payment = JobPayment::countOfTodayPayment($today);
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $jobcostingcard['count']; ?></div>
-                                        <div>Today Job Costing Cards</div>
+                                        <div>New Costing Cards</div>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ $payment = JobPayment::countOfTodayPayment($today);
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $payment['count']; ?></div>
-                                        <div>Today New Payments</div>
+                                        <div>New Payments</div>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@ $payment = JobPayment::countOfTodayPayment($today);
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <i class="fa fa-bar-chart-o fa-fw"></i> Invoice Amount vs Gross Profit
+                                <i class="fa fa-bar-chart-o fa-fw"></i> Job Costing Chart
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">

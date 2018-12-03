@@ -32,8 +32,7 @@ $(document).ready(function () {
         });
 
         setTimeout($.loadingBlockHide, 2000);
-    }
-    ;
+    };
 });
 
 
