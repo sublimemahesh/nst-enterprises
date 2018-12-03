@@ -73,7 +73,7 @@ $COSTINGTYPE = new CostingType($type);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Create Costing Items
+                                    Create Costing Item
                                 </div>
                                 <ul class="header-dropdown">
 <!--                                    <li class="">

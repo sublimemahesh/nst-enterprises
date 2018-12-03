@@ -74,7 +74,7 @@ $MESSAGE = new Message($message);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Invoices</h1>
+                            <h1 class="page-header font-header">Invoices</h1>
                         </div>
                     </div>
 

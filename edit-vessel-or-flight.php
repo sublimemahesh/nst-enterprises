@@ -64,7 +64,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Vessels And Flights</h1>
+                            <h1 class="page-header font-header">Vessels or Flights</h1>
                         </div>
                     </div>
 
