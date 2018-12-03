@@ -8,11 +8,34 @@ if (isset($_POST['create-job'])) {
     $JOB = new Job(NULL);
     $VALID = new Validator();
 
-    $JOB->consignee = filter_input(INPUT_POST, 'consignee');
-    $JOB->consignment = filter_input(INPUT_POST, 'consignment');
+
+    if (empty($_POST['consignee'])) {
+        $CONSIGNEE = new Consignee(NULL);
+        $CONSIGNEE->name = $_POST['name'];
+        $consignee = $CONSIGNEE->create();
+        $JOB->consignee = $consignee->id;
+    } else {
+        $JOB->consignee = filter_input(INPUT_POST, 'consignee');
+    }
+    if (empty($_POST['consignment'])) {
+        $CONSIGNMENT = new Consignment(NULL);
+        $CONSIGNMENT->name = $_POST['consignmentname'];
+        $consignment = $CONSIGNMENT->create();
+        $JOB->consignment = $consignment->id;
+    } else {
+        $JOB->consignment = filter_input(INPUT_POST, 'consignment');
+    }
+    if (empty($_POST['vesselAndFlight'])) {
+        $VESSELANDFLIGHT = new VesselAndFlight(NULL);
+        $VESSELANDFLIGHT->name = $_POST['vesselandflightname'];
+        $vesselandflight = $VESSELANDFLIGHT->create();
+        $JOB->vesselAndFlight = $vesselandflight->id;
+    } else {
+        $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
+    }
+
     $JOB->description = filter_input(INPUT_POST, 'description');
     $JOB->chassisNumber = filter_input(INPUT_POST, 'chassisNumber');
-    $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
     $JOB->vesselAndFlightDate = filter_input(INPUT_POST, 'vesselAndFlightDate');
     $JOB->copyReceivedDate = filter_input(INPUT_POST, 'copyReceivedDate');
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');
@@ -28,10 +51,10 @@ if (isset($_POST['create-job'])) {
 
     if ($VALID->passed()) {
         $result = $JOB->create();
-        if($result) {
+        if ($result) {
             $id = $result->id;
             $today = date("Y-m-d");
-            $res = Account::updateCurrentJobId($today,$id);
+            $res = Account::updateCurrentJobId($today, $id);
         }
 
         if (!isset($_SESSION)) {
@@ -57,12 +80,35 @@ if (isset($_POST['create-job'])) {
 if (isset($_POST['edit-job'])) {
 
     $JOB = new Job($_POST['id']);
+    
+    if (empty($_POST['consignee'])) {
+        $CONSIGNEE = new Consignee(NULL);
+        $CONSIGNEE->name = $_POST['name'];
+        $consignee = $CONSIGNEE->create();
+        $JOB->consignee = $consignee->id;
+    } else {
+        $JOB->consignee = filter_input(INPUT_POST, 'consignee');
+    }
+    if (empty($_POST['consignment'])) {
+        $CONSIGNMENT = new Consignment(NULL);
+        $CONSIGNMENT->name = $_POST['consignmentname'];
+        $consignment = $CONSIGNMENT->create();
+        $JOB->consignment = $consignment->id;
+    } else {
+        $JOB->consignment = filter_input(INPUT_POST, 'consignment');
+    }
+    if (empty($_POST['vesselAndFlight'])) {
+        $VESSELANDFLIGHT = new VesselAndFlight(NULL);
+        $VESSELANDFLIGHT->name = $_POST['vesselandflightname'];
+        $vesselandflight = $VESSELANDFLIGHT->create();
+        $JOB->vesselAndFlight = $vesselandflight->id;
+    } else {
+        $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
+    }
 
-    $JOB->consignee = filter_input(INPUT_POST, 'consignee');
-    $JOB->consignment = filter_input(INPUT_POST, 'consignment');
+    
     $JOB->description = filter_input(INPUT_POST, 'description');
     $JOB->chassisNumber = filter_input(INPUT_POST, 'chassisNumber');
-    $JOB->vesselAndFlight = filter_input(INPUT_POST, 'vesselAndFlight');
     $JOB->vesselAndFlightDate = filter_input(INPUT_POST, 'vesselAndFlightDate');
     $JOB->copyReceivedDate = filter_input(INPUT_POST, 'copyReceivedDate');
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');

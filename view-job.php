@@ -32,7 +32,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>View Job || Control Panel || NST ENterprises</title>
+        <title>View Job || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -220,30 +220,6 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                     <div class="row">
                                         <div class="col-lg-12 manage-items">
                                             <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-green">
-                                                    <div class="manage-circle box-green">
-                                                        <i class="glyphicon glyphicon-edit"></i>
-                                                    </div>
-                                                    <h3><a href="edit-job.php?id=<?php echo $id; ?>" target="new">Edit Job</a></h3>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-yellow">
-                                                    <div class="manage-circle box-yellow">
-                                                        <i class="glyphicon glyphicon-usd"></i>
-                                                    </div>
-                                                    <h3><a href="manage-job-payments.php?id=<?php echo $id; ?>" target="new">Payments</a></h3>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-red">
-                                                    <div class="manage-circle box-red">
-                                                        <i class="glyphicon glyphicon-trash"></i>
-                                                    </div>
-                                                    <h3><a href="#" class="delete-job" data-id="<?php echo $id; ?>">Delete Job</a></h3>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
                                                 <div class="manage-box box-blue">
                                                     <div class="manage-circle box-blue">
                                                         <i class="glyphicon glyphicon-duplicate"></i>
@@ -288,6 +264,32 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                     <h3><a href="invoice.php?id=<?php echo $JOBCOSTINGCARD['id']; ?>&back=<?php echo $id; ?>" target="new">Print Invoice</a></h3>
                                                 </div>
                                             </div>
+                                            <div class="col-xs-4 text-center">
+                                                <div class="manage-box box-yellow">
+                                                    <div class="manage-circle box-yellow">
+                                                        <i class="glyphicon glyphicon-usd"></i>
+                                                    </div>
+                                                    <h3><a href="manage-job-payments.php?id=<?php echo $id; ?>" target="new">Payments</a></h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <div class="manage-box box-green">
+                                                    <div class="manage-circle box-green">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                    </div>
+                                                    <h3><a href="edit-job.php?id=<?php echo $id; ?>" target="new">Edit Job</a></h3>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <div class="manage-box box-red">
+                                                    <div class="manage-circle box-red">
+                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                    </div>
+                                                    <h3><a href="#" class="delete-job" data-id="<?php echo $id; ?>">Delete Job</a></h3>
+                                                </div>
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>

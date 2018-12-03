@@ -14,7 +14,7 @@ $CONSIGNEE = new Consignee($consigneeid);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Job Report By Consignee || Dashboard || NST Enterprises</title>
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/job-report-by-consignee.css" rel="stylesheet" type="text/css"/>
 

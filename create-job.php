@@ -19,7 +19,7 @@ $createdAt = date('Y-m-d H:i:s');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Create Job || Control Panel || NST ENterprises</title>
+        <title>Create Job || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -89,7 +89,7 @@ $createdAt = date('Y-m-d H:i:s');
                                             <form method="post" action="post-and-get/job.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignee</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="" attempt="">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" name="name" autocomplete="off" placeholder="Enter consignee name" value="" attempt="">
                                                     <div id="suggesstion-box">
                                                         <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
                                                     </div>
@@ -100,7 +100,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignment</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" name="consignmentname" placeholder="Enter consignment" autocomplete="off">
                                                     <div id="suggesstion-box">
                                                         <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
                                                     </div>
@@ -119,7 +119,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" autocomplete="off" placeholder="Enter vessel or flight" value="">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" name="vesselandflightname" autocomplete="off" placeholder="Enter vessel or flight" value="">
                                                     <div id="suggesstion-box">
                                                         <ul id="vesselAndFlight-list-append" class="vesselAndFlight-list col-sm-offset-3"></ul>
                                                     </div>

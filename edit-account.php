@@ -22,7 +22,7 @@ $ACCOUNT = new Account($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Account || Control Panel || NST ENterprises</title>
+        <title>Edit Account || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->

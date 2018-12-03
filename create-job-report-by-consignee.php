@@ -23,7 +23,7 @@ $CONSIGNEE = new Consignee($consigneeid);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage <?php echo $CONSIGNEE->name; ?>'s Job Report || Control Panel || NST ENterprises</title>
+        <title>Manage <?php echo $CONSIGNEE->name; ?>'s Job Report || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

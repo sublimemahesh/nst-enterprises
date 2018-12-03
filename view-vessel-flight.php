@@ -26,7 +26,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>View Consignment || Control Panel || NST ENterprises</title>
+        <title>View Vessel And Flight || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -79,7 +79,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignment</h1>
+                            <h1 class="page-header font-header">Vessel And Flight</h1>
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    View Consignment - <?php echo $VESSELANDFLIGHT->name; ?>
+                                    View Vessel And Flight - <?php echo $VESSELANDFLIGHT->name; ?>
                                 </div>
                                 <ul class="header-dropdown">
 <!--                                    <li class="">

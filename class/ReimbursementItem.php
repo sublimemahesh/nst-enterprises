@@ -57,7 +57,7 @@ class ReimbursementItem {
 
     public function all() {
 
-        $query = "SELECT * FROM `reimbursement_item` ORDER BY `id` ASC ";
+        $query = "SELECT * FROM `reimbursement_item` ORDER BY `type` ASC, `queue` ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -137,6 +137,13 @@ class ReimbursementItem {
         }
 
         return $array_res;
+    }
+    
+    public function arrange($key, $img) {
+        $query = "UPDATE `reimbursement_item` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
     }
 
 }

@@ -26,7 +26,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Vessel or Flight || Control Panel || NST ENterprises</title>
+        <title>Edit Vessel or Flight || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

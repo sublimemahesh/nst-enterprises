@@ -18,7 +18,7 @@ $CONSIGNEES = Consignee::all();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Arrange Consignees || Control Panel || NST ENterprises</title>
+        <title>Arrange Consignees || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

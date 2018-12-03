@@ -18,7 +18,7 @@ $JOB = Job::getJobsByDateRange($from, $to);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Report By Job Summary || Dashboard || NST Enterprises</title>
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/job-summary-report.css" rel="stylesheet" type="text/css"/>
 

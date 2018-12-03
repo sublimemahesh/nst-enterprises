@@ -42,7 +42,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Create Consignee || Control Panel || NST ENterprises</title>
+        <title>Create Invoice || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->

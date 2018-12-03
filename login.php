@@ -11,7 +11,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Member Login || NST Enterprises</title>
+        <title>Member Login || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

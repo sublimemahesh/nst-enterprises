@@ -17,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Jobs || Control Panel || NST ENterprises</title>
+        <title>Manage Jobs || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -111,8 +111,9 @@ $USER1 = new User($_SESSION['id']);
                                                     <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="new" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
-                                                        <a href="view-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="View" target="blank"><i class="glyphicon glyphicon-eye-open"></i></a>
-
+                                                        <a href="view-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                        |
+                                                        <a href="edit-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit Invoice"><i class="glyphicon glyphicon-pencil"></i></a>
                                                     </td>
                                                 </tr>
                                                 <?php

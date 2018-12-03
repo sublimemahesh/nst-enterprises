@@ -24,7 +24,7 @@ $COSTINGTYPE = new CostingType($REIMBURSEMENTITEM->type);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Costing Item || Control Panel || NST Enterprises</title>
+        <title>Edit Costing Item || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

@@ -30,7 +30,7 @@ $MESSAGE = new Message($message);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Create Job Costing Card || Control Panel || NST ENterprises</title>
+        <title>Create Job Costing Card || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -155,7 +155,7 @@ $MESSAGE = new Message($message);
                                                 <tr>
                                                     <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
                                                     <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
                                                     <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
                                             <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
                                             </tr>

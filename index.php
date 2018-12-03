@@ -24,7 +24,7 @@ $payment = JobPayment::countOfTodayPayment($today);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>NST Enterprises - Dashboard</title>
+        <title> Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

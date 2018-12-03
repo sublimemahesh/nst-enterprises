@@ -17,7 +17,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Create Costing Types || Control Panel || NST ENterprises</title>
+        <title>Create Costing Types || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -67,13 +67,11 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Create Costing Types
+                                    Create Costing Type
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-                                        <a href="manage-consignees.php">
-                                            <i class="glyphicon glyphicon-list"></i> 
-                                        </a>
+                                        
                                     </li>
                                 </ul>
                                 <div class="panel-body">
@@ -99,14 +97,10 @@ $USER1 = new User($_SESSION['id']);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Manage Consignees
+                                    Manage Costing Types
                                 </div>
                                 <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="create-Consignee.php">
-                                            <i class="glyphicon glyphicon-plus"></i> 
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -133,7 +127,7 @@ $USER1 = new User($_SESSION['id']);
                                                         |
                                                         <a href="manage-costing-items.php?id=<?php echo $type['id']; ?>" class="op-link btn btn-sm btn-warning" title="Manage Costing Items"><i class="glyphicon glyphicon-list-alt"></i></a>
                                                         |
-                                                        <a href="arrange-consignees.php" class="btn btn-sm btn-primary"  title="Arrange">
+                                                        <a href="arrange-costing-types.php" class="btn btn-sm btn-primary"  title="Arrange">
                                                             <i class="glyphicon glyphicon-random"></i>
                                                         </a>
                                                     </td>

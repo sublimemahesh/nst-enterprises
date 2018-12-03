@@ -24,7 +24,7 @@ $createdAt = date('Y-m-d H:i:s');
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Job Payments || Control Panel || NST ENterprises</title>
+        <title>Manage Job Payments || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

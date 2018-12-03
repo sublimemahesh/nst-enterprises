@@ -18,7 +18,7 @@ $USER1 = new User($_SESSION['id']);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage Costing Items || Control Panel || NST ENterprises</title>
+        <title>Manage Costing Items || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -71,13 +71,6 @@ $USER1 = new User($_SESSION['id']);
                                 <div class="panel-heading">
                                     Manage Costing Items
                                 </div>
-                                <ul class="header-dropdown">
-                                    <!--                                    <li class="">
-                                                                            <a href="create-Consignee.php">
-                                                                                <i class="glyphicon glyphicon-plus"></i> 
-                                                                            </a>
-                                                                        </li>-->
-                                </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>

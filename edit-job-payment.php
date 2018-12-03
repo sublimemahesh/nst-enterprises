@@ -23,7 +23,7 @@ $PAYMENT = new JobPayment($id);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Job Payment || Control Panel || NST ENterprises</title>
+        <title>Edit Job Payment || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>

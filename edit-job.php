@@ -26,7 +26,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Edit Job || Control Panel || NST ENterprises</title>
+        <title>Edit Job || Dashboard || NST Enterprises</title>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <!-- Bootstrap Core CSS -->
@@ -96,7 +96,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                             <form   method="post" action="post-and-get/job.php">
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignee</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="<?php echo $CONSIGNEE->name; ?>">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="name" name="name" autocomplete="off" placeholder="Enter consignee name" value="<?php echo $CONSIGNEE->name; ?>">
                                                     <div id="suggesstion-box">
                                                         <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
                                                     </div>
@@ -107,7 +107,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Consignment</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" placeholder="Enter consignment" autocomplete="off" value="<?php echo $CONSIGNMENT->name; ?>">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="consignment" name="consignmentname" placeholder="Enter consignment" autocomplete="off" value="<?php echo $CONSIGNMENT->name; ?>">
                                                     <div id="suggesstion-box">
                                                         <ul id="consignment-list-append" class="consignment-list col-md-offset-3"></ul>
                                                     </div>
@@ -126,7 +126,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-md-3">Vessel or Flight</label>
-                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" autocomplete="off" placeholder="Enter vessel or flight" value="<?php echo $VESSELANDFLIGHT->name; ?>">
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="vesselAndFlight" name="vesselandflightname" autocomplete="off" placeholder="Enter vessel or flight" value="<?php echo $VESSELANDFLIGHT->name; ?>">
                                                     <div id="suggesstion-box">
                                                         <ul id="vesselAndFlight-list-append" class="vesselAndFlight-list col-sm-offset-3"></ul>
                                                     </div>
