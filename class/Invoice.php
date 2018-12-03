@@ -119,7 +119,7 @@ class Invoice {
 
     public function all() {
 
-        $query = "SELECT * FROM `invoice`";
+        $query = "SELECT * FROM `invoice` ORDER BY `createdAt` desc";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
