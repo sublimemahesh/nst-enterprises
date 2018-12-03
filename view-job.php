@@ -95,7 +95,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Jobs</h1>
+                            <h1 class="page-header font-header">Job Registry</h1>
                         </div>
                     </div>
 

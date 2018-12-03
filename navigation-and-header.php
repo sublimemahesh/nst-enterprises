@@ -259,7 +259,7 @@
                     <a href="manage-job-costing-cards.php"><i class="fa fa-file fa-fw"></i> Job Coasting Card</a>
                 </li>
                 <li>
-                    <a href="manage-invoices.php"><i class="fa fa-file fa-fw"></i> Invoices</a>
+                    <a href="manage-invoices.php"><i class="fa fa-copy fa-fw"></i> Invoices</a>
                 </li>
                 <!--//Job Costing Card-->
                 <!--Reports-->
