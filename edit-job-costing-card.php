@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $JOBCOSTINGCARD = new JobCostingCard($id);
-$REIMBURSEMENTITEMS = ReimbursementItem::all();
+$COSTINGTYPES = CostingType::all();
 $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostingCard($id);
 
 $message = '';
@@ -150,7 +150,8 @@ $MESSAGE = new Message($message);
                                         <tbody>
 
                                             <?php
-                                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                                            foreach ($COSTINGTYPES as $type) {
+                                                foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
                                                 ?>
                                                 <tr>
                                                     <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
@@ -161,6 +162,7 @@ $MESSAGE = new Message($message);
                                             </tr>
                                             <?php
                                         }
+                                            }
                                         ?>
 
 

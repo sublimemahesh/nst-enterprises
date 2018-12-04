@@ -4,7 +4,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
-
+$COSTINGTYPES = CostingType::all();
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +83,8 @@ $USER1 = new User($_SESSION['id']);
                                         </thead>
                                         <tbody>
                                             <?php
-                                            foreach (ReimbursementItem::all() as $item) {
+                                            foreach ($COSTINGTYPES as $type) {
+                                                foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $item) {
                                                 $COSTINGTYPE = new CostingType($item['type']);
                                                 ?>
                                                 <tr id="row_<?php echo $item['id']; ?>">
@@ -101,6 +102,7 @@ $USER1 = new User($_SESSION['id']);
                                                 </tr>
                                                 <?php
                                             }
+                                                }
                                             ?>
                                         </tbody>
                                     </table>
@@ -134,7 +136,8 @@ $USER1 = new User($_SESSION['id']);
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true,
-                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]]
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
+                    "order": false
                 });
             });
         </script>

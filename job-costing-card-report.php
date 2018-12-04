@@ -8,6 +8,7 @@ $jobcostingcard = '';
 if (isset($_GET['id'])) {
     $jobcostingcard = $_GET['id'];
 }
+$COSTINGTYPES = CostingType::all();
 $REIMBURSEMENTITEMS = ReimbursementItem::all();
 
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
@@ -58,12 +59,11 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
             <!--Table-->
             <?php
-            $types = ReimbursementItem::getDistinctType();
-            foreach ($types as $type) {
-                $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['type']);
+            foreach ($COSTINGTYPES as $type) {
+                $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
                 if ($counttype['count'] > 0) {
                     ?>
-                    <table class="table2 table-bordered to-hide" id="table-<?php echo $type['type']; ?>" border="1">
+                    <table class="table2 table-bordered to-hide" id="table-<?php echo $type['id']; ?>" border="1">
 
                         <!--Table head-->
                         <thead>
@@ -81,21 +81,23 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                         <tbody>
                             <?php
                             $i = 0;
-                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
-                                $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['type']);
+                            
+                                foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
+                                    $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['id']);
 
-                                if ($reimbursementdetails) {
-                                    ?>
-                                    <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
-                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                        <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
-                                        <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
-                                        <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
+                                    if ($reimbursementdetails) {
+                                        ?>
+                                        <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
+                                            <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                            <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
+                                            <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
+                                            <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
 
-                                    </tr>
-                                    <?php
+                                        </tr>
+                                        <?php
+                                    }
                                 }
-                            }
+                            
                             ?>
                             <!--Table body-->
                         </tbody>

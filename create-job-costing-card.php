@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
 $date = date('Y-m-d');
 $invoicenumber = Helper::invoiceNo();
 //dd($invoicenumber);
-$REIMBURSEMENTITEMS = ReimbursementItem::all();
+$COSTINGTYPES = CostingType::all();
 ?>
 
 <!DOCTYPE html>
@@ -136,17 +136,19 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
                                         <tbody>
 
                                             <?php
-                                            foreach ($REIMBURSEMENTITEMS as $reimbursementitem) {
+                                            foreach ($COSTINGTYPES as $type) {
+                                                foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
                                                 ?>
                                                 <tr>
                                                     <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
                                                     <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
                                                     <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
                                             <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
                                             </tr>
                                             <?php
                                         }
+                                            }
                                         ?>
 
 
