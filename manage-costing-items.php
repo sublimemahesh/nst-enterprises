@@ -184,7 +184,8 @@ $COSTINGTYPE = new CostingType($type);
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
-                    responsive: true
+                    responsive: true,
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]]
                 });
             });
         </script>
