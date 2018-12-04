@@ -65,7 +65,7 @@ $USER1 = new User($_SESSION['id']);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Registry</h1>
+                            <h1 class="page-header font-header">Manage All Jobs</h1>
                         </div>
                     </div>
 
@@ -86,12 +86,11 @@ $USER1 = new User($_SESSION['id']);
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>Job No</th>
+                                                <th>Date</th>
                                                 <th>Consignee</th>
                                                 <th>Consignment</th>
                                                 <th>Vessel or Flight</th>
-                                                <th>Date</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
@@ -104,12 +103,11 @@ $USER1 = new User($_SESSION['id']);
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
-                                                    <td><a href="view-job.php?id=<?php echo $job['id']; ?>" target="blank"><?php echo $job['id']; ?></a></td>
                                                     <td><a href="view-job.php?id=<?php echo $job['id']; ?>" target="blank"><?php echo $job['reference_no']; ?></a></td>
+                                                    <td><?php echo $job['createdAt']; ?></td>
                                                     <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="new" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
                                                     <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="new" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>
                                                     <td><a href="view-vessel-flight.php?id=<?php echo $VESSELANDFLIGHT->id; ?>" target="new" title="View Vessel or Flight" ><?php echo $VESSELANDFLIGHT->name; ?></a></td>
-                                                    <td><?php echo $job['createdAt']; ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="view-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
                                                         |
@@ -150,9 +148,12 @@ $USER1 = new User($_SESSION['id']);
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
-                    responsive: true
+                    responsive: true,
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
+                    "order": [[ 1, "desc" ]]
                 });
             });
+            
         </script>
     </body>
 
