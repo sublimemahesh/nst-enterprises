@@ -73,7 +73,7 @@ $createdAt = date('Y-m-d H:i:s');
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Create Job
                                 </div>
                                 <ul class="header-dropdown">
@@ -82,7 +82,7 @@ $createdAt = date('Y-m-d H:i:s');
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">

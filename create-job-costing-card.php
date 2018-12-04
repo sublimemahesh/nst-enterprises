@@ -74,7 +74,7 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Costing Card</h1>
+                            <h1 class="page-header font-header">Create Job Costing Card</h1>
                         </div>
                     </div>
 
@@ -158,7 +158,7 @@ $REIMBURSEMENTITEMS = ReimbursementItem::all();
                                     <input type="hidden" id="job" value="<?php echo $job; ?>">
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
                                     <div class="col-sm-12 col-md-offset-2 form-btn">
-                                        <button type="button" class="btn btn-info savebtn" id="savebutton">Save Reimbursement Details</button>
+                                        <button type="button" class="btn btn-info savebtn" id="savebutton">Save Job Costing Card</button>
                                         <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                     </div>
                                 </div>

@@ -59,7 +59,7 @@ $USER1 = new User($_SESSION['id']);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Accounts</h1>
+                            <h1 class="page-header font-header">Manage Accounts</h1>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@ $USER1 = new User($_SESSION['id']);
 
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage Accounts
                                 </div>
                                 <ul class="header-dropdown">
@@ -76,7 +76,7 @@ $USER1 = new User($_SESSION['id']);
                                             <i class="glyphicon glyphicon-plus"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>

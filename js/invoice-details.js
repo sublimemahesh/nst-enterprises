@@ -10,6 +10,7 @@ $(document).ready(function () {
         success: function (result) {
             if (result === false) {
                 $('#savebutton').removeClass('hidden');
+                $('.inv-title').text('Create ');
             } else {
                 $('#id').val(result.id);
                 $('#vat_reg_no').val(result.vat_reg_no);
@@ -54,6 +55,7 @@ $(document).ready(function () {
 //                }
 
                 $('#editbutton').removeClass('hidden');
+                $('.inv-title').text('Edit ');
 
             }
         }

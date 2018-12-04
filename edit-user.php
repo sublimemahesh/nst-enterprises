@@ -62,14 +62,14 @@ $USER = new User($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Users</h1>
+                            <h1 class="page-header font-header">Edit User - #<?php echo $USER->id; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Edit User
                                 </div>
                                 <ul class="header-dropdown">
@@ -78,7 +78,7 @@ $USER = new User($id);
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">

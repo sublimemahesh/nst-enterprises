@@ -98,14 +98,14 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Invoice</h1>
+                            <h1 class="page-header font-header"><span class="inv-title"></span>Invoice</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Create Tax Invoice
                                 </div>
                                 <ul class="header-dropdown">
@@ -114,7 +114,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">  

@@ -76,16 +76,16 @@ $MESSAGE = new Message($message);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Costing Cards</h1>
+                            <h1 class="page-header font-header">Manage Job Costing Cards</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage Job Costing Cards
-                                </div>
+                                </div>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
@@ -154,7 +154,8 @@ $MESSAGE = new Message($message);
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true,
-                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]]
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
+                    "order": [[ 3, "desc" ]]
                 });
             });
         </script>

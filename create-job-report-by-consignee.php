@@ -66,14 +66,14 @@ $CONSIGNEE = new Consignee($consigneeid);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header"><?php echo $CONSIGNEE->name; ?></h1>
+                            <h1 class="page-header font-header">Manage Job Report of <?php echo $CONSIGNEE->name; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage <?php echo $CONSIGNEE->name; ?>'s Job Report
                                 </div>
                                 <ul class="header-dropdown">
@@ -82,7 +82,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                                             <i class="glyphicon glyphicon-plus"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="balance">
                                         <thead>
