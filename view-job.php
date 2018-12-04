@@ -95,7 +95,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Registry</h1>
+                            <h1 class="page-header font-header">View Job - #<?php echo $JOB->reference_no; ?></h1>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    View Job - #<?php echo $JOB->reference_no; ?>
+                                    Job Details - #<?php echo $JOB->reference_no; ?>
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
@@ -115,7 +115,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-offset-1">
-                                            <table>
+                                            <table class="table table-striped">
                                                 <tr>
                                                     <td class="view-details-topic">Consignee</td>
                                                     <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="new" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
