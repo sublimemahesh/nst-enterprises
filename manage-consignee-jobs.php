@@ -65,14 +65,14 @@ $jobs = Job::getJobsByConsignee($id);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Jobs</h1>
+                            <h1 class="page-header font-header">Manage Jobs By Consignee</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage Jobs By Consignee
                                 </div>
                                 <ul class="header-dropdown">
@@ -81,12 +81,11 @@ $jobs = Job::getJobsByConsignee($id);
                                             <i class="glyphicon glyphicon-plus"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>Job No</th>
                                                 <th>Consignment</th>
                                                 <th>Vessel or Flight</th>
@@ -102,7 +101,6 @@ $jobs = Job::getJobsByConsignee($id);
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
-                                                    <td><?php echo $job['id']; ?></td>
                                                     <td><?php echo $job['reference_no']; ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td><?php echo $VESSELANDFLIGHT->name; ?></td>
@@ -166,7 +164,8 @@ $jobs = Job::getJobsByConsignee($id);
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true,
-                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]]
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
+                    "order": [[ 3, "desc" ]]
                 });
             });
         </script>

@@ -66,23 +66,23 @@ $PAYMENT = new JobPayment($id);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Payments</h1>
+                            <h1 class="page-header font-header">Edit Job Payment - #<?php echo $PAYMENT->id; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Edit Job Payment
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-<!--                                        <a href="manage-consignees.php">
+                                        <a href="manage-consignees.php">
                                             <i class="glyphicon glyphicon-list"></i> 
-                                        </a>-->
+                                        </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">

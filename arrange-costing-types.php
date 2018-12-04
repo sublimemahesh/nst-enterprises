@@ -58,14 +58,14 @@ $TYPES = CostingType::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Costing Types</h1>
+                            <h1 class="page-header font-header">Arrange Costing Types</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Arrange Costing Types 
                                 </div>
                                 <ul class="header-dropdown">
@@ -74,7 +74,7 @@ $TYPES = CostingType::all();
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">

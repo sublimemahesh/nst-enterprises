@@ -74,16 +74,16 @@ $MESSAGE = new Message($message);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Invoices</h1>
+                            <h1 class="page-header font-header">Manage Invoices</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage Invoices
-                                </div>
+                                </div>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>

@@ -60,14 +60,14 @@ $CONSIGNEE = new Consignee($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignees</h1>
+                            <h1 class="page-header font-header">Edit Consignee - #<?php echo $CONSIGNEE->id; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Edit Consignee
                                 </div>
                                 <ul class="header-dropdown">
@@ -76,7 +76,7 @@ $CONSIGNEE = new Consignee($id);
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">

@@ -63,19 +63,19 @@ $createdAt = date('Y-m-d H:i:s');
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Job Payments</h1>
+                            <h1 class="page-header font-header">Manage All Job Payments</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Manage Job Payments
                                 </div>
                                 <ul class="header-dropdown">
                                     
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
@@ -142,7 +142,8 @@ $createdAt = date('Y-m-d H:i:s');
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({
                     responsive: true,
-                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]]
+                    "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
+                    "order": [[ 2, "desc" ]]
                 });
             });
         </script>

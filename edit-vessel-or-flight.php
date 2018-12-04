@@ -64,14 +64,14 @@ $flight = $VESSELANDFLIGHT->isFlight;
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Vessels or Flights</h1>
+                            <h1 class="page-header font-header">Edit Vessel or Flight - #<?php echo $VESSELANDFLIGHT->id; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Edit Vessel or Flight
                                 </div>
                                 <ul class="header-dropdown">
@@ -80,7 +80,7 @@ $flight = $VESSELANDFLIGHT->isFlight;
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">

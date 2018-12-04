@@ -76,27 +76,27 @@ $CONSIGNEE = new Consignee($id);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignee</h1>
+                            <h1 class="page-header font-header"> View Consignee - #<?php echo $CONSIGNEE->id; ?></h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    View Consignee - <?php echo $CONSIGNEE->name; ?>
+<!--                                <div class="panel-heading">
+                                    View Consignee - #<?php echo $CONSIGNEE->id; ?>
                                 </div>
                                 <ul class="header-dropdown">
-<!--                                    <li class="">
+                                    <li class="">
                                         <a href="manage-jobs.php">
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
-                                    </li>-->
-                                </ul>
+                                    </li>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-offset-1">
-                                            <table>
+                                            <table class="table table-striped">
                                                 <tr>
                                                     <td class="view-details-topic">Name</td>
                                                     <td><?php echo $CONSIGNEE->name; ?></td>

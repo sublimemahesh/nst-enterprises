@@ -58,14 +58,14 @@ $CONSIGNMENTS = Consignment::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Consignments</h1>
+                            <h1 class="page-header font-header">Arrange Consignments</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                <div class="panel-heading">
+<!--                                <div class="panel-heading">
                                     Arrange Consignments 
                                 </div>
                                 <ul class="header-dropdown">
@@ -74,7 +74,7 @@ $CONSIGNMENTS = Consignment::all();
                                             <i class="glyphicon glyphicon-list"></i> 
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
