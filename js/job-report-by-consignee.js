@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var no_of_rows = $('#balance').find('tbody tr').length;
     var balance = 0;
     var prev_balance = 0;

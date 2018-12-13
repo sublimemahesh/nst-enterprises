@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     $('#name').keyup(function (e) {
         var nameId = $('#name-id').val();
         if (e.which != 38) {
@@ -22,7 +23,7 @@ $(document).ready(function () {
                                     }
                                 }
                             });
-                            $('#name-list-append').empty();
+                            
                             $('#name-list-append').append(html);
                         }
                     });

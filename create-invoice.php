@@ -241,7 +241,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                             <tr class="reimbursement-details">
                                                                 <td></td>        
                                                                 <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount); ?>" autocomplete="off" /></td>        
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo $amount; ?>" autocomplete="off" /></td>        
                                                             </tr>
                                                             <?php
                                                         }
@@ -278,7 +278,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                         <tr class="delivery-details">
                                                             <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
                                                             <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="<?php echo $data['name']; ?>" autocomplete="off" /></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="<?php echo $data['amount']; ?>" value="<?php echo number_format($data['amount']); ?>" autocomplete="off" /></td>
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="<?php echo $data['amount']; ?>" value="<?php echo $data['amount']; ?>" autocomplete="off" /></td>
                                                         </tr>
                                                         <?php
                                                     }
@@ -349,9 +349,9 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                                                     </strong></p>
                                             </div>-->
                                             <input type="hidden" name="job_costing_card" id="job_costing_card"  value="<?php echo $jobcostingcard; ?>"/>
-                                            <div class="col-sm-12 col-md-offset-4 form-btn tax-invoice-btn">
+                                            <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn">
                                                 <input type="hidden" name="id" id="id" value="" />
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <button type="button" class="btn btn-info savebtn hidden" id="savebutton">Save Tax Invoice</button>
                                                     <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                                 </div>

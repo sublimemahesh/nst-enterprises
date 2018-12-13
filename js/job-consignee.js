@@ -8,6 +8,9 @@ $(document).ready(function (e) {
             if (e.which != 40) {
                 if (e.which != 13) {
                     var keyword = $('#name').val();
+                    if (keyword == '') {
+                        $('#name-list-append').empty();
+                    }
                     $.ajax({
                         type: 'POST',
                         url: 'ajax/job-consignee.php',
@@ -17,11 +20,13 @@ $(document).ready(function (e) {
 
                             var html = '';
                             $.each(result, function (key) {
-                                if (key === 0) {
+                                if (key < 8) {
+                                    if (key === 0) {
 //                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
-                                    html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
-                                } else {
-                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
+                                        html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';
+                                    } else {
+                                        html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
+                                    }
                                 }
                             });
                             $('#name-list-append').empty();
@@ -113,6 +118,9 @@ $(document).ready(function (e) {
             if (e.which != 40) {
                 if (e.which != 13) {
                     var keyword = $('#consignment').val();
+                    if (keyword == '') {
+                        $('#consignment-list-append').empty();
+                    }
                     $.ajax({
                         type: 'POST',
                         url: 'ajax/job-consignee.php',
@@ -122,10 +130,12 @@ $(document).ready(function (e) {
 
                             var html = '';
                             $.each(result, function (key) {
-                                if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="consignment selected">' + this.name + '</li>';
-                                } else {
-                                    html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
+                                if (key < 8) {
+                                    if (key === 0) {
+                                        html += '<li id="c' + this.id + '" class="consignment selected">' + this.name + '</li>';
+                                    } else {
+                                        html += '<li id="c' + this.id + '" class="consignment">' + this.name + '</li>';
+                                    }
                                 }
                             });
                             $('#consignment-list-append').empty();
@@ -209,6 +219,9 @@ $(document).ready(function (e) {
             if (e.which != 40) {
                 if (e.which != 13) {
                     var keyword = $('#vesselAndFlight').val();
+                    if (keyword == '') {
+                        $('#vesselAndFlight-list-append').empty();
+                    }
                     $.ajax({
                         type: 'POST',
                         url: 'ajax/job-consignee.php',
@@ -218,10 +231,12 @@ $(document).ready(function (e) {
 
                             var html = '';
                             $.each(result, function (key) {
-                                if (key === 0) {
-                                    html += '<li id="c' + this.id + '" class="vesselAndFlight selected">' + this.name + '</li>';
-                                } else {
-                                    html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
+                                if (key < 8) {
+                                    if (key === 0) {
+                                        html += '<li id="c' + this.id + '" class="vesselAndFlight selected">' + this.name + '</li>';
+                                    } else {
+                                        html += '<li id="c' + this.id + '" class="vesselAndFlight">' + this.name + '</li>';
+                                    }
                                 }
                             });
                             $('#vesselAndFlight-list-append').empty();

@@ -396,7 +396,7 @@ list.border{
     border: 1px solid transparent;
     border-radius: 8px;
     margin: 0px 20px 100px;
-    box-shadow: 3px 5px 6px #000a;
+    box-shadow: 1px 3px 4px #000a;
 }
 .manage-circle {
     font-size: 30px;
@@ -464,7 +464,7 @@ list.border{
 }
 .manage-box h3 a{
     font-size: 18px;
-    color: #fff;
+    color: #717171;
     text-align: center;
 }
 .box-green h3 a:hover{
@@ -508,4 +508,7 @@ list.border{
     color: #fff;
     background-color: #6a6a6e;
     border-color: #c3c4c8b3;
+}
+.tax-invoice-btn.consignee-btn {
+    margin-top: 0px;
 }

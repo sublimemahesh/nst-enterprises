@@ -87,7 +87,7 @@ $COSTINGTYPE = new CostingType($id);
                                                     <label class="col-md-3">Title</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter title" name="title" id="title" autocomplete="off" value="<?php echo $COSTINGTYPE->title; ?>">
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" name="id" id="id" value="<?php echo $COSTINGTYPE->id; ?>">
                                                     <button type="submit" name="edit-costing-type" id="edit-costing-type" class="btn btn-info">Save Changes</button>
                                                 </div>

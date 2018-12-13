@@ -96,6 +96,9 @@ $USER1 = new User($_SESSION['id']);
                                                 <th>I/ AMOUNT</th>
                                                 <th>COSTING AMOUNT</th>
                                                 <th>GROSS PROFIT</th>
+                                                <th>SERVICE INCOME WITH NBT</th>
+                                                <th>VAT</th>
+                                                <th>NBT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,7 +106,7 @@ $USER1 = new User($_SESSION['id']);
                                         </tbody>
                                     </table>
 
-                                    <div class="col-sm-12 col-md-offset-4 form-btn tax-invoice-btn">
+                                    <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn">
                                         <div class="col-sm-3">
                                             <a target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success" id="print-btn"></i></a> 
                                         </div>

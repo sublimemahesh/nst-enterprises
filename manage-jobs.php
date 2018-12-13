@@ -150,7 +150,7 @@ $USER1 = new User($_SESSION['id']);
                 $('#dataTables-example').DataTable({
                     responsive: true,
                     "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
-                    "order": [[ 1, "desc" ]]
+                    "order": [[ 0, "desc" ]]
                 });
             });
             

@@ -84,7 +84,7 @@ if (isset($_GET['id'])) {
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter new password" name="password" id="password">
                                                 </div>
                                                 <input type="hidden" name="userid" id="userid" value="<?php echo $id; ?>">
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-new-password" id="create-new-password" class="btn btn-info">Change Password</button>
                                                 </div>
                                             </form>

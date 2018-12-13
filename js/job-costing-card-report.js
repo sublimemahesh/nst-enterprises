@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    $('.table2:first-child thead').removeClass('hidden');
 
     var jobcostingcard = $('#job-costing-card').attr('jobcostingcard');
     var grandtotal = 0;

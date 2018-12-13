@@ -116,7 +116,7 @@ $USER = new User($id);
                                                 </div>
                                                 <input type="hidden" name="id" value="<?php echo $USER->id; ?>">
                                                 <input type="hidden" name="oldImageName" value="<?php echo $USER->profilePicture; ?>">
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" name="edit-user" id="edit-user" class="btn btn-info edit-btn">Save Changes</button>
                                                 </div>
                                             </form>

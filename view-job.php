@@ -220,7 +220,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                     <div class="row">
                                         <div class="col-lg-12 manage-items">
                                             <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-blue">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-blue">
                                                         <i class="glyphicon glyphicon-duplicate"></i>
                                                     </div>
@@ -241,7 +241,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
-                                                <div class="manage-box box-purple">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-purple">
                                                         <i class="glyphicon glyphicon-print"></i>
                                                     </div>
@@ -249,7 +249,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
-                                                <div class="manage-box box-orange">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-orange">
                                                         <i class="glyphicon glyphicon-list-alt"></i>
                                                     </div>
@@ -257,7 +257,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center <?php if($JOBCOSTINGCARD['id']) { echo ''; } else {echo 'hidden'; } ?>">
-                                                <div class="manage-box box-light-blue">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-light-blue">
                                                         <i class="glyphicon glyphicon-print"></i>
                                                     </div>
@@ -265,7 +265,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-yellow">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-yellow">
                                                         <i class="glyphicon glyphicon-usd"></i>
                                                     </div>
@@ -273,7 +273,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-green">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-green">
                                                         <i class="glyphicon glyphicon-edit"></i>
                                                     </div>
@@ -281,7 +281,7 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <div class="manage-box box-red">
+                                                <div class="manage-box">
                                                     <div class="manage-circle box-red">
                                                         <i class="glyphicon glyphicon-trash"></i>
                                                     </div>
