@@ -1,12 +1,13 @@
 
 #wrapper {
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     width: 740px;
     margin: 20px;
     height: 1080px;
 }
 .table-header{
     text-align: center;
+    font-size: 22px;
 }
 .table-header2{
     padding-left: 25px;
@@ -20,13 +21,16 @@
 .table2 {
     width: 100%;
     max-width: 92%;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     margin-left: 30px;
     border-collapse: collapse;
     table-layout: fixed;
+    font-size: 12px;
 }
 .table {
     margin: 10px 0px 20px 30px;
+    font-size: 12px;
+    font-weight: 600;
 }
 .col-1{
     width: 151px;
@@ -44,12 +48,13 @@
     width: 85px;
 }
 .table2 tr th, .table2 tr td {
-    height: 30px;
+    height: 21px;
     padding-left: 15px;
     padding-right: 15px;
 }
 .profit-table {
     margin: 10px 0px 0px 30px;
+    font-size: 12px;
 }
 .profit-table tr td {
     width: 185px;
@@ -71,4 +76,22 @@ input[type='text'] {
 }
 .th-style{
     width: 95px
+}
+.hidden {
+    display: none;
+}
+.rid {
+    width: 151px;
+}
+.vno {
+    width: 70px;
+}
+.amount {
+    width: 85px;
+}
+.description {
+    width: 135px;
+}
+#subtotal{
+    width: 85px;
 }

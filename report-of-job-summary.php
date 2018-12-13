@@ -45,36 +45,43 @@ $JOB = Job::getJobsByDateRange($from, $to);
                         <th class="text-center">INVOICE AMOUNT</th>
                         <th class="text-center">COSTING AMOUNT</th>
                         <th class="text-center">GROSS PROFIT</th>
+                        <th class="text-center">SERVICE INCOME WITH NBT</th>
+                        <th class="text-center">VAT</th>
+                        <th class="text-center">NBT</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    foreach (Job::getJobsByDateRange($from, $to) as $key=>$job) {
+                    foreach (Job::getJobsByDateRange($from, $to) as $key => $job) {
                         $CONSIGNEE = new Consignee($job['consignee']);
                         $CONSIGNMENT = new Consignment($job['consignment']);
                         $jobcostingcard = JobCostingCard::getJobCostingCardIdByJob($job['id']);
                         $invoice = Invoice::getInvoiceByJobCostingCard($jobcostingcard['id']);
                         $costingamount = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard['id']);
-                        
-                        if((float)$invoice['payable_amount'] >= (float)$costingamount['grandtotal']) {
-                            $grossprofit = number_format((float)$invoice['payable_amount'] - (float)$costingamount['grandtotal'],2);
+
+                        if ((float) $invoice['payable_amount'] >= (float) $costingamount['grandtotal']) {
+                            $grossprofit = number_format((float) $invoice['payable_amount'] - (float) $costingamount['grandtotal'], 2);
                         } else {
-                            $grossprofit = '('.number_format((float)$costingamount['grandtotal'] - (float)$invoice['payable_amount'],2).')';
+                            $grossprofit = '(' . number_format((float) $costingamount['grandtotal'] - (float) $invoice['payable_amount'], 2) . ')';
                         }
-                        
-                        
+                        $serviceincome = (float)$invoice['agency_fees'] + (float)$invoice['documentation'];
+                        $vat = $serviceincome * 15 / 100;
+                        $nbt = $serviceincome * 2 / 100;
                         ?>
                         <tr>
-                            <td width="40"><?php echo $key+1; ?></td>
+                            <td width="40"><?php echo $key + 1; ?></td>
                             <td width="110"><?php echo $invoice['createdAt']; ?></td>
                             <td width="250"><?php echo $jobcostingcard['invoiceNumber']; ?></td>
                             <td width="100"><?php echo $job['reference_no']; ?></td>
                             <td width="100"><?php echo $CONSIGNEE->name; ?></td>
                             <td width="100"><?php echo $CONSIGNEE->vatNumber; ?></td>
                             <td width="100"><?php echo $CONSIGNMENT->name; ?></td>
-                            <td width="160" class="text-right"><?php echo number_format($invoice['payable_amount'],2); ?></td>
-                            <td width="100" class="text-right"><?php echo number_format($costingamount['grandtotal'],2); ?></td>
+                            <td width="160" class="text-right"><?php echo number_format($invoice['payable_amount'], 2); ?></td>
+                            <td width="100" class="text-right"><?php echo number_format($costingamount['grandtotal'], 2); ?></td>
                             <td width="100" class="text-right"><?php echo $grossprofit; ?></td>
+                            <td width="100" class="text-right"><?php echo number_format($serviceincome); ?></td>
+                            <td width="100" class="text-right"><?php echo number_format($vat); ?></td>
+                            <td width="100" class="text-right"><?php echo number_format($nbt); ?></td>
                         </tr>
                         <?php
                     }

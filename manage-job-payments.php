@@ -97,7 +97,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off">
                                                 </div>
                                                 
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>" />
                                                     <input type="hidden" id="job" name="job" value="<?php echo $id; ?>" />
                                                     <button type="submit" name="create-payment" id="create-payment" class="btn btn-info">Save Payment</button>

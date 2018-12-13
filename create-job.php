@@ -141,7 +141,7 @@ $createdAt = date('Y-m-d H:i:s');
                                                     <input type="text" id="datepicker3" class="form-control col-md-9" placeholder="Enter date" name="originalReceivedDate" autocomplete="off">
                                                 </div>
                                                 <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>">
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" id="btn-job" name="create-job" class="btn btn-info submit-btn">Save Job</button>
                                                 </div>
                                             </form>

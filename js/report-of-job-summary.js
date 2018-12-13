@@ -66,7 +66,7 @@ $(document).ready(function () {
                                                             option: 'GETINVOICE'
                                                         },
                                                         success: function (invoice) {
-
+                                                            console.log(invoice);
                                                             $.ajax({
                                                                 type: 'POST',
                                                                 url: 'ajax/report-of-job-summary.php',
@@ -76,8 +76,8 @@ $(document).ready(function () {
                                                                     option: 'GETCOSTINGAMOUNT'
                                                                 },
                                                                 success: function (costingamount) {
-                                                                    var grossprofit;
-                                                                    var gross;
+                                                                    var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation;
+
                                                                     if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
                                                                         gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
                                                                         grossprofit = new Intl.NumberFormat().format(gross);
@@ -85,6 +85,36 @@ $(document).ready(function () {
                                                                         gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
                                                                         grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
                                                                     }
+
+
+
+                                                                    
+
+                                                                    if (invoice.payable_amount === undefined) {
+                                                                        invoiceamount = 0;
+                                                                    } else {
+                                                                        invoiceamount = new Intl.NumberFormat().format(invoice.payable_amount);
+                                                                    }
+                                                                    if (isNaN(gross)) {
+                                                                        grossprofit = 0;
+                                                                    } else {
+                                                                        grossprofit = grossprofit;
+                                                                    }
+                                                                    
+                                                                    if (invoice.agency_fees === undefined) {
+                                                                        agency_fees = 0;
+                                                                    } else {
+                                                                        agency_fees = invoice.agency_fees;
+                                                                    }
+                                                                    if (invoice.documentation === undefined) {
+                                                                        documentation = 0;
+                                                                    } else {
+                                                                        documentation = invoice.documentation;
+                                                                    }
+                                                                    
+                                                                    serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                                                                    vat = serviceincome * 15 / 100;
+                                                                    nbt = serviceincome * 2 / 100;
 
                                                                     var i = parseInt(key) + 1
 
@@ -96,9 +126,12 @@ $(document).ready(function () {
                                                                     <td>' + consignee.name + '</td>\n\
                                                                     <td>' + consignee.vatNumber + '</td>\n\
                                                                     <td>' + consignment.name + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(invoice.payable_amount) + '</td>\n\
+                                                                    <td class="text-right">' + invoiceamount + '</td>\n\
                                                                     <td class="text-right">' + new Intl.NumberFormat().format(costingamount.grandtotal) + '</td>\n\
                                                                     <td class="text-right">' + grossprofit + '</td>\n\
+                                                                    <td class="text-right">' + serviceincome + '</td>\n\
+                                                                    <td class="text-right">' + vat + '</td>\n\
+                                                                    <td class="text-right">' + nbt + '</td>\n\
                                                                     </tr>';
 
 
@@ -197,18 +230,18 @@ $(document).ready(function () {
                                                             },
                                                             success: function (costingamount) {
                                                                 var grossprofit;
-                                                                    var gross;
-                                                                    if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
-                                                                        gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
-                                                                        grossprofit = new Intl.NumberFormat().format(gross);
-                                                                    } else {
-                                                                        gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
-                                                                        grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                                                                    }
+                                                                var gross;
+                                                                if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
+                                                                    gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
+                                                                    grossprofit = new Intl.NumberFormat().format(gross);
+                                                                } else {
+                                                                    gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
+                                                                    grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
+                                                                }
 
-                                                                    var i = parseInt(key) + 1
+                                                                var i = parseInt(key) + 1
 
-                                                                    html += '<tr>\n\
+                                                                html += '<tr>\n\
                                                                     <td>' + i + '</td>\n\
                                                                     <td>' + invoice.createdAt + '</td>\n\
                                                                     <td>' + jobcostingcard.invoiceNumber + '</td>\n\
@@ -315,18 +348,18 @@ $(document).ready(function () {
                                                             },
                                                             success: function (costingamount) {
                                                                 var grossprofit;
-                                                                    var gross;
-                                                                    if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
-                                                                        gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
-                                                                        grossprofit = new Intl.NumberFormat().format(gross);
-                                                                    } else {
-                                                                        gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
-                                                                        grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                                                                    }
+                                                                var gross;
+                                                                if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
+                                                                    gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
+                                                                    grossprofit = new Intl.NumberFormat().format(gross);
+                                                                } else {
+                                                                    gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
+                                                                    grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
+                                                                }
 
-                                                                    var i = parseInt(key) + 1
+                                                                var i = parseInt(key) + 1
 
-                                                                    html += '<tr>\n\
+                                                                html += '<tr>\n\
                                                                     <td>' + i + '</td>\n\
                                                                     <td>' + invoice.createdAt + '</td>\n\
                                                                     <td>' + jobcostingcard.invoiceNumber + '</td>\n\

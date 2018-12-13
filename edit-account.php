@@ -90,7 +90,7 @@ $ACCOUNT = new Account($id);
                                                     <label class="col-md-3">End Date</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter end date" name="enddate" id="enddate" autocomplete="off" value="<?php echo $ACCOUNT->end_date; ?>" >
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" name="id" id="id"value="<?php echo $ACCOUNT->id; ?>">
                                                     <button type="submit" name="edit-account" id="edit-account" class="btn btn-info">Save Account</button>
                                                     <button type="submit" name="clear-account" id="edit-account" class="btn btn-danger">Clear Account</button>

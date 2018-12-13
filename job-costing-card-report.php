@@ -59,14 +59,17 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
             <!--Table-->
             <?php
-            foreach ($COSTINGTYPES as $type) {
+            foreach ($COSTINGTYPES as $key=>$type) {
                 $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
                 if ($counttype['count'] > 0) {
                     ?>
                     <table class="table2 table-bordered to-hide" id="table-<?php echo $type['id']; ?>" border="1">
 
+                        <?php
+                        if($key === 0) {
+                            ?>
                         <!--Table head-->
-                        <thead>
+                        <thead class="">
                             <tr>
                                 <th class="col-1"></th>
                                 <th class="text-center table-td-width col-2">V/NO</th>
@@ -76,6 +79,11 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                             </tr>
                         </thead>
                         <!--Table head-->
+                        <?php
+                        }
+                        
+                        ?>
+                        
 
                         <!--Table body-->
                         <tbody>

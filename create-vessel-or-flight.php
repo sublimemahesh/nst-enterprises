@@ -89,7 +89,7 @@ $USER1 = new User($_SESSION['id']);
                                                         <option value="flight">Flight</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                 <button type="submit" name="creat-vessel-or-flight" id="creat-vessel-or-flight" class="btn btn-info">Save Vessel or Flight</button>
                                                 </div>
                                             </form>

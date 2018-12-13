@@ -159,7 +159,7 @@ $COSTINGTYPES = CostingType::all();
                                     <!--Table-->
                                     <input type="hidden" id="job" value="<?php echo $job; ?>">
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $jobcostingcard; ?>"/>
-                                    <div class="col-sm-12 col-md-offset-2 form-btn">
+                                    <div class="col-sm-8 col-md-offset-2 form-btn">
                                         <button type="button" class="btn btn-info savebtn" id="savebutton">Save Job Costing Card</button>
                                         <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                     </div>

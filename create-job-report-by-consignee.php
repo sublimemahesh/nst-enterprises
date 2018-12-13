@@ -6,10 +6,15 @@ include_once(dirname(__FILE__) . '/permission.php');
 $USER1 = new User($_SESSION['id']);
 
 $consigneeid = '';
+$report = '';
 if (isset($_GET['id'])) {
     $consigneeid = $_GET['id'];
+    $CONSIGNEE = new Consignee($consigneeid);
 }
-$CONSIGNEE = new Consignee($consigneeid);
+if (isset($_GET['checkreport'])) {
+    $report = 'hidden';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +28,7 @@ $CONSIGNEE = new Consignee($consigneeid);
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Manage <?php echo $CONSIGNEE->name; ?>'s Job Report || Dashboard || NST Enterprises</title>
+        <title>Manage Job Report || Dashboard || NST Enterprises</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -66,23 +71,48 @@ $CONSIGNEE = new Consignee($consigneeid);
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Manage Job Report of <?php echo $CONSIGNEE->name; ?></h1>
+                            <h1 class="page-header font-header">Manage Job Report <span class="<?php echo $report; ?>">of <?php echo $CONSIGNEE->name; ?></span></h1>
+                        </div>
+                    </div>
+
+                    <div class="row <?php
+                    if ($report === 'hidden') {
+                        echo '';
+                    } else {
+                        echo 'hidden';
+                    }
+                    ?>">
+                        <div class="col-lg-12">
+                            <div class="panel panel-info">
+
+                                <div class="panel-body">
+                                    <form id="consignee-report" method="get" action="create-job-report-by-consignee.php">
+                                        <div class="form-group">
+                                            <label class="col-md-3">Consignee</label>
+                                            <input type="text" class="form-control col-sm-8 col-md-8" id="name" autocomplete="off" placeholder="Enter consignee name" value="" attempt="">
+                                            <div id="suggesstion-box">
+                                                <ul id="name-list-append" class="name-list col-sm-offset-3"></ul>
+                                            </div>
+                                            <input type="hidden" name="id" value="" id="name-id"  />
+
+                                        </div>
+                                        <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn consignee-btn">
+                                            <div class="col-sm-2">
+                                                <input type="submit" class="btn btn-info checkreport" name="checkreport" value="Check Report">
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-<!--                                <div class="panel-heading">
-                                    Manage <?php echo $CONSIGNEE->name; ?>'s Job Report
-                                </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="manage-consignees.php">
-                                            <i class="glyphicon glyphicon-plus"></i> 
-                                        </a>
-                                    </li>
-                                </ul>-->
+                                
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="balance">
                                         <thead>
@@ -114,8 +144,8 @@ $CONSIGNEE = new Consignee($consigneeid);
                                                     <td><?php echo $job['debitNoteNumber']; ?></td>
                                                     <td><?php echo $job['id']; ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
-                                                    <td class="text-right"><?php echo number_format($INVOICE['payable_amount'],2); ?></td>
-                                                    <td class="text-right"><?php echo number_format($INVOICE['advance'],2); ?></td>
+                                                    <td class="text-right"><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
+                                                    <td class="text-right"><?php echo number_format($INVOICE['advance'], 2); ?></td>
                                                     <td class="text-right" id="due_<?php echo $i; ?>" due="<?php
                                                     if ($INVOICE['due'] == 0.00) {
                                                         echo '0';
@@ -140,8 +170,8 @@ $CONSIGNEE = new Consignee($consigneeid);
                                         </tbody>
                                     </table>
 
-                                    <div class="col-sm-12 col-md-offset-4 form-btn tax-invoice-btn">
-                                        <div class="col-sm-2">
+                                    <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn">
+                                        <div class="col-sm-3">
                                             <button type="button" class="btn btn-info savebtn" id="savebutton">Save Changes</button>
                                         </div>
                                         <div class="col-sm-3">
@@ -159,8 +189,10 @@ $CONSIGNEE = new Consignee($consigneeid);
 
         <!-- jQuery -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        
         <!-- Bootstrap Core JavaScript -->
         <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/consignee-report.js" type="text/javascript"></script>
         <!-- Metis Menu Plugin JavaScript -->
         <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
         <!-- Custom Theme JavaScript -->
@@ -173,7 +205,7 @@ $CONSIGNEE = new Consignee($consigneeid);
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script src="delete/js/consignee.js" type="text/javascript"></script>
         <script src="js/job-report-by-consignee.js" type="text/javascript"></script>
-
+        
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').DataTable({

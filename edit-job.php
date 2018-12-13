@@ -157,7 +157,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                 </div>
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
-                                                 <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                 <button type="submit" name="edit-job" id="edit-job" class="btn btn-info">Save Changes</button>
                                                  </div>
                                             </form>

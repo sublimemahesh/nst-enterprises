@@ -91,7 +91,7 @@ $COSTINGTYPE = new CostingType($REIMBURSEMENTITEM->type);
                                                     <label class="col-md-3">Title</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off" value="<?php echo $REIMBURSEMENTITEM->name; ?>">
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" name="type" id="type" value="<?php echo $COSTINGTYPE->id; ?>">
                                                     <input type="hidden" name="id" id="id" value="<?php echo $REIMBURSEMENTITEM->id; ?>">
                                                     <button type="submit" name="edit-costing-item" id="edit-costing-item" class="btn btn-info">Save Changes</button>

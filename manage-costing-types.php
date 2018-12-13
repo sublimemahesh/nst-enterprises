@@ -82,7 +82,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Title</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter title" name="title" id="title" autocomplete="off">
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-costing-type" id="create-costing-type" id="btn-consignee" class="btn btn-info">Save Costing Type</button>
                                                 </div>
                                             </form>

@@ -85,7 +85,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">End Date</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter end date" name="enddate" id="enddate" autocomplete="off">
                                                 </div>
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="submit" name="create-account" id="create-account" class="btn btn-info" value="Save Account">
                                                 </div>
                                             </form>

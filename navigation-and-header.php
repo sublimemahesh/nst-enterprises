@@ -272,6 +272,9 @@
                         <li>
                             <a href="create-report-of-job-summary.php">Job Summary Report</a>
                         </li>
+                        <li>
+                            <a href="create-consignee-job-report.php">Job Report By Consignee</a>
+                        </li>
                         
                     </ul>
                     <!-- /.nav-second-level -->

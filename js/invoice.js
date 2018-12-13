@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    $('.delivery-amount').change(function () {
+    $('.delivery-amount').keyup(function () {
         var amount = $(this).val();
         $(this).attr('amount', amount);
     });
 
-    $('.delivery-name').change(function () {
+    $('.delivery-name').keyup(function () {
 
         var name = $(this).val();
         $(this).val(name);
@@ -151,7 +151,7 @@ $(document).ready(function () {
 
     /* ------Calculate vat, tax invoice total, payable amount & due when agency fees changed------ */
 
-    $("#agency_fees").change(function () {
+    $("#agency_fees").keyup(function () {
         var agencyfees = $('#agency_fees').val();
         var documentation = $('#documentation').val();
 
@@ -227,7 +227,7 @@ $(document).ready(function () {
 
     /* ------Calculate vat, tax invoice total, payable amount & due when documentation changed------ */
 
-    $("#documentation").change(function () {
+    $("#documentation").keyup(function () {
         var agencyfees = $('#agency_fees').val();
         var documentation = $('#documentation').val();
 
@@ -301,7 +301,7 @@ $(document).ready(function () {
 
     /* ------Calculate statutory sub total, payable amount & due when statutory amount changed & update values in reimbursement-details table------ */
 
-    $(".reimbursement").change(function () {
+    $(".reimbursement").keyup(function () {
         var id = $(this).attr('rid');
         var amount = $(this).val();
 
@@ -399,7 +399,7 @@ $(document).ready(function () {
 
     /* ------Calculate delivery sub total, payable amount & due when delivery amount changed & update values in reimbursement-details table------ */
 
-    $(".delivery-amount").change(function () {
+    $(".delivery-amount").keyup(function () {
         var id = $(this).attr('rid');
         var amount = $(this).val();
 
@@ -496,7 +496,7 @@ $(document).ready(function () {
 
     /* ------Calculate due when advance changed------ */
 
-    $("#advance").change(function () {
+    $("#advance").keyup(function () {
 
         var payableAmount = $('#payable-amount').attr("amount");
         var advance = $('#advance').attr('advance');

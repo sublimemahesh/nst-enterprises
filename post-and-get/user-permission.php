@@ -6,7 +6,8 @@ include_once(dirname(__FILE__) . '/../auth.php');
 
 if (isset($_POST['save-permission'])) {
     $USER = new User(NULL);
-    $serialized_array = serialize($_POST['permission']); 
+    
+    $serialized_array = serialize($_POST['permission']);
 //    $arr = array();
 //    foreach ($_POST['permission'] as $key=>$permission) {
 //        if($key == 0) {

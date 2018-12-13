@@ -96,7 +96,7 @@ $PAYMENT = new JobPayment($id);
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off" value="<?php echo $PAYMENT->payment; ?>">
                                                 </div>
                                                 
-                                                <div class="col-sm-12 col-md-offset-3 form-btn">
+                                                <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                                     <button type="submit" name="edit-payment" id="edit-payment" class="btn btn-info">Save Changes</button>
                                                 </div>
