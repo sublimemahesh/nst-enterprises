@@ -3,11 +3,12 @@
     /*border: 1px solid #000;*/
     width: 740px;
     margin: 20px;
-    height: 1080px;
+    height: auto;
 }
 .table-header{
     text-align: center;
     font-size: 22px;
+    margin: 12px auto 8px;
 }
 .table-header2{
     padding-left: 25px;
@@ -28,7 +29,7 @@
     font-size: 12px;
 }
 .table {
-    margin: 10px 0px 20px 30px;
+    margin: 0px 0px 10px 30px;
     font-size: 12px;
     font-weight: 600;
 }

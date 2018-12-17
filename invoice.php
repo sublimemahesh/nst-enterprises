@@ -10,11 +10,10 @@ if (isset($_GET['id'])) {
 }
 $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 
-if(empty($INVOICE)) {
-    if(isset($_GET['back'])) {
-        header('location: view-job.php?id='.$_GET['back'].'&message=20');
+if (empty($INVOICE)) {
+    if (isset($_GET['back'])) {
+        header('location: view-job.php?id=' . $_GET['back'] . '&message=20');
     }
-    
 }
 
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
@@ -28,6 +27,17 @@ if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
 }
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
+
+$len = strlen($CONSIGNEE->vatNumber);
+$vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
+
+if ($vat_last_no == '7000') {
+    $documentation = $INVOICE['documentation'];
+    $vat = $INVOICE['vat'];
+} else {
+    $documentation = (float) $INVOICE['documentation'] + (float) $INVOICE['vat'];
+    $vat = 0;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +67,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     <td rowspan="4" class="col-2 text-to row-padding-left" >To. </td>
                     <td rowspan="4" class="col-3 td-border text-to"><?php echo $CONSIGNEE->name . '<br />' . $CONSIGNEE->address; ?></td>
                     <td class="col-4 row-padding-left">Vat Reg No</td>
-                    <td class="col-5"><?php echo $INVOICE['vat_reg_no']; ?></td>
+                    <td class="col-5">409206123-7000</td>
 
                 </tr>
                 <tr>
@@ -98,12 +108,12 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 </tr>
                 <tr>
                     <td class="row-padding-left">Gross Weight</td>
-                    <td><?php echo $INVOICE['gross_weight']; ?></td>
+                    <td><?php echo $INVOICE['gross_weight'] . ' Kgs'; ?></td>
 
                 </tr>
                 <tr class="">
                     <td class="row-padding-left">Vessel/Flight</td>
-                    <td class="td-border td-padding"><?php echo $VESSELANDFLIGHT->name; ?></td>
+                    <td class="td-border td-padding"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
                     <td class="row-padding-left">Volume</td>
                     <td class=""><?php echo $INVOICE['volume']; ?></td>
                 </tr>
@@ -127,12 +137,12 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 <tr>
                     <td></td>
                     <td colspan="2" class="td-border row-padding-left">DOCUMENTATION</td>
-                    <td class="text-right row-padding-right"><?php echo number_format($INVOICE['documentation'], 2); ?></td>        
+                    <td class="text-right row-padding-right"><?php echo number_format($documentation, 2); ?></td>        
                 </tr>
                 <tr>
                     <td></td>
                     <td colspan="2" class="td-border row-padding-left">VAT 15%</td>
-                    <td class="text-right row-padding-right"><?php echo number_format($INVOICE['vat'], 2); ?></td>       
+                    <td class="text-right row-padding-right"><?php echo number_format($vat, 2); ?></td>       
                 </tr>
                 <tr>
                     <td></td>
@@ -180,11 +190,7 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     }
                 }
                 ?>
-                <tr>
-                    <td></td>        
-                    <td class="td-border"></td>        
-                    <td class="text-right"></td>        
-                </tr>
+                
 
 
                 <tr>
@@ -206,23 +212,18 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                 if ($INVOICE) {
                     foreach ($DELIVERYDETAILS as $data) {
                         $did = $data['id'];
-                        ?>
-                        <tr class="delivery-details">
-                            <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
-                            <td class="td-border"><?php echo strtoupper($data['name']); ?></td>        
-                            <td class="text-right row-padding-right"><?php echo number_format($data['amount'], 2); ?></td>
-                        </tr>
-                        <?php
+                        if ($data['amount'] != 0) {
+                            ?>
+                            <tr class="delivery-details">
+                                <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
+                                <td class="td-border"><?php echo strtoupper($data['name']); ?></td>        
+                                <td class="text-right row-padding-right"><?php echo number_format($data['amount'], 2); ?></td>
+                            </tr>
+                            <?php
+                        }
                     }
                 }
                 ?>
-                <tr>
-                    <td></td>        
-                    <td class="td-border"></td>        
-                    <td class="text-right"></td>        
-                </tr>
-
-
                 <tr>
                     <td colspan="2" class="td-tax-invoice-total row-padding-right">Sub Total</td>
                     <td class="td-border-top1 text-right row-padding-right" id="delivery-sub-total" total=""><?php echo number_format($INVOICE['delivery_sub_total'], 2); ?></td>
@@ -273,8 +274,13 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
             </table>
             <div>
                 <p><strong>
-                        ALL CHEQUES SHOULD BE DRAWN IN FAVOUR OF 'N.S.T. ENTERPRISES' AND CROSSED A/C PAYEE N.S.T. ENTERPRISES
+                        ALL CHEQUES SHOULD BE DRAWN IN FAVOUR OF 'N.S.T. ENTERPRISES' AND CROSSED A/C PAYEE
                     </strong></p>
+            </div>
+            <div class="signature">
+                <b>N.S.T.ENTERPRISES</b>
+                <p class="line">.....................................</p>
+                <p>AUTHORIZED SIGNATURE</p>
             </div>
 
         </div>

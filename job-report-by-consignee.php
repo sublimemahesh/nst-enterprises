@@ -22,9 +22,9 @@ $CONSIGNEE = new Consignee($consigneeid);
 
     <body>
         <div id="wrapper">
-                <div class="col-lg-12 topic">
-                    <h1><?php echo strtoupper($CONSIGNEE->name); ?></h1>
-                </div>
+            <div class="col-lg-12 topic">
+                <h1><?php echo strtoupper($CONSIGNEE->name); ?></h1>
+            </div>
 
             <table width="100%" id="balance" border="1">
                 <thead>
@@ -40,6 +40,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                         <th class="text-center">Refund</th>
                         <th class="text-center">Settle</th>
                         <th class="text-center">Balance</th>
+                        <th class="text-center">Receipt No</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,22 +50,31 @@ $CONSIGNEE = new Consignee($consigneeid);
                         $CONSIGNMENT = new Consignment($job['consignment']);
                         $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
                         $INVOICE = Invoice::getInvoiceByJobCostingCard($JOBCOSTINGCARD['id']);
-                        ?>
-                        <tr>
-                            <td width="40"><?php echo $i; ?></td>
-                            <td><?php echo $job['createdAt']; ?></td>
-                            <td width="90"><?php echo $job['debitNoteNumber']; ?></td>
-                            <td width="60"><?php echo $job['id']; ?></td>
-                            <td><?php echo $CONSIGNMENT->name; ?></td>
-                            <td width="110" class="text-right"><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
-                            <td width="110" class="text-right"><?php echo number_format($INVOICE['advance'], 2); ?></td>
-                            <td width="110" class="text-right"><?php echo number_format($INVOICE['due'], 2); ?></td>
-                            <td width="110" class="text-right"><?php echo number_format($INVOICE['refund'], 2); ?></td>
-                            <td width="110" class="text-right"><?php echo number_format($INVOICE['settle'], 2); ?></td>
-                            <td width="110" class="text-right"><?php if($INVOICE['status'] === 'refund') { echo '('.number_format($INVOICE['balance'], 2).')';} else {echo number_format($INVOICE['balance'], 2); } ?></td>
-                        </tr>
-                        <?php
-                        $i++;
+                        if ($INVOICE) {
+                            ?>
+                            <tr>
+                                <td width="40"><?php echo $i; ?></td>
+                                <td><?php echo $job['createdAt']; ?></td>
+                                <td width="90"><?php echo $job['debitNoteNumber']; ?></td>
+                                <td width="60"><?php echo $job['id']; ?></td>
+                                <td><?php echo $CONSIGNMENT->name; ?></td>
+                                <td width="110" class="text-right"><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
+                                <td width="110" class="text-right"><?php echo number_format($INVOICE['advance'], 2); ?></td>
+                                <td width="110" class="text-right"><?php echo number_format($INVOICE['due'], 2); ?></td>
+                                <td width="110" class="text-right"><?php echo number_format($INVOICE['refund'], 2); ?></td>
+                                <td width="110" class="text-right"><?php echo number_format($INVOICE['settle'], 2); ?></td>
+                                <td width="110" class="text-right"><?php
+                                    if ($INVOICE['status'] === 'refund') {
+                                        echo '(' . number_format($INVOICE['balance'], 2) . ')';
+                                    } else {
+                                        echo number_format($INVOICE['balance'], 2);
+                                    }
+                                    ?></td>
+                                <td width="110" class="text-right"><?php echo $INVOICE['receipt_no']; ?></td>
+                            </tr>
+                            <?php
+                            $i++;
+                        }
                     }
                     ?>
                 </tbody>

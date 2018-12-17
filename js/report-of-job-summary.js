@@ -18,135 +18,82 @@ $(document).ready(function () {
                 data: {
                     from: result.start_date,
                     to: result.end_date,
-                    option: 'GETJOBSBYSTARTANDENDDATE'
+                    option: 'GETINVOICESBYSTARTANDENDDATE'
                 },
-                success: function (jobs) {
+                success: function (invoices) {
                     callLoader();
                     var html;
-                    if (jobs) {
-                        $.each(jobs, function (key, job) {
+                    if (invoices) {
+                        $.each(invoices, function (key, invoice) {
+                            
+                            var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
-                            $.ajax({
-                                type: 'POST',
-                                url: 'ajax/report-of-job-summary.php',
-                                dataType: "json",
-                                data: {
-                                    consignee: job.consignee,
-                                    option: 'GETCONSIGNEE'
-                                },
-                                success: function (consignee) {
+                            if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
+                                gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
+                                grossprofit = new Intl.NumberFormat().format(gross);
+                            } else {
+                                gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
+                                grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
+                            }
 
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: 'ajax/report-of-job-summary.php',
-                                        dataType: "json",
-                                        data: {
-                                            consignment: job.consignment,
-                                            option: 'GETCONSIGNMENT'
-                                        },
-                                        success: function (consignment) {
+                            if (invoice.payableAmount === undefined) {
+                                invoiceamount = 0;
+                            } else {
+                                invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
+                            }
+                            if (isNaN(gross)) {
+                                grossprofit = 0;
+                            } else {
+                                grossprofit = grossprofit;
+                            }
 
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: 'ajax/report-of-job-summary.php',
-                                                dataType: "json",
-                                                data: {
-                                                    job: job.id,
-                                                    option: 'GETJOBCOSTINGCARD'
-                                                },
-                                                success: function (jobcostingcard) {
+                            if (invoice.agencyFees === undefined || !invoice.agencyFees) {
+                                agency_fees = 0;
+                            } else {
+                                agency_fees = invoice.agencyFees;
+                            }
+                            if (invoice.documentation === undefined || !invoice.documentation) {
+                                documentation = 0;
+                            } else {
+                                documentation = invoice.documentation;
+                            }
+                            
+                            if (!invoice.invoiceCreatedAt) {
+                                invoiceCreatedAt = '-';
+                            } else {
+                                invoiceCreatedAt = invoice.invoiceCreatedAt;
+                            }
+                            if (!invoice.invoiceNumber) {
+                                invoiceNumber = '-';
+                            } else {
+                                invoiceNumber = invoice.invoiceNumber;
+                            }
 
+                            serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                            vat = serviceincome * 15 / 100;
+                            nbt = serviceincome * 2 / 100;
 
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: 'ajax/report-of-job-summary.php',
-                                                        dataType: "json",
-                                                        data: {
-                                                            jobcostingcard: jobcostingcard.id,
-                                                            option: 'GETINVOICE'
-                                                        },
-                                                        success: function (invoice) {
-                                                            console.log(invoice);
-                                                            $.ajax({
-                                                                type: 'POST',
-                                                                url: 'ajax/report-of-job-summary.php',
-                                                                dataType: "json",
-                                                                data: {
-                                                                    jobcostingcard: jobcostingcard.id,
-                                                                    option: 'GETCOSTINGAMOUNT'
-                                                                },
-                                                                success: function (costingamount) {
-                                                                    var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation;
+                            var i = parseInt(key) + 1
 
-                                                                    if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
-                                                                        gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
-                                                                        grossprofit = new Intl.NumberFormat().format(gross);
-                                                                    } else {
-                                                                        gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
-                                                                        grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                                                                    }
-
-
-
-                                                                    
-
-                                                                    if (invoice.payable_amount === undefined) {
-                                                                        invoiceamount = 0;
-                                                                    } else {
-                                                                        invoiceamount = new Intl.NumberFormat().format(invoice.payable_amount);
-                                                                    }
-                                                                    if (isNaN(gross)) {
-                                                                        grossprofit = 0;
-                                                                    } else {
-                                                                        grossprofit = grossprofit;
-                                                                    }
-                                                                    
-                                                                    if (invoice.agency_fees === undefined) {
-                                                                        agency_fees = 0;
-                                                                    } else {
-                                                                        agency_fees = invoice.agency_fees;
-                                                                    }
-                                                                    if (invoice.documentation === undefined) {
-                                                                        documentation = 0;
-                                                                    } else {
-                                                                        documentation = invoice.documentation;
-                                                                    }
-                                                                    
-                                                                    serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
-                                                                    vat = serviceincome * 15 / 100;
-                                                                    nbt = serviceincome * 2 / 100;
-
-                                                                    var i = parseInt(key) + 1
-
-                                                                    html += '<tr>\n\
-                                                                    <td>' + i + '</td>\n\
-                                                                    <td>' + invoice.createdAt + '</td>\n\
-                                                                    <td>' + jobcostingcard.invoiceNumber + '</td>\n\
-                                                                    <td>' + job.reference_no + '</td>\n\
-                                                                    <td>' + consignee.name + '</td>\n\
-                                                                    <td>' + consignee.vatNumber + '</td>\n\
-                                                                    <td>' + consignment.name + '</td>\n\
-                                                                    <td class="text-right">' + invoiceamount + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(costingamount.grandtotal) + '</td>\n\
-                                                                    <td class="text-right">' + grossprofit + '</td>\n\
-                                                                    <td class="text-right">' + serviceincome + '</td>\n\
-                                                                    <td class="text-right">' + vat + '</td>\n\
-                                                                    <td class="text-right">' + nbt + '</td>\n\
-                                                                    </tr>';
+                            html += '<tr>\n\
+                            <td>' + i + '</td>\n\
+                            <td>' + invoiceCreatedAt + '</td>\n\
+                            <td>' + invoiceNumber + '</td>\n\
+                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoice.consignee + '</td>\n\
+                            <td>' + invoice.vatno + '</td>\n\
+                            <td>' + invoice.consignment + '</td>\n\
+                            <td class="text-right">' + invoiceamount + '</td>\n\
+                            <td class="text-right">' + new Intl.NumberFormat().format(invoice.grandTotal) + '</td>\n\
+                            <td class="text-right">' + grossprofit + '</td>\n\
+                            <td class="text-right">' + serviceincome + '</td>\n\
+                            <td class="text-right">' + vat + '</td>\n\
+                            <td class="text-right">' + nbt + '</td>\n\
+                            </tr>';
 
 
-                                                                    $("#balance tbody").empty();
-                                                                    $("#balance tbody").append(html);
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                                }
-                                            });
-                                        }
-                                    });
-                                }
-                            });
+                            $("#balance tbody").empty();
+                            $("#balance tbody").append(html);
                         });
                     } else {
                         html = 'No any jobs in database';
@@ -171,106 +118,88 @@ $(document).ready(function () {
             data: {
                 from: from,
                 to: to,
-                option: 'GETJOBSBYSTARTANDENDDATE'
+                option: 'GETINVOICESBYSTARTANDENDDATE'
             },
-            success: function (jobs) {
+            success: function (invoices) {
                 callLoader();
                 var html;
-                if (jobs) {
-                    $.each(jobs, function (key, job) {
+                if (invoices) {
+                        $.each(invoices, function (key, invoice) {
+                            
+                            var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'ajax/report-of-job-summary.php',
-                            dataType: "json",
-                            data: {
-                                consignee: job.consignee,
-                                option: 'GETCONSIGNEE'
-                            },
-                            success: function (consignee) {
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'ajax/report-of-job-summary.php',
-                                    dataType: "json",
-                                    data: {
-                                        consignment: job.consignment,
-                                        option: 'GETCONSIGNMENT'
-                                    },
-                                    success: function (consignment) {
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'ajax/report-of-job-summary.php',
-                                            dataType: "json",
-                                            data: {
-                                                job: job.id,
-                                                option: 'GETJOBCOSTINGCARD'
-                                            },
-                                            success: function (jobcostingcard) {
-
-
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'ajax/report-of-job-summary.php',
-                                                    dataType: "json",
-                                                    data: {
-                                                        jobcostingcard: jobcostingcard.id,
-                                                        option: 'GETINVOICE'
-                                                    },
-                                                    success: function (invoice) {
-
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'ajax/report-of-job-summary.php',
-                                                            dataType: "json",
-                                                            data: {
-                                                                jobcostingcard: jobcostingcard.id,
-                                                                option: 'GETCOSTINGAMOUNT'
-                                                            },
-                                                            success: function (costingamount) {
-                                                                var grossprofit;
-                                                                var gross;
-                                                                if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
-                                                                    gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
-                                                                    grossprofit = new Intl.NumberFormat().format(gross);
-                                                                } else {
-                                                                    gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
-                                                                    grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                                                                }
-
-                                                                var i = parseInt(key) + 1
-
-                                                                html += '<tr>\n\
-                                                                    <td>' + i + '</td>\n\
-                                                                    <td>' + invoice.createdAt + '</td>\n\
-                                                                    <td>' + jobcostingcard.invoiceNumber + '</td>\n\
-                                                                    <td>' + job.reference_no + '</td>\n\
-                                                                    <td>' + consignee.name + '</td>\n\
-                                                                    <td>' + consignee.vatNumber + '</td>\n\
-                                                                    <td>' + consignment.name + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(invoice.payable_amount) + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(costingamount.grandtotal) + '</td>\n\
-                                                                    <td class="text-right">' + grossprofit + '</td>\n\
-                                                                    </tr>';
-                                                                $("#balance tbody").empty();
-                                                                $("#balance tbody").append(html);
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
+                            if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
+                                gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
+                                grossprofit = new Intl.NumberFormat().format(gross);
+                            } else {
+                                gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
+                                grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
                             }
+
+                            if (invoice.payableAmount === undefined) {
+                                invoiceamount = 0;
+                            } else {
+                                invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
+                            }
+                            if (isNaN(gross)) {
+                                grossprofit = 0;
+                            } else {
+                                grossprofit = grossprofit;
+                            }
+
+                            if (invoice.agencyFees === undefined || !invoice.agencyFees) {
+                                agency_fees = 0;
+                            } else {
+                                agency_fees = invoice.agencyFees;
+                            }
+                            if (invoice.documentation === undefined || !invoice.documentation) {
+                                documentation = 0;
+                            } else {
+                                documentation = invoice.documentation;
+                            }
+                            
+                            if (!invoice.invoiceCreatedAt) {
+                                invoiceCreatedAt = '-';
+                            } else {
+                                invoiceCreatedAt = invoice.invoiceCreatedAt;
+                            }
+                            if (!invoice.invoiceNumber) {
+                                invoiceNumber = '-';
+                            } else {
+                                invoiceNumber = invoice.invoiceNumber;
+                            }
+
+                            serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                            vat = serviceincome * 15 / 100;
+                            nbt = serviceincome * 2 / 100;
+
+                            var i = parseInt(key) + 1
+
+                            html += '<tr>\n\
+                            <td>' + i + '</td>\n\
+                            <td>' + invoiceCreatedAt + '</td>\n\
+                            <td>' + invoiceNumber + '</td>\n\
+                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoice.consignee + '</td>\n\
+                            <td>' + invoice.vatno + '</td>\n\
+                            <td>' + invoice.consignment + '</td>\n\
+                            <td class="text-right">' + invoiceamount + '</td>\n\
+                            <td class="text-right">' + new Intl.NumberFormat().format(invoice.grandTotal) + '</td>\n\
+                            <td class="text-right">' + grossprofit + '</td>\n\
+                            <td class="text-right">' + serviceincome + '</td>\n\
+                            <td class="text-right">' + vat + '</td>\n\
+                            <td class="text-right">' + nbt + '</td>\n\
+                            </tr>';
+
+
+                            $("#balance tbody").empty();
+                            $("#balance tbody").append(html);
                         });
-                    });
-                } else {
-                    html = 'No any jobs in database';
-                    $("#balance tbody").empty();
-                    $("#balance tbody").append(html);
-                }
+                    } else {
+                        html = 'No any jobs in database';
+                        $("#balance tbody").empty();
+                        $("#balance tbody").append(html);
+                    }
             }
 
         });
@@ -289,108 +218,88 @@ $(document).ready(function () {
             data: {
                 from: from,
                 to: to,
-                option: 'GETJOBSBYSTARTANDENDDATE'
+                option: 'GETINVOICESBYSTARTANDENDDATE'
             },
-            success: function (jobs) {
+            success: function (invoices) {
                 callLoader();
                 var html;
-                if (jobs) {
-                    $.each(jobs, function (key, job) {
+                if (invoices) {
+                        $.each(invoices, function (key, invoice) {
+                            
+                            var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'ajax/report-of-job-summary.php',
-                            dataType: "json",
-                            data: {
-                                consignee: job.consignee,
-                                option: 'GETCONSIGNEE'
-                            },
-                            success: function (consignee) {
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'ajax/report-of-job-summary.php',
-                                    dataType: "json",
-                                    data: {
-                                        consignment: job.consignment,
-                                        option: 'GETCONSIGNMENT'
-                                    },
-                                    success: function (consignment) {
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'ajax/report-of-job-summary.php',
-                                            dataType: "json",
-                                            data: {
-                                                job: job.id,
-                                                option: 'GETJOBCOSTINGCARD'
-                                            },
-                                            success: function (jobcostingcard) {
-
-
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'ajax/report-of-job-summary.php',
-                                                    dataType: "json",
-                                                    data: {
-                                                        jobcostingcard: jobcostingcard.id,
-                                                        option: 'GETINVOICE'
-                                                    },
-                                                    success: function (invoice) {
-
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: 'ajax/report-of-job-summary.php',
-                                                            dataType: "json",
-                                                            data: {
-                                                                jobcostingcard: jobcostingcard.id,
-                                                                option: 'GETCOSTINGAMOUNT'
-                                                            },
-                                                            success: function (costingamount) {
-                                                                var grossprofit;
-                                                                var gross;
-                                                                if (parseFloat(invoice.payable_amount) >= parseFloat(costingamount.grandtotal)) {
-                                                                    gross = parseFloat(invoice.payable_amount) - parseFloat(costingamount.grandtotal);
-                                                                    grossprofit = new Intl.NumberFormat().format(gross);
-                                                                } else {
-                                                                    gross = parseFloat(costingamount.grandtotal) - parseFloat(invoice.payable_amount);
-                                                                    grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                                                                }
-
-                                                                var i = parseInt(key) + 1
-
-                                                                html += '<tr>\n\
-                                                                    <td>' + i + '</td>\n\
-                                                                    <td>' + invoice.createdAt + '</td>\n\
-                                                                    <td>' + jobcostingcard.invoiceNumber + '</td>\n\
-                                                                    <td>' + job.reference_no + '</td>\n\
-                                                                    <td>' + consignee.name + '</td>\n\
-                                                                    <td>' + consignee.vatNumber + '</td>\n\
-                                                                    <td>' + consignment.name + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(invoice.payable_amount) + '</td>\n\
-                                                                    <td class="text-right">' + new Intl.NumberFormat().format(costingamount.grandtotal) + '</td>\n\
-                                                                    <td class="text-right">' + grossprofit + '</td>\n\
-                                                                    </tr>';
-
-
-                                                                $("#balance tbody").empty();
-                                                                $("#balance tbody").append(html);
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
+                            if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
+                                gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
+                                grossprofit = new Intl.NumberFormat().format(gross);
+                            } else {
+                                gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
+                                grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
                             }
+
+                            if (invoice.payableAmount === undefined) {
+                                invoiceamount = 0;
+                            } else {
+                                invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
+                            }
+                            if (isNaN(gross)) {
+                                grossprofit = 0;
+                            } else {
+                                grossprofit = grossprofit;
+                            }
+
+                            if (invoice.agencyFees === undefined || !invoice.agencyFees) {
+                                agency_fees = 0;
+                            } else {
+                                agency_fees = invoice.agencyFees;
+                            }
+                            if (invoice.documentation === undefined || !invoice.documentation) {
+                                documentation = 0;
+                            } else {
+                                documentation = invoice.documentation;
+                            }
+                            
+                            if (!invoice.invoiceCreatedAt) {
+                                invoiceCreatedAt = '-';
+                            } else {
+                                invoiceCreatedAt = invoice.invoiceCreatedAt;
+                            }
+                            if (!invoice.invoiceNumber) {
+                                invoiceNumber = '-';
+                            } else {
+                                invoiceNumber = invoice.invoiceNumber;
+                            }
+
+                            serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                            vat = serviceincome * 15 / 100;
+                            nbt = serviceincome * 2 / 100;
+
+                            var i = parseInt(key) + 1
+
+                            html += '<tr>\n\
+                            <td>' + i + '</td>\n\
+                            <td>' + invoiceCreatedAt + '</td>\n\
+                            <td>' + invoiceNumber + '</td>\n\
+                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoice.consignee + '</td>\n\
+                            <td>' + invoice.vatno + '</td>\n\
+                            <td>' + invoice.consignment + '</td>\n\
+                            <td class="text-right">' + invoiceamount + '</td>\n\
+                            <td class="text-right">' + new Intl.NumberFormat().format(invoice.grandTotal) + '</td>\n\
+                            <td class="text-right">' + grossprofit + '</td>\n\
+                            <td class="text-right">' + serviceincome + '</td>\n\
+                            <td class="text-right">' + vat + '</td>\n\
+                            <td class="text-right">' + nbt + '</td>\n\
+                            </tr>';
+
+
+                            $("#balance tbody").empty();
+                            $("#balance tbody").append(html);
                         });
-                    });
-                } else {
-                    html = 'No any jobs in database';
-                    $("#balance tbody").empty();
-                    $("#balance tbody").append(html);
-                }
+                    } else {
+                        html = 'No any jobs in database';
+                        $("#balance tbody").empty();
+                        $("#balance tbody").append(html);
+                    }
             }
 
         });

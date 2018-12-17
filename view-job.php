@@ -188,16 +188,16 @@ $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($id);
                                                         };
                                                         ?></td>
                                                 </tr>
-                                                <tr>
+<!--                                                <tr>
                                                     <td class="view-details-topic">Cusdec Date</td>
                                                     <td><?php
-                                                        if ($JOB->cusdecDate) {
-                                                            echo $JOB->cusdecDate;
-                                                        } else {
-                                                            echo '-';
-                                                        };
+//                                                        if ($JOB->cusdecDate) {
+//                                                            echo $JOB->cusdecDate;
+//                                                        } else {
+//                                                            echo '-';
+//                                                        };
                                                         ?></td>
-                                                </tr>
+                                                </tr>-->
                                             </table>
 
                                         </div>

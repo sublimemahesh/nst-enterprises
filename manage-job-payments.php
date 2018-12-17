@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
 $id = '';
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $JOB = new Job($id);
@@ -79,24 +79,25 @@ $createdAt = date('Y-m-d H:i:s');
                                 </div>
                                 <ul class="header-dropdown">
                                     <li class="">
-<!--                                        <a href="manage-consignees.php">
-                                            <i class="glyphicon glyphicon-list"></i> 
-                                        </a>-->
+                                        <!--                                        <a href="manage-consignees.php">
+                                                                                    <i class="glyphicon glyphicon-list"></i> 
+                                                                                </a>-->
                                     </li>
                                 </ul>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <form id="form-consignee"  method="post" action="post-and-get/job-payment.php">
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Customer Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off">
-                                                </div>
+
                                                 <div class="form-group">
                                                     <label class="col-md-3">Payment</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off">
                                                 </div>
-                                                
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Comment</label>
+                                                    <textarea class="form-control col-md-9" name="comment" id="comment"></textarea>
+                                                </div>
+
                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" id="createdAt" name="createdAt" value="<?php echo $createdAt; ?>" />
                                                     <input type="hidden" id="job" name="job" value="<?php echo $id; ?>" />
@@ -114,7 +115,7 @@ $createdAt = date('Y-m-d H:i:s');
                                     Manage Job Payments
                                 </div>
                                 <ul class="header-dropdown">
-                                    
+
                                 </ul>
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -122,8 +123,8 @@ $createdAt = date('Y-m-d H:i:s');
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Created At</th>
-                                                <th>Customer Name</th>
                                                 <th>Payment</th>
+                                                <th>Comment</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
@@ -134,8 +135,19 @@ $createdAt = date('Y-m-d H:i:s');
                                                 <tr id="row_<?php echo $payment['id']; ?>">
                                                     <td><?php echo $payment['id']; ?></td>
                                                     <td><?php echo $payment['createdAt']; ?></td>
-                                                    <td><?php echo $payment['customer_name']; ?></td>
-                                                    <td class="text-right"><?php echo number_format($payment['payment'],2); ?></td>
+                                                    <td class="text-right"><?php echo number_format($payment['payment'], 2); ?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($payment['comment']) {
+                                                            if (strlen($payment['comment']) > 50) {
+                                                                echo substr($payment['comment'], 0, 50) . '...';
+                                                            } else {
+                                                                echo $payment['comment'];
+                                                            }
+                                                        } else {
+                                                            echo '-';
+                                                        }
+                                                        ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-job-payment.php?id=<?php echo $payment['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
                                                         |

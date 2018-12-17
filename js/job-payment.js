@@ -2,16 +2,7 @@ $(document).ready(function () {
 
     $('#create-payment').click(function () {
 
-        if (!$('#name').val() || $('#name').val().length === 0) {
-            swal({
-                title: "Error!",
-                text: "Please enter the customer name",
-                type: 'error',
-                timer: 2000,
-                showConfirmButton: false
-            });
-            return false;
-        } else if (!$('#payment').val() || $('#payment').val().length === 0) {
+        if (!$('#payment').val() || $('#payment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the payment",
@@ -29,16 +20,7 @@ $(document).ready(function () {
 
     $('#edit-payment').click(function () {
 
-        if (!$('#name').val() || $('#name').val().length === 0) {
-            swal({
-                title: "Error!",
-                text: "Please enter the customer name",
-                type: 'error',
-                timer: 2000,
-                showConfirmButton: false
-            });
-            return false;
-        } else if (!$('#payment').val() || $('#payment').val().length === 0) {
+        if (!$('#payment').val() || $('#payment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the payment",

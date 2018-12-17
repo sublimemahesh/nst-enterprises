@@ -39,7 +39,7 @@ class Helper {
         } else {
             $last_number = $maxid;
         }
-        $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $last_number;
+        $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $last_number;
   
         return $invoice;
     }
@@ -63,11 +63,11 @@ class Helper {
 
 
         if ($maxid < 10) {
-            $last_number = '0' . $maxid;
+            $last_number = '000' . $maxid;
         } else {
             $last_number = $maxid;
         }
-        $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $last_number;
+        $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $last_number;
   
         return $job;
     }

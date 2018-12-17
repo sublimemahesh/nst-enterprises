@@ -10,13 +10,12 @@ if (isset($_POST['create-payment'])) {
 
     $PAYMENT->job = filter_input(INPUT_POST, 'job');
     $PAYMENT->createdAt = filter_input(INPUT_POST, 'createdAt');
-    $PAYMENT->customer_name = filter_input(INPUT_POST, 'name');
     $PAYMENT->payment = filter_input(INPUT_POST, 'payment');
+    $PAYMENT->comment = filter_input(INPUT_POST, 'comment');
 
     $VALID->check($PAYMENT, [
         'job' => ['required' => TRUE],
         'createdAt' => ['required' => TRUE],
-        'customer_name' => ['required' => TRUE],
         'payment' => ['required' => TRUE]
     ]);
 
@@ -49,12 +48,11 @@ if (isset($_POST['create-payment'])) {
 if (isset($_POST['edit-payment'])) {
     $PAYMENT = new JobPayment($_POST['id']);
 
-    $PAYMENT->customer_name = filter_input(INPUT_POST, 'name');
     $PAYMENT->payment = filter_input(INPUT_POST, 'payment');
+    $PAYMENT->comment = filter_input(INPUT_POST, 'comment');
 
     $VALID = new Validator();
     $VALID->check($PAYMENT, [
-        'customer_name' => ['required' => TRUE],
         'payment' => ['required' => TRUE]
     ]);
 

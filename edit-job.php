@@ -151,10 +151,10 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                                                     <label class="col-md-3">Debit Note Number</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter debit note number" name="debitNoteNumber" value="<?php echo $JOB->debitNoteNumber; ?>" autocomplete="off">
                                                 </div>
-                                                <div class="form-group">
+<!--                                                <div class="form-group">
                                                     <label class="col-md-3">Cusdec Date</label>
                                                     <input type="text" id="datepicker4" class="form-control col-md-9" placeholder="Enter cusdec date" name="cusdecDate" autocomplete="off" value="<?php echo $JOB->cusdecDate; ?>">
-                                                </div>
+                                                </div>-->
 
                                                 <input type="hidden" name="id" value="<?php echo $JOB->id; ?>">
                                                  <div class="col-sm-9 col-md-offset-3 form-btn">

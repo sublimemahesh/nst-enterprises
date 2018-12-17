@@ -8,8 +8,8 @@ if ($_POST['option'] == 'CREATE') {
     
     $JOBCOSTINGCARD->job = $_POST['job'];
     $JOBCOSTINGCARD->date = $_POST['date'];
-    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceno'];
-    
+//    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceno'];
+
 
     $VALID->check($JOBCOSTINGCARD, [
         'job' => ['required' => TRUE],
@@ -19,11 +19,34 @@ if ($_POST['option'] == 'CREATE') {
     if ($VALID->passed()) {
         $result = $JOBCOSTINGCARD->create();
         
-        if($result) {
-            $id = $result;
-            $today = date("Y-m-d");
-            $res = Account::updateCurrentInvoiceId($today,$id);
-        }
+//        if($result) {
+//            
+//            $today = date("Y-m-d");
+//            $account = Account::getCurrentAccount($today);
+//            $new_invoice_id = $account['current_invoice_id'] + 1;
+//            $res = Account::updateCurrentInvoiceId($today, $new_invoice_id);
+//        }
+
+    }
+    header('Content-Type: application/json');
+
+    echo json_encode($result);
+    exit();
+}
+
+if ($_POST['option'] == 'CREATEINVOICENUMBER') {
+    
+    $JOBCOSTINGCARD = new JobCostingCard($_POST['jobcostingcard']);
+    $VALID = new Validator();
+
+    $JOBCOSTINGCARD->invoiceNumber = $_POST['invoiceno'];
+
+    $VALID->check($JOBCOSTINGCARD, [
+        'invoiceNumber' => ['required' => TRUE]
+    ]);
+
+    if ($VALID->passed()) {
+        $result = $JOBCOSTINGCARD->updateInvoiceNumber();
 
     }
     header('Content-Type: application/json');

@@ -108,7 +108,7 @@ $USER1 = new User($_SESSION['id']);
 
                                     <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn">
                                         <div class="col-sm-3">
-                                            <a target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success" id="print-btn"></i></a> 
+                                            <a target="_blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success" id="print-btn"></i></a> 
                                         </div>
                                     </div>
                                 </div>

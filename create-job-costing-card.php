@@ -11,6 +11,7 @@ if (isset($_GET['id'])) {
 $date = date('Y-m-d');
 $invoicenumber = Helper::invoiceNo();
 //dd($invoicenumber);
+$JOB = new Job($job);
 $COSTINGTYPES = CostingType::all();
 ?>
 
@@ -74,25 +75,26 @@ $COSTINGTYPES = CostingType::all();
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Create Job Costing Card</h1>
+                            <h1 class="page-header font-header">Manage Job Costing Card</h1>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-                                
+
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label class="col-md-3">Date</label>
-                                                <input type="text" id="date" class="form-control col-md-9" placeholder="Enter date" name="date" autocomplete="off" value="<?php echo $date; ?>" disabled="">
+                                                <label class="col-md-3">Job Number</label>
+                                                <input type="text" id="jobref" class="form-control col-md-9" name="job" autocomplete="off" value="<?php echo $JOB->reference_no; ?>" disabled="">
                                             </div>
-                                            <div class="form-group">
+<!--                                            <div class="form-group">
                                                 <label class="col-md-3">Invoice Number</label>
                                                 <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php echo $invoicenumber; ?>" disabled="" style="margin-bottom: 0px;">
-                                            </div>
+                                                <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="NST/2018/19/" style="margin-bottom: 0px;">
+                                            </div>-->
 
                                         </div>
                                     </div>
@@ -138,17 +140,18 @@ $COSTINGTYPES = CostingType::all();
                                             <?php
                                             foreach ($COSTINGTYPES as $type) {
                                                 foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
-                                                ?>
-                                                <tr>
-                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                            <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
-                                            </tr>
-                                            <?php
-                                        }
+                                                    ?>
+                                                    <tr>
+                                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                        <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                        <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                        <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
+                                                <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
+                                                </tr>
+                                                <?php
                                             }
+                                        }
                                         ?>
 
 
@@ -183,10 +186,10 @@ $COSTINGTYPES = CostingType::all();
         <script src="js/sb-admin-2.js" type="text/javascript"></script>
         <script src="js/job-costing-card.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        
+
         <script src="js/create-reimbursement-details.js" type="text/javascript"></script>
         <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
-        
+
 
     </body>
 

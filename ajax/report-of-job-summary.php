@@ -1,9 +1,10 @@
 <?php
+
 include_once(dirname(__FILE__) . '/../class/include.php');
 
 if ($_POST['option'] == 'GETSTARTANDENDDATE') {
     $ACCOUNT = new Account(NULL);
-    
+
     $today = date("Y-m-d");
     $currentaccount = $ACCOUNT->getCurrentAccount($today);
 
@@ -12,60 +13,39 @@ if ($_POST['option'] == 'GETSTARTANDENDDATE') {
     echo json_encode($currentaccount);
     exit();
 }
-if ($_POST['option'] == 'GETJOBSBYSTARTANDENDDATE') {
+if ($_POST['option'] == 'GETINVOICESBYSTARTANDENDDATE') {
+
+    $invoices = Invoice::getInvoicesByDateRange($_POST['from'], $_POST['to']);
     
-    $result = Job::getJobsByDateRange($_POST['from'], $_POST['to']);
-    
-    header('Content-Type: application/json');
-
-    echo json_encode($result);
-    exit();
-}
-
-if ($_POST['option'] == 'GETCONSIGNEE') {
-    
-    $CONSIGNEE = new Consignee($_POST['consignee']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($CONSIGNEE);
-    exit();
-}
-
-if ($_POST['option'] == 'GETCONSIGNMENT') {
-    
-    $CONSIGNMENT = new Consignment($_POST['consignment']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($CONSIGNMENT);
-    exit();
-}
-
-if ($_POST['option'] == 'GETJOBCOSTINGCARD') {
-    
-    $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($_POST['job']);
+    $arr = array();
+    $jobarr = array();
+     
+    foreach ($invoices as $invoice) {
+        
+//        $invoice = Invoice::getInvoiceByJobCostingCard($jobcostingcard['id']);
+        $jobcostingcard = new JobCostingCard($invoice['job_costing_card']);
+        $job = new Job($jobcostingcard->job);
+        $consignee = new Consignee($job->consignee);
+        $consignment = new Consignment($job->consignment);
+        
+        $costingamount = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard->id);
+        
+        $arr['invoiceCreatedAt'] = $invoice['createdAt'];
+        $arr['invoiceNumber'] = $jobcostingcard->invoiceNumber;
+        $arr['jobReferenceNo'] = $job->reference_no;
+        $arr['consignee'] = $consignee->name;
+        $arr['vatno'] = $consignee->vatNumber;
+        $arr['consignment'] = $consignment->name;
+        $arr['payableAmount'] = $invoice['payable_amount'];
+        $arr['grandTotal'] = $costingamount['grandtotal'];
+        $arr['agencyFees'] = $invoice['agency_fees'];
+        $arr['documentation'] = $invoice['documentation'];
+       
+        array_push($jobarr, $arr);
+    }
 
     header('Content-Type: application/json');
-
-    echo json_encode($JOBCOSTINGCARD);
-    exit();
-}
-if ($_POST['option'] == 'GETINVOICE') {
-    
-    $INVOICE = Invoice::getInvoiceByJobCostingCard($_POST['jobcostingcard']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($INVOICE);
-    exit();
-}
-if ($_POST['option'] == 'GETCOSTINGAMOUNT') {
-    $COSTINGAMOUNT = ReimbursementDetails::getGrandTotalByJobCostingCard($_POST['jobcostingcard']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($COSTINGAMOUNT);
+    echo json_encode($jobarr);
     exit();
 }
 

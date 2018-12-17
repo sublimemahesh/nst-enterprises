@@ -16,13 +16,13 @@ class JobPayment {
     public $id;
     public $job;
     public $createdAt;
-    public $customer_name;
     public $payment;
+    public $comment;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job`,`createdAt`,`customer_name`,`payment` FROM `job_payment` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job`,`createdAt`,`payment`,`comment` FROM `job_payment` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -31,8 +31,8 @@ class JobPayment {
             $this->id = $result['id'];
             $this->job = $result['job'];
             $this->createdAt = $result['createdAt'];
-            $this->customer_name = $result['customer_name'];
             $this->payment = $result['payment'];
+            $this->comment = $result['comment'];
 
             return $this;
         }
@@ -43,13 +43,13 @@ class JobPayment {
         $query = "INSERT INTO `job_payment` ("
                 . "`job`,"
                 . "`createdAt`,"
-                . "`customer_name`,"
-                . "`payment`) "
+                . "`payment`,"
+                . "`comment`) "
                 . "VALUES  ("
                 . "'" . $this->job . "',"
                 . "'" . $this->createdAt . "',"
-                . "'" . $this->customer_name . "',"
-                . "'" . $this->payment . "'"
+                . "'" . $this->payment . "',"
+                . "'" . $this->comment . "'"
                 . ")";
 
         $db = new Database();
@@ -82,8 +82,8 @@ class JobPayment {
     public function update() {
 
         $query = "UPDATE  `job_payment` SET "
-                . "`customer_name` ='" . $this->customer_name . "', "
-                . "`payment` ='" . $this->payment . "' "
+                . "`payment` ='" . $this->payment . "', "
+                . "`comment` ='" . $this->comment . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();

@@ -12,8 +12,8 @@ $VALID = new Validator();
 $ACCOUNT->start_date = filter_input(INPUT_POST, 'startdate');
 $ACCOUNT->end_date = filter_input(INPUT_POST, 'enddate');
 $ACCOUNT->isCleared = 0;
-$ACCOUNT->current_invoice_id = 0;
-$ACCOUNT->current_job_id = 0;
+$ACCOUNT->current_invoice_id = 0000;
+$ACCOUNT->current_job_id = 0000;
 
 $VALID->check($ACCOUNT, [
     'start_date' => ['required' => TRUE],

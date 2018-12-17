@@ -28,11 +28,12 @@ class Invoice {
     public $settle;
     public $balance;
     public $status;
+    public $receiptno;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due`,`refund`,`settle`,`balance`,`status` FROM `invoice` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job_costing_card`,`createdAt`,`vat_reg_no`,`cleared_date`,`gross_weight`,`volume`,`cusdec_no`,`agency_fees`,`documentation`,`vat`,`tax_total`,`statutory_sub_total`,`delivery_sub_total`,`payable_amount`,`advance`,`due`,`refund`,`settle`,`balance`,`status`,`receipt_no` FROM `invoice` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -59,14 +60,13 @@ class Invoice {
             $this->settle = $result['settle'];
             $this->balance = $result['balance'];
             $this->status = $result['status'];
+            $this->receiptno = $result['receipt_no'];
 
             return $this;
         }
     }
 
     public function create() {
-
-
         $query = "INSERT INTO `invoice` ("
                 . "`job_costing_card`,"
                 . "`createdAt`,"
@@ -134,7 +134,6 @@ class Invoice {
     public function update() {
 
         $query = "UPDATE  `invoice` SET "
-                . "`vat_reg_no` ='" . $this->vat_reg_no . "', "
                 . "`cleared_date` ='" . $this->cleared_date . "', "
                 . "`gross_weight` ='" . $this->gross_weight . "', "
                 . "`volume` ='" . $this->volume . "', "
@@ -198,7 +197,8 @@ class Invoice {
         $query = "UPDATE  `invoice` SET "
                 . "`settle` ='" . $this->settle . "', "
                 . "`balance` ='" . $this->balance . "', "
-                . "`status` ='" . $this->status . "' "
+                . "`status` ='" . $this->status . "', "
+                . "`receipt_no` ='" . $this->receiptno . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -219,6 +219,21 @@ class Invoice {
         $db = new Database();
         $result = mysql_fetch_array($db->readQuery($query));
         return $result;
+    }
+    
+    public function getInvoicesByDateRange($from, $to) {
+
+        $query = "SELECT * FROM `invoice` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `createdAt` DESC";
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
     }
 
 }

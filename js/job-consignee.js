@@ -318,6 +318,3 @@ $(document).ready(function (e) {
     });
 });
 
-
-
-

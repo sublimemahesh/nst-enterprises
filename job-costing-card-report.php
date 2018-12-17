@@ -15,8 +15,19 @@ $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
 $JOB = new Job($JOBCOSTINGCARD->job);
 $CONSIGNEE = new Consignee($JOB->consignee);
 $CONSIGNMENT = new Consignment($JOB->consignment);
-
+$INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
+
+$grossprofit = (float) $INVOICE['payable_amount'] - (float) $grandtotal['grandtotal'];
+
+if ($grossprofit >= 0) {
+    $grossprofit = number_format($grossprofit, 2);
+} else {
+    $grossprofit = '(' . number_format($grossprofit, 2) . ')';
+}
+
+$payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
+
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +50,11 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
             <table class="table">
 
                 <tr>
-                    <td>JOB NO:</td>
+                    <td>JOB NO</td>
                     <td class="td-style"><?php echo $JOB->reference_no; ?></td>
                 </tr>
                 <tr>
-                    <td>INVOICE NUMBER:</td>
+                    <td>INVOICE NUMBER</td>
                     <td class="td-style"><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                 </tr>
                 <tr>
@@ -54,84 +65,81 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
                     <td>CONSIGNMENT</td>
                     <td class="td-style"><?php echo $CONSIGNMENT->name; ?></td>    
                 </tr>
+                <tr>
+                    <td>ADVANCE PAYMENT</td>
+                    <td class="td-style"><?php echo 'Rs.' . number_format($payments['sum'], 2); ?></td>    
+                </tr>
 
             </table>
 
             <!--Table-->
-            <?php
-            foreach ($COSTINGTYPES as $key=>$type) {
-                $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
-                if ($counttype['count'] > 0) {
-                    ?>
+<?php
+foreach ($COSTINGTYPES as $key => $type) {
+    $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
+    if ($counttype['count'] > 0) {
+        ?>
                     <table class="table2 table-bordered to-hide" id="table-<?php echo $type['id']; ?>" border="1">
 
-                        <?php
-                        if($key === 0) {
-                            ?>
-                        <!--Table head-->
-                        <thead class="">
-                            <tr>
-                                <th class="col-1"></th>
-                                <th class="text-center table-td-width col-2">V/NO</th>
-                                <th class="text-center table-td-width col-3">AMOUNT</th>
-                                <th class="text-center table-td-width col-4">DESCRIPTION</th>
-                                <th class="text-center table-td-width col-5">SUB TOTAL</th>
-                            </tr>
-                        </thead>
-                        <!--Table head-->
-                        <?php
-                        }
-                        
-                        ?>
-                        
+        <?php
+        if ($key === 0) {
+            ?>
+                            <!--Table head-->
+                            <thead class="">
+                                <tr>
+                                    <th class="col-1"></th>
+                                    <th class="text-center table-td-width col-2">V/NO</th>
+                                    <th class="text-center table-td-width col-3">AMOUNT</th>
+                                    <th class="text-center table-td-width col-4">DESCRIPTION</th>
+                                    <th class="text-center table-td-width col-5">SUB TOTAL</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+            <?php
+        }
+        ?>
+
 
                         <!--Table body-->
                         <tbody>
-                            <?php
-                            $i = 0;
-                            
-                                foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
-                                    $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['id']);
+        <?php
+        $i = 0;
 
-                                    if ($reimbursementdetails) {
-                                        ?>
-                                        <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
-                                            <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                            <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
-                                            <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
-                                            <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
+        foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
+            $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['id']);
 
-                                        </tr>
-                                        <?php
-                                    }
-                                }
-                            
-                            ?>
+            if ($reimbursementdetails) {
+                ?>
+                                    <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
+                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                        <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
+                                        <td class="amount text-right amount-<?php echo $reimbursementdetails['type']; ?>"><?php echo number_format($reimbursementdetails['amount']); ?></td>
+                                        <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
+
+                                    </tr>
+                <?php
+            }
+        }
+        ?>
                             <!--Table body-->
                         </tbody>
                     </table>
 
-                    <?php
-                }
-            }
-            ?>
+        <?php
+    }
+}
+?>
 
             <table class="profit-table">
                 <tr>
                     <td>GROSS PROFIT:</td>
-                    <td><input type="text" class="input-style text-right"></td>
+                    <td><input type="text" class="input-style text-right" value="<?php echo $grossprofit; ?>"></td>
                     <td>GRAND TOTAL:</td>
-                    <td><input type="text" class="input-style grandtotal text-right" value="<?php echo number_format($grandtotal['grandtotal']); ?>" id="grandtotal"></td>
+                    <td><input type="text" class="input-style grandtotal text-right" value="<?php echo number_format($grandtotal['grandtotal'], 2); ?>" id="grandtotal"></td>
                 </tr>
             </table>
 
             <input type="hidden" jobcostingcard="<?php echo $jobcostingcard; ?>" id="job-costing-card" />
         </div>
-
-
-
-
-
 
         <!--        <div id="print_button">
                     <a href="#" class="btn btn-success btn-lg" onClick="myFunction()">
