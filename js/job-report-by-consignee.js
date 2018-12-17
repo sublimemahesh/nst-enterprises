@@ -910,6 +910,7 @@ $(document).ready(function () {
                 var settle = $('.settle_' + invoiceid).val();
                 var balance = $('.balance_' + invoiceid).attr('balance');
                 var status = $('.balance_' + invoiceid).attr('status');
+                var receiptno = $('.receipt_' + invoiceid).val();
 
 
                 $.ajax({
@@ -921,6 +922,7 @@ $(document).ready(function () {
                         settle: settle,
                         balance: balance,
                         status: status,
+                        receiptno: receiptno,
                         option: 'UPDATEINVOICE'
                     },
                     success: function (result) {

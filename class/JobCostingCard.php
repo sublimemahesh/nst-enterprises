@@ -131,7 +131,7 @@ class JobCostingCard {
         $query = "SELECT * FROM `job_costing_card` WHERE `job`='". $job ."'";
         $db = new Database();
         $result = mysql_fetch_array($db->readQuery($query));
-        
+
         return $result;
     }
 
@@ -152,6 +152,23 @@ class JobCostingCard {
         $db = new Database();
         $result = mysql_fetch_array($db->readQuery($query));
         return $result;
+    }
+    
+    public function updateInvoiceNumber() {
+
+        $query = "UPDATE  `job_costing_card` SET "
+                . "`invoiceNumber` ='" . $this->invoiceNumber . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
     }
 
 }

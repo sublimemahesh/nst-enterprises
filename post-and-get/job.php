@@ -12,6 +12,7 @@ if (isset($_POST['create-job'])) {
     if (empty($_POST['consignee'])) {
         $CONSIGNEE = new Consignee(NULL);
         $CONSIGNEE->name = $_POST['name'];
+        $CONSIGNEE->isActive = 1;
         $consignee = $CONSIGNEE->create();
         $JOB->consignee = $consignee->id;
     } else {
@@ -20,6 +21,7 @@ if (isset($_POST['create-job'])) {
     if (empty($_POST['consignment'])) {
         $CONSIGNMENT = new Consignment(NULL);
         $CONSIGNMENT->name = $_POST['consignmentname'];
+        $CONSIGNMENT->isActive = 1;
         $consignment = $CONSIGNMENT->create();
         $JOB->consignment = $consignment->id;
     } else {
@@ -28,6 +30,7 @@ if (isset($_POST['create-job'])) {
     if (empty($_POST['vesselAndFlight'])) {
         $VESSELANDFLIGHT = new VesselAndFlight(NULL);
         $VESSELANDFLIGHT->name = $_POST['vesselandflightname'];
+        $VESSELANDFLIGHT->isActive = 1;
         $vesselandflight = $VESSELANDFLIGHT->create();
         $JOB->vesselAndFlight = $vesselandflight->id;
     } else {
@@ -52,9 +55,12 @@ if (isset($_POST['create-job'])) {
     if ($VALID->passed()) {
         $result = $JOB->create();
         if ($result) {
+            
             $id = $result->id;
             $today = date("Y-m-d");
-            $res = Account::updateCurrentJobId($today, $id);
+            $account = Account::getCurrentAccount($today);
+            $new_job_id = $account['current_job_id'] + 1;
+            $res = Account::updateCurrentJobId($today, $new_job_id);
         }
 
         if (!isset($_SESSION)) {
@@ -84,6 +90,7 @@ if (isset($_POST['edit-job'])) {
     if (empty($_POST['consignee'])) {
         $CONSIGNEE = new Consignee(NULL);
         $CONSIGNEE->name = $_POST['name'];
+        $CONSIGNEE->isActive = 1;
         $consignee = $CONSIGNEE->create();
         $JOB->consignee = $consignee->id;
     } else {
@@ -92,6 +99,7 @@ if (isset($_POST['edit-job'])) {
     if (empty($_POST['consignment'])) {
         $CONSIGNMENT = new Consignment(NULL);
         $CONSIGNMENT->name = $_POST['consignmentname'];
+        $CONSIGNMENT->isActive = 1;
         $consignment = $CONSIGNMENT->create();
         $JOB->consignment = $consignment->id;
     } else {
@@ -100,6 +108,7 @@ if (isset($_POST['edit-job'])) {
     if (empty($_POST['vesselAndFlight'])) {
         $VESSELANDFLIGHT = new VesselAndFlight(NULL);
         $VESSELANDFLIGHT->name = $_POST['vesselandflightname'];
+        $VESSELANDFLIGHT->isActive = 1;
         $vesselandflight = $VESSELANDFLIGHT->create();
         $JOB->vesselAndFlight = $vesselandflight->id;
     } else {
@@ -113,7 +122,7 @@ if (isset($_POST['edit-job'])) {
     $JOB->copyReceivedDate = filter_input(INPUT_POST, 'copyReceivedDate');
     $JOB->originalReceivedDate = filter_input(INPUT_POST, 'originalReceivedDate');
     $JOB->debitNoteNumber = filter_input(INPUT_POST, 'debitNoteNumber');
-    $JOB->cusdecDate = filter_input(INPUT_POST, 'cusdecDate');
+//    $JOB->cusdecNo = filter_input(INPUT_POST, 'cusdecNo');
 
     $VALID = new Validator();
     $VALID->check($JOB, [

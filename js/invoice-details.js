@@ -11,6 +11,7 @@ $(document).ready(function () {
             if (result === false) {
                 $('#savebutton').removeClass('hidden');
                 $('.inv-title').text('Create ');
+                $('#createdAt').text(new Date().toISOString().slice(0, 10));
             } else {
                 $('#id').val(result.id);
                 $('#vat_reg_no').val(result.vat_reg_no);
@@ -24,6 +25,7 @@ $(document).ready(function () {
                 $('#vat').attr("vat", result.vat);
                 $('#tax-invoice-total').html(result.tax_total);
                 $('#tax-invoice-total').attr("total", result.tax_total);
+                $('#createdAt').text(result.createdAt);
 //                    $('#statutory-sub-total').val(this.statutory_sub_total);
 //                    $('#delivery-sub-total').val(this.delivery_sub_total);
 //                $('#payable-amount').html(result.payable_amount);

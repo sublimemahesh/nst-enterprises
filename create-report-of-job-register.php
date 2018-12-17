@@ -94,7 +94,7 @@ $USER1 = new User($_SESSION['id']);
                                                 <th>COPY</th>
                                                 <th>ORIGINAL</th>
                                                 <th>INVOICE</th>
-                                                <th>CUSDEC</th>
+                                                <th>CUSDEC NO</th>
                                             </tr>
                                         </thead>
                                         <tbody>

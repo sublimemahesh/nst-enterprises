@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 $JOBCOSTINGCARD = new JobCostingCard($id);
 $COSTINGTYPES = CostingType::all();
 $REIMBURSEMENTDETAILS = ReimbursementDetails::getReimbursementDetailsByJobCostingCard($id);
-
+$JOB = new Job($JOBCOSTINGCARD->job);
 $message = '';
 if (isset($_GET['message'])) {
     $message = $_GET['message'];
@@ -53,6 +53,9 @@ $MESSAGE = new Message($message);
                 height: 26px;
                 padding: 5px 12px;
             }
+            .btn {
+                padding: 9px 12px;
+            }
         </style>
 
     </head>
@@ -74,7 +77,7 @@ $MESSAGE = new Message($message);
                         <?php
                         $vali = new Validator();
                         $vali->show_message();
-                        
+
                         if (isset($_GET['message'])) {
                             ?>
                             <div class="alert alert-<?php echo $MESSAGE->status; ?>">
@@ -88,7 +91,7 @@ $MESSAGE = new Message($message);
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header font-header">Edit Job Costing Card</h1>
+                            <h1 class="page-header font-header">Manage Job Costing Card</h1>
                         </div>
                     </div>
 
@@ -100,14 +103,16 @@ $MESSAGE = new Message($message);
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label class="col-md-3">Date</label>
-                                                <input type="text" id="date" class="form-control col-md-9" placeholder="Enter date" name="date" autocomplete="off" value="<?php echo $JOBCOSTINGCARD->date; ?>" disabled="">
+                                                <label class="col-md-3">Job Number</label>
+                                                <input type="text" id="job" class="form-control col-md-9" name="job" autocomplete="off" value="<?php echo $JOB->reference_no; ?>" disabled="">
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-3">Invoice Number</label>
-                                                <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php echo $JOBCOSTINGCARD->invoiceNumber; ?>" disabled="" style="margin-bottom: 0px;">
+                                                <input type="text" class="form-control col-md-9" placeholder="Invoice Number" name="invoicenumber" id="invoiceNumber" value="<?php if($JOBCOSTINGCARD->invoiceNumber) {echo $JOBCOSTINGCARD->invoiceNumber; } else { echo 'NST/2018/19/'; } ?>" style="margin-bottom: 0px;">
                                             </div>
-
+                                            <div class="col-md-3 col-md-offset-9 invoice-btn">
+                                                <input type="submit" class="btn btn-info" name="save-invoice-number" id="saveInvoiceNumber" value="Save Invoice Number" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -152,17 +157,17 @@ $MESSAGE = new Message($message);
                                             <?php
                                             foreach ($COSTINGTYPES as $type) {
                                                 foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
-                                                ?>
-                                                <tr>
-                                                    <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
-                                                    <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                                    <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
-                                            <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
-                                            </tr>
-                                            <?php
-                                        }
+                                                    ?>
+                                                    <tr>
+                                                        <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementitem['type']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
+                                                        <td data-column="V/NO"><input type="text" class="form-control form-control-border vno vno-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                        <td data-column="AMOUNT"><input type="text" class="form-control form-control-border text-right amount amount-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                        <td data-column="DESCRIPTION"><input type="text" class="form-control form-control-border description description-<?php echo $reimbursementitem['id']; ?>" value="" autocomplete="off" /></td>
+                                                <input type="hidden" class="id id-<?php echo $reimbursementitem['id']; ?>"  value="">
+                                                </tr>
+                                                <?php
                                             }
+                                        }
                                         ?>
 
 
@@ -173,12 +178,13 @@ $MESSAGE = new Message($message);
                                     <!--Table-->
                                     <input type="hidden" id="job" value="<?php echo $job; ?>">
                                     <input type="hidden" class="jobcostingcard" value="<?php echo $id; ?>"/>
+                                    <input type="text" id="date" class="form-control col-md-9" placeholder="Enter date" name="date" autocomplete="off" value="<?php echo $JOBCOSTINGCARD->date; ?>">
                                     <div class="col-sm-10 col-md-offset-2 form-btn">
                                         <button type="button" class="btn btn-info  savebtn" id="editbutton">Save Changes</button>
                                         <a href="job-costing-card-report.php?id=<?php echo $id; ?>" class="op-link btn btn-lg btn-warning" title="Report" target="blank"><i class="glyphicon glyphicon-print"></i></a>
-                                        
+
                                         <a href="create-invoice.php?id=<?php echo $id; ?>" class="op-link btn btn-lg  btn-primary" title="Tax Invoice"><i class="glyphicon glyphicon-list-alt"></i></a>
-                                        
+
                                         <a href="#" class="delete-job-costing-card btn btn-lg btn-danger" data-id="<?php echo $id; ?>" title="Delete">
                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                         </a>
@@ -209,7 +215,7 @@ $MESSAGE = new Message($message);
         <script src="js/edit-reimbursement-details.js" type="text/javascript"></script>
         <script src="delete/js/job-costing-card.js" type="text/javascript"></script>
         <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
-
+        <script src="js/invoice-number.js" type="text/javascript"></script>
     </body>
 
 </html>

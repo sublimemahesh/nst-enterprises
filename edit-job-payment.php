@@ -87,14 +87,15 @@ $PAYMENT = new JobPayment($id);
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <form id="form-consignee"  method="post" action="post-and-get/job-payment.php">
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Customer Name</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off" value="<?php echo $PAYMENT->customer_name; ?>">
-                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label class="col-md-3">Payment</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off" value="<?php echo $PAYMENT->payment; ?>">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Comment</label>
+                                                    <textarea class="form-control col-md-9" name="comment" id="comment"><?php echo $PAYMENT->comment; ?></textarea>
+                                                    </div>
                                                 
                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />

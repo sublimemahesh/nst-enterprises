@@ -26,7 +26,6 @@ if ($_POST['option'] == 'ADDINVOICE') {
         $INVOICE->due = 0;
     } elseif (empty($_POST['refund'])) {
         $INVOICE->due = $_POST['due'];
-        ;
         $INVOICE->refund = 0;
     }
 
@@ -42,8 +41,8 @@ if ($_POST['option'] == 'UPDATEINVOICE') {
     $INVOICE = new Invoice(NULL);
 
     $INVOICE->id = $_POST['id'];
-    $INVOICE->createdAt = $_POST['createdAt'];
-    $INVOICE->vat_reg_no = $_POST['vat_reg_no'];
+//    $INVOICE->createdAt = $_POST['createdAt'];
+//    $INVOICE->vat_reg_no = $_POST['vat_reg_no'];
     $INVOICE->cleared_date = $_POST['cleared_date'];
     $INVOICE->gross_weight = $_POST['gross_weight'];
     $INVOICE->volume = $_POST['volume'];

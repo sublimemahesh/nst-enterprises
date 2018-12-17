@@ -5,14 +5,14 @@ $(document).ready(function () {
 
         job = $("#job").val();
         date = $("#date").val();
-        invoiceno = $("#invoiceNumber").val();
+//        invoiceno = $("#invoiceNumber").val();
 
         $.ajax({
             type: 'POST',
             data: {
                 job: job,
                 date: date,
-                invoiceno: invoiceno,
+//                invoiceno: invoiceno,
                 option: 'CREATE'
             },
             cache: false,

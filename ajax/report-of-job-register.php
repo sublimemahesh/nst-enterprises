@@ -14,41 +14,33 @@ if ($_POST['option'] == 'GETSTARTANDENDDATE') {
 }
 if ($_POST['option'] == 'GETJOBSBYSTARTANDENDDATE') {
     
-    $result = Job::getJobsByDateRange($_POST['from'], $_POST['to']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($result);
-    exit();
-}
-
-if ($_POST['option'] == 'GETCONSIGNEE') {
+    $jobs = Job::getJobsByDateRange($_POST['from'], $_POST['to']);
     
-    $CONSIGNEE = new Consignee($_POST['consignee']);
+    $arr = array();
+    $jobarr = array();
+     
+    foreach ($jobs as $job) {
+        
+        $consignee = new Consignee($job['consignee']);
+        $vesselAndFlight = new VesselAndFlight($job['vesselAndFlight']);
+        $jobcostingcard = JobCostingCard::getJobCostingCardIdByJob($job['id']);
+        $invoice = Invoice::getInvoiceByJobCostingCard($jobcostingcard['id']);
+        
+        $arr['jobReferenceNo'] = $job['reference_no'];
+        $arr['consignee'] = $consignee->name;
+        $arr['jobDescription'] = $job['description'];
+        $arr['vesselAndFlight'] = $vesselAndFlight->name;
+        $arr['vesselAndFlightDate'] = $job['vesselAndFlightDate'];
+        $arr['copyReceivedDate'] = $job['copyReceivedDate'];
+        $arr['originalReceivedDate'] = $job['originalReceivedDate'];
+        $arr['invoiceNumber'] = $jobcostingcard['invoiceNumber'];
+        $arr['cusdecNo'] = $invoice['cusdec_no'];
+       
+        array_push($jobarr, $arr);
+    }
 
     header('Content-Type: application/json');
 
-    echo json_encode($CONSIGNEE);
+    echo json_encode($jobarr);
     exit();
 }
-
-if ($_POST['option'] == 'GETVESSELORFLIGHT') {
-    
-    $VESSELORFLIGHT = new VesselAndFlight($_POST['vesselorflight']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($VESSELORFLIGHT);
-    exit();
-}
-
-if ($_POST['option'] == 'GETINVOICE') {
-    
-    $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($_POST['job']);
-
-    header('Content-Type: application/json');
-
-    echo json_encode($JOBCOSTINGCARD);
-    exit();
-}
-

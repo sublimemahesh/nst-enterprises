@@ -1,6 +1,6 @@
 
 #wrapper {
-
+/*    border: 1px solid;*/
     width: 740px;
     margin: 20px;
     height: 1080px;
@@ -25,6 +25,7 @@ table {
     width: 100%;
     border: 2px solid #000;
     margin-top: 1px;
+    font-size: 13px;
 }
 .table-pay{
     border-collapse: collapse;
@@ -33,6 +34,7 @@ table {
     height: 70px;
     margin-top: 1px;
     font-weight: 600;
+    font-size: 13px;
 }
 .table-amount-word{
     border-collapse: collapse;
@@ -40,6 +42,7 @@ table {
     border: 0px solid #000;
     margin-top: 1px;
     border-bottom: 1px solid black;
+    font-size: 13px;
 }
 
 td {
@@ -112,8 +115,8 @@ th{
     vertical-align: top;
 }
 p{
-    font-size: 15px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-top: 0px;
     margin-bottom: 0px;
 }
 .text-right {
@@ -145,4 +148,31 @@ p{
     margin: 0 0 0 250px;
     padding: 0 0px 0 30px;
     border-left: 1px solid #e7e7e7;
+}
+#gross_weight {
+    width: 99%;
+}
+.table-gross-weight {
+    border: 0px;
+}
+.table-gross-weight td {
+    padding-right: 10px;
+    vertical-align: middle;
+}
+h1 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 13px;
+}
+.signature {
+    margin-top: 15px;
+    font-size: 13px;
+
+}
+.line {
+    margin-top: 25px;
+}
+.signature p:last-child {
+    margin-top: 0px;
 }

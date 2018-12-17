@@ -43,7 +43,7 @@ $JOB = Job::getJobsByDateRange($from, $to);
                         <th class="text-center">COPY</th>
                         <th class="text-center">ORIGINAL</th>
                         <th class="text-center">INVOICE</th>
-                        <th class="text-center">CUSDEC DATE</th>
+                        <th class="text-center">CUSDEC NO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,9 +52,14 @@ $JOB = Job::getJobsByDateRange($from, $to);
                         $CONSIGNEE = new Consignee($job['consignee']);
                         $VESSELORFLIGHT = new VesselAndFlight($job['vesselAndFlight']);
                         $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
+                        $INVOICE = Invoice::getInvoiceByJobCostingCard($JOBCOSTINGCARD['id']);
+
+                        $ref_no = $job['reference_no'];
+                        $len = strlen($ref_no);
+                        $job_no = substr($ref_no, $len - 4, $len);
                         ?>
                         <tr>
-                            <td width="40"><?php echo $job['id']; ?></td>
+                            <td width="40"><?php echo $job_no; ?></td>
                             <td width="110"><?php echo $CONSIGNEE->name; ?></td>
                             <td width="250"><?php echo $job['description']; ?></td>
                             <td width="100"><?php echo $VESSELORFLIGHT->name; ?></td>
@@ -62,7 +67,7 @@ $JOB = Job::getJobsByDateRange($from, $to);
                             <td width="100" class="text-right"><?php echo $job['copyReceivedDate']; ?></td>
                             <td width="100" class="text-right"><?php echo $job['originalReceivedDate']; ?></td>
                             <td width="160" class="text-right"><?php echo $JOBCOSTINGCARD['invoiceNumber']; ?></td>
-                            <td width="100" class="text-right"><?php echo $job['cusdecDate']; ?></td>
+                            <td width="100" class="text-right"><?php echo $INVOICE['cusdec_no']; ?></td>
                         </tr>
                         <?php
                     }
