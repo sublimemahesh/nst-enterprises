@@ -103,7 +103,7 @@ $USER1 = new User($_SESSION['id']);
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
-                                                    <td><a href="view-job.php?id=<?php echo $job['id']; ?>" target="blank"><?php echo $job['reference_no']; ?></a></td>
+                                                    <td><a href="view-job.php?id=<?php echo $job['id']; ?>" target="blank"><?php echo substr($job['reference_no'], 15, 19); ?></a></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
                                                     <td><a href="view-consignee.php?id=<?php echo $CONSIGNEE->id; ?>" target="new" title="View Consignee"><?php echo $CONSIGNEE->name; ?></a></td>
                                                     <td><a href="view-consignment.php?id=<?php echo $CONSIGNMENT->id; ?>" target="new" title="View Consignment"><?php echo $CONSIGNMENT->name; ?></a></td>

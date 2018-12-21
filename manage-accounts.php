@@ -117,8 +117,8 @@ $USER1 = new User($_SESSION['id']);
                                                 } else {
                                                     $jobid = $account['current_job_id'];
                                                 }
-                                                $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $invoiceid;
-                                                $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . $jobid;
+                                                $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $invoiceid;
+                                                $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $jobid;
                                                 ?>
                                                 <tr id="row_<?php echo $account['id']; ?>">
                                                     <td style="width: 50px;"><?php echo $account['id']; ?></td>

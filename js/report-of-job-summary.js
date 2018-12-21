@@ -21,11 +21,12 @@ $(document).ready(function () {
                     option: 'GETINVOICESBYSTARTANDENDDATE'
                 },
                 success: function (invoices) {
+
                     callLoader();
                     var html;
                     if (invoices) {
                         $.each(invoices, function (key, invoice) {
-                            
+
                             var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
                             if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
@@ -57,7 +58,7 @@ $(document).ready(function () {
                             } else {
                                 documentation = invoice.documentation;
                             }
-                            
+
                             if (!invoice.invoiceCreatedAt) {
                                 invoiceCreatedAt = '-';
                             } else {
@@ -73,13 +74,15 @@ $(document).ready(function () {
                             vat = serviceincome * 15 / 100;
                             nbt = serviceincome * 2 / 100;
 
+                            var jobno = invoice.jobReferenceNo;
+
                             var i = parseInt(key) + 1
 
                             html += '<tr>\n\
                             <td>' + i + '</td>\n\
                             <td>' + invoiceCreatedAt + '</td>\n\
-                            <td>' + invoiceNumber + '</td>\n\
-                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
+                            <td>' + jobno.substring(15, 19) + '</td>\n\
                             <td>' + invoice.consignee + '</td>\n\
                             <td>' + invoice.vatno + '</td>\n\
                             <td>' + invoice.consignment + '</td>\n\
@@ -124,62 +127,62 @@ $(document).ready(function () {
                 callLoader();
                 var html;
                 if (invoices) {
-                        $.each(invoices, function (key, invoice) {
-                            
-                            var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
+                    $.each(invoices, function (key, invoice) {
 
-                            if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
-                                gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
-                                grossprofit = new Intl.NumberFormat().format(gross);
-                            } else {
-                                gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
-                                grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                            }
+                        var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
-                            if (invoice.payableAmount === undefined) {
-                                invoiceamount = 0;
-                            } else {
-                                invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
-                            }
-                            if (isNaN(gross)) {
-                                grossprofit = 0;
-                            } else {
-                                grossprofit = grossprofit;
-                            }
+                        if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
+                            gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
+                            grossprofit = new Intl.NumberFormat().format(gross);
+                        } else {
+                            gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
+                            grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
+                        }
 
-                            if (invoice.agencyFees === undefined || !invoice.agencyFees) {
-                                agency_fees = 0;
-                            } else {
-                                agency_fees = invoice.agencyFees;
-                            }
-                            if (invoice.documentation === undefined || !invoice.documentation) {
-                                documentation = 0;
-                            } else {
-                                documentation = invoice.documentation;
-                            }
-                            
-                            if (!invoice.invoiceCreatedAt) {
-                                invoiceCreatedAt = '-';
-                            } else {
-                                invoiceCreatedAt = invoice.invoiceCreatedAt;
-                            }
-                            if (!invoice.invoiceNumber) {
-                                invoiceNumber = '-';
-                            } else {
-                                invoiceNumber = invoice.invoiceNumber;
-                            }
+                        if (invoice.payableAmount === undefined) {
+                            invoiceamount = 0;
+                        } else {
+                            invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
+                        }
+                        if (isNaN(gross)) {
+                            grossprofit = 0;
+                        } else {
+                            grossprofit = grossprofit;
+                        }
 
-                            serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
-                            vat = serviceincome * 15 / 100;
-                            nbt = serviceincome * 2 / 100;
+                        if (invoice.agencyFees === undefined || !invoice.agencyFees) {
+                            agency_fees = 0;
+                        } else {
+                            agency_fees = invoice.agencyFees;
+                        }
+                        if (invoice.documentation === undefined || !invoice.documentation) {
+                            documentation = 0;
+                        } else {
+                            documentation = invoice.documentation;
+                        }
 
-                            var i = parseInt(key) + 1
+                        if (!invoice.invoiceCreatedAt) {
+                            invoiceCreatedAt = '-';
+                        } else {
+                            invoiceCreatedAt = invoice.invoiceCreatedAt;
+                        }
+                        if (!invoice.invoiceNumber) {
+                            invoiceNumber = '-';
+                        } else {
+                            invoiceNumber = invoice.invoiceNumber;
+                        }
 
-                            html += '<tr>\n\
+                        serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                        vat = serviceincome * 15 / 100;
+                        nbt = serviceincome * 2 / 100;
+                        var jobno = invoice.jobReferenceNo;
+                        var i = parseInt(key) + 1
+
+                        html += '<tr>\n\
                             <td>' + i + '</td>\n\
                             <td>' + invoiceCreatedAt + '</td>\n\
-                            <td>' + invoiceNumber + '</td>\n\
-                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
+                            <td>' + jobno.substring(15, 19) + '</td>\n\
                             <td>' + invoice.consignee + '</td>\n\
                             <td>' + invoice.vatno + '</td>\n\
                             <td>' + invoice.consignment + '</td>\n\
@@ -192,14 +195,14 @@ $(document).ready(function () {
                             </tr>';
 
 
-                            $("#balance tbody").empty();
-                            $("#balance tbody").append(html);
-                        });
-                    } else {
-                        html = 'No any jobs in database';
                         $("#balance tbody").empty();
                         $("#balance tbody").append(html);
-                    }
+                    });
+                } else {
+                    html = 'No any jobs in database';
+                    $("#balance tbody").empty();
+                    $("#balance tbody").append(html);
+                }
             }
 
         });
@@ -224,62 +227,62 @@ $(document).ready(function () {
                 callLoader();
                 var html;
                 if (invoices) {
-                        $.each(invoices, function (key, invoice) {
-                            
-                            var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
+                    $.each(invoices, function (key, invoice) {
 
-                            if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
-                                gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
-                                grossprofit = new Intl.NumberFormat().format(gross);
-                            } else {
-                                gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
-                                grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
-                            }
+                        var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
 
-                            if (invoice.payableAmount === undefined) {
-                                invoiceamount = 0;
-                            } else {
-                                invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
-                            }
-                            if (isNaN(gross)) {
-                                grossprofit = 0;
-                            } else {
-                                grossprofit = grossprofit;
-                            }
+                        if (parseFloat(invoice.payableAmount) >= parseFloat(invoice.grandTotal)) {
+                            gross = parseFloat(invoice.payableAmount) - parseFloat(invoice.grandTotal);
+                            grossprofit = new Intl.NumberFormat().format(gross);
+                        } else {
+                            gross = parseFloat(invoice.grandTotal) - parseFloat(invoice.payableAmount);
+                            grossprofit = '(' + new Intl.NumberFormat().format(gross) + ')';
+                        }
 
-                            if (invoice.agencyFees === undefined || !invoice.agencyFees) {
-                                agency_fees = 0;
-                            } else {
-                                agency_fees = invoice.agencyFees;
-                            }
-                            if (invoice.documentation === undefined || !invoice.documentation) {
-                                documentation = 0;
-                            } else {
-                                documentation = invoice.documentation;
-                            }
-                            
-                            if (!invoice.invoiceCreatedAt) {
-                                invoiceCreatedAt = '-';
-                            } else {
-                                invoiceCreatedAt = invoice.invoiceCreatedAt;
-                            }
-                            if (!invoice.invoiceNumber) {
-                                invoiceNumber = '-';
-                            } else {
-                                invoiceNumber = invoice.invoiceNumber;
-                            }
+                        if (invoice.payableAmount === undefined) {
+                            invoiceamount = 0;
+                        } else {
+                            invoiceamount = new Intl.NumberFormat().format(invoice.payableAmount);
+                        }
+                        if (isNaN(gross)) {
+                            grossprofit = 0;
+                        } else {
+                            grossprofit = grossprofit;
+                        }
 
-                            serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
-                            vat = serviceincome * 15 / 100;
-                            nbt = serviceincome * 2 / 100;
+                        if (invoice.agencyFees === undefined || !invoice.agencyFees) {
+                            agency_fees = 0;
+                        } else {
+                            agency_fees = invoice.agencyFees;
+                        }
+                        if (invoice.documentation === undefined || !invoice.documentation) {
+                            documentation = 0;
+                        } else {
+                            documentation = invoice.documentation;
+                        }
 
-                            var i = parseInt(key) + 1
+                        if (!invoice.invoiceCreatedAt) {
+                            invoiceCreatedAt = '-';
+                        } else {
+                            invoiceCreatedAt = invoice.invoiceCreatedAt;
+                        }
+                        if (!invoice.invoiceNumber) {
+                            invoiceNumber = '-';
+                        } else {
+                            invoiceNumber = invoice.invoiceNumber;
+                        }
 
-                            html += '<tr>\n\
+                        serviceincome = parseFloat(agency_fees) + parseFloat(documentation);
+                        vat = serviceincome * 15 / 100;
+                        nbt = serviceincome * 2 / 100;
+                        var jobno = invoice.jobReferenceNo;
+                        var i = parseInt(key) + 1
+
+                        html += '<tr>\n\
                             <td>' + i + '</td>\n\
                             <td>' + invoiceCreatedAt + '</td>\n\
-                            <td>' + invoiceNumber + '</td>\n\
-                            <td>' + invoice.jobReferenceNo + '</td>\n\
+                            <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
+                            <td>' + jobno.substring(15, 19) + '</td>\n\
                             <td>' + invoice.consignee + '</td>\n\
                             <td>' + invoice.vatno + '</td>\n\
                             <td>' + invoice.consignment + '</td>\n\
@@ -292,14 +295,14 @@ $(document).ready(function () {
                             </tr>';
 
 
-                            $("#balance tbody").empty();
-                            $("#balance tbody").append(html);
-                        });
-                    } else {
-                        html = 'No any jobs in database';
                         $("#balance tbody").empty();
                         $("#balance tbody").append(html);
-                    }
+                    });
+                } else {
+                    html = 'No any jobs in database';
+                    $("#balance tbody").empty();
+                    $("#balance tbody").append(html);
+                }
             }
 
         });

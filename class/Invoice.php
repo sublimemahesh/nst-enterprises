@@ -134,6 +134,7 @@ class Invoice {
     public function update() {
 
         $query = "UPDATE  `invoice` SET "
+                . "`createdAt` ='" . $this->createdAt . "', "
                 . "`cleared_date` ='" . $this->cleared_date . "', "
                 . "`gross_weight` ='" . $this->gross_weight . "', "
                 . "`volume` ='" . $this->volume . "', "
@@ -223,7 +224,7 @@ class Invoice {
     
     public function getInvoicesByDateRange($from, $to) {
 
-        $query = "SELECT * FROM `invoice` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `createdAt` DESC";
+        $query = "SELECT * FROM `invoice` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `createdAt` ASC";
 
         $db = new Database();
         $result = $db->readQuery($query);

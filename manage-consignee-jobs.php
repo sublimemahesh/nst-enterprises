@@ -72,16 +72,16 @@ $jobs = Job::getJobsByConsignee($id);
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-<!--                                <div class="panel-heading">
-                                    Manage Jobs By Consignee
-                                </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="create-job.php">
-                                            <i class="glyphicon glyphicon-plus"></i> 
-                                        </a>
-                                    </li>
-                                </ul>-->
+                                <!--                                <div class="panel-heading">
+                                                                    Manage Jobs By Consignee
+                                                                </div>
+                                                                <ul class="header-dropdown">
+                                                                    <li class="">
+                                                                        <a href="create-job.php">
+                                                                            <i class="glyphicon glyphicon-plus"></i> 
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
@@ -101,7 +101,7 @@ $jobs = Job::getJobsByConsignee($id);
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 ?>
                                                 <tr id="row_<?php echo $job['id']; ?>">
-                                                    <td><?php echo $job['reference_no']; ?></td>
+                                                    <td><?php echo substr($job['reference_no'], 15, 19); ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
                                                     <td><?php echo $VESSELANDFLIGHT->name; ?></td>
                                                     <td><?php echo $job['createdAt']; ?></td>
@@ -122,8 +122,8 @@ $jobs = Job::getJobsByConsignee($id);
                                                             <?php
                                                         }
                                                         ?>
-<!--                                                        <a href="manage-job-costing-cards-of-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
-                                                        |-->
+    <!--                                                        <a href="manage-job-costing-cards-of-job.php?id=<?php echo $job['id']; ?>" class="op-link btn btn-sm btn-warning" title="Job Costing Card"><i class="glyphicon glyphicon-duplicate"></i></a>
+                                                    |-->
                                                         <a href="#" class="delete-job btn btn-sm btn-danger" data-id="<?php echo $job['id']; ?>" title="Delete">
                                                             <i class="glyphicon glyphicon-trash" data-type="cancel"></i>
                                                         </a>
@@ -165,7 +165,7 @@ $jobs = Job::getJobsByConsignee($id);
                 $('#dataTables-example').DataTable({
                     responsive: true,
                     "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
-                    "order": [[ 3, "desc" ]]
+                    "order": [[3, "desc"]]
                 });
             });
         </script>

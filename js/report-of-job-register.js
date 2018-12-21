@@ -50,7 +50,7 @@ $(document).ready(function () {
                                                     <td>' + job.vesselAndFlightDate + '</td>\n\
                                                     <td>' + job.copyReceivedDate + '</td>\n\
                                                     <td>' + job.originalReceivedDate + '</td>\n\
-                                                    <td>' + invoiceNumber + '</td>\n\
+                                                    <td>' + invoiceNumber.substring(15,19) + '</td>\n\
                                                     <td>' + cusdec_no + '</td>\n\
                                                     </tr>';
 

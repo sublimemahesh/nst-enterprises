@@ -83,7 +83,6 @@ $createdAt = date('Y-m-d H:i:s');
                                                 <th>ID</th>
                                                 <th>Job No</th>
                                                 <th>Created At</th>
-                                                <th>Customer Name</th>
                                                 <th>Payment</th>
                                                 <th>Options</th>
                                             </tr>
@@ -95,9 +94,8 @@ $createdAt = date('Y-m-d H:i:s');
                                                 ?>
                                                 <tr id="row_<?php echo $payment['id']; ?>">
                                                     <td><?php echo $payment['id']; ?></td>
-                                                    <td><?php echo $JOB->reference_no; ?></td>
-                                                    <td><?php echo $payment['createdAt']; ?></td>
-                                                    <td><?php echo $payment['customer_name']; ?></td>
+                                                    <td><?php echo substr($JOB->reference_no, 15, 19); ?></td>
+                                                    <td><?php echo substr($payment['createdAt'], 0, 10); ?></td>
                                                     <td class="text-right"><?php echo number_format($payment['payment'],2); ?></td>
                                                     <td class="text-center" style="width: 200px"> 
                                                         <a href="edit-job-payment.php?id=<?php echo $payment['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>

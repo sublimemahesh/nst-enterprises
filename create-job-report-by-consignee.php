@@ -139,13 +139,15 @@ if (isset($_GET['checkreport'])) {
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
                                                 $INVOICE = Invoice::getInvoiceByJobCostingCard($JOBCOSTINGCARD['id']);
+                                                
+                                                $invoice = substr($JOBCOSTINGCARD['invoiceNumber'],15,19);
                                                 if ($INVOICE) {
                                                     ?>
                                                     <tr id="row_<?php echo $job['id']; ?>" invoiceid="<?php echo $INVOICE['id']; ?>">
                                                         <td><?php echo $i; ?></td>
                                                         <td><?php echo $job['createdAt']; ?></td>
-                                                        <td><?php echo $job['debitNoteNumber']; ?></td>
-                                                        <td><?php echo $job['id']; ?></td>
+                                                        <td><?php echo $invoice; ?></td>
+                                                        <td><?php echo substr($job['reference_no'],15,19); ?></td>
                                                         <td><?php echo $CONSIGNMENT->name; ?></td>
                                                         <td class="text-right"><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
                                                         <td class="text-right"><?php echo number_format($INVOICE['advance'], 2); ?></td>
