@@ -146,7 +146,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                 </tr>
                                                 <tr>
                                                     <td class="row-padding-left v-align-middle">Date</td>
-                                                    <td class="v-align-middle p-l-17" id="createdAt"></td>
+                                                    <td><input type="text" class="form-control form-control-border" id="created_at" name="created_at" value="" autocomplete="off" /></td>
                                                 </tr>
 
                                                 <tr>
@@ -452,6 +452,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});
+                $("#created_at").datepicker({dateFormat: 'yy-mm-dd'});
             });
             $(function () {
                 $("#advance").focusout();

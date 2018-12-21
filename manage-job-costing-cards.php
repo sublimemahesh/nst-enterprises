@@ -104,8 +104,8 @@ $MESSAGE = new Message($message);
                                                 ?>
                                                 <tr id="row_<?php echo $jobcostingcard['id']; ?>">
                                                     <td><?php echo $jobcostingcard['id']; ?></td>
-                                                    <td><?php echo $JOB->reference_no; ?></td>
-                                                    <td><?php echo $jobcostingcard['invoiceNumber']; ?></td>
+                                                    <td><?php echo substr($JOB->reference_no, 15, 19); ?></td>
+                                                    <td><?php echo substr($jobcostingcard['invoiceNumber'], 15, 19); ?></td>
                                                     <td><?php echo $jobcostingcard['date']; ?></td>
                                                     <td class="text-center" style="width: 250px"> 
                                                         <a href="edit-job-costing-card.php?id=<?php echo $jobcostingcard['id']; ?>" class="op-link btn btn-sm btn-success" title="Edit Job Costing Card"><i class="glyphicon glyphicon-pencil"></i></a>

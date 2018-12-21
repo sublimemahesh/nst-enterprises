@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#savebutton").click(function () {
         callLoader();
         var jobcostingcard = $("#job_costing_card").val();
-        var createdAt = $("#createdAt").text();
+        var createdAt = $("#created_at").val();
         var vat_reg_no = $("#vat_reg_no").val();
         var cleared_date = $("#datepicker1").val();
         var gross_weight = $("#gross_weight").val();
@@ -98,7 +98,7 @@ $(document).ready(function () {
     $("#editbutton").click(function () {
         callLoader();
         var id = $("#id").val();
-//        var createdAt = $("#createdAt").text();
+        var createdAt = $("#created_at").val();
 //        var vat_reg_no = $("#vat_reg_no").val();
         var cleared_date = $("#datepicker1").val();
         var gross_weight = $("#gross_weight").val();
@@ -122,7 +122,7 @@ $(document).ready(function () {
             dataType: "json",
             data: {
                 id: id,
-//                createdAt: createdAt,
+                createdAt: createdAt,
 //                vat_reg_no: vat_reg_no,
                 cleared_date: cleared_date,
                 gross_weight: gross_weight,

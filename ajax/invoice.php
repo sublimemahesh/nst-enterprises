@@ -41,7 +41,7 @@ if ($_POST['option'] == 'UPDATEINVOICE') {
     $INVOICE = new Invoice(NULL);
 
     $INVOICE->id = $_POST['id'];
-//    $INVOICE->createdAt = $_POST['createdAt'];
+    $INVOICE->createdAt = $_POST['createdAt'];
 //    $INVOICE->vat_reg_no = $_POST['vat_reg_no'];
     $INVOICE->cleared_date = $_POST['cleared_date'];
     $INVOICE->gross_weight = $_POST['gross_weight'];

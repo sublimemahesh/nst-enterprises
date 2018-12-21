@@ -81,9 +81,9 @@ $MESSAGE = new Message($message);
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-<!--                                <div class="panel-heading">
-                                    Manage Invoices
-                                </div>-->
+                                <!--                                <div class="panel-heading">
+                                                                    Manage Invoices
+                                                                </div>-->
                                 <div class="panel-body">
                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
@@ -105,12 +105,11 @@ $MESSAGE = new Message($message);
                                                 $JOB = new Job($JOBCOSTINGCARD->job);
                                                 $CONSIGNEE = new Consignee($JOB->consignee);
                                                 $CONSIGNMENT = new Consignment($JOB->consignment);
-                                                
                                                 ?>
                                                 <tr id="row_<?php echo $invoice['id']; ?>">
                                                     <td><?php echo $invoice['id']; ?></td>
-                                                    <td><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
-                                                    <td><?php echo $JOB->reference_no; ?></td>
+                                                    <td><?php echo substr($JOBCOSTINGCARD->invoiceNumber, 15, 19); ?></td>
+                                                    <td><?php echo substr($JOB->reference_no, 15, 19); ?></td>
                                                     <td><?php echo $invoice['createdAt']; ?></td>
                                                     <td><?php echo $CONSIGNEE->name; ?></td>
                                                     <td><?php echo $CONSIGNMENT->name; ?></td>
@@ -160,7 +159,7 @@ $MESSAGE = new Message($message);
                 $('#dataTables-example').DataTable({
                     responsive: true,
                     "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
-                    "order": [[ 3, "desc" ]]
+                    "order": [[3, "desc"]]
                 });
             });
         </script>
