@@ -11,6 +11,7 @@ if (isset($_GET['id'])) {
     $consigneeid = $_GET['id'];
     $CONSIGNEE = new Consignee($consigneeid);
 }
+
 if (isset($_GET['checkreport'])) {
     $report = 'hidden';
 }
@@ -134,6 +135,7 @@ if (isset($_GET['checkreport'])) {
                                             <?php
                                             $i = 1;
                                             foreach (Job::getJobsByConsignee($consigneeid) as $job) {
+                                               
                                                 $CONSIGNMENT = new Consignment($job['consignment']);
                                                 $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
                                                 $INVOICE = Invoice::getInvoiceByJobCostingCard($JOBCOSTINGCARD['id']);

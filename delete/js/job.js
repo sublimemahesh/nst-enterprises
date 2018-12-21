@@ -19,7 +19,15 @@ $(document).ready(function () {
                 data: {id: id, option: 'delete'},
                 dataType: "JSON",
                 success: function (jsonStr) {
-                    if (jsonStr.status) {
+                    if (jsonStr.status == 'accessdenied') {
+                        swal({
+                            title: "Access Denied!",
+                            text: "You do not have permission to delete this job.",
+                            type: 'error',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                    } else if (jsonStr.status === true) {
 
                         swal({
                             title: "Deleted!",
