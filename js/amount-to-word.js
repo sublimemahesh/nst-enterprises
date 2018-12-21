@@ -71,7 +71,7 @@ $(document).ready(function () {
                     words_string += "Crores ";
                 }
                 if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
-                    words_string += "Lakhs ";
+                    words_string += "Hundred ";
                 }
                 if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
                     words_string += "Thousand ";

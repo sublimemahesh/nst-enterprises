@@ -22,7 +22,7 @@ $(document).ready(function (e) {
 
                             var html = '';
                             $.each(result, function (key) {
-                                if (key < 8) {
+                                if (key < 20) {
                                     if (key === 0) {
 //                                    html += '<li id="c' + this.id + '" class="name">' + this.name + '</li>';
                                         html += '<li id="c' + this.id + '" class="name selected">' + this.name + '</li>';

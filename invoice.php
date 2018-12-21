@@ -50,7 +50,7 @@ if ($vat_last_no == '7000') {
 
     <body>
         <div id="wrapper">        
-            <div class="row">
+            <div class="topheading row">
                 <div class="col-lg-12">
                     <h1>N.S.T. ENTERPRISES</h1>
                     <h4>CLEARING & FORWARDING AGENTS </h4>
@@ -58,7 +58,7 @@ if ($vat_last_no == '7000') {
                 </div>
             </div>
 
-            <table class="table1">
+            <table class="table1 top-table">
                 <tr class="tr-border">
                     <th colspan="4">TAX INVOICE</th>
 
@@ -150,7 +150,7 @@ if ($vat_last_no == '7000') {
                     <td></td>        
                 </tr>
                 <tr>
-                    <td colspan="3" class="td-tax-invoice-total row-padding-right">Tax Invoice Total</td>
+                    <td colspan="3" class="td-tax-invoice-total row-padding-right"><b>Tax Invoice Total</b></td>
                     <td class="td-border-top1 text-right row-padding-right" id="tax-invoice-total" total=""><?php echo number_format($INVOICE['tax_total'], 2); ?></td>
 
                 </tr>
@@ -163,7 +163,7 @@ if ($vat_last_no == '7000') {
                 </tr>
 
                 <tr>
-                    <td class="col-2 text-to row-padding-left" >Statutory</td>
+                    <td class="col-2 text-to row-padding-left" ><b>Statutory</b></td>
                     <td class="col-6 td-border"></td>
                     <td class="col-5"></td>
                 </tr>
@@ -194,7 +194,7 @@ if ($vat_last_no == '7000') {
 
 
                 <tr>
-                    <td colspan="2" class="td-tax-invoice-total row-padding-right">Sub Total</td>
+                    <td colspan="2" class="td-tax-invoice-total row-padding-right"><b>Sub Total</b></td>
                     <td class="td-border-top1 text-right row-padding-right" id="statutory-sub-total" total=""><?php echo number_format($INVOICE['statutory_sub_total'], 2); ?></td>
 
                 </tr>
@@ -203,7 +203,7 @@ if ($vat_last_no == '7000') {
 
             <table class="table1">
                 <tr>
-                    <td class="col-2 text-to row-padding-left" >Delivery</td>
+                    <td class="col-2 text-to row-padding-left" ><b>Delivery</b></td>
                     <td class="col-6 td-border"></td>
                     <th class="col-5 th-border">Value</th>
                 </tr>
@@ -225,7 +225,7 @@ if ($vat_last_no == '7000') {
                 }
                 ?>
                 <tr>
-                    <td colspan="2" class="td-tax-invoice-total row-padding-right">Sub Total</td>
+                    <td colspan="2" class="td-tax-invoice-total row-padding-right"><b>Sub Total</b></td>
                     <td class="td-border-top1 text-right row-padding-right" id="delivery-sub-total" total=""><?php echo number_format($INVOICE['delivery_sub_total'], 2); ?></td>
 
                 </tr>
@@ -237,26 +237,26 @@ if ($vat_last_no == '7000') {
                 <tr>
                     <td rowspan="3" colspan="2" class="col-2"></td>
                     <td class="col-7 td-border td-border-top  td-border-left">Payable Amount</td>
-                    <td class="col-8 td-border td-border-top text-right row-padding-right" id="payable-amount" amount=""><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
+                    <td class="col-8 td-border2 td-border-top text-right row-padding-right" id="payable-amount" amount=""><?php echo number_format($INVOICE['payable_amount'], 2); ?></td>
                 </tr>
 
                 <tr>
                     <td class="td-border td-border-left">Advance</td>
-                    <td class="td-border text-right row-padding-right" id="advance" advance="1000"><?php echo number_format($INVOICE['advance'], 2); ?></td>
+                    <td class="td-border2 text-right row-padding-right" id="advance" advance="1000"><?php echo number_format($INVOICE['advance'], 2); ?></td>
                 </tr>
                 <?php
                 if ($INVOICE['due'] === '0.00') {
                     ?>
                     <tr>
-                        <td class="td-border td-border1 td-border-left">Refund</td>
-                        <td class="td-border td-border1 text-right row-padding-right" id="final" final="<?php echo $INVOICE['refund']; ?>"><?php echo '(' . number_format($INVOICE['refund'], 2) . ')'; ?></td>
+                        <td class="td-border td-border3 td-border-left">Refund</td>
+                        <td class="td-border2 td-border3 text-right row-padding-right" id="final" final="<?php echo $INVOICE['refund']; ?>"><?php echo '(' . number_format($INVOICE['refund'], 2) . ')'; ?></td>
                     </tr>
                     <?php
                 } else {
                     ?>
                     <tr>
-                        <td class="td-border td-border1 td-border-left">Due</td>
-                        <td class="td-border td-border1 text-right row-padding-right" id="final" final="<?php echo $INVOICE['due']; ?>"><?php echo number_format($INVOICE['due'], 2); ?></td>
+                        <td class="td-border td-border3 td-border-left">Due</td>
+                        <td class="td-border2 td-border3 text-right row-padding-right" id="final" final="<?php echo $INVOICE['due']; ?>"><?php echo number_format($INVOICE['due'], 2); ?></td>
                     </tr>
                     <?php
                 }

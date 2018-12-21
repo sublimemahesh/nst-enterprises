@@ -1,6 +1,6 @@
 
 #wrapper {
-/*    border: 1px solid;*/
+    /*    border: 1px solid;*/
     width: 740px;
     margin: 20px;
     height: 1080px;
@@ -26,6 +26,7 @@ table {
     border: 2px solid #000;
     margin-top: 1px;
     font-size: 13px;
+    margin-bottom: 15px;
 }
 .table-pay{
     border-collapse: collapse;
@@ -64,6 +65,14 @@ th{
 }
 .td-border1{
     border-bottom: 1px solid black;
+    text-align: left;
+}
+.td-border2{
+    border-right: 2px solid black;
+    text-align: left;
+}
+.td-border3{
+    border-bottom: 2px solid black;
     text-align: left;
 }
 .td-border-top{
@@ -175,4 +184,11 @@ h4 {
 }
 .signature p:last-child {
     margin-top: 0px;
+}
+.topheading.row {
+    border: 2px solid #000;
+    border-bottom: 0;
+}
+.top-table {
+    margin-top: -3px;
 }
