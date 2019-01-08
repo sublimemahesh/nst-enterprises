@@ -18,16 +18,19 @@ $CONSIGNMENT = new Consignment($JOB->consignment);
 $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 
-$grossprofit = (float) $INVOICE['payable_amount'] - (float) $grandtotal['grandtotal'];
+if ($INVOICE) {
+    $grossprofit = (float) $INVOICE['payable_amount'] - (float) $grandtotal['grandtotal'];
 
-if ($grossprofit >= 0) {
-    $grossprofit = number_format($grossprofit, 2);
+    if ($grossprofit >= 0) {
+        $grossprofit = number_format($grossprofit, 2);
+    } else {
+        $grossprofit = '(' . number_format($grossprofit, 2) . ')';
+    }
 } else {
-    $grossprofit = '(' . number_format($grossprofit, 2) . ')';
+    $grossprofit = '';
 }
 
 $payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
-
 ?>
 
 <!DOCTYPE html>
@@ -73,16 +76,16 @@ $payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
             </table>
 
             <!--Table-->
-<?php
-foreach ($COSTINGTYPES as $key => $type) {
-    $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
-    if ($counttype['count'] > 0) {
-        ?>
+            <?php
+            foreach ($COSTINGTYPES as $key => $type) {
+                $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
+                if ($counttype['count'] > 0) {
+                    ?>
                     <table class="table2 table-bordered to-hide" id="table-<?php echo $type['id']; ?>" border="1">
 
-        <?php
-        if ($key === 0) {
-            ?>
+                        <?php
+                        if ($key === 0) {
+                            ?>
                             <!--Table head-->
                             <thead class="">
                                 <tr>
@@ -94,21 +97,21 @@ foreach ($COSTINGTYPES as $key => $type) {
                                 </tr>
                             </thead>
                             <!--Table head-->
-            <?php
-        }
-        ?>
+                            <?php
+                        }
+                        ?>
 
 
                         <!--Table body-->
                         <tbody>
-        <?php
-        $i = 0;
+                            <?php
+                            $i = 0;
 
-        foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
-            $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['id']);
+                            foreach (ReimbursementItem::getCostingItemsByType($type['id']) as $reimbursementitem) {
+                                $reimbursementdetails = ReimbursementDetails::getReimbursementDetailsByReimbursementItemAndType($reimbursementitem['id'], $jobcostingcard, $type['id']);
 
-            if ($reimbursementdetails) {
-                ?>
+                                if ($reimbursementdetails) {
+                                    ?>
                                     <tr id="row-<?php echo $reimbursementitem['id']; ?>" type="<?php echo $reimbursementdetails['type']; ?>" rdid="<?php echo $reimbursementdetails['id']; ?>" class="">
                                         <td scope="row" rid="<?php echo $reimbursementitem['id']; ?>" class="rid"><?php echo $reimbursementitem['name']; ?></td>
                                         <td class="vno"><?php echo $reimbursementdetails['voucherNumber']; ?></td>
@@ -116,18 +119,18 @@ foreach ($COSTINGTYPES as $key => $type) {
                                         <td class="description text-right"><?php echo $reimbursementdetails['description']; ?></td>
 
                                     </tr>
-                <?php
-            }
-        }
-        ?>
+                                    <?php
+                                }
+                            }
+                            ?>
                             <!--Table body-->
                         </tbody>
                     </table>
 
-        <?php
-    }
-}
-?>
+                    <?php
+                }
+            }
+            ?>
 
             <table class="profit-table">
                 <tr>

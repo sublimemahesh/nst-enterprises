@@ -16,3 +16,15 @@ if ($_POST['option'] == 'UPDATEINVOICE') {
     exit();
 }
 
+if ($_POST['option'] == 'UPDATECURRENTBALANCE') {
+    $CONSIGNEE = new Consignee($_POST['consignee']);
+
+    $CONSIGNEE->balance = $_POST['balance'];
+
+    $result = $CONSIGNEE->updateBalance();
+    header('Content-Type: application/json');
+
+    echo json_encode($result);
+    exit();
+}
+

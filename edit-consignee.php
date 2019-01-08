@@ -9,6 +9,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $CONSIGNEE = new Consignee($id);
+$PARENT = new Consignee($CONSIGNEE->parent);
 ?>
 
 <!DOCTYPE html>
@@ -106,6 +107,14 @@ $CONSIGNEE = new Consignee($id);
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"><?php echo $CONSIGNEE->description; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="col-md-3">Parent Consignee</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="pname" autocomplete="off" placeholder="Enter parent consignee name" value="<?php echo $PARENT->name; ?>" attempt="">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="parent-name-list-append" class="parent-name-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="pnameid" value="<?php echo $CONSIGNEE->parent; ?>" id="pname-id"  />
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-md-3">Status</label>
                                                     <label for="isActive" class="container1 col-md-9 label-align">Active / InActive
                                                         <input class="col-md-3" type="checkbox" <?php
@@ -144,6 +153,7 @@ $CONSIGNEE = new Consignee($id);
         <script src="js/consignee.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
+        <script src="js/consignee-report.js" type="text/javascript"></script>
 
     </body>
 

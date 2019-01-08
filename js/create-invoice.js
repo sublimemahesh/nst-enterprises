@@ -3,7 +3,7 @@ $(document).ready(function () {
         callLoader();
         var jobcostingcard = $("#job_costing_card").val();
         var createdAt = $("#created_at").val();
-        var vat_reg_no = $("#vat_reg_no").val();
+//        var vat_reg_no = $("#vat_reg_no").val();
         var cleared_date = $("#datepicker1").val();
         var gross_weight = $("#gross_weight").val();
         var volume = $("#volume").val();
@@ -26,7 +26,7 @@ $(document).ready(function () {
             data: {
                 job_costing_card: jobcostingcard,
                 createdAt: createdAt,
-                vat_reg_no: vat_reg_no,
+//                vat_reg_no: vat_reg_no,
                 cleared_date: cleared_date,
                 gross_weight: gross_weight,
                 volume: volume,
@@ -57,6 +57,7 @@ $(document).ready(function () {
                         name = $(this).find('.delivery-name').val();
                         amount = $(this).find('.delivery-amount').attr('amount');
 
+
                         data.push({
                             invoice: invoice_id,
                             id: delivery_id,
@@ -76,7 +77,6 @@ $(document).ready(function () {
                         option: 'SAVEDELIVERYDATA'
                     },
                     success: function (res) {
-
                         swal({
                             title: "Success!",
                             text: "Your data was saved successfully.",
@@ -84,8 +84,7 @@ $(document).ready(function () {
                             timer: 2000,
                             showConfirmButton: false
                         });
-
-
+                        location.reload();
                     }
                 });
 
@@ -187,15 +186,15 @@ $(document).ready(function () {
             },
             success: function (res) {
 
-                    
-                    swal({
-                        title: "Success!",
-                        text: "Your data was saved successfully.",
-                        type: 'success',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                
+
+                swal({
+                    title: "Success!",
+                    text: "Your data was saved successfully.",
+                    type: 'success',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                location.reload();
 
 
             }

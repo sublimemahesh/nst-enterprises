@@ -15,12 +15,14 @@ class Consignee {
     public $email;
     public $description;
     public $isActive;
+    public $parent;
+    public $balance;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`name`,`address`,`vatNumber`,`contactNumber`,`email`,`description`,`isActive`,`queue` FROM `consignee` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`name`,`address`,`vatNumber`,`contactNumber`,`email`,`description`,`isActive`,`parent`,`balance`,`queue` FROM `consignee` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -34,6 +36,8 @@ class Consignee {
             $this->email = $result['email'];
             $this->description = $result['description'];
             $this->isActive = $result['isActive'];
+            $this->parent = $result['parent'];
+            $this->balance = $result['balance'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -50,6 +54,8 @@ class Consignee {
                 . "`email`,"
                 . "`description`,"
                 . "`isActive`,"
+                . "`parent`,"
+                . "`balance`,"
                 . "`queue`) "
                 . "VALUES  ("
                 . "'" . $this->name . "',"
@@ -59,6 +65,8 @@ class Consignee {
                 . "'" . $this->email . "',"
                 . "'" . $this->description . "',"
                 . "'" . $this->isActive . "',"
+                . "'" . $this->parent . "',"
+                . "'" . $this->balance . "',"
                 . "'" . $this->queue . "'"
                 . ")";
 
@@ -99,6 +107,7 @@ class Consignee {
                 . "`email` ='" . $this->email . "', "
                 . "`description` ='" . $this->description . "', "
                 . "`isActive` ='" . $this->isActive . "', "
+                . "`parent` ='" . $this->parent . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
@@ -193,4 +202,20 @@ class Consignee {
         return $result;
     }
 
+    public function updateBalance() {
+
+        $query = "UPDATE  `consignee` SET "
+                . "`balance` ='" . $this->balance . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
+    }
 }
