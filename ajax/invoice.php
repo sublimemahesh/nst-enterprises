@@ -7,7 +7,7 @@ if ($_POST['option'] == 'ADDINVOICE') {
 
     $INVOICE->job_costing_card = $_POST['job_costing_card'];
     $INVOICE->createdAt = $_POST['createdAt'];
-    $INVOICE->vat_reg_no = $_POST['vat_reg_no'];
+//    $INVOICE->vat_reg_no = $_POST['vat_reg_no'];
     $INVOICE->cleared_date = $_POST['cleared_date'];
     $INVOICE->gross_weight = $_POST['gross_weight'];
     $INVOICE->volume = $_POST['volume'];
@@ -101,7 +101,21 @@ if ($_POST['option'] == 'SAVEDELIVERYDATA') {
         $DELIVERYDATA = new InvoiceDeliveryDetails(NULL);
 
         if (empty($data['name']) && empty($data['amount'])) {
-            $result = 'success';
+            
+            if(isset($data['id'])) {
+                $id= $data['id'];
+            } else {
+                $id= '';
+            }
+
+            if ($id) {
+
+                $DELIVERYDATA->id = $data['id'];
+                $DELIVERYDATA->delete();
+                $result = 'success';
+            } else {
+                $result = 'success';
+            }
         } else {
 
             $DELIVERYDATA->invoice = $data['invoice'];
@@ -116,11 +130,15 @@ if ($_POST['option'] == 'SAVEDELIVERYDATA') {
                 $result = $DELIVERYDATA->update();
             }
         }
+        
+        if($result) {
+            $INVOICE = new Invoice($data['invoice']);
+        }
     }
 
     header('Content-Type: application/json');
 
-    echo json_encode($result);
+    echo json_encode($INVOICE->job_costing_card);
     exit();
 }
 

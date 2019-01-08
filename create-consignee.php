@@ -62,16 +62,16 @@ $USER1 = new User($_SESSION['id']);
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-info">
-<!--                                <div class="panel-heading">
-                                    Create Consignee
-                                </div>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="manage-consignees.php">
-                                            <i class="glyphicon glyphicon-list"></i> 
-                                        </a>
-                                    </li>
-                                </ul>-->
+                                <!--                                <div class="panel-heading">
+                                                                    Create Consignee
+                                                                </div>
+                                                                <ul class="header-dropdown">
+                                                                    <li class="">
+                                                                        <a href="manage-consignees.php">
+                                                                            <i class="glyphicon glyphicon-list"></i> 
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>-->
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -100,6 +100,14 @@ $USER1 = new User($_SESSION['id']);
                                                     <label class="col-md-3">Description</label>
                                                     <textarea class="form-control col-md-9" placeholder="Enter description" name="description"></textarea>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Parent Consignee</label>
+                                                    <input type="text" class="form-control col-sm-8 col-md-8" id="pname" autocomplete="off" placeholder="Enter parent consignee name" value="" attempt="">
+                                                    <div id="suggesstion-box">
+                                                        <ul id="parent-name-list-append" class="parent-name-list col-sm-offset-3"></ul>
+                                                    </div>
+                                                    <input type="hidden" name="pnameid" value="" id="pname-id"  />
+                                                </div>
                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-consignee" id="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>
                                                 </div>
@@ -126,7 +134,8 @@ $USER1 = new User($_SESSION['id']);
         <script src="js/consignee.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
         <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
-        
+        <script src="js/consignee-report.js" type="text/javascript"></script>
+
     </body>
 
 </html>

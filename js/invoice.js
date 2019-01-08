@@ -1,7 +1,20 @@
 $(document).ready(function () {
     $('.delivery-amount').keyup(function () {
-        var amount = $(this).val();
-        $(this).attr('amount', amount);
+        var amt = $(this).val();
+        if (amt == '') {
+            $(this).attr('amount', 0);
+        } else {
+            var amt1 = amt.split(",");
+
+            var k, amt2 = '';
+            for (k = 0; k < amt1.length; k++) {
+                amt2 += amt1[k];
+            }
+            var amount = parseFloat(amt2);
+
+            $(this).attr('amount', amount);
+        }
+
     });
 
     $('.delivery-name').keyup(function () {
@@ -94,7 +107,7 @@ $(document).ready(function () {
         $('#tr-refund').removeClass("hidden");
         $('#tr-due').addClass("hidden");
         $('#refund').attr("refund", refund);
-        $('#refund').html(refund1);
+        $('#refund').html('(' + refund1 + ')');
         $('#due').attr("due", 0);
         /* ------Refund amount to word------ */
         var amount = convertNumberToWords(refund);
@@ -214,7 +227,7 @@ $(document).ready(function () {
             $('#tr-refund').removeClass("hidden");
             $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
-            $('#refund').html(refund1);
+            $('#refund').html('(' + refund1 + ')');
             $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
@@ -289,7 +302,7 @@ $(document).ready(function () {
             $('#tr-refund').removeClass("hidden");
             $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
-            $('#refund').html(refund1);
+            $('#refund').html('(' + refund1 + ')');
             $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
@@ -303,8 +316,14 @@ $(document).ready(function () {
 
     $(".reimbursement").keyup(function () {
         var id = $(this).attr('rid');
-        var amount = $(this).val();
+        var amt = $(this).val();
+        var amt1 = amt.split(",");
 
+        var k, amt2 = '';
+        for (k = 0; k < amt1.length; k++) {
+            amt2 += amt1[k];
+        }
+        var amount = parseFloat(amt2);
 
         $('#id-' + id).attr('amount', amount);
 
@@ -382,7 +401,7 @@ $(document).ready(function () {
                     $('#tr-refund').removeClass("hidden");
                     $('#tr-due').addClass("hidden");
                     $('#refund').attr("refund", refund);
-                    $('#refund').html(refund1);
+                    $('#refund').html('(' + refund1 + ')');
                     $('#due').attr("due", 0);
                     /* ------Refund amount to word------ */
                     var amount = convertNumberToWords(refund);
@@ -400,25 +419,35 @@ $(document).ready(function () {
     /* ------Calculate delivery sub total, payable amount & due when delivery amount changed & update values in reimbursement-details table------ */
 
     $(".delivery-amount").keyup(function () {
-        var id = $(this).attr('rid');
-        var amount = $(this).val();
 
-        $('#did-' + id).attr('amount', amount);
+        if ($(this).attr('did')) {
+            var id = $(this).attr('did');
+            var amt = $(this).val();
 
+            if (amt == '') {
+                $('#did-' + id).attr('amount', 0);
+            } else {
+                var amt1 = amt.split(",");
+                var k, amt2 = '';
+                for (k = 0; k < amt1.length; k++) {
+                    amt2 += amt1[k];
+                }
+                var amount = parseFloat(amt2);
+                $('#did-' + id).attr('amount', amount);
+            }
+        }
         /* ------Calculate delivery sub total------ */
         var tot = 0;
         var ramount;
 
-
         $('.table1').each(function () {
+
             $(this).find('.delivery-details').each(function () {
                 if ($(this).find('.delivery-amount').attr('amount')) {
                     ramount = parseFloat($(this).find('.delivery-amount').attr('amount'));
 
                     tot += ramount;
                 }
-
-
             });
         });
 
@@ -430,65 +459,113 @@ $(document).ready(function () {
 
         /* ------Update values------ */
 
-        $.ajax({
-            type: 'POST',
-            url: 'ajax/invoice.php',
-            dataType: "json",
-            data: {
-                id: id,
-                amount: amount,
-                option: 'UPDATEREIMBURSEMENTDETAILS'
-            },
-            success: function (result) {
-                var statutoryTotal = $('#statutory-sub-total').attr('total');
-                var deliveryTotal = $('#delivery-sub-total').attr('total');
-                var taxTotal = $('#tax-invoice-total').attr('total');
-                var advance = $('#advance').attr('advance');
+        var statutoryTotal = $('#statutory-sub-total').attr('total');
+        var deliveryTotal = $('#delivery-sub-total').attr('total');
+        var taxTotal = $('#tax-invoice-total').attr('total');
+        var advance = $('#advance').attr('advance');
 
-                if (advance == "") {
-                    advance = 0;
-                }
+        if (advance == "") {
+            advance = 0;
+        }
 
-                if (taxTotal == "") {
-                    taxTotal = 0;
-                }
+        if (taxTotal == "") {
+            taxTotal = 0;
+        }
 
-                var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
-                var total1 = new Intl.NumberFormat().format(total);
+        var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
+        var total1 = new Intl.NumberFormat().format(total);
 
-                $('#payable-amount').attr("amount", total);
-                $('#payable-amount').html(total1);
+        $('#payable-amount').attr("amount", total);
+        $('#payable-amount').html(total1);
 
-                if (total > parseFloat(advance)) {
-                    var due = total - parseFloat(advance);
-                    var due1 = new Intl.NumberFormat().format(due);
+        if (total > parseFloat(advance)) {
+            var due = total - parseFloat(advance);
+            var due1 = new Intl.NumberFormat().format(due);
 
-                    $('#tr-due').removeClass("hidden");
-                    $('#tr-refund').addClass("hidden");
-                    $('#due').attr("due", due);
-                    $('#due').html(due1);
-                    $('#refund').attr("refund", 0);
-                    /* ------Due amount to word------ */
-                    var amount = convertNumberToWords(due);
-                    $('#amount-in-word').html(amount);
-                    /* ------//Due amount to word------ */
+            $('#tr-due').removeClass("hidden");
+            $('#tr-refund').addClass("hidden");
+            $('#due').attr("due", due);
+            $('#due').html(due1);
+            $('#refund').attr("refund", 0);
+            /* ------Due amount to word------ */
+            var amount = convertNumberToWords(due);
+            $('#amount-in-word').html(amount);
+            /* ------//Due amount to word------ */
 
-                } else {
-                    var refund = parseFloat(advance) - total;
-                    var refund1 = new Intl.NumberFormat().format(refund);
+        } else {
+            var refund = parseFloat(advance) - total;
+            var refund1 = new Intl.NumberFormat().format(refund);
 
-                    $('#tr-refund').removeClass("hidden");
-                    $('#tr-due').addClass("hidden");
-                    $('#refund').attr("refund", refund);
-                    $('#refund').html(refund1);
-                    $('#due').attr("due", 0);
-                    /* ------Refund amount to word------ */
-                    var amount = convertNumberToWords(refund);
-                    $('#amount-in-word').html(amount);
-                    /* ------//Refund amount to word------ */
-                }
-            }
-        });
+            $('#tr-refund').removeClass("hidden");
+            $('#tr-due').addClass("hidden");
+            $('#refund').attr("refund", refund);
+            $('#refund').html('(' + refund1 + ')');
+            $('#due').attr("due", 0);
+            /* ------Refund amount to word------ */
+            var amount = convertNumberToWords(refund);
+            $('#amount-in-word').html(amount);
+            /* ------//Refund amount to word------ */
+        }
+
+//        $.ajax({
+//            type: 'POST',
+//            url: 'ajax/invoice.php',
+//            dataType: "json",
+//            data: {
+//                id: id,
+//                amount: amount,
+//                option: 'UPDATEREIMBURSEMENTDETAILS'
+//            },
+//            success: function (result) {
+//                var statutoryTotal = $('#statutory-sub-total').attr('total');
+//                var deliveryTotal = $('#delivery-sub-total').attr('total');
+//                var taxTotal = $('#tax-invoice-total').attr('total');
+//                var advance = $('#advance').attr('advance');
+//
+//                if (advance == "") {
+//                    advance = 0;
+//                }
+//
+//                if (taxTotal == "") {
+//                    taxTotal = 0;
+//                }
+//
+//                var total = parseFloat(taxTotal) + parseFloat(statutoryTotal) + parseFloat(deliveryTotal);
+//                var total1 = new Intl.NumberFormat().format(total);
+//
+//                $('#payable-amount').attr("amount", total);
+//                $('#payable-amount').html(total1);
+//
+//                if (total > parseFloat(advance)) {
+//                    var due = total - parseFloat(advance);
+//                    var due1 = new Intl.NumberFormat().format(due);
+//
+//                    $('#tr-due').removeClass("hidden");
+//                    $('#tr-refund').addClass("hidden");
+//                    $('#due').attr("due", due);
+//                    $('#due').html(due1);
+//                    $('#refund').attr("refund", 0);
+//                    /* ------Due amount to word------ */
+//                    var amount = convertNumberToWords(due);
+//                    $('#amount-in-word').html(amount);
+//                    /* ------//Due amount to word------ */
+//
+//                } else {
+//                    var refund = parseFloat(advance) - total;
+//                    var refund1 = new Intl.NumberFormat().format(refund);
+//
+//                    $('#tr-refund').removeClass("hidden");
+//                    $('#tr-due').addClass("hidden");
+//                    $('#refund').attr("refund", refund);
+//                    $('#refund').html('(' + refund1 + ')');
+//                    $('#due').attr("due", 0);
+//                    /* ------Refund amount to word------ */
+//                    var amount = convertNumberToWords(refund);
+//                    $('#amount-in-word').html(amount);
+//                    /* ------//Refund amount to word------ */
+//                }
+//            }
+//        });
         /* ------//Update values------ */
     });
 
@@ -531,7 +608,7 @@ $(document).ready(function () {
             $('#tr-refund').removeClass("hidden");
 
             $('#refund').attr("refund", refund);
-            $('#refund').html(refund1);
+            $('#refund').html('(' + refund1 + ')');
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);
             $('#amount-in-word').html(amount);
@@ -684,7 +761,7 @@ $(document).ready(function () {
             $('#tr-refund').removeClass("hidden");
             $('#tr-due').addClass("hidden");
             $('#refund').attr("refund", refund);
-            $('#refund').html(refund1);
+            $('#refund').html('(' + refund1 + ')');
             $('#due').attr("due", 0);
             /* ------Refund amount to word------ */
             var amount = convertNumberToWords(refund);

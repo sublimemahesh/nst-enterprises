@@ -152,6 +152,17 @@ $CONSIGNEE = new Consignee($id);
                                                         ?></td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="view-details-topic">Parent</td>
+                                                    <td><?php
+                                                        if ($CONSIGNEE->parent) {
+                                                            $PARENT = new Consignee($CONSIGNEE->parent);
+                                                            echo $PARENT->name;
+                                                        } else {
+                                                            echo '-';
+                                                        };
+                                                        ?></td>
+                                                </tr>
+                                                <tr>
                                                     <td class="view-details-topic">Status</td>
                                                     <td><?php
                                                         if ($CONSIGNEE->isActive == 1) {

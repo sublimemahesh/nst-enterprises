@@ -10,6 +10,7 @@ $(document).ready(function () {
         success: function (result) {
             if (result === false) {
                 $('#savebutton').removeClass('hidden');
+                $('#savebutton-print').removeClass('hidden');
                 $('.inv-title').text('Create ');
                 $('#created_at').val(new Date().toISOString().slice(0, 10));
             } else {
@@ -57,6 +58,7 @@ $(document).ready(function () {
 //                }
 
                 $('#editbutton').removeClass('hidden');
+                $('#editbutton-print').removeClass('hidden');
                 $('.inv-title').text('Edit ');
 
             }

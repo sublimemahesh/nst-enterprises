@@ -139,7 +139,8 @@ class Job {
 
     public function getJobsByConsignee($consignee) {
 
-        $query = "SELECT * FROM `job` WHERE `consignee`=" . $consignee;
+//        $query = "SELECT * FROM `job` WHERE `consignee`=" . $consignee;
+        $query = "SELECT * FROM `job` WHERE `consignee` in (SELECT `id` FROM `consignee` WHERE id = $consignee or `parent` = $consignee)" ;
 
         $db = new Database();
         $result = $db->readQuery($query);

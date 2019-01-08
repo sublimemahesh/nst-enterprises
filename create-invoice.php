@@ -33,6 +33,9 @@ $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcar
 
 $len = strlen($CONSIGNEE->vatNumber);
 $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
+
+$address = explode(",", $CONSIGNEE->address);
+$count = count($address);
 ?>
 
 <!DOCTYPE html>
@@ -130,21 +133,36 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
 
                                                 </tr>
                                                 <tr>
-                                                    <td rowspan="4" class="col-2 text-to row-padding-left" >To. </td>
-                                                    <td rowspan="4" class="col-3 td-border text-to"><?php echo $CONSIGNEE->name . '<br />' . $CONSIGNEE->address; ?></td>
+                                                    <td class="col-2 text-to row-padding-left" >To. </td>
+                                                    <td class="col-3 td-border text-to v-align-middle "><?php echo $CONSIGNEE->name; ?></td>
                                                     <td class="col-4 row-padding-left v-align-middle">Vat Reg No</td>
                                                     <td class="col-5 v-align-middle p-l-17">409206123-7000</td>
 
                                                 </tr>
                                                 <tr>
                                                     <td></td>
+                                                    <td class="td-border v-align-middle"><?php if($count >= 1) {echo $address[0]; }; ?></td>
+                                                    <td></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
+                                                    <td></td>
+                                                    <td class="td-border v-align-middle"><?php if($count >= 2) {echo $address[1]; } ?></td>
                                                     <td class="row-padding-left v-align-middle">Invoice No</td>
                                                     <td class="v-align-middle p-l-17"><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                                                 </tr>
                                                 <tr>
+                                                    <td></td>
+                                                    <td class="td-border v-align-top">
+                                                        <?php 
+                                                        $ad = '';
+                                                        if($count >= 3) {
+                                                            for($i=2; $i<$count; $i++) {
+                                                                $ad .= $address[$i];
+                                                            }
+                                                            echo $ad;
+                                                        }
+                                                             ?></td>
                                                     <td class="row-padding-left v-align-middle">Date</td>
                                                     <td><input type="text" class="form-control form-control-border" id="created_at" name="created_at" value="" autocomplete="off" /></td>
                                                 </tr>
@@ -162,21 +180,16 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                     <td class="v-align-middle p-l-17"><?php echo $JOB->reference_no; ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td rowspan="2" class="text-to row-padding-left"> Consignment</td>
-                                                    <td class="td-border text-to"><?php echo $CONSIGNMENT->name; ?></td>
+                                                    <td class="text-to row-padding-left"> Consignment</td>
+                                                    <td class="td-border text-to"><?php echo $CONSIGNMENT->name . '<br />' . strtoupper($CONSIGNMENT->description); ?></td>
                                                     <td class="row-padding-left v-align-middle">Cleared Date</td>
                                                     <td><input type="text" class="form-control form-control-border" id="datepicker1" name="cleared_date" value="" autocomplete="off" /></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="v-align-middle td-border"><?php echo $JOB->chassisNumber; ?></td>
                                                     <td></td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td class="row-padding-left v-align-middle"></td>
-                                                    <td class="v-align-middle td-border"></td>
-                                                    <td class="row-padding-left v-align-middle">Gross Weight</td>
-                                                    <td>
+                                                    <td class="v-align-middle td-border"><?php echo $JOB->chassisNumber; ?></td>
+                                                    <td class="row-padding-left v-align-top">Gross Weight</td>
+                                                    <td class="v-align-top">
                                                         <table class='table-gross-weight'>
                                                             <tr>
                                                                 <td><input type="text" class="form-control form-control-border" name="gross_weight" id="gross_weight" value="" autocomplete="off" /></td>
@@ -186,15 +199,16 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
 
                                                     </td>
                                                 </tr>
-                                                <tr class="">
-                                                    <td class="row-padding-left v-align-middle">Vessel/Flight</td>
-                                                    <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="v-align-middle td-border"></td>
                                                     <td class="row-padding-left v-align-middle">Volume</td>
                                                     <td class=""><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" autocomplete="off" /></td>
+
                                                 </tr>
                                                 <tr class="tr-border">
-                                                    <td class="row-padding-bottom row-padding-left v-align-middle"></td>
-                                                    <td class="td-border td-padding row-padding-bottom v-align-middle"></td>
+                                                    <td class="row-padding-left v-align-middle">Vessel/Flight</td>
+                                                    <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
                                                     <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
                                                     <td class="row-padding-bottom"><input type="text" class="form-control form-control-border" name="cusdec_no" id="cusdec_no" value="" autocomplete="off" /></td>
                                                 </tr>
@@ -206,17 +220,17 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="2" class="td-border row-padding-left v-align-middle">AGENCY FEES</td>
+                                                    <td colspan="2" class="td-border v-align-middle">AGENCY FEES</td>
                                                     <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="agency_fees" id="agency_fees" value="" autocomplete="off" /></td>        
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="2" class="td-border row-padding-left v-align-middle">DOCUMENTATION</td>
+                                                    <td colspan="2" class="td-border v-align-middle">DOCUMENTATION</td>
                                                     <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="documentation" id="documentation" value="" autocomplete="off" /></td>        
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="2" class="td-border row-padding-left v-align-middle">VAT 15%</td>
+                                                    <td colspan="2" class="td-border v-align-middle">VAT 15%</td>
                                                     <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="vat" id="vat" vat="" value="" disabled="" autocomplete="off" /></td>       
                                                 </tr>
                                                 <tr>
@@ -229,7 +243,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                             <table class="table1">
                                                 <tr>
                                                     <th colspan="2" class="col-9 text-center">Reimbursement</th>
-                                                    <th class="col-5 th-border">Value</th>
+                                                    <th class="col-5 th-border text-center">Value</th>
                                                 </tr>
 
                                                 <tr>
@@ -253,8 +267,8 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                             ?>
                                                             <tr class="reimbursement-details">
                                                                 <td></td>        
-                                                                <td class="td-border v-align-middle"><?php echo $reimbursementitem['label']; ?></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo $amount; ?>" autocomplete="off" /></td>        
+                                                                <td class="td-border v-align-middle pl-2"><?php echo $reimbursementitem['name']; ?></td>        
+                                                                <td class="row-padding-right"><input type="" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount, 2); ?>" autocomplete="off" /></td>        
                                                             </tr>
                                                             <?php
                                                         }
@@ -280,7 +294,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                 <tr>
                                                     <td class="col-2 text-to row-padding-left" >Delivery</td>
                                                     <td class="col-6 td-border"></td>
-                                                    <th class="col-5 th-border">Value</th>
+                                                    <th class="col-5 th-border text-center">Value</th>
                                                 </tr>
 
                                                 <?php
@@ -292,7 +306,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                             <tr class="delivery-details">
                                                                 <td><input type="hidden" did="<?php echo $data['id']; ?>" value="<?php echo $did; ?>" id="id"/></td>        
                                                                 <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="<?php echo $data['name']; ?>" autocomplete="off" /></td>        
-                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="<?php echo $data['amount']; ?>" value="<?php echo $data['amount']; ?>" autocomplete="off" /></td>
+                                                                <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="did-<?php echo $data['id']; ?>" did="<?php echo $data['id']; ?>" amount="<?php echo $data['amount']; ?>" value="<?php echo number_format($data['amount'], 2); ?>" autocomplete="off" /></td>
                                                             </tr>
                                                             <?php
                                                         }
@@ -300,23 +314,28 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                         ?>
                                                         <tr class="delivery-details">
                                                             <td><input type="hidden" class="" id="id" value="" /></td>        
-                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="HANDLING" autocomplete="off" readonly="readonly" /></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="HANDLING" autocomplete="off" readonly="readonly" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                         </tr>
                                                         <tr class="delivery-details">
                                                             <td><input type="hidden" class="" id="id" value="" /></td>        
-                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="EXAMINATION" autocomplete="off" readonly="readonly" /></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="EXAMINATION" autocomplete="off" readonly="readonly" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                         </tr>
                                                         <tr class="delivery-details">
                                                             <td><input type="hidden" class="" id="id" value="" /></td>        
-                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="OTHER EXPENCESS" autocomplete="off" readonly="readonly" /></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="OTHER EXPENCESS" autocomplete="off" readonly="readonly" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                         </tr>
                                                         <tr class="delivery-details">
                                                             <td><input type="hidden" class="" id="id" value="" /></td>        
-                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="DRIVER" autocomplete="off" readonly="readonly" /></td>        
-                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="OTHER EXPENCESS & VAL" autocomplete="off" readonly="readonly" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
+                                                        </tr>
+                                                        <tr class="delivery-details">
+                                                            <td><input type="hidden" class="" id="id" value="" /></td>        
+                                                            <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="DRIVER" autocomplete="off" readonly="readonly" /></td>        
+                                                            <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                         </tr>
                                                         <?php
                                                     }
@@ -324,23 +343,28 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                     ?>
                                                     <tr class="delivery-details">
                                                         <td><input type="hidden" class="" id="id" value="" /></td>        
-                                                        <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="HANDLING" autocomplete="off" readonly="readonly" /></td>        
-                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                        <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" did="" amount="" value="HANDLING" autocomplete="off" readonly="readonly" /></td>        
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                     </tr>
                                                     <tr class="delivery-details">
                                                         <td><input type="hidden" class="" id="id" value="" /></td>        
                                                         <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="EXAMINATION" autocomplete="off" readonly="readonly" /></td>        
-                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                     </tr>
                                                     <tr class="delivery-details">
                                                         <td><input type="hidden" class="" id="id" value="" /></td>        
                                                         <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="OTHER EXPENCESS" autocomplete="off" readonly="readonly" /></td>        
-                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
+                                                    </tr>
+                                                    <tr class="delivery-details">
+                                                        <td><input type="hidden" class="" id="id" value="" /></td>        
+                                                        <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="OTHER EXPENCESS & VAL" autocomplete="off" readonly="readonly" /></td>        
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                     </tr>
                                                     <tr class="delivery-details">
                                                         <td><input type="hidden" class="" id="id" value="" /></td>        
                                                         <td class="td-border v-align-middle"><input type="text" class="form-control form-control-border delivery text-left delivery-name" id="" rid="" amount="" value="DRIVER" autocomplete="off" readonly="readonly" /></td>        
-                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" rid="" amount="" value="" autocomplete="off" /></td>
+                                                        <td class="row-padding-right"><input type="text" class="form-control form-control-border delivery text-right delivery-amount" id="" did="" amount="" value="" autocomplete="off" /></td>
                                                     </tr>
                                                     <?php
                                                 }
@@ -378,21 +402,21 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
 
                                                 <tr>
                                                     <td rowspan="3" colspan="2" class="col-2"></td>
-                                                    <td class="col-7 td-border td-border-top  td-border-left">Payable Amount</td>
-                                                    <td class="col-8 td-border td-border-top text-right row-padding-right p-r-26" id="payable-amount" name="payable_amount" amount=""></td>
+                                                    <td class="col-7 td-border td-border-top td-border-left v-align-middle">Payable Amount</td>
+                                                    <td class="col-8 td-border td-border-top text-right row-padding-right p-r-26 th-border" id="payable-amount" name="payable_amount" amount=""></td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="td-border td-border-left v-align-middle">Advance</td>
-                                                    <td class="td-border row-padding-right"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="<?php echo $advance; ?>" name="advance" value="<?php echo number_format($advance); ?>" autocomplete="off" readonly/></td>
+                                                    <td class="td-border row-padding-right th-border"><input type="text" class="form-control form-control-border text-right" id="advance"  advance="<?php echo $advance; ?>" name="advance" value="<?php echo number_format($advance); ?>" autocomplete="off" style="height: 10px;" readonly /></td>
                                                 </tr>
                                                 <tr id="tr-due" class="hidden">
-                                                    <td class="td-border td-border1 td-border-left">Due</td>
-                                                    <td class="td-border td-border1 text-right row-padding-right p-r-26" id="due" name="due" due=""></td>
+                                                    <td class="td-border td-border1 td-border-left v-align-middle">Due</td>
+                                                    <td class="td-border td-border1 text-right row-padding-right p-r-26 th-border" id="due" name="due" due=""></td>
                                                 </tr>
                                                 <tr  id="tr-refund" class="hidden">
-                                                    <td class="td-border td-border1 td-border-left">Refund</td>
-                                                    <td class="td-border td-border1 text-right row-padding-right p-r-26" id="refund" name="refund" refund=""></td>
+                                                    <td class="td-border td-border1 td-border-left v-align-middle">Refund</td>
+                                                    <td class="td-border td-border1 text-right row-padding-right p-r-26 th-border" id="refund" name="refund" refund=""></td>
                                                 </tr>
                                             </table>
 
@@ -417,7 +441,9 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
                                                     <button type="button" class="btn btn-info savebtn hidden" id="editbutton">Save Changes</button>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <a href="invoice.php?id=<?php echo $jobcostingcard; ?>" target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a> 
+                                                    <button type="button" class="btn btn-success saveprintbtn hidden" id="savebutton-print">Save & Print</button>
+                                                    <button type="button" class="btn btn-success saveprintbtn hidden" id="editbutton-print">Save & Print</button>
+                                                    <!--<a href="invoice.php?id=<?php echo $jobcostingcard; ?>" target="blank"><i class="glyphicon glyphicon-print btn btn-lg btn-success"></i></a>--> 
                                                     <input type="hidden" id="vat_no" value="<?php echo $vat_last_no; ?>"
                                                 </div>
                                             </div>
@@ -448,7 +474,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
         <script src="js/create-invoice.js" type="text/javascript"></script>
         <script src="js/invoice.js" type="text/javascript"></script>
         <script src="plugins/loader/js/jquery.loading.block.js" type="text/javascript"></script>
-
+        <script src="js/print-and-save-invoice.js" type="text/javascript"></script>
         <script>
             $(function () {
                 $("#datepicker1").datepicker({dateFormat: 'yy-mm-dd'});

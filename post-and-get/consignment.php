@@ -9,7 +9,7 @@ if (isset($_POST['create-consignment'])) {
     $VALID = new Validator();
 
     $CONSIGNMENT->name = filter_input(INPUT_POST, 'name');
-    $CONSIGNMENT->description = filter_input(INPUT_POST, 'description');
+    $CONSIGNMENT->description = $_POST['description'];
     $CONSIGNMENT->isActive = 1;
 
     $VALID->check($CONSIGNMENT, [

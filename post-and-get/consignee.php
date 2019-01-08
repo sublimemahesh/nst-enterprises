@@ -14,6 +14,8 @@ if (isset($_POST['create-consignee'])) {
     $CONSIGNEE->contactNumber = filter_input(INPUT_POST, 'contactNumber');
     $CONSIGNEE->email = filter_input(INPUT_POST, 'email');
     $CONSIGNEE->description = filter_input(INPUT_POST, 'description');
+    $CONSIGNEE->description = filter_input(INPUT_POST, 'description');
+    $CONSIGNEE->parent = filter_input(INPUT_POST, 'pnameid');
     $CONSIGNEE->isActive = 1;
 
     $VALID->check($CONSIGNEE, [
@@ -55,6 +57,7 @@ if (isset($_POST['edit-consignee'])) {
     $CONSIGNEE->contactNumber = filter_input(INPUT_POST, 'contactNumber');
     $CONSIGNEE->email = filter_input(INPUT_POST, 'email');
     $CONSIGNEE->description = filter_input(INPUT_POST, 'description');
+    $CONSIGNEE->parent = filter_input(INPUT_POST, 'pnameid');
     $CONSIGNEE->isActive = $_POST['isActive'];
 
     $VALID = new Validator();

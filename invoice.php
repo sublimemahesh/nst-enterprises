@@ -38,6 +38,8 @@ if ($vat_last_no == '7000') {
     $documentation = (float) $INVOICE['documentation'] + (float) $INVOICE['vat'];
     $vat = 0;
 }
+
+$address = explode(",", $CONSIGNEE->address);
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,21 +66,27 @@ if ($vat_last_no == '7000') {
 
                 </tr>
                 <tr>
-                    <td rowspan="4" class="col-2 text-to row-padding-left" >To. </td>
-                    <td rowspan="4" class="col-3 td-border text-to"><?php echo $CONSIGNEE->name . '<br />' . $CONSIGNEE->address; ?></td>
+                    <td class="col-2 text-to row-padding-left" >To. </td>
+                    <td class="col-3 td-border text-to"><?php echo $CONSIGNEE->name; ?></td>
                     <td class="col-4 row-padding-left">Vat Reg No</td>
                     <td class="col-5">409206123-7000</td>
 
                 </tr>
                 <tr>
                     <td></td>
+                    <td class="td-border"><?php echo $address[0]; ?></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td class="td-border"><?php echo $address[1]; ?></td>
                     <td class="row-padding-left">Invoice No</td>
                     <td><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td class="td-border"><?php echo $address[2]; ?></td>
                     <td class="row-padding-left">Date</td>
                     <td><?php echo $INVOICE['createdAt']; ?></td>
                 </tr>
@@ -96,30 +104,26 @@ if ($vat_last_no == '7000') {
                     <td><?php echo $JOB->reference_no; ?></td>
                 </tr>
                 <tr>
-                    <td rowspan="3" class="text-to row-padding-left"> Consignment</td>
-                    <td rowspan="3" class="td-border text-to"><?php echo $CONSIGNMENT->name; ?></td>
-                    <td class="row-padding-left">Cleared Date</td>
-                    <td><?php echo $INVOICE['cleared_date']; ?></td>
+                    <td class="text-to row-padding-left"> Consignment</td>
+                    <td class="td-border text-to"><?php echo $CONSIGNMENT->name . '<br />' . strtoupper($CONSIGNMENT->description); ?></td>
+                    <td class="row-padding-left v-align-top">Cleared Date</td>
+                    <td class="v-align-top"><?php echo $INVOICE['cleared_date']; ?></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
+                    <td class="v-align-middle td-border"><?php echo $JOB->chassisNumber; ?></td>
                     <td class="row-padding-left">Gross Weight</td>
                     <td><?php echo $INVOICE['gross_weight'] . ' Kgs'; ?></td>
-
                 </tr>
-                <tr class="">
-                    <td class="row-padding-left">Vessel/Flight</td>
-                    <td class="td-border td-padding"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
+                <tr>
+                    <td></td>
+                    <td class="td-border"></td>
                     <td class="row-padding-left">Volume</td>
                     <td class=""><?php echo $INVOICE['volume']; ?></td>
                 </tr>
                 <tr class="tr-border">
-                    <td class="row-padding-bottom row-padding-left v-align-middle"></td>
-                    <td class="td-border td-padding row-padding-bottom v-align-middle"></td>
+                    <td class="row-padding-bottom row-padding-left v-align-middle">Vessel/Flight</td>
+                    <td class="td-border td-padding row-padding-bottom v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
                     <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
                     <td class="row-padding-bottom"><?php echo $INVOICE['cusdec_no']; ?></td>
                 </tr>
@@ -130,18 +134,18 @@ if ($vat_last_no == '7000') {
                     <td class="td-border1 td-text"><b>Value</b></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td colspan="2" class="td-border row-padding-left">AGENCY FEES</td>
+                    <td class="col-9"></td>
+                    <td colspan="2" class="td-border">AGENCY FEES</td>
                     <td class="text-right row-padding-right"><?php echo number_format($INVOICE['agency_fees'], 2); ?></td>        
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2" class="td-border row-padding-left">DOCUMENTATION</td>
+                    <td colspan="2" class="td-border">DOCUMENTATION</td>
                     <td class="text-right row-padding-right"><?php echo number_format($documentation, 2); ?></td>        
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2" class="td-border row-padding-left">VAT 15%</td>
+                    <td colspan="2" class="td-border">VAT 15%</td>
                     <td class="text-right row-padding-right"><?php echo number_format($vat, 2); ?></td>       
                 </tr>
                 <tr>
@@ -182,7 +186,7 @@ if ($vat_last_no == '7000') {
                             ?>
                             <tr>
                                 <td></td>        
-                                <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
+                                <td class="td-border"><?php echo $reimbursementitem['name']; ?></td>        
                                 <td class="text-right row-padding-right"><?php echo number_format($amount, 2); ?></td>        
                             </tr>
                             <?php
@@ -190,7 +194,7 @@ if ($vat_last_no == '7000') {
                     }
                 }
                 ?>
-                
+
 
 
                 <tr>
@@ -242,21 +246,21 @@ if ($vat_last_no == '7000') {
 
                 <tr>
                     <td class="td-border td-border-left">Advance</td>
-                    <td class="td-border2 text-right row-padding-right" id="advance" advance="1000"><?php echo number_format($INVOICE['advance'], 2); ?></td>
+                    <td class="td-border2 text-right row-padding-right th-border" id="advance" advance="1000"><?php echo number_format($INVOICE['advance'], 2); ?></td>
                 </tr>
                 <?php
                 if ($INVOICE['due'] === '0.00') {
                     ?>
                     <tr>
                         <td class="td-border td-border3 td-border-left">Refund</td>
-                        <td class="td-border2 td-border3 text-right row-padding-right" id="final" final="<?php echo $INVOICE['refund']; ?>"><?php echo '(' . number_format($INVOICE['refund'], 2) . ')'; ?></td>
+                        <td class="td-border2 td-border3 text-right row-padding-right th-border" id="final" final="<?php echo $INVOICE['refund']; ?>"><?php echo '(' . number_format($INVOICE['refund'], 2) . ')'; ?></td>
                     </tr>
                     <?php
                 } else {
                     ?>
                     <tr>
                         <td class="td-border td-border3 td-border-left">Due</td>
-                        <td class="td-border2 td-border3 text-right row-padding-right" id="final" final="<?php echo $INVOICE['due']; ?>"><?php echo number_format($INVOICE['due'], 2); ?></td>
+                        <td class="td-border2 td-border3 text-right row-padding-right th-border" id="final" final="<?php echo $INVOICE['due']; ?>"><?php echo number_format($INVOICE['due'], 2); ?></td>
                     </tr>
                     <?php
                 }
