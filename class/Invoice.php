@@ -224,8 +224,8 @@ class Invoice {
 
     public function getInvoicesByDateRange($from, $to) {
 
-        $query = "SELECT * FROM `invoice` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `createdAt` ASC";
-
+        $query = "SELECT * FROM `invoice` INNER JOIN `job_costing_card` ON `invoice`.`job_costing_card` = `job_costing_card`.`id` WHERE `createdAt` BETWEEN '" . $from . "' AND '" . $to . "' ORDER BY `invoice`.`createdAt` ASC, `job_costing_card`.`invoiceNumber` ASC";
+        
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -239,16 +239,16 @@ class Invoice {
 
     public function getInvoiceByConsignee($consignee) {
 
-        $query = "SELECT j.`id` AS `job_id`, i.`id` AS `invoice_id`, j.`consignment` AS `consignment`, jcc.`invoiceNumber` AS `invoice_number`, i.`createdAt` AS `invoice_date`, j.`reference_no` AS `job_reference_no`, i.`payable_amount` AS `payable_amount`, i.`advance` AS `advance`, i.`due` AS `due`, i.`refund` AS `refund`, i.`settle` AS `settle`, i.`balance` AS `balance`, i.`status` AS `status`, i.`receipt_no` AS `receipt_no` FROM `invoice` i INNER JOIN `job_costing_card` jcc ON i.`job_costing_card` = jcc.`id` INNER JOIN `job` j ON jcc.`job` = j.`id` WHERE j.`consignee` IN (SELECT `id` FROM `consignee` WHERE `id` = $consignee or `parent` = $consignee) ORDER BY i.`id` ASC, i.`createdAt` ASC";
+        $query = "SELECT j.`id` AS `job_id`, i.`id` AS `invoice_id`, j.`consignment` AS `consignment`, jcc.`invoiceNumber` AS `invoice_number`, i.`createdAt` AS `invoice_date`, j.`reference_no` AS `job_reference_no`, i.`payable_amount` AS `payable_amount`, i.`advance` AS `advance`, i.`due` AS `due`, i.`refund` AS `refund`, i.`settle` AS `settle`, i.`balance` AS `balance`, i.`status` AS `status`, i.`receipt_no` AS `receipt_no` FROM `invoice` i INNER JOIN `job_costing_card` jcc ON i.`job_costing_card` = jcc.`id` INNER JOIN `job` j ON jcc.`job` = j.`id` WHERE j.`consignee` IN (SELECT `id` FROM `consignee` WHERE `id` = $consignee or `parent` = $consignee) ORDER BY i.`createdAt` ASC, jcc.`invoiceNumber` ASC";
 
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
-
         while ($row = mysql_fetch_array($result)) {
+            
             array_push($array_res, $row);
         }
-
+        
         return $array_res;
     }
 

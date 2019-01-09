@@ -21,6 +21,7 @@ $(document).ready(function () {
                     option: 'GETINVOICESBYSTARTANDENDDATE'
                 },
                 success: function (invoices) {
+                    
 
                     callLoader();
                     var html;

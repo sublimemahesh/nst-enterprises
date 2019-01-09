@@ -52,7 +52,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                             ?>
                             <tr>
                                 <td width="40"><?php echo $i; ?></td>
-                                <td><?php echo $invoice['invoice_date']; ?></td>
+                                <td width="110"><?php echo $invoice['invoice_date']; ?></td>
                                 <td width="90"><?php echo $invoiceno; ?></td>
                                 <td width="60"><?php echo substr($invoice['job_reference_no'],15,19); ?></td>
                                 <td><?php echo $CONSIGNMENT->name; ?></td>
