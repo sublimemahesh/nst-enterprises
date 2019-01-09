@@ -124,7 +124,7 @@ $address = explode(",", $CONSIGNEE->address);
                 <tr class="tr-border">
                     <td class="row-padding-bottom row-padding-left v-align-middle">Vessel/Flight</td>
                     <td class="td-border td-padding row-padding-bottom v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
-                    <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
+                    <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No & Date</td>
                     <td class="row-padding-bottom"><?php echo $INVOICE['cusdec_no']; ?></td>
                 </tr>
 

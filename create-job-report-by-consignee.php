@@ -139,7 +139,6 @@ if (isset($_GET['checkreport'])) {
                                         <tbody>
                                             <?php
                                             $i = 1;
-
                                             foreach (Invoice::getInvoiceByConsignee($consigneeid) as $invoice) {
                                                
                                                 $CONSIGNMENT = new Consignment($invoice['consignment']);
@@ -149,7 +148,7 @@ if (isset($_GET['checkreport'])) {
                                                 $invoiceno = substr($invoice['invoice_number'],15,19);
 //                                                if ($INVOICE) {
                                                     ?>
-                                                    <tr id="row_<?php echo $job['job_id']; ?>" invoiceid="<?php echo $invoice['invoice_id']; ?>">
+                                                    <tr id="row_<?php echo $invoice['job_id']; ?>" invoiceid="<?php echo $invoice['invoice_id']; ?>">
                                                         <td><?php echo $i; ?></td>
                                                         <td><?php echo $invoice['invoice_date']; ?></td>
                                                         <td><?php echo $invoiceno; ?></td>

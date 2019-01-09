@@ -209,7 +209,7 @@ $count = count($address);
                                                 <tr class="tr-border">
                                                     <td class="row-padding-left v-align-middle">Vessel/Flight</td>
                                                     <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
-                                                    <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No</td>
+                                                    <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No & Date</td>
                                                     <td class="row-padding-bottom"><input type="text" class="form-control form-control-border" name="cusdec_no" id="cusdec_no" value="" autocomplete="off" /></td>
                                                 </tr>
 
