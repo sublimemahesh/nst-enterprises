@@ -141,28 +141,36 @@ $count = count($address);
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td class="td-border v-align-middle"><?php if($count >= 1) {echo $address[0]; }; ?></td>
+                                                    <td class="td-border v-align-middle"><?php
+                                                        if ($count >= 1) {
+                                                            echo $address[0];
+                                                        };
+                                                        ?></td>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td class="td-border v-align-middle"><?php if($count >= 2) {echo $address[1]; } ?></td>
+                                                    <td class="td-border v-align-middle"><?php
+                                                        if ($count >= 2) {
+                                                            echo $address[1];
+                                                        }
+                                                        ?></td>
                                                     <td class="row-padding-left v-align-middle">Invoice No</td>
                                                     <td class="v-align-middle p-l-17"><?php echo $JOBCOSTINGCARD->invoiceNumber; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
                                                     <td class="td-border v-align-top">
-                                                        <?php 
+                                                        <?php
                                                         $ad = '';
-                                                        if($count >= 3) {
-                                                            for($i=2; $i<$count; $i++) {
+                                                        if ($count >= 3) {
+                                                            for ($i = 2; $i < $count; $i++) {
                                                                 $ad .= $address[$i];
                                                             }
                                                             echo $ad;
                                                         }
-                                                             ?></td>
+                                                        ?></td>
                                                     <td class="row-padding-left v-align-middle">Date</td>
                                                     <td><input type="text" class="form-control form-control-border" id="created_at" name="created_at" value="" autocomplete="off" /></td>
                                                 </tr>
@@ -203,12 +211,20 @@ $count = count($address);
                                                     <td></td>
                                                     <td class="v-align-middle td-border"></td>
                                                     <td class="row-padding-left v-align-middle">Volume</td>
-                                                    <td class=""><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" autocomplete="off" /></td>
+                                                    <!--<td class=""><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" autocomplete="off" /></td>-->
+                                                    <td class="v-align-top">
+                                                        <table class='table-gross-weight'>
+                                                            <tr>
+                                                                <td><input type="text" class="form-control form-control-border" name="volume" id="volume" value="" autocomplete="off" /></td>
+                                                                <td>Cbm/Fcl</td>
+                                                            </tr>
+                                                        </table>
 
+                                                    </td>
                                                 </tr>
                                                 <tr class="tr-border">
                                                     <td class="row-padding-left v-align-middle">Vessel/Flight</td>
-                                                    <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
+                                                    <td class="td-border td-padding v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . strtoupper(date("d M Y", strtotime($JOB->vesselAndFlightDate))); ?></td>
                                                     <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No & Date</td>
                                                     <td class="row-padding-bottom"><input type="text" class="form-control form-control-border" name="cusdec_no" id="cusdec_no" value="" autocomplete="off" /></td>
                                                 </tr>
@@ -267,7 +283,15 @@ $count = count($address);
                                                             ?>
                                                             <tr class="reimbursement-details">
                                                                 <td></td>        
-                                                                <td class="td-border v-align-middle pl-2"><?php echo $reimbursementitem['name']; ?></td>        
+                                                                <td class="td-border v-align-middle pl-2">
+                                                                    <?php
+                                                                    if ($reimbursementitem['label']) {
+                                                                        echo $reimbursementitem['label'];
+                                                                    } else {
+                                                                        echo $reimbursementitem['name'];
+                                                                    }
+                                                                    ?>
+                                                                </td>        
                                                                 <td class="row-padding-right"><input type="" class="form-control form-control-border reimbursement text-right" id="id-<?php echo $reimbursementdetails['id']; ?>" rid="<?php echo $reimbursementdetails['id']; ?>" amount="<?php echo $amount; ?>" value="<?php echo number_format($amount, 2); ?>" autocomplete="off" /></td>        
                                                             </tr>
                                                             <?php

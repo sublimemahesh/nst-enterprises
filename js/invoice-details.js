@@ -12,11 +12,18 @@ $(document).ready(function () {
                 $('#savebutton').removeClass('hidden');
                 $('#savebutton-print').removeClass('hidden');
                 $('.inv-title').text('Create ');
-                $('#created_at').val(new Date().toISOString().slice(0, 10));
+                var date = new Date().toISOString().slice(0, 10);
+                var formatted_date = GetFormattedDate(date);
+                $('#created_at').val(formatted_date);
+                $('#created_at').attr('date', date);
             } else {
                 $('#id').val(result.id);
                 $('#vat_reg_no').val(result.vat_reg_no);
-                $('#datepicker1').val(result.cleared_date);
+                var formatted_date1 = GetFormattedDate(result.cleared_date);
+                $('#datepicker1').val(formatted_date1);
+                $('#datepicker1').attr('date', result.cleared_date);
+            
+//                $('#datepicker1').val(result.cleared_date);
                 $('#gross_weight').val(result.gross_weight);
                 $('#volume').val(result.volume);
                 $('#cusdec_no').val(result.cusdec_no);
@@ -26,7 +33,11 @@ $(document).ready(function () {
                 $('#vat').attr("vat", result.vat);
                 $('#tax-invoice-total').html(result.tax_total);
                 $('#tax-invoice-total').attr("total", result.tax_total);
-                $('#created_at').val(result.createdAt);
+
+                var formatted_date = GetFormattedDate(result.createdAt);
+                $('#created_at').val(formatted_date);
+                $('#created_at').attr('date', result.createdAt);
+
 //                    $('#statutory-sub-total').val(this.statutory_sub_total);
 //                    $('#delivery-sub-total').val(this.delivery_sub_total);
 //                $('#payable-amount').html(result.payable_amount);
@@ -64,6 +75,37 @@ $(document).ready(function () {
             }
         }
     });
+
+    $("#created_at").change(function () {
+        var newdate = $("#created_at").val();
+        $("#created_at").attr('date', newdate);
+
+        var formatted_date = GetFormattedDate(newdate);
+        $('#created_at').val(formatted_date);
+    });
+    $("#datepicker1").change(function () {
+        var newdate = $("#datepicker1").val();
+        $("#datepicker1").attr('date', newdate);
+
+        var formatted_date1 = GetFormattedDate(newdate);
+        $('#datepicker1').val(formatted_date1);
+    });
+
+    function GetFormattedDate(date) {
+        var todayTime = new Date(date);
+        var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][todayTime.getMonth()];
+        var day = todayTime.getDate();
+        if (day < 10) {
+            day = '0' + day;
+        } else {
+            day = day;
+        }
+        var year = todayTime.getFullYear();
+        var new_date = day + " " + month + " " + year
+        return new_date;
+
+    }
+
 
 });
 

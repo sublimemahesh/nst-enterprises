@@ -77,6 +77,7 @@ $COSTINGTYPES = CostingType::all();
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <th>Label</th>
                                                 <th>Type</th>
                                                 <th>Options</th>
                                             </tr>
@@ -90,6 +91,7 @@ $COSTINGTYPES = CostingType::all();
                                                 <tr id="row_<?php echo $item['id']; ?>">
                                                     <td style="width: 50px;"><?php echo $item['id']; ?></td>
                                                     <td><?php echo $item['name']; ?></td>
+                                                    <td><?php echo $item['label']; ?></td>
                                                     <td><?php echo $COSTINGTYPE->title; ?></td>
                                                     <td class="text-center" style="width: 230px"> 
                                                         <a href="edit-costing-item.php?id=<?php echo $item['id']; ?>" class="op-link btn btn-sm btn-success" name="Edit"><i class="glyphicon glyphicon-pencil"></i></a>

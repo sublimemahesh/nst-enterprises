@@ -9,13 +9,14 @@ class ReimbursementItem {
 
     public $id;
     public $name;
+    public $label;
     public $type;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`name`,`type`,`queue` FROM `reimbursement_item` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`name`,`label`,`type`,`queue` FROM `reimbursement_item` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -23,6 +24,7 @@ class ReimbursementItem {
 
             $this->id = $result['id'];
             $this->name = $result['name'];
+            $this->label = $result['label'];
             $this->type = $result['type'];
             $this->queue = $result['queue'];
 
@@ -34,10 +36,12 @@ class ReimbursementItem {
 
         $query = "INSERT INTO `reimbursement_item` ("
                 . "`name`,"
+                . "`label`,"
                 . "`type`,"
                 . "`queue`) "
                 . "VALUES  ("
                 . "'" . $this->name . "',"
+                . "'" . $this->label . "',"
                 . "'" . $this->type . "',"
                 . "'" . $this->queue . "'"
                 . ")";
@@ -73,6 +77,7 @@ class ReimbursementItem {
 
         $query = "UPDATE  `reimbursement_item` SET "
                 . "`name` ='" . $this->name . "', "
+                . "`label` ='" . $this->label . "', "
                 . "`type` ='" . $this->type . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";

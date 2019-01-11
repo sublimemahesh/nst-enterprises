@@ -167,6 +167,9 @@ p{
 #gross_weight {
     width: 99%;
 }
+#gross_weight, #volume {
+    width: 99%;
+}
 .table-gross-weight {
     border: 0px;
 }
