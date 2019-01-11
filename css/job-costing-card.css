@@ -67,6 +67,7 @@ input[type='text'] {
     width: 142px;
     padding-right: 10px;
     height: 25px;
+    border: 1px solid #000;
 }
 
 .text-right {

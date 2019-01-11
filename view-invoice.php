@@ -10,11 +10,10 @@ if (isset($_GET['id'])) {
 }
 $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 
-if(empty($INVOICE)) {
-    if(isset($_GET['back'])) {
-        header('location: view-job.php?id='.$_GET['back'].'&message=20');
+if (empty($INVOICE)) {
+    if (isset($_GET['back'])) {
+        header('location: view-job.php?id=' . $_GET['back'] . '&message=20');
     }
-    
 }
 
 $JOBCOSTINGCARD = new JobCostingCard($jobcostingcard);
@@ -77,7 +76,7 @@ $address = explode(",", $CONSIGNEE->address);
                     <td></td>
                     <td class="td-border"><?php echo $address[2]; ?></td>
                     <td class="row-padding-left">Date</td>
-                    <td><?php echo $INVOICE['createdAt']; ?></td>
+                    <td><?php echo strtoupper(date_format(date_create($INVOICE['createdAt']), "d M Y")); ?></td>
                 </tr>
 
                 <tr>
@@ -96,23 +95,39 @@ $address = explode(",", $CONSIGNEE->address);
                     <td class="text-to row-padding-left"> Consignment</td>
                     <td class="td-border text-to"><?php echo $CONSIGNMENT->name . '<br />' . strtoupper($CONSIGNMENT->description); ?></td>
                     <td class="row-padding-left v-align-top">Cleared Date</td>
-                    <td class="v-align-top"><?php echo $INVOICE['cleared_date']; ?></td>
+                    <td class="v-align-top"><?php echo strtoupper(date_format(date_create($INVOICE['cleared_date']), "d M Y")); ?></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="v-align-middle td-border"><?php echo $JOB->chassisNumber; ?></td>
                     <td class="row-padding-left">Gross Weight</td>
-                    <td><?php echo $INVOICE['gross_weight'] . ' Kgs'; ?></td>
+                    <td>
+                        <?php
+                        if ($INVOICE['gross_weight']) {
+                            echo $INVOICE['gross_weight'] . ' Kgs';
+                        } else {
+                            echo '-';
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="td-border"></td>
                     <td class="row-padding-left">Volume</td>
-                    <td class=""><?php echo $INVOICE['volume']; ?></td>
+                    <td class="">
+                        <?php
+                        if ($INVOICE['volume']) {
+                            echo $INVOICE['volume'] . ' Cbm/Fcl';
+                        } else {
+                            echo '-';
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <tr class="tr-border">
                     <td class="row-padding-bottom row-padding-left v-align-middle">Vessel/Flight</td>
-                    <td class="td-border td-padding row-padding-bottom v-align-middle"><?php echo $VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate)); ?></td>
+                    <td class="td-border td-padding row-padding-bottom v-align-middle"><?php echo strtoupper($VESSELANDFLIGHT->name . ' OF ' . date("d M Y", strtotime($JOB->vesselAndFlightDate))); ?></td>
                     <td class="row-padding-bottom row-padding-left v-align-middle">Cusdec No & Date</td>
                     <td class="row-padding-bottom"><?php echo $INVOICE['cusdec_no']; ?></td>
                 </tr>
@@ -175,7 +190,15 @@ $address = explode(",", $CONSIGNEE->address);
                             ?>
                             <tr>
                                 <td></td>        
-                                <td class="td-border"><?php echo $reimbursementitem['label']; ?></td>        
+                                <td class="td-border">
+                                    <?php
+                                    if ($reimbursementitem['label']) {
+                                        echo $reimbursementitem['label'];
+                                    } else {
+                                        echo $reimbursementitem['name'];
+                                    }
+                                    ?>
+                                </td>        
                                 <td class="text-right row-padding-right"><?php echo number_format($amount, 2); ?></td>        
                             </tr>
                             <?php
@@ -284,6 +307,6 @@ $address = explode(",", $CONSIGNEE->address);
 
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/amount-to-word.js" type="text/javascript"></script>
-        
+
     </body>
 </html>

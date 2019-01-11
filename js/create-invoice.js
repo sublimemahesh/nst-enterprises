@@ -2,9 +2,9 @@ $(document).ready(function () {
     $("#savebutton").click(function () {
         callLoader();
         var jobcostingcard = $("#job_costing_card").val();
-        var createdAt = $("#created_at").val();
+        var createdAt = $("#created_at").attr('date');
 //        var vat_reg_no = $("#vat_reg_no").val();
-        var cleared_date = $("#datepicker1").val();
+        var cleared_date = $("#datepicker1").attr('date');
         var gross_weight = $("#gross_weight").val();
         var volume = $("#volume").val();
         var cusdec_no = $("#cusdec_no").val();
@@ -97,9 +97,9 @@ $(document).ready(function () {
     $("#editbutton").click(function () {
         callLoader();
         var id = $("#id").val();
-        var createdAt = $("#created_at").val();
+        var createdAt = $("#created_at").attr('date');
 //        var vat_reg_no = $("#vat_reg_no").val();
-        var cleared_date = $("#datepicker1").val();
+        var cleared_date = $("#datepicker1").attr('date');
         var gross_weight = $("#gross_weight").val();
         var volume = $("#volume").val();
         var cusdec_no = $("#cusdec_no").val();

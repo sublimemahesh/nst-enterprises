@@ -94,6 +94,10 @@ $COSTINGTYPE = new CostingType($type);
                                                     <label class="col-md-3">Name</label>
                                                     <input type="text" class="form-control col-md-9" placeholder="Enter name" name="name" id="name" autocomplete="off">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3">Name for Invoice</label>
+                                                    <input type="text" class="form-control col-md-9" placeholder="Enter name for invoice" name="label" id="label" autocomplete="off">
+                                                </div>
                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <input type="hidden" name="type" id="type" value="<?php echo $COSTINGTYPE->id; ?>">
                                                     <button type="submit" name="create-costing-item" id="create-costing-item" class="btn btn-info">Save Costing Item</button>
@@ -125,6 +129,7 @@ $COSTINGTYPE = new CostingType($type);
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
+                                                <th>Label</th>
                                                 <th>Type</th>
                                                 <th>Options</th>
                                             </tr>
@@ -137,6 +142,7 @@ $COSTINGTYPE = new CostingType($type);
                                                 <tr id="row_<?php echo $item['id']; ?>">
                                                     <td style="width: 50px;"><?php echo $item['id']; ?></td>
                                                     <td><?php echo $item['name']; ?></td>
+                                                    <td><?php echo $item['label']; ?></td>
                                                     <td><?php echo $COSTINGTYPE->title; ?></td>
                                                     <td class="text-center" style="width: 230px"> 
                                                         <a href="edit-costing-item.php?id=<?php echo $item['id']; ?>" class="op-link btn btn-sm btn-success" name="Edit"><i class="glyphicon glyphicon-pencil"></i></a>

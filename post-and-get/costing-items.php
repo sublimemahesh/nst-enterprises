@@ -9,6 +9,7 @@ if (isset($_POST['create-costing-item'])) {
     $VALID = new Validator();
 
     $REIMBURSEMENTITEM->name = filter_input(INPUT_POST, 'name');
+    $REIMBURSEMENTITEM->label = filter_input(INPUT_POST, 'label');
     $REIMBURSEMENTITEM->type = filter_input(INPUT_POST, 'type');
 
     $VALID->check($REIMBURSEMENTITEM, [
@@ -46,6 +47,7 @@ if (isset($_POST['edit-costing-item'])) {
     $REIMBURSEMENTITEM = new ReimbursementItem($_POST['id']);
 
     $REIMBURSEMENTITEM->name = filter_input(INPUT_POST, 'name');
+    $REIMBURSEMENTITEM->label = filter_input(INPUT_POST, 'label');
     $REIMBURSEMENTITEM->type = filter_input(INPUT_POST, 'type');
 
     $VALID = new Validator();
