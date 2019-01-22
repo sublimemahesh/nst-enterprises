@@ -76,6 +76,17 @@ $payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
             </table>
 
             <!--Table-->
+            <table class="table2 table-bordered to-hide" border="1">
+                <thead class="">
+                    <tr>
+                        <th class="col-1"></th>
+                        <th class="text-center table-td-width col-2">V/NO</th>
+                        <th class="text-center table-td-width col-3">AMOUNT</th>
+                        <th class="text-center table-td-width col-4">DESCRIPTION</th>
+                        <th class="text-center table-td-width col-5">SUB TOTAL</th>
+                    </tr>
+                </thead>
+            </table>
             <?php
             foreach ($COSTINGTYPES as $key => $type) {
                 $counttype = ReimbursementDetails::getCountByJobCostingCardAndType($jobcostingcard, $type['id']);
@@ -83,23 +94,7 @@ $payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
                     ?>
                     <table class="table2 table-bordered to-hide" id="table-<?php echo $type['id']; ?>" border="1">
 
-                        <?php
-                        if ($key === 0) {
-                            ?>
-                            <!--Table head-->
-                            <thead class="">
-                                <tr>
-                                    <th class="col-1"></th>
-                                    <th class="text-center table-td-width col-2">V/NO</th>
-                                    <th class="text-center table-td-width col-3">AMOUNT</th>
-                                    <th class="text-center table-td-width col-4">DESCRIPTION</th>
-                                    <th class="text-center table-td-width col-5">SUB TOTAL</th>
-                                </tr>
-                            </thead>
-                            <!--Table head-->
-                            <?php
-                        }
-                        ?>
+                        
 
 
                         <!--Table body-->

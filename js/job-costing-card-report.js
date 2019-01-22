@@ -12,11 +12,11 @@ $(document).ready(function () {
         cache: false,
         url: 'ajax/report.php',
         success: function (types) {
+            
             var count = types.length;
             types.forEach(myFunction)
 
             function myFunction(item, index) {
-
                 $.ajax({
                     type: 'POST',
                     data: {
