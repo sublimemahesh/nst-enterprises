@@ -6,7 +6,8 @@ $REIMBURSEMENTDETAILS = new ReimbursementDetails(NULL);
 foreach ($_POST['data'] as $data) {
     if ($data['id']) {
         if (empty($data['vno']) && empty($data['amount']) && empty($data['description'])) {
-            $result = TRUE;
+            $REIMBURSEMENTDETAILS->id = $data['id'];
+            $result = $REIMBURSEMENTDETAILS->delete();
         } else {
             $REIMBURSEMENTDETAILS->id = $data['id'];
             $REIMBURSEMENTDETAILS->voucherNumber = $data['vno'];
