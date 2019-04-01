@@ -65,6 +65,10 @@ $payments = JobPayment::getSumOfPaymentsByJob($JOB->id);
                     <td class="td-style"><?php echo $CONSIGNEE->name; ?></td>
                 </tr>
                 <tr>
+                    <td>CHASSIS NUMBER</td>
+                    <td class="td-style"><?php echo $JOB->chassisNumber; ?></td>
+                </tr>
+                <tr>
                     <td>CONSIGNMENT</td>
                     <td class="td-style"><?php echo $CONSIGNMENT->name; ?></td>    
                 </tr>

@@ -52,6 +52,8 @@ $JOB = Job::getJobsByDateRange($from, $to);
                 </thead>
                 <tbody>
                     <?php
+                    $tot_invoice_amount = $tot_costing_amount = $tot_gross_profit = $tot_service_income = $tot_vat = $tot_nbt = 0;
+
                     foreach (Invoice::getInvoicesByDateRange($from, $to) as $key => $invoice) {
                         $jobcostingcard = new JobCostingCard($invoice['job_costing_card']);
                         $job = new Job($jobcostingcard->job);
@@ -60,13 +62,22 @@ $JOB = Job::getJobsByDateRange($from, $to);
                         $costingamount = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard->id);
 
                         if ((float) $invoice['payable_amount'] >= (float) $costingamount['grandtotal']) {
-                            $grossprofit = number_format((float) $invoice['payable_amount'] - (float) $costingamount['grandtotal'], 2);
+                            $gross = (float) $invoice['payable_amount'] - (float) $costingamount['grandtotal'];
+                            $grossprofit = number_format($gross, 2);
                         } else {
-                            $grossprofit = '(' . number_format((float) $costingamount['grandtotal'] - (float) $invoice['payable_amount'], 2) . ')';
+                            $gross = (float) $costingamount['grandtotal'] - (float) $invoice['payable_amount'];
+                            $grossprofit = '(' . number_format($gross, 2) . ')';
                         }
-                        $serviceincome = (float)$invoice['agency_fees'] + (float)$invoice['documentation'];
+                        $serviceincome = (float) $invoice['agency_fees'] + (float) $invoice['documentation'];
                         $vat = $serviceincome * 15 / 100;
                         $nbt = $serviceincome * 2 / 100;
+
+
+                        $tot_invoice_amount += (float) $invoice['payable_amount'];
+                        $tot_costing_amount += (float) $costingamount['grandtotal'];
+                        $tot_service_income += $serviceincome;
+                        $tot_vat += $vat;
+                        $tot_nbt += $nbt;
                         ?>
                         <tr>
                             <td width="40"><?php echo $key + 1; ?></td>
@@ -87,6 +98,26 @@ $JOB = Job::getJobsByDateRange($from, $to);
                     }
                     ?>
                 </tbody>
+                <?php
+                if ($tot_invoice_amount >= $tot_costing_amount) {
+                    $totgross = $tot_invoice_amount - $tot_costing_amount;
+                    $tot_gross_profit = number_format($totgross, 2);
+                } else {
+                    $totgross = $tot_costing_amount - $tot_invoice_amount;
+                    $tot_gross_profit = '(' . number_format($totgross, 2) . ')';
+                }
+                ?>
+                <tfoot>
+                    <tr>
+                        <th colspan="7" class="text-center">TOTAL</th>
+                        <th id="total_invoice_amount" class="text-right"><?php echo number_format($tot_invoice_amount, 2); ?></th>
+                        <th id="total_costing_amount" class="text-right"><?php echo number_format($tot_costing_amount, 2); ?></th>
+                        <th id="total_gross_profit" class="text-right"><?php echo $tot_gross_profit; ?></th>
+                        <th id="total_service_income" class="text-right"><?php echo number_format($tot_service_income, 2); ?></th>
+                        <th id="total_vat" class="text-right"><?php echo number_format($tot_vat, 2); ?></th>
+                        <th id="total_nbt" class="text-right"><?php echo number_format($tot_nbt, 2); ?></th>
+                    </tr>
+                </tfoot>
             </table>
 
         </div>

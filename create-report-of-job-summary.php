@@ -104,6 +104,17 @@ $USER1 = new User($_SESSION['id']);
                                         <tbody>
 
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="7" class="text-center">TOTAL</th>
+                                                <th id="total_invoice_amount" class="text-right"></th>
+                                                <th id="total_costing_amount" class="text-right"></th>
+                                                <th id="total_gross_profit" class="text-right"></th>
+                                                <th id="total_service_income" class="text-right"></th>
+                                                <th id="total_vat" class="text-right"></th>
+                                                <th id="total_nbt" class="text-right"></th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
 
                                     <div class="col-sm-8 col-md-offset-4 form-btn tax-invoice-btn">
