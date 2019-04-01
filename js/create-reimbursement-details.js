@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $("#savebutton").click(function () {
+        document.getElementById("savebutton").disabled = true;
         callLoader();
         var job, date, invoiceno;
 

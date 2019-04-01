@@ -1,5 +1,7 @@
 $(document).ready(function () {
+    document.getElementById("editbutton").disabled = false;
     $("#editbutton").click(function () {
+        document.getElementById("editbutton").disabled = true;
         callLoader();
         var data = [];
         var id, jobcostingcard, rid, vno, amount, description, type;

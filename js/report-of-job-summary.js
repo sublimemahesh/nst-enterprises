@@ -21,11 +21,17 @@ $(document).ready(function () {
                     option: 'GETINVOICESBYSTARTANDENDDATE'
                 },
                 success: function (invoices) {
-                    
+
 
                     callLoader();
                     var html;
-                    if (invoices) {
+                    var tot_invoice_amount = 0;
+                    var tot_costing_amount = 0;
+                    var tot_gross_profit = 0;
+                    var tot_service_income = 0;
+                    var tot_vat = 0;
+                    var tot_nbt = 0;
+                    if (invoices != '') {
                         $.each(invoices, function (key, invoice) {
 
                             var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
@@ -95,15 +101,40 @@ $(document).ready(function () {
                             <td class="text-right">' + nbt + '</td>\n\
                             </tr>';
 
+                            tot_invoice_amount += parseFloat(invoice.payableAmount);
+                            tot_costing_amount += parseFloat(invoice.grandTotal);
+                            tot_service_income += parseFloat(serviceincome);
+                            tot_vat += parseFloat(vat);
+                            tot_nbt += parseFloat(nbt);
+                            $('#total_invoice_amount').text(new Intl.NumberFormat().format(tot_invoice_amount));
+                            $('#total_costing_amount').text(new Intl.NumberFormat().format(tot_costing_amount));
+
+                            if (tot_invoice_amount >= tot_costing_amount) {
+                                $('#total_gross_profit').text(new Intl.NumberFormat().format(tot_invoice_amount - tot_costing_amount));
+                            } else {
+                                $('#total_gross_profit').text('(' + new Intl.NumberFormat().format(tot_costing_amount - tot_invoice_amount) + ')');
+                            }
+                            $('#total_service_income').text(new Intl.NumberFormat().format(tot_service_income));
+                            $('#total_vat').text(new Intl.NumberFormat().format(tot_vat));
+                            $('#total_nbt').text(new Intl.NumberFormat().format(tot_nbt));
+
 
                             $("#balance tbody").empty();
                             $("#balance tbody").append(html);
                         });
                     } else {
-                        html = 'No any jobs in database';
+                        html = '<tr><td colspan=13">No any jobs in database</td></tr>';
                         $("#balance tbody").empty();
                         $("#balance tbody").append(html);
+
+                        $('#total_invoice_amount').html("0.00");
+                        $('#total_costing_amount').html("0.00");
+                        $('#total_gross_profit').html("0.00");
+                        $('#total_service_income').html("0.00");
+                        $('#total_vat').html("0.00");
+                        $('#total_nbt').html("0.00");
                     }
+
                 }
 
             });
@@ -125,9 +156,19 @@ $(document).ready(function () {
                 option: 'GETINVOICESBYSTARTANDENDDATE'
             },
             success: function (invoices) {
+                alert(111);
                 callLoader();
                 var html;
-                if (invoices) {
+                var tot_invoice_amount = 0;
+                var tot_costing_amount = 0;
+                var tot_gross_profit = 0;
+                var tot_service_income = 0;
+                var tot_vat = 0;
+                var tot_nbt = 0;
+
+
+                if (invoices != '') {
+
                     $.each(invoices, function (key, invoice) {
 
                         var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
@@ -195,14 +236,38 @@ $(document).ready(function () {
                             <td class="text-right">' + nbt + '</td>\n\
                             </tr>';
 
+                        tot_invoice_amount += parseFloat(invoice.payableAmount);
+                        tot_costing_amount += parseFloat(invoice.grandTotal);
+                        tot_service_income += parseFloat(serviceincome);
+                        tot_vat += parseFloat(vat);
+                        tot_nbt += parseFloat(nbt);
+                        $('#total_invoice_amount').text(new Intl.NumberFormat().format(tot_invoice_amount));
+                        $('#total_costing_amount').text(new Intl.NumberFormat().format(tot_costing_amount));
+
+                        if (tot_invoice_amount >= tot_costing_amount) {
+                            $('#total_gross_profit').text(new Intl.NumberFormat().format(tot_invoice_amount - tot_costing_amount));
+                        } else {
+                            $('#total_gross_profit').text('(' + new Intl.NumberFormat().format(tot_costing_amount - tot_invoice_amount) + ')');
+                        }
+                        $('#total_service_income').text(new Intl.NumberFormat().format(tot_service_income));
+                        $('#total_vat').text(new Intl.NumberFormat().format(tot_vat));
+                        $('#total_nbt').text(new Intl.NumberFormat().format(tot_nbt));
+
 
                         $("#balance tbody").empty();
                         $("#balance tbody").append(html);
                     });
                 } else {
-                    html = 'No any jobs in database';
+                    html = '<tr><td colspan=13">No any jobs in database</td></tr>';
                     $("#balance tbody").empty();
                     $("#balance tbody").append(html);
+
+                    $('#total_invoice_amount').html("0.00");
+                    $('#total_costing_amount').html("0.00");
+                    $('#total_gross_profit').html("0.00");
+                    $('#total_service_income').html("0.00");
+                    $('#total_vat').html("0.00");
+                    $('#total_nbt').html("0.00");
                 }
             }
 
@@ -227,7 +292,13 @@ $(document).ready(function () {
             success: function (invoices) {
                 callLoader();
                 var html;
-                if (invoices) {
+                var tot_invoice_amount = 0;
+                var tot_costing_amount = 0;
+                var tot_gross_profit = 0;
+                var tot_service_income = 0;
+                var tot_vat = 0;
+                var tot_nbt = 0;
+                if (invoices != '') {
                     $.each(invoices, function (key, invoice) {
 
                         var grossprofit, gross, serviceincome, vat, nbt, invoiceamount, agency_fees, documentation, invoiceCreatedAt, invoiceNumber;
@@ -295,14 +366,38 @@ $(document).ready(function () {
                             <td class="text-right">' + nbt + '</td>\n\
                             </tr>';
 
+                        tot_invoice_amount += parseFloat(invoice.payableAmount);
+                        tot_costing_amount += parseFloat(invoice.grandTotal);
+                        tot_service_income += parseFloat(serviceincome);
+                        tot_vat += parseFloat(vat);
+                        tot_nbt += parseFloat(nbt);
+                        $('#total_invoice_amount').text(new Intl.NumberFormat().format(tot_invoice_amount));
+                        $('#total_costing_amount').text(new Intl.NumberFormat().format(tot_costing_amount));
+
+                        if (tot_invoice_amount >= tot_costing_amount) {
+                            $('#total_gross_profit').text(new Intl.NumberFormat().format(tot_invoice_amount - tot_costing_amount));
+                        } else {
+                            $('#total_gross_profit').text('(' + new Intl.NumberFormat().format(tot_costing_amount - tot_invoice_amount) + ')');
+                        }
+                        $('#total_service_income').text(new Intl.NumberFormat().format(tot_service_income));
+                        $('#total_vat').text(new Intl.NumberFormat().format(tot_vat));
+                        $('#total_nbt').text(new Intl.NumberFormat().format(tot_nbt));
+
 
                         $("#balance tbody").empty();
                         $("#balance tbody").append(html);
                     });
                 } else {
-                    html = 'No any jobs in database';
+                    html = '<tr><td colspan=13">No any jobs in database</td></tr>';
                     $("#balance tbody").empty();
                     $("#balance tbody").append(html);
+
+                    $('#total_invoice_amount').html("0.00");
+                    $('#total_costing_amount').html("0.00");
+                    $('#total_gross_profit').html("0.00");
+                    $('#total_service_income').html("0.00");
+                    $('#total_vat').html("0.00");
+                    $('#total_nbt').html("0.00");
                 }
             }
 

@@ -23,11 +23,11 @@ class Helper {
 
         $getStartYear = explode('-', $res['start_date']);
         $startyear = $getStartYear[0];
-        
+
         $getEndYear = explode('-', $res['end_date']);
         $year = $getEndYear[0];
-        $endyear = substr( $year, -2);
-        
+        $endyear = substr($year, -2);
+
 
         $maxid = $res['current_invoice_id'] + 1;
 //        $JOBCOSTINGCARD = JobCostingCard::getMaxID();
@@ -35,15 +35,19 @@ class Helper {
 
 
         if ($maxid < 10) {
+            $last_number = '000' . $maxid;
+        } elseif ($maxid < 100) {
+            $last_number = '00' . $maxid;
+        } elseif ($maxid < 1000) {
             $last_number = '0' . $maxid;
         } else {
             $last_number = $maxid;
         }
         $invoice = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $last_number;
-  
+
         return $invoice;
     }
-    
+
     public function jobNo() {
 
         $month = date("m");
@@ -53,22 +57,26 @@ class Helper {
 
         $getStartYear = explode('-', $res['start_date']);
         $startyear = $getStartYear[0];
-        
+
         $getEndYear = explode('-', $res['end_date']);
         $year = $getEndYear[0];
-        $endyear = substr( $year, -2);
-        
+        $endyear = substr($year, -2);
+
 
         $maxid = $res['current_job_id'] + 1;
 
 
         if ($maxid < 10) {
             $last_number = '000' . $maxid;
+        } elseif ($maxid < 100) {
+            $last_number = '00' . $maxid;
+        } elseif ($maxid < 1000) {
+            $last_number = '0' . $maxid;
         } else {
             $last_number = $maxid;
         }
         $job = 'NST/' . $startyear . '/' . $endyear . '/' . $month . '/' . $last_number;
-  
+
         return $job;
     }
 
