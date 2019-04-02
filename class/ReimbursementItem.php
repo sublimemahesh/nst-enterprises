@@ -118,7 +118,7 @@ class ReimbursementItem {
     
     public function getReimbursementItemsForInvoice() {
 
-        $query = "SELECT * FROM `reimbursement_item` WHERE `type` in(1,3,5) ORDER BY `type` ASC ";
+        $query = "SELECT * FROM `reimbursement_item` WHERE `type` in(1,2,3,5) ORDER BY `type` ASC ";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
