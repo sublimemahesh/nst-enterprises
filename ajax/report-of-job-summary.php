@@ -35,7 +35,7 @@ if ($_POST['option'] == 'GETINVOICESBYSTARTANDENDDATE') {
         $arr['jobReferenceNo'] = $job->reference_no;
         $arr['consignee'] = $consignee->name;
         $arr['vatno'] = $consignee->vatNumber;
-        $arr['consignment'] = $consignment->name;
+        $arr['chassisno'] = $job->chassisNumber;
         $arr['payableAmount'] = $invoice['payable_amount'];
         $arr['grandTotal'] = $costingamount['grandtotal'];
         $arr['agencyFees'] = $invoice['agency_fees'];
