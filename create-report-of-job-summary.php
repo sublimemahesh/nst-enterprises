@@ -92,7 +92,7 @@ $USER1 = new User($_SESSION['id']);
                                                 <th>JOB NO</th>
                                                 <th>CONSIGNEE</th>
                                                 <th>VAT NO.</th>
-                                                <th>DESCRIPTION</th>
+                                                <th>CHASSIS NO.</th>
                                                 <th>I/ AMOUNT</th>
                                                 <th>COSTING AMOUNT</th>
                                                 <th>GROSS PROFIT</th>

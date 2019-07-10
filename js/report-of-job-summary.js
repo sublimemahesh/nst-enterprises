@@ -92,7 +92,7 @@ $(document).ready(function () {
                             <td>' + jobno.substring(15, 19) + '</td>\n\
                             <td>' + invoice.consignee + '</td>\n\
                             <td>' + invoice.vatno + '</td>\n\
-                            <td>' + invoice.consignment + '</td>\n\
+                            <td>' + invoice.chassisno + '</td>\n\
                             <td class="text-right">' + invoiceamount + '</td>\n\
                             <td class="text-right">' + new Intl.NumberFormat().format(invoice.grandTotal) + '</td>\n\
                             <td class="text-right">' + grossprofit + '</td>\n\

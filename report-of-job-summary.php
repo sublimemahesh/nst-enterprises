@@ -41,7 +41,7 @@ $JOB = Job::getJobsByDateRange($from, $to);
                         <th class="text-center">JOB NO.</th>
                         <th class="text-center">CONSIGNEE</th>
                         <th class="text-center">VAT NO.</th>
-                        <th class="text-center">DESCRIPTION</th>
+                        <th class="text-center">CHASSIS NO.</th>
                         <th class="text-center">INVOICE AMOUNT</th>
                         <th class="text-center">COSTING AMOUNT</th>
                         <th class="text-center">GROSS PROFIT</th>
@@ -86,7 +86,7 @@ $JOB = Job::getJobsByDateRange($from, $to);
                             <td width="100"><?php echo $job->reference_no; ?></td>
                             <td width="100"><?php echo $CONSIGNEE->name; ?></td>
                             <td width="100"><?php echo $CONSIGNEE->vatNumber; ?></td>
-                            <td width="100"><?php echo $CONSIGNMENT->name; ?></td>
+                            <td width="100"><?php echo $job->chassisNumber; ?></td>
                             <td width="160" class="text-right"><?php echo number_format($invoice['payable_amount'], 2); ?></td>
                             <td width="100" class="text-right"><?php echo number_format($costingamount['grandtotal'], 2); ?></td>
                             <td width="100" class="text-right"><?php echo $grossprofit; ?></td>
