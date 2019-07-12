@@ -126,7 +126,7 @@ if (isset($_GET['checkreport'])) {
                                                 <th>Date</th>
                                                 <th>D.Note Number</th>
                                                 <th>Job Number</th>
-                                                <th>Consignment</th>
+                                                <th>Chassis No</th>
                                                 <th>Total</th>
                                                 <th>Advance</th>
                                                 <th>Due</th>
@@ -140,10 +140,9 @@ if (isset($_GET['checkreport'])) {
                                             <?php
                                             $i = 1;
                                             foreach (Invoice::getInvoiceByConsignee($consigneeid) as $invoice) {
-                                               
+                                                
                                                 $CONSIGNMENT = new Consignment($invoice['consignment']);
-//                                                $JOBCOSTINGCARD = JobCostingCard::getJobCostingCardIdByJob($job['id']);
-//                                                $INVOICE = Invoice::getInvoiceByJobCostingCard($JOBCOSTINGCARD['id']);
+                                                $JOB = new Job($invoice['job_id']);
                                                 
                                                 $invoiceno = substr($invoice['invoice_number'],15,19);
 //                                                if ($INVOICE) {
@@ -153,7 +152,7 @@ if (isset($_GET['checkreport'])) {
                                                         <td><?php echo $invoice['invoice_date']; ?></td>
                                                         <td><?php echo $invoiceno; ?></td>
                                                         <td><?php echo substr($invoice['job_reference_no'],15,19); ?></td>
-                                                        <td><?php echo $CONSIGNMENT->name; ?></td>
+                                                        <td><?php echo $JOB->chassisNumber; ?></td>
                                                         <td class="text-right"><?php echo number_format($invoice['payable_amount'], 2); ?></td>
                                                         <td class="text-right"><?php echo number_format($invoice['advance'], 2); ?></td>
                                                         <td class="text-right" id="due_<?php echo $i; ?>" due="<?php

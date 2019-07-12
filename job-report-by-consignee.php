@@ -33,7 +33,7 @@ $CONSIGNEE = new Consignee($consigneeid);
                         <th class="text-center">Date</th>
                         <th class="text-center">D.Note Number</th>
                         <th class="text-center">Job Number</th>
-                        <th class="text-center">Consignment</th>
+                        <th class="text-center">Chassis No</th>
                         <th class="text-center">Total</th>
                         <th class="text-center">Advance</th>
                         <th class="text-center">Due</th>
@@ -47,15 +47,16 @@ $CONSIGNEE = new Consignee($consigneeid);
                     <?php
                     $i = 1;
                     foreach (Invoice::getInvoiceByConsignee($consigneeid) as $invoice) {
-                        $CONSIGNMENT = new Consignment($invoice['consignment']);
+                       $CONSIGNMENT = new Consignment($invoice['consignment']);
                         $invoiceno = substr($invoice['invoice_number'],15,19);
+                        $JOB = new Job($invoice['job_id']);
                             ?>
                             <tr>
                                 <td width="40"><?php echo $i; ?></td>
                                 <td width="110"><?php echo $invoice['invoice_date']; ?></td>
                                 <td width="90"><?php echo $invoiceno; ?></td>
                                 <td width="60"><?php echo substr($invoice['job_reference_no'],15,19); ?></td>
-                                <td><?php echo $CONSIGNMENT->name; ?></td>
+                                <td><?php echo $JOB->chassisNumber; ?></td>
                                 <td width="110" class="text-right"><?php echo number_format($invoice['payable_amount'], 2); ?></td>
                                 <td width="110" class="text-right"><?php echo number_format($invoice['advance'], 2); ?></td>
                                 <td width="110" class="text-right"><?php echo number_format($invoice['due'], 2); ?></td>
