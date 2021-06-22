@@ -3,6 +3,7 @@ $(document).ready(function (e) {
         e.preventDefault();
     }
     $('#name').keyup(function (e) {
+
         var nameId = $('#name-id').val();
         if (e.which != 38) {
             if (e.which != 40) {
@@ -317,4 +318,7 @@ $(document).ready(function (e) {
 
     });
 });
+
+
+
 

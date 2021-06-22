@@ -90,7 +90,7 @@ class Job {
 
     public function all() {
 
-        $query = "SELECT * FROM `job` ORDER BY `createdAt` DESC";
+        $query = "SELECT * FROM `job` ORDER BY `createdAt` DESC, `id` DESC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();

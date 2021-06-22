@@ -11,6 +11,7 @@ if (isset($_POST['create-costing-item'])) {
     $REIMBURSEMENTITEM->name = filter_input(INPUT_POST, 'name');
     $REIMBURSEMENTITEM->label = filter_input(INPUT_POST, 'label');
     $REIMBURSEMENTITEM->type = filter_input(INPUT_POST, 'type');
+    $REIMBURSEMENTITEM->queue = 0;
 
     $VALID->check($REIMBURSEMENTITEM, [
         'name' => ['required' => TRUE],

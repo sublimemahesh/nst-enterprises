@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $("#savebutton").click(function () {
+        $("#savebutton").addClass('disabled');
         callLoader();
         var jobcostingcard = $("#job_costing_card").val();
         var createdAt = $("#created_at").attr('date');
@@ -8,8 +9,16 @@ $(document).ready(function () {
         var gross_weight = $("#gross_weight").val();
         var volume = $("#volume").val();
         var cusdec_no = $("#cusdec_no").val();
-        var agency_fees = $("#agency_fees").val();
-        var documentation = $("#documentation").val();
+        if($("#agency_fees").val() == '') {
+             var agency_fees = 0;
+        } else {
+            var agency_fees = $("#agency_fees").val();
+        }
+        if($("#documentation").val() == '') {
+             var documentation = 0;
+        } else {
+            var documentation = $("#documentation").val();
+        }
         var vat = $("#vat").attr('vat');
         var tax_total = $("#tax-invoice-total").attr('total');
         var statutory_total = $('#statutory-sub-total').attr('total');
@@ -95,6 +104,7 @@ $(document).ready(function () {
     });
 
     $("#editbutton").click(function () {
+        $("#editbutton").addClass('disabled');
         callLoader();
         var id = $("#id").val();
         var createdAt = $("#created_at").attr('date');
@@ -103,8 +113,16 @@ $(document).ready(function () {
         var gross_weight = $("#gross_weight").val();
         var volume = $("#volume").val();
         var cusdec_no = $("#cusdec_no").val();
-        var agency_fees = $("#agency_fees").val();
-        var documentation = $("#documentation").val();
+        if($("#agency_fees").val() == '') {
+             var agency_fees = 0;
+        } else {
+            var agency_fees = $("#agency_fees").val();
+        }
+        if($("#documentation").val() == '') {
+             var documentation = 0;
+        } else {
+            var documentation = $("#documentation").val();
+        }
         var vat = $("#vat").attr('vat');
         var tax_total = $("#tax-invoice-total").attr('total');
         var statutory_total = $('#statutory-sub-total').attr('total');
@@ -145,8 +163,6 @@ $(document).ready(function () {
                 var data = [];
                 var delivery_id, name, amount;
 
-
-
                 $('.table1').each(function () {
                     $(this).find('.delivery-details').each(function () {
                         delivery_id = $(this).find('#id').attr('did');
@@ -165,9 +181,6 @@ $(document).ready(function () {
                     });
                 });
                 submitFormData(data);
-
-
-
 
             }
         });

@@ -186,6 +186,7 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
 
         <script src="js/job-consignee.js" type="text/javascript"></script>
         <script src="js/add-consignment.js" type="text/javascript"></script>
+        <script src="js/add-vessel-or-flight.js" type="text/javascript"></script>
         <script src="js/job.js" type="text/javascript"></script>
         <script src="js/edit-job.js" type="text/javascript"></script>
         <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
@@ -210,6 +211,12 @@ $VESSELANDFLIGHT = new VesselAndFlight($JOB->vesselAndFlight);
                     var name = $("#consignment").val();
                     $("#consignment-name").val(name);
                     jQuery("#modal-consignment").modal('show');
+
+                });
+                jQuery('#add-vesselAndFlight').click(function () {
+                    var name = $("#vesselAndFlight").val();
+                    $("#vesselorFlight-name").val(name);
+                    jQuery("#modal-vesselorflight").modal('show');
 
                 });
             });

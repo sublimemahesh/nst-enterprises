@@ -3,14 +3,20 @@
 include_once(dirname(__FILE__) . '/../class/include.php');
 
 if ($_POST['option'] == 'GETSTARTANDENDDATE') {
-    $ACCOUNT = new Account(NULL);
+    /*$ACCOUNT = new Account(NULL);
 
     $today = date("Y-m-d");
-    $currentaccount = $ACCOUNT->getCurrentAccount($today);
+    $currentaccount = $ACCOUNT->getCurrentAccount($today);*/
+    
+    $start_date = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+
+    $arr = array();
+    $arr['start_date'] = $start_date;
+    $arr['end_date'] = date("Y-m-d");
 
     header('Content-Type: application/json');
 
-    echo json_encode($currentaccount);
+    echo json_encode($arr);
     exit();
 }
 if ($_POST['option'] == 'GETINVOICESBYSTARTANDENDDATE') {

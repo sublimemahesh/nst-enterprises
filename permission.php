@@ -9,7 +9,7 @@ $PERMISSIONS = unserialize($USER1->permission);
 $url = explode("/", $_SERVER['REQUEST_URI']);
 
 $result = explode(".", $url[2]); //localhost
-//$result = explode(".", $url[1]);//online
+// $result = explode(".", $url[1]);//online
 $permission = $result[0];
 $PERID = UserPermission::getIdByPermission($permission);
 

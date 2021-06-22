@@ -11,6 +11,7 @@ if (isset($_POST['create-consignment'])) {
     $CONSIGNMENT->name = filter_input(INPUT_POST, 'name');
     $CONSIGNMENT->description = $_POST['description'];
     $CONSIGNMENT->isActive = 1;
+    $CONSIGNMENT->queue = 0;
 
     $VALID->check($CONSIGNMENT, [
         'name' => ['required' => TRUE]

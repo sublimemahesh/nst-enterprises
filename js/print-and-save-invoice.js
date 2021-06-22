@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#savebutton-print').click(function () {
-
+$("#savebutton-print").addClass('disabled');
         if (!$('#datepicker1').val() || $('#datepicker1').val().length === 0) {
             swal({
                 title: "Error!",
@@ -132,7 +132,7 @@ $(document).ready(function () {
 
     });
     $('#editbutton-print').click(function () {
-
+$("#editbutton-print").addClass('disabled');
         if (!$('#created_at').val() || $('#created_at').val().length === 0) {
             swal({
                 title: "Error!",

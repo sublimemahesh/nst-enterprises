@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . '/permission.php');
 
 $USER1 = new User($_SESSION['id']);
 $id = '';
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $PAYMENT = new JobPayment($id);
@@ -15,65 +15,66 @@ $PAYMENT = new JobPayment($id);
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Edit Job Payment || Dashboard || NST Enterprises</title>
+    <title>Edit Job Payment || Dashboard || NST Enterprises</title>
 
-        <!-- Bootstrap Core CSS -->
-        <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- MetisMenu CSS -->
-        <link href="plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom CSS -->
-        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom Fonts -->
-        <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <!-- DataTables CSS -->
-        <link href="plugins/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
-        <!-- DataTables Responsive CSS -->
-        <link href="plugins/datatables-responsive/dataTables.responsive.css" rel="stylesheet" type="text/css"/>
-        <!-- Sweetalerts -->
-        <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <!-- Responsive CSS -->
-        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- MetisMenu CSS -->
+    <link href="plugins/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css" />
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Fonts -->
+    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!-- DataTables CSS -->
+    <link href="plugins/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- DataTables Responsive CSS -->
+    <link href="plugins/datatables-responsive/dataTables.responsive.css" rel="stylesheet" type="text/css" />
+    <!-- Sweetalerts -->
+    <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive CSS -->
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <div id="wrapper">
+    <div id="wrapper">
 
-            <!-- Navigation -->
-            <?php
-            include 'navigation-and-header.php';
-            ?>
-            <!-- /Navigation -->
+        <!-- Navigation -->
+        <?php
+        include 'navigation-and-header.php';
+        ?>
+        <!-- /Navigation -->
 
-            <!-- Page Content -->
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="my-alert">
-                        <?php
-                        $vali = new Validator();
-                        $vali->show_message();
-                        ?>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="my-alert">
+                    <?php
+                    $vali = new Validator();
+                    $vali->show_message();
+                    ?>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header font-header">Edit Job Payment - #<?php echo $PAYMENT->id; ?></h1>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header font-header">Edit Job Payment - #<?php echo $PAYMENT->id; ?></h1>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-info">
-<!--                                <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-info">
+                            <!--                                <div class="panel-heading">
                                     Edit Job Payment
                                 </div>
                                 <ul class="header-dropdown">
@@ -83,26 +84,33 @@ $PAYMENT = new JobPayment($id);
                                         </a>
                                     </li>
                                 </ul>-->
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <form id="form-consignee"  method="post" action="post-and-get/job-payment.php">
-                                                
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Payment</label>
-                                                    <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off" value="<?php echo $PAYMENT->payment; ?>">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-md-3">Comment</label>
-                                                    <textarea class="form-control col-md-9" name="comment" id="comment"><?php echo $PAYMENT->comment; ?></textarea>
-                                                    </div>
-                                                
-                                                <div class="col-sm-9 col-md-offset-3 form-btn">
-                                                    <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
-                                                    <button type="submit" name="edit-payment" id="edit-payment" class="btn btn-info">Save Changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="form-consignee" method="post" action="post-and-get/job-payment.php">
+
+                                            <div class="form-group">
+                                                <label class="col-md-3">Payment</label>
+                                                <input type="text" class="form-control col-md-9" placeholder="Enter Payment" name="payment" id="payment" autocomplete="off" value="<?php echo $PAYMENT->payment; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Comment</label>
+                                                <textarea class="form-control col-md-9" name="comment" id="comment"><?php echo $PAYMENT->comment; ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Receipt No.</label>
+                                                <input type="text" class="form-control col-md-9" placeholder="Enter Receipt No" name="receipt_no" id="receipt_no" autocomplete="off" value="<?php echo $PAYMENT->receipt_no; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Receipt Date</label>
+                                                <input type="text" class="form-control col-md-9" id="receipt_date" name="receipt_date" autocomplete="off" value="<?php echo $PAYMENT->receipt_date; ?>">
+                                            </div>
+
+                                            <div class="col-sm-9 col-md-offset-3 form-btn">
+                                                <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
+                                                <button type="submit" name="edit-payment" id="edit-payment" class="btn btn-info">Save Changes</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -110,23 +118,31 @@ $PAYMENT = new JobPayment($id);
                     </div>
                 </div>
             </div>
-            <!-- /Page Content -->
         </div>
+        <!-- /Page Content -->
+    </div>
 
-        <!-- jQuery -->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="js/sb-admin-2.js" type="text/javascript"></script>
-        <!-- DataTables JavaScript -->
-        
-        <!-- Sweetalerts -->
-        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-        <script src="js/job-payment.js" type="text/javascript"></script> 
-        
-    </body>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="plugins/metisMenu/metisMenu.min.js" type="text/javascript"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js" type="text/javascript"></script>
+    <!-- DataTables JavaScript -->
+
+    <!-- Sweetalerts -->
+    <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="js/job-payment.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $("#receipt_date").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+</body>
 
 </html>

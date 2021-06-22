@@ -17,6 +17,8 @@ if (isset($_POST['create-consignee'])) {
     $CONSIGNEE->description = filter_input(INPUT_POST, 'description');
     $CONSIGNEE->parent = filter_input(INPUT_POST, 'pnameid');
     $CONSIGNEE->isActive = 1;
+    $CONSIGNEE->balance = 0;
+    $CONSIGNEE->queue = 0;
 
     $VALID->check($CONSIGNEE, [
         'name' => ['required' => TRUE]

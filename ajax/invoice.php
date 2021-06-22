@@ -120,7 +120,12 @@ if ($_POST['option'] == 'SAVEDELIVERYDATA') {
 
             $DELIVERYDATA->invoice = $data['invoice'];
             $DELIVERYDATA->name = $data['name'];
-            $DELIVERYDATA->amount = $data['amount'];
+            if($data['amount'] == '') {
+                $DELIVERYDATA->amount = 0;
+            } else {
+                $DELIVERYDATA->amount = $data['amount'];
+            }
+            
 
             if (empty($data['id'])) {
                 $result = $DELIVERYDATA->create();

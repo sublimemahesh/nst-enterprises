@@ -26,6 +26,13 @@ $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
 }
+if ($INVOICE['createdAt'] < '2019-12-01') {
+    $tax = 15;
+} elseif ($INVOICE['createdAt'] < '2020-01-01') {
+    $tax = 8;
+} else {
+    $tax = 0;
+}
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 $address = explode(",", $CONSIGNEE->address);
 ?>
@@ -33,7 +40,7 @@ $address = explode(",", $CONSIGNEE->address);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Vie Invoice || Dashboard || NST Enterprises</title>
+        <title>View Invoice || Dashboard || NST Enterprises</title>
 
         <link href="css/invoice.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -149,7 +156,7 @@ $address = explode(",", $CONSIGNEE->address);
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2" class="td-border row-padding-left">VAT 15%</td>
+                    <td colspan="2" class="td-border row-padding-left">VAT <?php echo $tax; ?>%</td>
                     <td class="text-right row-padding-right"><?php echo number_format($INVOICE['vat'], 2); ?></td>       
                 </tr>
                 <tr>

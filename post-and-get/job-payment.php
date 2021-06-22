@@ -12,6 +12,8 @@ if (isset($_POST['create-payment'])) {
     $PAYMENT->createdAt = filter_input(INPUT_POST, 'createdAt');
     $PAYMENT->payment = filter_input(INPUT_POST, 'payment');
     $PAYMENT->comment = filter_input(INPUT_POST, 'comment');
+    $PAYMENT->receipt_no = filter_input(INPUT_POST, 'receipt_no');
+    $PAYMENT->receipt_date = filter_input(INPUT_POST, 'receipt_date');
 
     $VALID->check($PAYMENT, [
         'job' => ['required' => TRUE],
@@ -50,6 +52,8 @@ if (isset($_POST['edit-payment'])) {
 
     $PAYMENT->payment = filter_input(INPUT_POST, 'payment');
     $PAYMENT->comment = filter_input(INPUT_POST, 'comment');
+    $PAYMENT->receipt_no = filter_input(INPUT_POST, 'receipt_no');
+    $PAYMENT->receipt_date = filter_input(INPUT_POST, 'receipt_date');
 
     $VALID = new Validator();
     $VALID->check($PAYMENT, [

@@ -106,7 +106,7 @@ $USER1 = new User($_SESSION['id']);
                                                     <div id="suggesstion-box">
                                                         <ul id="parent-name-list-append" class="parent-name-list col-sm-offset-3"></ul>
                                                     </div>
-                                                    <input type="hidden" name="pnameid" value="" id="pname-id"  />
+                                                    <input type="hidden" name="pnameid" value="0" id="pname-id"  />
                                                 </div>
                                                 <div class="col-sm-9 col-md-offset-3 form-btn">
                                                     <button type="submit" name="create-consignee" id="create-consignee" id="btn-consignee" class="btn btn-info">Save Consignee</button>

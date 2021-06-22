@@ -16,6 +16,7 @@ if (isset($_POST['create-user'])) {
     $USER->password = $password;
     $USER->email = filter_input(INPUT_POST, 'email');
     $USER->isActive = 1;
+    $USER->queue = 0;
 
     $dir_dest = '../upload/user/';
 

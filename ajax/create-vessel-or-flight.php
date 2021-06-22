@@ -17,6 +17,7 @@ if ($_POST['option'] == 'ADDVESSELORFLIGHT') {
     $VESSELANDFLIGHT->name = $_POST['vesselorflight'];
     $VESSELANDFLIGHT->description = filter_input(INPUT_POST, 'description');
     $VESSELANDFLIGHT->isActive = 1;
+    $VESSELANDFLIGHT->queue = 0;
 
     $VALID->check($VESSELANDFLIGHT, [
         'name' => ['required' => TRUE],

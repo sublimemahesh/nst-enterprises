@@ -13,6 +13,9 @@ if ($_POST['option'] == 'ADDCONSIGNEE') {
     $CONSIGNEE->email = filter_input(INPUT_POST, 'email');
     $CONSIGNEE->description = filter_input(INPUT_POST, 'description');
     $CONSIGNEE->isActive = 1;
+    $CONSIGNEE->parent = 1;
+    $CONSIGNEE->balance = 0;
+    $CONSIGNEE->queue = 0;
     
     $VALID->check($CONSIGNEE, [
         'name' => ['required' => TRUE]

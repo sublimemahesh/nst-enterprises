@@ -18,11 +18,13 @@ class JobPayment {
     public $createdAt;
     public $payment;
     public $comment;
+    public $receipt_no;
+    public $receipt_date;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`job`,`createdAt`,`payment`,`comment` FROM `job_payment` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`job`,`createdAt`,`payment`,`comment`,`receipt_no`,`receipt_date` FROM `job_payment` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -33,6 +35,8 @@ class JobPayment {
             $this->createdAt = $result['createdAt'];
             $this->payment = $result['payment'];
             $this->comment = $result['comment'];
+            $this->receipt_no = $result['receipt_no'];
+            $this->receipt_date = $result['receipt_date'];
 
             return $this;
         }
@@ -44,14 +48,18 @@ class JobPayment {
                 . "`job`,"
                 . "`createdAt`,"
                 . "`payment`,"
-                . "`comment`) "
+                . "`comment`,"
+                . "`receipt_no`,"
+                . "`receipt_date`) "
                 . "VALUES  ("
                 . "'" . $this->job . "',"
                 . "'" . $this->createdAt . "',"
                 . "'" . $this->payment . "',"
-                . "'" . $this->comment . "'"
+                . "'" . $this->comment . "',"
+                . "'" . $this->receipt_no . "',"
+                . "'" . $this->receipt_date . "'"
                 . ")";
-
+// dd($query);
         $db = new Database();
 
         $result = $db->readQuery($query);
@@ -83,7 +91,9 @@ class JobPayment {
 
         $query = "UPDATE  `job_payment` SET "
                 . "`payment` ='" . $this->payment . "', "
-                . "`comment` ='" . $this->comment . "' "
+                . "`comment` ='" . $this->comment . "', "
+                . "`receipt_no` ='" . $this->receipt_no . "', "
+                . "`receipt_date` ='" . $this->receipt_date . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();

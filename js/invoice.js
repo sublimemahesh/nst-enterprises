@@ -167,6 +167,7 @@ $(document).ready(function () {
     $("#agency_fees").keyup(function () {
         var agencyfees = $('#agency_fees').val();
         var documentation = $('#documentation').val();
+        var tax = $('#tax-value').attr('tax');
 
         if (agencyfees == "") {
             agencyfees = 0;
@@ -177,10 +178,15 @@ $(document).ready(function () {
 
         //Calculate vat
         var amount = parseFloat(agencyfees) + parseFloat(documentation);
-        var vat = amount * 15 / 100;
+        var vat = amount * tax / 100;
+        //var vat = 0;
+        //This calculate vat section changed in 2019-10-02 Because
+        //Mr. Tharaka said that changed vat 15% to 8%
+
         var vat1 = new Intl.NumberFormat().format(vat);
         $("#vat").attr('vat', vat);
         $("#vat").val(vat1);
+
 
         //Calculate tax invoice total
         var taxTotal = amount + vat;
@@ -243,6 +249,7 @@ $(document).ready(function () {
     $("#documentation").keyup(function () {
         var agencyfees = $('#agency_fees').val();
         var documentation = $('#documentation').val();
+        var tax = $('#tax-value').attr('tax');
 
         if (agencyfees == "") {
             agencyfees = 0;
@@ -253,7 +260,11 @@ $(document).ready(function () {
 
         //Calculate vat
         var amount = parseFloat(agencyfees) + parseFloat(documentation);
-        var vat = amount * 15 / 100;
+        var vat = amount * tax / 100;
+        //var vat = 0;
+        //This calculate vat section changed in 2019-10-02 Because
+        //Mr. Tharaka said that changed vat 15% to 8%
+
         var vat1 = new Intl.NumberFormat().format(vat);
         $("#vat").attr('vat', vat);
         $("#vat").val(vat1);
@@ -707,6 +718,7 @@ $(document).ready(function () {
     {
         var agencyfees = $('#agency_fees').val();
         var documentation = $('#documentation').val();
+        var tax = $('#tax-value').attr('tax');
 
         if (agencyfees == "") {
             agencyfees = 0;
@@ -717,10 +729,18 @@ $(document).ready(function () {
 
         //Calculate vat
         var amount = parseFloat(agencyfees) + parseFloat(documentation);
-        var vat = amount * 15 / 100;
+        var vat = amount * tax / 100;
+        //var vat = 0;
+        //This calculate vat section changed in 2019-10-02 Because
+        //Mr. Tharaka said that changed vat 15% to 8%
+
         var vat1 = new Intl.NumberFormat().format(vat);
         $("#vat").attr('vat', vat);
         $("#vat").val(vat1);
+
+
+
+
 
         //Calculate tax invoice total
         var taxTotal = amount + vat;

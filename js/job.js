@@ -23,7 +23,7 @@ $(document).ready(function (e) {
 //            });
 //            return false;
 //        } 
-        else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
+       /* else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignment",
@@ -32,7 +32,7 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        } 
+        } */
 //        else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
 //            swal({
 //                title: "Error!",
@@ -52,7 +52,8 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
+        } 
+        /*else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the vessel or flight",
@@ -61,7 +62,7 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        } 
+        } */
 //        else if (!$('#vesselAndFlight-id').val() || $('#vesselAndFlight-id').val().length === 0) {
 //            swal({
 //                title: "Error!",
@@ -101,7 +102,7 @@ $(document).ready(function (e) {
 //            });
 //            return false
 //        }
-        else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
+       /* else if (!$('#consignment').val() || $('#consignment').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the consignment",
@@ -110,7 +111,7 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        }
+        }*/
 //        else if (!$('#consignment-id').val() || $('#consignment-id').val().length === 0) {
 //            swal({
 //                title: "Error!",
@@ -130,7 +131,8 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        } else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
+        }
+        /*else if (!$('#vesselAndFlight').val() || $('#vesselAndFlight').val().length === 0) {
             swal({
                 title: "Error!",
                 text: "Please enter the vessel or flight",
@@ -139,7 +141,7 @@ $(document).ready(function (e) {
                 showConfirmButton: false
             });
             return false;
-        }
+        }*/
 //        else if (!$('#vesselAndFlight-id').val() || $('#vesselAndFlight-id').val().length === 0) {
 //            swal({
 //                title: "Error!",

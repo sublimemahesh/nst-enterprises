@@ -9,6 +9,7 @@ if (isset($_POST['creat-vessel-or-flight'])) {
     $VALID = new Validator();
 
     $VESSELANDFLIGHT->name = filter_input(INPUT_POST, 'name');
+    $VESSELANDFLIGHT->queue = 0;
 
     if ($_POST['type'] == 'vessel') {
         $VESSELANDFLIGHT->isVessel = 'true';
