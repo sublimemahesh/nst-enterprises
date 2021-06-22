@@ -246,7 +246,7 @@ $count = count($address);
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td colspan="2" class="td-border v-align-middle">VAT 15%</td>
+                                                    <td colspan="2" class="td-border v-align-middle">VAT <span id="tax-value" tax=""></span>%</td>
                                                     <td class="row-padding-right"><input type="text" class="form-control form-control-border text-right" name="vat" id="vat" vat="" value="" disabled="" autocomplete="off" /></td>       
                                                 </tr>
                                                 <tr>

@@ -26,6 +26,13 @@ $INVOICE = Invoice::getInvoiceByJobCostingCard($jobcostingcard);
 if ($INVOICE) {
     $DELIVERYDETAILS = InvoiceDeliveryDetails::getDeliveryDetailsByInvoice($INVOICE['id']);
 }
+if($INVOICE['createdAt'] < '2019-12-01') {
+    $tax = 15;
+} elseif ($INVOICE['createdAt'] < '2020-01-01') {
+    $tax = 8;
+} else {
+    $tax = 0;
+}
 $grandtotal = ReimbursementDetails::getGrandTotalByJobCostingCard($jobcostingcard);
 
 $len = strlen($CONSIGNEE->vatNumber);
@@ -33,7 +40,7 @@ $vat_last_no = substr($CONSIGNEE->vatNumber, $len - 4, $len);
 
 if ($vat_last_no == '7000') {
     $documentation = $INVOICE['documentation'];
-    $vat = $INVOICE['vat'];
+    $vat = $INVOICE['vat']; 
 } else {
     $documentation = (float) $INVOICE['documentation'] + (float) $INVOICE['vat'];
     $vat = 0;
@@ -162,7 +169,7 @@ $address = explode(",", $CONSIGNEE->address);
                 </tr>
                 <tr>
                     <td></td>
-                    <td colspan="2" class="td-border">VAT 15%</td>
+                    <td colspan="2" class="td-border">VAT <?php echo $tax; ?>%</td>
                     <td class="text-right row-padding-right"><?php echo number_format($vat, 2); ?></td>       
                 </tr>
                 <tr>

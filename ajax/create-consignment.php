@@ -9,6 +9,7 @@ if ($_POST['option'] == 'ADDCONSIGNMENT') {
     $CONSIGNMENT->name = $_POST['consignment'];
     $CONSIGNMENT->description = filter_input(INPUT_POST, 'description');
     $CONSIGNMENT->isActive = 1;
+    $CONSIGNMENT->queue = 0;
     
     $VALID->check($CONSIGNMENT, [
         'name' => ['required' => TRUE]

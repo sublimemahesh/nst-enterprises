@@ -12,6 +12,8 @@ $(document).ready(function () {
                 $('#savebutton').removeClass('hidden');
                 $('#savebutton-print').removeClass('hidden');
                 $('.inv-title').text('Create ');
+                $('#tax-value').text('0');
+                $('#tax-value').attr('tax', '0');
                 var date = new Date().toISOString().slice(0, 10);
                 var formatted_date = GetFormattedDate(date);
                 $('#created_at').val(formatted_date);
@@ -22,7 +24,7 @@ $(document).ready(function () {
                 var formatted_date1 = GetFormattedDate(result.cleared_date);
                 $('#datepicker1').val(formatted_date1);
                 $('#datepicker1').attr('date', result.cleared_date);
-            
+
 //                $('#datepicker1').val(result.cleared_date);
                 $('#gross_weight').val(result.gross_weight);
                 $('#volume').val(result.volume);
@@ -38,35 +40,16 @@ $(document).ready(function () {
                 $('#created_at').val(formatted_date);
                 $('#created_at').attr('date', result.createdAt);
 
-//                    $('#statutory-sub-total').val(this.statutory_sub_total);
-//                    $('#delivery-sub-total').val(this.delivery_sub_total);
-//                $('#payable-amount').html(result.payable_amount);
-//                $('#payable-amount').attr("amount", result.payable_amount);
-//                $('#advance').val(result.advance);
-//                $('#advance').attr("advance", result.advance);
-
-
-
-//                if (result.due != 0) {
-//
-//                    $('#tr-refund').addClass("hidden");
-//                    $('#refund').attr("refund", 0);
-//                    $('#refund').html(0);
-//                    $('#tr-due').removeClass("hidden");
-//
-//                    $('#due').html(result.due);
-//                    $('#due').attr("due", result.due);
-//
-//                } else {
-//
-//                    $('#tr-due').addClass("hidden");
-//                    $('#due').attr("due", 0);
-//                    $('#due').html(0);
-//                    $('#tr-refund').removeClass("hidden");
-//
-//                    $('#refund').attr("refund", result.refund);
-//                    $('#refund').html(result.refund);
-//                }
+                if (result.createdAt < '2019-12-01') {
+                    $('#tax-value').text('15');
+                    $('#tax-value').attr('tax', '15');
+                } else if (result.createdAt < '2020-01-01') {
+                    $('#tax-value').text('8');
+                    $('#tax-value').attr('tax', '8');
+                } else {
+                    $('#tax-value').text('0');
+                    $('#tax-value').attr('tax', '0');
+                }
 
                 $('#editbutton').removeClass('hidden');
                 $('#editbutton-print').removeClass('hidden');

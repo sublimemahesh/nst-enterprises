@@ -9,9 +9,9 @@ $USER1 = new User($_SESSION['id']);
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-        <meta charset="utf-8">
+        
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -150,7 +150,7 @@ $USER1 = new User($_SESSION['id']);
                 $('#dataTables-example').DataTable({
                     responsive: true,
                     "lengthMenu": [[100, 250, 500, 1000, -1], [100, 250, 500, 1000, "All"]],
-                    "order": [[ 0, "desc" ]]
+                    "order": [[ 1, "desc" ]]
                 });
             });
             

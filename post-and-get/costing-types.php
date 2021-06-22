@@ -9,6 +9,7 @@ if (isset($_POST['create-costing-type'])) {
     $VALID = new Validator();
 
     $COSTINGTYPE->title = filter_input(INPUT_POST, 'title');
+    $COSTINGTYPE->queue = 0;
 
     $VALID->check($COSTINGTYPE, [
         'title' => ['required' => TRUE]

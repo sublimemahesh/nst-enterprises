@@ -7,6 +7,7 @@ $(document).ready(function () {
             option: 'GETSTARTANDENDDATE'
         },
         success: function (result) {
+            console.log(result);
             $("#from").val(result.start_date);
             $("#to").val(result.end_date);
             $.ajax({
@@ -21,7 +22,7 @@ $(document).ready(function () {
                 success: function (jobs) {
                     callLoader();
                     var html;
-                    if (jobs) {
+                    if (jobs != '') {
                         $.each(jobs, function (key, job) {
 
                             var ref_no = job.jobReferenceNo;
@@ -50,7 +51,7 @@ $(document).ready(function () {
                                                     <td>' + job.vesselAndFlightDate + '</td>\n\
                                                     <td>' + job.copyReceivedDate + '</td>\n\
                                                     <td>' + job.originalReceivedDate + '</td>\n\
-                                                    <td>' + invoiceNumber.substring(15,19) + '</td>\n\
+                                                    <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
                                                     <td>' + cusdec_no + '</td>\n\
                                                     </tr>';
 
@@ -83,97 +84,51 @@ $(document).ready(function () {
                 option: 'GETJOBSBYSTARTANDENDDATE'
             },
             success: function (jobs) {
+                    callLoader();
+                    var html;
+                    if (jobs != '') {
+                        $.each(jobs, function (key, job) {
 
-                var html;
-                if (jobs.length != 0) {
-                    $.each(jobs, function (key, job) {
+                            var ref_no = job.jobReferenceNo;
+                            var len = ref_no.length;
+                            var job_no = ref_no.substring(len - 4, len);
+                            var cusdec_no, invoiceNumber;
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'ajax/report-of-job-register.php',
-                            dataType: "json",
-                            data: {
-                                consignee: job.consignee,
-                                option: 'GETCONSIGNEE'
-                            },
-                            success: function (consignee) {
+                            if (job.cusdecNo == undefined) {
+                                cusdec_no = '-';
+                            } else {
+                                cusdec_no = job.cusdecNo;
+                            }
 
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'ajax/report-of-job-register.php',
-                                    dataType: "json",
-                                    data: {
-                                        vesselorflight: job.vesselAndFlight,
-                                        option: 'GETVESSELORFLIGHT'
-                                    },
-                                    success: function (vesselorflight) {
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'ajax/report-of-job-register.php',
-                                            dataType: "json",
-                                            data: {
-                                                job: job.id,
-                                                option: 'GETINVOICE'
-                                            },
-                                            success: function (invoice) {
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'ajax/report-of-job-register.php',
-                                                    dataType: "json",
-                                                    data: {
-                                                        jobcostingcard: invoice.id,
-                                                        option: 'GETCUSDECNO'
-                                                    },
-                                                    success: function (cusdecno) {
-                                                        var ref_no = job.reference_no;
-                                                        var len = ref_no.length;
-                                                        var job_no = ref_no.substring(len - 4, len);
-                                                        var cusdec_no, invoiceNumber;
-
-                                                        if (cusdecno.cusdec_no == undefined) {
-                                                            cusdec_no = '-';
-                                                        } else {
-                                                            cusdec_no = cusdecno.cusdec_no;
-                                                        }
-
-                                                        if (invoice.invoiceNumber == undefined) {
-                                                            invoiceNumber = '-';
-                                                        } else {
-                                                            invoiceNumber = invoice.invoiceNumber;
-                                                        }
+                            if (job.invoiceNumber == undefined) {
+                                invoiceNumber = '-';
+                            } else {
+                                invoiceNumber = job.invoiceNumber;
+                            }
 
 
-                                                        html += '<tr>\n\
+                            html += '<tr>\n\
                                                     <td>' + job_no + '</td>\n\
-                                                    <td>' + consignee.name + '</td>\n\
-                                                    <td>' + job.description + '</td>\n\
-                                                    <td>' + vesselorflight.name + '</td>\n\
+                                                    <td>' + job.consignee + '</td>\n\
+                                                    <td>' + job.jobDescription + '</td>\n\
+                                                    <td>' + job.vesselAndFlight + '</td>\n\
                                                     <td>' + job.vesselAndFlightDate + '</td>\n\
                                                     <td>' + job.copyReceivedDate + '</td>\n\
                                                     <td>' + job.originalReceivedDate + '</td>\n\
-                                                    <td>' + invoiceNumber + '</td>\n\
+                                                    <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
                                                     <td>' + cusdec_no + '</td>\n\
                                                     </tr>';
 
 
-                                                        $("#balance tbody").empty();
-                                                        $("#balance tbody").append(html);
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                            }
+                            $("#balance tbody").empty();
+                            $("#balance tbody").append(html);
                         });
-                    });
-                } else {
-                    var html = 'No any jobs in database';
-                    $("#balance tbody").empty();
-                    $("#balance tbody").append(html);
+                    } else {
+                        html = 'No any jobs in database';
+                        $("#balance tbody").empty();
+                        $("#balance tbody").append(html);
+                    }
                 }
-            }
 
         });
     });
@@ -192,97 +147,52 @@ $(document).ready(function () {
                 option: 'GETJOBSBYSTARTANDENDDATE'
             },
             success: function (jobs) {
+                    callLoader();
+                    var html;
+                    if (jobs != '') {
+                        
+                        $.each(jobs, function (key, job) {
 
-                var html;
-                if (jobs.length != 0) {
-                    $.each(jobs, function (key, job) {
+                            var ref_no = job.jobReferenceNo;
+                            var len = ref_no.length;
+                            var job_no = ref_no.substring(len - 4, len);
+                            var cusdec_no, invoiceNumber;
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'ajax/report-of-job-register.php',
-                            dataType: "json",
-                            data: {
-                                consignee: job.consignee,
-                                option: 'GETCONSIGNEE'
-                            },
-                            success: function (consignee) {
+                            if (job.cusdecNo == undefined) {
+                                cusdec_no = '-';
+                            } else {
+                                cusdec_no = job.cusdecNo;
+                            }
 
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'ajax/report-of-job-register.php',
-                                    dataType: "json",
-                                    data: {
-                                        vesselorflight: job.vesselAndFlight,
-                                        option: 'GETVESSELORFLIGHT'
-                                    },
-                                    success: function (vesselorflight) {
-
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'ajax/report-of-job-register.php',
-                                            dataType: "json",
-                                            data: {
-                                                job: job.id,
-                                                option: 'GETINVOICE'
-                                            },
-                                            success: function (invoice) {
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'ajax/report-of-job-register.php',
-                                                    dataType: "json",
-                                                    data: {
-                                                        jobcostingcard: invoice.id,
-                                                        option: 'GETCUSDECNO'
-                                                    },
-                                                    success: function (cusdecno) {
-                                                        var ref_no = job.reference_no;
-                                                        var len = ref_no.length;
-                                                        var job_no = ref_no.substring(len - 4, len);
-                                                        var cusdec_no, invoiceNumber;
-
-                                                        if (cusdecno.cusdec_no == undefined) {
-                                                            cusdec_no = '-';
-                                                        } else {
-                                                            cusdec_no = cusdecno.cusdec_no;
-                                                        }
-
-                                                        if (invoice.invoiceNumber == undefined) {
-                                                            invoiceNumber = '-';
-                                                        } else {
-                                                            invoiceNumber = invoice.invoiceNumber;
-                                                        }
+                            if (job.invoiceNumber == undefined) {
+                                invoiceNumber = '-';
+                            } else {
+                                invoiceNumber = job.invoiceNumber;
+                            }
 
 
-                                                        html += '<tr>\n\
+                            html += '<tr>\n\
                                                     <td>' + job_no + '</td>\n\
-                                                    <td>' + consignee.name + '</td>\n\
-                                                    <td>' + job.description + '</td>\n\
-                                                    <td>' + vesselorflight.name + '</td>\n\
+                                                    <td>' + job.consignee + '</td>\n\
+                                                    <td>' + job.jobDescription + '</td>\n\
+                                                    <td>' + job.vesselAndFlight + '</td>\n\
                                                     <td>' + job.vesselAndFlightDate + '</td>\n\
                                                     <td>' + job.copyReceivedDate + '</td>\n\
                                                     <td>' + job.originalReceivedDate + '</td>\n\
-                                                    <td>' + invoiceNumber + '</td>\n\
+                                                    <td>' + invoiceNumber.substring(15, 19) + '</td>\n\
                                                     <td>' + cusdec_no + '</td>\n\
                                                     </tr>';
 
 
-                                                        $("#balance tbody").empty();
-                                                        $("#balance tbody").append(html);
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                            }
+                            $("#balance tbody").empty();
+                            $("#balance tbody").append(html);
                         });
-                    });
-                } else {
-                    var html = 'No any jobs in database';
-                    $("#balance tbody").empty();
-                    $("#balance tbody").append(html);
+                    } else {
+                        html = 'No any jobs in database';
+                        $("#balance tbody").empty();
+                        $("#balance tbody").append(html);
+                    }
                 }
-            }
 
         });
     });
